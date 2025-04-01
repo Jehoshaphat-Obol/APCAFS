@@ -52,5 +52,13 @@ This repository utilizes Git Large File Storage (LFS) to manage large files. To 
 * If you encounter any issues with large files not downloading, double-check that Git LFS is properly installed and initialized.
 * If you are behind a proxy, make sure git lfs is configured to use the proxy.
 
+### Intergration with X
+
+To run the code, use `pip install “twikit==1.7.6”` to install the _twikit_ package. The latest update of _twikit_ 
+deprecated the synchronous method which is used in the code.
+
+Check out the supplementary YouTube tutorial: https://youtu.be/6D6fVyFQD5A
+
 ### Dataset
 [MBTI (Myers–Briggs Type Indicator) dataset](https://www.kaggle.com/datasets/datasnaek/mbti-type)
+

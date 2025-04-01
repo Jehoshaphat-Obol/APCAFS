@@ -1,0 +1,405 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[703],{83622:function(t,e,i){var n=i(85893),a=i(82019),o=i(61659),s=i(37958),r=i(41796),l=i(5616),c=i(93946),d=i(54776),p=i(16628),h=i(73327),v=i(58377),u=i(81042),m=i.n(u),g=i(67294),y=i(45338);let sanitizeNavProps=t=>({...t,style:void 0!==t.style?t.style:{},className:void 0!==t.className?t.className:""}),sanitizeProps=t=>{var e,i,a,r,l,c,d,p,h,v,u,m,g,y,x,b,f,N,P,w,j,C,I,z,A,F;let B=null!==(e=t.animation)&&void 0!==e?e:"fade",Z=t.timeout?t.timeout:"fade"===B?500:200;return{className:null!==(i=t.className)&&void 0!==i?i:"",children:null!==(a=t.children)&&void 0!==a?a:[],index:null!==(r=t.index)&&void 0!==r?r:0,strictIndexing:null===(l=t.strictIndexing)||void 0===l||l,autoPlay:null===(c=t.autoPlay)||void 0===c||c,stopAutoPlayOnHover:null===(d=t.stopAutoPlayOnHover)||void 0===d||d,interval:null!==(p=t.interval)&&void 0!==p?p:4e3,animation:B,reverseEdgeAnimationDirection:null===(h=t.reverseEdgeAnimationDirection)||void 0===h||h,timeout:Z,swipe:null===(v=t.swipe)||void 0===v||v,navButtonsAlwaysInvisible:null!==(u=t.navButtonsAlwaysInvisible)&&void 0!==u&&u,navButtonsAlwaysVisible:null===(m=t.navButtonsAlwaysVisible)||void 0===m||m,cycleNavigation:null===(g=t.cycleNavigation)||void 0===g||g,fullHeightHover:null!==(y=t.fullHeightHover)&&void 0!==y&&y,navButtonsWrapperProps:sanitizeNavProps(null!==(x=t.navButtonsWrapperProps)&&void 0!==x?x:{}),navButtonsProps:sanitizeNavProps(null!==(b=t.navButtonsProps)&&void 0!==b?b:{}),NavButton:t.NavButton,NextIcon:null!==(f=t.NextIcon)&&void 0!==f?f:(0,n.jsx)(s.Z,{style:{fontSize:16,opacity:.5}}),PrevIcon:null!==(N=t.PrevIcon)&&void 0!==N?N:(0,n.jsx)(o.Z,{style:{fontSize:16,opacity:.5}}),indicators:null===(P=t.indicators)||void 0===P||P,indicatorContainerProps:sanitizeNavProps(null!==(w=t.indicatorContainerProps)&&void 0!==w?w:{}),indicatorIconButtonProps:sanitizeNavProps(null!==(j=t.indicatorIconButtonProps)&&void 0!==j?j:{}),activeIndicatorIconButtonProps:sanitizeNavProps(null!==(C=t.activeIndicatorIconButtonProps)&&void 0!==C?C:{}),IndicatorIcon:t.IndicatorIcon,onChange:null!==(I=t.onChange)&&void 0!==I?I:()=>{},changeOnFirstRender:null!==(z=t.changeOnFirstRender)&&void 0!==z&&z,next:null!==(A=t.next)&&void 0!==A?A:()=>{},prev:null!==(F=t.prev)&&void 0!==F?F:()=>{},...t}};let Carousel=class Carousel extends g.Component{componentDidMount(){let{index:t,changeOnFirstRender:e}=sanitizeProps(this.props);this.setActive(t,void 0,e),this.start()}componentWillUnmount(){this.stop()}componentDidUpdate(t){t=sanitizeProps(t);let{autoPlay:e,interval:i,children:n,index:a}=sanitizeProps(this.props);(e!==t.autoPlay||i!==t.interval)&&this.reset(),g.Children.count(n)!==g.Children.count(t.children)&&this.setActive(a),t.index!==a&&this.setActive(a)}stop(){this.timer&&(clearInterval(this.timer),this.timer=null)}start(){let{autoPlay:t,interval:e}=sanitizeProps(this.props);t&&(this.timer=setInterval(this.next,e))}reset(){let{autoPlay:t}=sanitizeProps(this.props);this.stop(),t&&this.start()}setActive(t){let e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:()=>{},i=!(arguments.length>2)||void 0===arguments[2]||arguments[2],{onChange:n,timeout:a,children:o,strictIndexing:s}=sanitizeProps(this.props);Array.isArray(o)?(s&&t>o.length-1&&(t=o.length-1),s&&t<0&&(t=0)):t=0;let r=this.state.active;this.setState({active:t,prevActive:r,displayed:r},this.reset),setTimeout(()=>{this.setState({displayed:t},()=>{i&&(e(t,r),n(t,r))})},"object"==typeof a?a.exit:a)}next(t){let{children:e,next:i,cycleNavigation:n}=sanitizeProps(this.props),a=this.state.active+1>g.Children.count(e)-1?n?0:this.state.active:this.state.active+1;this.setActive(a,i),null==t||t.stopPropagation()}prev(t){let{children:e,prev:i,cycleNavigation:n}=sanitizeProps(this.props),a=this.state.active-1<0?n?g.Children.count(e)-1:this.state.active:this.state.active-1;this.setActive(a,i),null==t||t.stopPropagation()}render(){var t,e=this;let{children:i,className:a,stopAutoPlayOnHover:o,animation:s,reverseEdgeAnimationDirection:r,timeout:d,swipe:p,navButtonsAlwaysInvisible:h,navButtonsAlwaysVisible:v,cycleNavigation:u,fullHeightHover:m,navButtonsProps:y,navButtonsWrapperProps:x,NavButton:b,NextIcon:f,PrevIcon:N,indicators:P,indicatorContainerProps:w,indicatorIconButtonProps:j,activeIndicatorIconButtonProps:C,IndicatorIcon:I}=sanitizeProps(this.props),{classes:z}=this.props,{className:A,style:F,...B}=y,{className:Z,style:k,...E}=x,H="".concat(v?z.buttonVisible:z.buttonHidden),L="".concat(z.button," ").concat(H," ").concat(A),_="".concat(z.buttonWrapper," ").concat(m?z.fullHeightHoverWrapper:""," ").concat(Z),compareActiveDisplayed=()=>0===this.state.active&&this.state.prevActive===g.Children.count(i)-1?!r:this.state.active===g.Children.count(i)-1&&0===this.state.prevActive?r:this.state.active>this.state.prevActive,showButton=function(){let t=!(arguments.length>0)||void 0===arguments[0]||arguments[0];return!!u||!(t&&e.state.active+1>g.Children.count(i)-1)&&!(!t&&e.state.active-1<0)};return(0,n.jsxs)("div",{className:"".concat(z.root," ").concat(a||""),onMouseOver:()=>{o&&this.stop()},onMouseOut:()=>{o&&this.reset()},children:[Array.isArray(i)?i.map((t,e)=>(0,n.jsx)(CarouselItem,{display:e===this.state.displayed,active:e===this.state.active,isNext:compareActiveDisplayed(),child:t,animation:s,timeout:d,swipe:p,next:this.next,prev:this.prev},"carousel-item".concat(e))):(0,n.jsx)(CarouselItem,{display:!0,active:!0,child:i,animation:s,timeout:d},"carousel-item0"),(0,n.jsxs)(l.Z,{display:"flex",style:{gap:20},marginTop:"24px",justifyContent:"center",children:[!h&&showButton(!1)&&(0,n.jsx)("div",{className:"".concat(_," ").concat(z.prev),style:k,...E,children:void 0!==b?b({onClick:this.prev,className:L,style:null!==(t=y.style)&&void 0!==t?t:{},next:!1,prev:!0,...B}):(0,n.jsx)(c.Z,{className:"".concat(L),onClick:this.prev,"aria-label":"Previous",style:y.style,...B,children:N})}),P?(0,n.jsx)(Indicators,{classes:z,length:g.Children.count(i),active:this.state.active,press:this.setActive,indicatorContainerProps:w,indicatorIconButtonProps:j,activeIndicatorIconButtonProps:C,IndicatorIcon:I}):null,!h&&showButton(!0)&&(0,n.jsx)("div",{className:"".concat(_," ").concat(z.next),style:k,...E,children:void 0!==b?b({onClick:this.next,className:L,style:null!=F?F:{},next:!0,prev:!1,...B}):(0,n.jsx)(c.Z,{className:"".concat(L),onClick:this.next,"aria-label":"Next",style:F,...B,children:f})})]})]})}constructor(t){super(t),m()(this),this.state={active:0,prevActive:0,displayed:0},this.timer=null}};function CarouselItem(t){let e=t.swipe?(0,y.QS)({onSwipedLeft:()=>t.next(),onSwipedRight:()=>null==t?void 0:t.prev()}):{};return(0,n.jsx)("div",{style:{display:t.display?"block":"none"},children:"slide"===t.animation?(0,n.jsx)(d.Z,{direction:t.active?t.isNext?"left":"right":t.isNext?"right":"left",in:t.display&&t.active,timeout:t.timeout,...e,children:(0,n.jsx)("div",{children:t.child})}):(0,n.jsx)(p.Z,{in:t.display&&t.active,timeout:t.timeout,style:{height:"100%"},...e,children:(0,n.jsx)("div",{children:t.child})})})}function Indicators(t){var e,i,o;let{classes:s}=t,r=void 0!==t.IndicatorIcon?t.IndicatorIcon:(0,n.jsx)(a.Z,{className:s.indicatorIcon}),{className:l,style:d,...p}=null!==(e=t.indicatorIconButtonProps)&&void 0!==e?e:{className:"",style:{}},{className:h,style:v,...u}=null!==(i=t.activeIndicatorIconButtonProps)&&void 0!==i?i:{className:"",style:{}},m=[];for(let e=0;e<t.length;e++){let i=e===t.active?"".concat(s.indicator," ").concat(l," ").concat(s.active," ").concat(h):"".concat(s.indicator," ").concat(l),a=e===t.active?{...d,...v}:d,o=e===t.active?{...p,...u}:p;void 0===o["aria-label"]&&(o["aria-label"]="carousel indicator");let g=(0,n.jsx)(c.Z,{className:i,style:a,onClick:()=>{t.press(e)},size:"small",...o,"aria-label":"".concat(o["aria-label"]," ").concat(e+1),children:r},e);m.push(g)}let{className:g,style:y,...x}=null!==(o=t.indicatorContainerProps)&&void 0!==o?o:{className:"",style:{}};return(0,n.jsx)("div",{className:"".concat(s.indicators," ").concat(g),style:y,...x,children:m})}e.Z=(0,v.Z)(t=>(0,h.Z)({root:{overflow:"hidden"},indicators:{textAlign:"center",display:"flex",gap:"12px",height:"min-content",alignSelf:"center",justifyContent:"center"},indicator:{cursor:"pointer",transition:"200ms",padding:3,"&:hover":{color:t.palette.text.primary},"&:active":{color:t.palette.text.primary},color:(0,r.Fq)(t.palette.text.primary,.5)},indicatorIcon:{fontSize:10},active:{color:t.palette.text.primary,backgroundColor:(0,r.Fq)(t.palette.text.primary,.2)},buttonWrapper:{backgroundColor:"transparent","&:hover":{"& $button":{filter:"brightness(120%)",opacity:"0.4"}}},fullHeightHoverWrapper:{height:"100%",top:0},buttonVisible:{opacity:1},buttonHidden:{opacity:0},button:{backgroundColor:t.palette.background.default,color:t.palette.text.primary,width:40,height:40,fontSize:"30px",transition:"200ms",cursor:"pointer","&:hover":{opacity:"0.6 !important"}},next:{},prev:{}}))(Carousel)},91850:function(t,e,i){var n=i(85893),a=i(93619),o=i(90629),s=i(15861),r=i(69417),l=i(75648);let c=(0,l.Z)(t=>({root:{borderRadius:24,padding:32,height:"100%",display:"flex",flexDirection:"column"},icon:{fill:"light"===t.palette.mode?"#FFFFFF":"#06043E",width:32,height:32},iconWrapper:{width:64,height:64,padding:16,background:"light"===t.palette.mode?"#03232E":"#FFFFFF",borderRadius:6,marginBottom:20},button:{textTransform:"none",color:"light"===t.palette.mode?"#03232E":"#05EEFF",paddingLeft:16,paddingRight:16,marginLeft:-16,borderRadius:10,marginTop:"auto"},body:{display:"block",marginTop:20,marginBottom:24},arrow:{fill:"light"===t.palette.mode?"#03232E":"#05EEFF",marginLeft:8},fullHeight:{height:"100%"}}));e.Z=t=>{let{children:e,Icon:i,title:l,buttonText:d,buttonLink:p,CustomFooter:h,outLink:v,...u}=t,m=c();return(0,n.jsxs)(o.Z,{className:m.root,elevation:0,...u,children:[(0,n.jsx)("div",{className:m.iconWrapper,children:(0,n.jsx)(i,{className:m.icon})}),(0,n.jsx)(s.Z,{variant:"h5",children:l}),(0,n.jsx)(s.Z,{className:m.body,variant:"body1Semi",children:e}),null!=h?h:d?(0,n.jsxs)(r.Z,{onClick:()=>{p&&(v?window.open(p,"_blank","noopener,noreferrer"):window.location.href=p)},className:m.button,children:[d,(0,n.jsx)(a.Z,{className:m.arrow})]}):null]})}},71089:function(t,e,i){i.d(e,{Z:function(){return ContributeContainers_GetInvolvedSection}});var n,a,o=i(85893),s=i(86886),r=i(15861),l=i(9974),c=i(75648),d=i(67294);function _extends(){return(_extends=Object.assign?Object.assign.bind():function(t){for(var e=1;e<arguments.length;e++){var i=arguments[e];for(var n in i)({}).hasOwnProperty.call(i,n)&&(t[n]=i[n])}return t}).apply(null,arguments)}function gitlab_extends(){return(gitlab_extends=Object.assign?Object.assign.bind():function(t){for(var e=1;e<arguments.length;e++){var i=arguments[e];for(var n in i)({}).hasOwnProperty.call(i,n)&&(t[n]=i[n])}return t}).apply(null,arguments)}var p=[{title:"GitLab",description:"The platform where the source code of the parrot packages is hosted. Join it to contribute to our source code and improve the system.",url:"https://gitlab.com/parrotsec",icon:function(t){return d.createElement("svg",gitlab_extends({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 338.97 313.45"},t),a||(a=d.createElement("g",{id:"Livello_2","data-name":"Livello 2"},d.createElement("g",{id:"Livello_1-2","data-name":"Livello 1"},d.createElement("path",{className:"cls-1",d:"M338 175.58l-18-55.59v.08a.29.29 0 000-.09L284.08 9.66A14.11 14.11 0 00270.55 0a13.93 13.93 0 00-13.37 9.75l-34 104.7H115.86L81.78 9.74A13.92 13.92 0 0068.42 0h-.07a14.21 14.21 0 00-13.49 9.75L19.13 120V120.01L1 175.58a20.27 20.27 0 007.36 22.7l156.42 113.64.07.05.2.14-.19-.13a7.25 7.25 0 00.75.47l.1.06h.2c.13.07.28.12.42.18l.39.16H167.01a5.27 5.27 0 00.57.14l.23.05h.32a8.34 8.34 0 001.13.09 8.32 8.32 0 001.12-.09h.32l.23-.05c.19 0 .38-.08.57-.14h.26l.41-.17.39-.16H172.77l.11-.07A7.17 7.17 0 00174 312h.06l.08-.05 156.47-113.68a20.25 20.25 0 007.39-22.69zM270.64 20l30.68 94.45H240zM296 130.43l-12.52 16-92.38 118.34 43.68-134.34zm-134.12 177.5v.07zm-14-43.15L43.07 130.43h61.18zM68.33 20l30.73 94.45H37.7zM17.75 185.36a4.33 4.33 0 01-1.56-4.84l13.47-41.33 98.67 126.51zM164.5 311.71l-.09-.07a1.29 1.29 0 01-.17-.16c-.12-.09-.23-.2-.34-.3a8.42 8.42 0 00.72.62zm5-32.09l-25.67-79.06-22.76-70.13H218zm5.25 31.84l-.18.16-.09.07a1.66 1.66 0 01-.21.16 6.91 6.91 0 00.71-.61zm146.47-126.11l-110.56 80.32 98.7-126.47 13.41 41.31a4.3 4.3 0 01-1.55 4.84z",id:"logo_art","data-name":"logo art"})))))}},{title:"GitHub - backup mirror",description:"The repository where we keep a copy of the most important code in case our servers are down.",url:"https://github.com/parrotsec",icon:function(t){return d.createElement("svg",_extends({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 120.78 117.79"},t),n||(n=d.createElement("g",{id:"Livello_2","data-name":"Livello 2"},d.createElement("g",{id:"Layer_1","data-name":"Layer 1"},d.createElement("path",{className:"cls-1",d:"M60.39 0A60.39 60.39 0 0041.3 117.69c3 .56 4.12-1.31 4.12-2.91 0-1.44-.05-6.19-.08-11.24C28.54 107.19 25 96.42 25 96.42c-2.75-7-6.71-8.84-6.71-8.84-5.48-3.75.41-3.67.41-3.67 6.07.43 9.26 6.22 9.26 6.22 5.39 9.23 14.13 6.57 17.57 5 .55-3.9 2.11-6.56 3.84-8.07C36 85.55 21.85 80.37 21.85 57.23A23.35 23.35 0 0128.08 41c-.63-1.52-2.7-7.66.58-16 0 0 5.07-1.62 16.61 6.19a57.36 57.36 0 0130.25 0C87 23.42 92.11 25 92.11 25c3.28 8.32 1.22 14.46.59 16a23.34 23.34 0 016.21 16.21c0 23.2-14.12 28.3-27.57 29.8 2.16 1.87 4.09 5.55 4.09 11.18 0 8.08-.06 14.59-.06 16.57 0 1.61 1.08 3.49 4.14 2.9A60.39 60.39 0 0060.39 0z"}),d.createElement("path",{className:"cls-2",d:"M22.87 86.7c-.13.3-.6.39-1 .19s-.69-.61-.55-.91.61-.39 1-.19.69.61.54.91zM25.32 89.43c-.29.27-.85.14-1.24-.28a.92.92 0 01-.17-1.25c.3-.27.84-.14 1.24.28s.47 1 .17 1.25zM27.7 92.91c-.37.26-1 0-1.35-.52s-.37-1.18 0-1.44 1 0 1.35.51.37 1.19 0 1.45zM31 96.27a1.13 1.13 0 01-1.59-.27c-.53-.49-.68-1.18-.34-1.54s1-.27 1.56.23.68 1.18.33 1.54zM35.46 98.22c-.15.47-.82.69-1.51.49s-1.13-.76-1-1.24.82-.7 1.51-.49 1.13.76 1 1.24zM40.4 98.58c0 .5-.56.91-1.28.92s-1.3-.38-1.31-.88.56-.91 1.29-.92 1.3.39 1.3.88zM45 97.8c.09.49-.41 1-1.12 1.12s-1.35-.17-1.44-.66.42-1 1.12-1.12 1.35.17 1.44.66z"})))))}}],h=i(91850);let v=(0,c.Z)(t=>({cardArea:{borderRadius:t.spacing(3),height:t.spacing(35)},headingSubTitle:{marginTop:t.spacing(1),marginBottom:t.spacing(6.5)},developBlock:{marginTop:154},icon:{width:32,height:32,fill:"light"===t.palette.mode?"#FFFFFF":"#06043E"},iconWrapper:{width:64,height:64,padding:16,background:"light"===t.palette.mode?"#03232E":"#FFFFFF",borderRadius:6,marginBottom:20}}));var ContributeContainers_GetInvolvedSection=()=>{let t=v();return(0,o.jsxs)(s.ZP,{container:!0,item:!0,xs:12,md:9,spacing:4,justifyContent:"center",children:[(0,o.jsxs)(s.ZP,{item:!0,container:!0,xs:10,justifyContent:"center",alignItems:"center",direction:"column",wrap:"nowrap",className:t.developBlock,children:[(0,o.jsx)(r.Z,{variant:"h1",align:"center",paragraph:!0,children:"Contribute to the Parrot Project"}),(0,o.jsx)(r.Z,{className:t.headingSubTitle,variant:"subtitle2Semi",align:"center",children:"ParrotOS was born as a fully open source project, anyone can see what is inside."})]}),p.map((e,i)=>(0,o.jsx)(s.ZP,{item:!0,sm:12,lg:6,children:(0,o.jsx)(l.Z,{className:t.cardArea,href:e.url,children:(0,o.jsx)(h.Z,{title:e.title,Icon:e.icon,children:e.description})})},"card-".concat(i)))]})}}}]);        ¿€  x¿€?$   20250224130137-8l£€  S2πÀG   https://start.parrotsec.org/_next/static/chunks/703-06b4f8ec3edcdffa.js      <  "use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[703],{83622:function(t,e,i){var n=i(85893),a=i(82019),o=i(61659),s=i(37958),r=i(41796),l=i(5616),c=i(93946),d=i(54776),p=i(16628),h=i(73327),v=i(58377),u=i(81042),m=i.n(u),g=i(67294),y=i(45338);let sanitizeNavProps=t=>({...t,style:void 0!==t.style?t.style:{},className:void 0!==t.className?t.className:""}),sanitizeProps=t=>{var e,i,a,r,l,c,d,p,h,v,u,m,g,y,x,b,f,N,P,w,j,C,I,z,A,F;let B=null!==(e=t.animation)&&void 0!==e?e:"fade",Z=t.timeout?t.timeout:"fade"===B?500:200;return{className:null!==(i=t.className)&&void 0!==i?i:"",children:null!==(a=t.children)&&void 0!==a?a:[],index:null!==(r=t.index)&&void 0!==r?r:0,strictIndexing:null===(l=t.strictIndexing)||void 0===l||l,autoPlay:null===(c=t.autoPlay)||void 0===c||c,stopAutoPlayOnHover:null===(d=t.stopAutoPlayOnHover)||void 0===d||d,interval:null!==(p=t.interval)&&void 0!==p?p:4e3,animation:B,reverseEdgeAnimationDirection:null===(h=t.reverseEdgeAnimationDirection)||void 0===h||h,timeout:Z,swipe:null===(v=t.swipe)||void 0===v||v,navButtonsAlwaysInvisible:null!==(u=t.navButtonsAlwaysInvisible)&&void 0!==u&&u,navButtonsAlwaysVisible:null===(m=t.navButtonsAlwaysVisible)||void 0===m||m,cycleNavigation:null===(g=t.cycleNavigation)||void 0===g||g,fullHeightHover:null!==(y=t.fullHeightHover)&&void 0!==y&&y,navButtonsWrapperProps:sanitizeNavProps(null!==(x=t.navButtonsWrapperProps)&&void 0!==x?x:{}),navButtonsProps:sanitizeNavProps(null!==(b=t.navButtonsProps)&&void 0!==b?b:{}),NavButton:t.NavButton,NextIcon:null!==(f=t.NextIcon)&&void 0!==f?f:(0,n.jsx)(s.Z,{style:{fontSize:16,opacity:.5}}),PrevIcon:null!==(N=t.PrevIcon)&&void 0!==N?N:(0,n.jsx)(o.Z,{style:{fontSize:16,opacity:.5}}),indicators:null===(P=t.indicators)||void 0===P||P,indicatorContainerProps:sanitizeNavProps(null!==(w=t.indicatorContainerProps)&&void 0!==w?w:{}),indicatorIconButtonProps:sanitizeNavProps(null!==(j=t.indicatorIconButtonProps)&&void 0!==j?j:{}),activeIndicatorIconButtonProps:sanitizeNavProps(null!==(C=t.activeIndicatorIconButtonProps)&&void 0!==C?C:{}),IndicatorIcon:t.IndicatorIcon,onChange:null!==(I=t.onChange)&&void 0!==I?I:()=>{},changeOnFirstRender:null!==(z=t.changeOnFirstRender)&&void 0!==z&&z,next:null!==(A=t.next)&&void 0!==A?A:()=>{},prev:null!==(F=t.prev)&&void 0!==F?F:()=>{},...t}};let Carousel=class Carousel extends g.Component{componentDidMount(){let{index:t,changeOnFirstRender:e}=sanitizeProps(this.props);this.setActive(t,void 0,e),this.start()}componentWillUnmount(){this.stop()}componentDidUpdate(t){t=sanitizeProps(t);let{autoPlay:e,interval:i,children:n,index:a}=sanitizeProps(this.props);(e!==t.autoPlay||i!==t.interval)&&this.reset(),g.Children.count(n)!==g.Children.count(t.children)&&this.setActive(a),t.index!==a&&this.setActive(a)}stop(){this.timer&&(clearInterval(this.timer),this.timer=null)}start(){let{autoPlay:t,interval:e}=sanitizeProps(this.props);t&&(this.timer=setInterval(this.next,e))}reset(){let{autoPlay:t}=sanitizeProps(this.props);this.stop(),t&&this.start()}setActive(t){let e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:()=>{},i=!(arguments.length>2)||void 0===arguments[2]||arguments[2],{onChange:n,timeout:a,children:o,strictIndexing:s}=sanitizeProps(this.props);Array.isArray(o)?(s&&t>o.length-1&&(t=o.length-1),s&&t<0&&(t=0)):t=0;let r=this.state.active;this.setState({active:t,prevActive:r,displayed:r},this.reset),setTimeout(()=>{this.setState({displayed:t},()=>{i&&(e(t,r),n(t,r))})},"object"==typeof a?a.exit:a)}next(t){let{children:e,next:i,cycleNavigation:n}=sanitizeProps(this.props),a=this.state.active+1>g.Children.count(e)-1?n?0:this.state.active:this.state.active+1;this.setActive(a,i),null==t||t.stopPropagation()}prev(t){let{children:e,prev:i,cycleNavigation:n}=sanitizeProps(this.props),a=this.state.active-1<0?n?g.Children.count(e)-1:this.state.active:this.state.active-1;this.setActive(a,i),null==t||t.stopPropagation()}render(){var t,e=this;let{children:i,className:a,stopAutoPlayOnHover:o,animation:s,reverseEdgeAnimationDirection:r,timeout:d,swipe:p,navButtonsAlwaysInvisible:h,navButtonsAlwaysVisible:v,cycleNavigation:u,fullHeightHover:m,navButtonsProps:y,navButtonsWrapperProps:x,NavButton:b,NextIcon:f,PrevIcon:N,indicators:P,indicatorContainerProps:w,indicatorIconButtonProps:j,activeIndicatorIconButtonProps:C,IndicatorIcon:I}=sanitizeProps(this.props),{classes:z}=this.props,{className:A,style:F,...B}=y,{className:Z,style:k,...E}=x,H="".concat(v?z.buttonVisible:z.buttonHidden),L="".concat(z.button," ").concat(H," ").concat(A),_="".concat(z.buttonWrapper," ").concat(m?z.fullHeightHoverWrapper:""," ").concat(Z),compareActiveDisplayed=()=>0===this.state.active&&this.state.prevActive===g.Children.count(i)-1?!r:this.state.active===g.Children.count(i)-1&&0===this.state.prevActive?r:this.state.active>this.state.prevActive,showButton=function(){let t=!(arguments.length>0)||void 0===arguments[0]||arguments[0];return!!u||!(t&&e.state.active+1>g.Children.count(i)-1)&&!(!t&&e.state.active-1<0)};return(0,n.jsxs)("div",{className:"".concat(z.root," ").concat(a||""),onMouseOver:()=>{o&&this.stop()},onMouseOut:()=>{o&&this.reset()},children:[Array.isArray(i)?i.map((t,e)=>(0,n.jsx)(CarouselItem,{display:e===this.state.displayed,active:e===this.state.active,isNext:compareActiveDisplayed(),child:t,animation:s,timeout:d,swipe:p,next:this.next,prev:this.prev},"carousel-item".concat(e))):(0,n.jsx)(CarouselItem,{display:!0,active:!0,child:i,animation:s,timeout:d},"carousel-item0"),(0,n.jsxs)(l.Z,{display:"flex",style:{gap:20},marginTop:"24px",justifyContent:"center",children:[!h&&showButton(!1)&&(0,n.jsx)("div",{className:"".concat(_," ").concat(z.prev),style:k,...E,children:void 0!==b?b({onClick:this.prev,className:L,style:null!==(t=y.style)&&void 0!==t?t:{},next:!1,prev:!0,...B}):(0,n.jsx)(c.Z,{className:"".concat(L),onClick:this.prev,"aria-label":"Previous",style:y.style,...B,children:N})}),P?(0,n.jsx)(Indicators,{classes:z,length:g.Children.count(i),active:this.state.active,press:this.setActive,indicatorContainerProps:w,indicatorIconButtonProps:j,activeIndicatorIconButtonProps:C,IndicatorIcon:I}):null,!h&&showButton(!0)&&(0,n.jsx)("div",{className:"".concat(_," ").concat(z.next),style:k,...E,children:void 0!==b?b({onClick:this.next,className:L,style:null!=F?F:{},next:!0,prev:!1,...B}):(0,n.jsx)(c.Z,{className:"".concat(L),onClick:this.next,"aria-label":"Next",style:F,...B,children:f})})]})]})}constructor(t){super(t),m()(this),this.state={active:0,prevActive:0,displayed:0},this.timer=null}};function CarouselItem(t){let e=t.swipe?(0,y.QS)({onSwipedLeft:()=>t.next(),onSwipedRight:()=>null==t?void 0:t.prev()}):{};return(0,n.jsx)("div",{style:{display:t.display?"block":"none"},children:"slide"===t.animation?(0,n.jsx)(d.Z,{direction:t.active?t.isNext?"left":"right":t.isNext?"right":"left",in:t.display&&t.active,timeout:t.timeout,...e,children:(0,n.jsx)("div",{children:t.child})}):(0,n.jsx)(p.Z,{in:t.display&&t.active,timeout:t.timeout,style:{height:"100%"},...e,children:(0,n.jsx)("div",{children:t.child})})})}function Indicators(t){var e,i,o;let{classes:s}=t,r=void 0!==t.IndicatorIcon?t.IndicatorIcon:(0,n.jsx)(a.Z,{className:s.indicatorIcon}),{className:l,style:d,...p}=null!==(e=t.indicatorIconButtonProps)&&void 0!==e?e:{className:"",style:{}},{className:h,style:v,...u}=null!==(i=t.activeIndicatorIconButtonProps)&&void 0!==i?i:{className:"",style:{}},m=[];for(let e=0;e<t.length;e++){let i=e===t.active?"".concat(s.indicator," ").concat(l," ").concat(s.active," ").concat(h):"".concat(s.indicator," ").concat(l),a=e===t.active?{...d,...v}:d,o=e===t.active?{...p,...u}:p;void 0===o["aria-label"]&&(o["aria-label"]="carousel indicator");let g=(0,n.jsx)(c.Z,{className:i,style:a,onClick:()=>{t.press(e)},size:"small",...o,"aria-label":"".concat(o["aria-label"]," ").concat(e+1),children:r},e);m.push(g)}let{className:g,style:y,...x}=null!==(o=t.indicatorContainerProps)&&void 0!==o?o:{className:"",style:{}};return(0,n.jsx)("div",{className:"".concat(s.indicators," ").concat(g),style:y,...x,children:m})}e.Z=(0,v.Z)(t=>(0,h.Z)({root:{overflow:"hidden"},indicators:{textAlign:"center",display:"flex",gap:"12px",height:"min-content",alignSelf:"center",justifyContent:"center"},indicator:{cursor:"pointer",transition:"200ms",padding:3,"&:hover":{color:t.palette.text.primary},"&:active":{color:t.palette.text.primary},color:(0,r.Fq)(t.palette.text.primary,.5)},indicatorIcon:{fontSize:10},active:{color:t.palette.text.primary,backgroundColor:(0,r.Fq)(t.palette.text.primary,.2)},buttonWrapper:{backgroundColor:"transparent","&:hover":{"& $button":{filter:"brightness(120%)",opacity:"0.4"}}},fullHeightHoverWrapper:{height:"100%",top:0},buttonVisible:{opacity:1},buttonHidden:{opacity:0},button:{backgroundColor:t.palette.background.default,color:t.palette.text.primary,width:40,height:40,fontSize:"30px",transition:"200ms",cursor:"pointer","&:hover":{opacity:"0.6 !important"}},next:{},prev:{}}))(Carousel)},91850:function(t,e,i){var n=i(85893),a=i(93619),o=i(90629),s=i(15861),r=i(69417),l=i(75648);let c=(0,l.Z)(t=>({root:{borderRadius:24,padding:32,height:"100%",display:"flex",flexDirection:"column"},icon:{fill:"light"===t.palette.mode?"#FFFFFF":"#06043E",width:32,height:32},iconWrapper:{width:64,height:64,padding:16,background:"light"===t.palette.mode?"#03232E":"#FFFFFF",borderRadius:6,marginBottom:20},button:{textTransform:"none",color:"light"===t.palette.mode?"#03232E":"#05EEFF",paddingLeft:16,paddingRight:16,marginLeft:-16,borderRadius:10,marginTop:"auto"},body:{display:"block",marginTop:20,marginBottom:24},arrow:{fill:"light"===t.palette.mode?"#03232E":"#05EEFF",marginLeft:8},fullHeight:{height:"100%"}}));e.Z=t=>{let{children:e,Icon:i,title:l,buttonText:d,buttonLink:p,CustomFooter:h,outLink:v,...u}=t,m=c();return(0,n.jsxs)(o.Z,{className:m.root,elevation:0,...u,children:[(0,n.jsx)("div",{className:m.iconWrapper,children:(0,n.jsx)(i,{className:m.icon})}),(0,n.jsx)(s.Z,{variant:"h5",children:l}),(0,n.jsx)(s.Z,{className:m.body,variant:"body1Semi",children:e}),null!=h?h:d?(0,n.jsxs)(r.Z,{onClick:()=>{p&&(v?window.open(p,"_blank","noopener,noreferrer"):window.location.href=p)},className:m.button,children:[d,(0,n.jsx)(a.Z,{className:m.arrow})]}):null]})}},71089:function(t,e,i){i.d(e,{Z:function(){return ContributeContainers_GetInvolvedSection}});var n,a,o=i(85893),s=i(86886),r=i(15861),l=i(9974),c=i(75648),d=i(67294);function _extends(){return(_extends=Object.assign?Object.assign.bind():function(t){for(var e=1;e<arguments.length;e++){var i=arguments[e];for(var n in i)({}).hasOwnProperty.call(i,n)&&(t[n]=i[n])}return t}).apply(null,arguments)}function gitlab_extends(){return(gitlab_extends=Object.assign?Object.assign.bind():function(t){for(var e=1;e<arguments.length;e++){var i=arguments[e];for(var n in i)({}).hasOwnProperty.call(i,n)&&(t[n]=i[n])}return t}).apply(null,arguments)}var p=[{title:"GitLab",description:"The platform where the source code of the parrot packages is hosted. Join it to contribute to our source code and improve the system.",url:"https://gitlab.com/parrotsec",icon:function(t){return d.createElement("svg",gitlab_extends({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 338.97 313.45"},t),a||(a=d.createElement("g",{id:"Livello_2","data-name":"Livello 2"},d.createElement("g",{id:"Livello_1-2","data-name":"Livello 1"},d.createElement("path",{className:"cls-1",d:"M338 175.58l-18-55.59v.08a.29.29 0 000-.09L284.08 9.66A14.11 14.11 0 00270.55 0a13.93 13.93 0 00-13.37 9.75l-34 104.7H115.86L81.78 9.74A13.92 13.92 0 0068.42 0h-.07a14.21 14.21 0 00-13.49 9.75L19.13 120V120.01L1 175.58a20.27 20.27 0 007.36 22.7l156.42 113.64.07.05.2.14-.19-.13a7.25 7.25 0 00.75.47l.1.06h.2c.13.07.28.12.42.18l.39.16H167.01a5.27 5.27 0 00.57.14l.23.05h.32a8.34 8.34 0 001.13.09 8.32 8.32 0 001.12-.09h.32l.23-.05c.19 0 .38-.08.57-.14h.26l.41-.17.39-.16H172.77l.11-.07A7.17 7.17 0 00174 312h.06l.08-.05 156.47-113.68a20.25 20.25 0 007.39-22.69zM270.64 20l30.68 94.45H240zM296 130.43l-12.52 16-92.38 118.34 43.68-134.34zm-134.12 177.5v.07zm-14-43.15L43.07 130.43h61.18zM68.33 20l30.73 94.45H37.7zM17.75 185.36a4.33 4.33 0 01-1.56-4.84l13.47-41.33 98.67 126.51zM164.5 311.71l-.09-.07a1.29 1.29 0 01-.17-.16c-.12-.09-.23-.2-.34-.3a8.42 8.42 0 00.72.62zm5-32.09l-25.67-79.06-22.76-70.13H218zm5.25 31.84l-.18.16-.09.07a1.66 1.66 0 01-.21.16 6.91 6.91 0 00.71-.61zm146.47-126.11l-110.56 80.32 98.7-126.47 13.41 41.31a4.3 4.3 0 01-1.55 4.84z",id:"logo_art","data-name":"logo art"})))))}},{title:"GitHub - backup mirror",description:"The repository where we keep a copy of the most important code in case our servers are down.",url:"https://github.com/parrotsec",icon:function(t){return d.createElement("svg",_extends({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 120.78 117.79"},t),n||(n=d.createElement("g",{id:"Livello_2","data-name":"Livello 2"},d.createElement("g",{id:"Layer_1","data-name":"Layer 1"},d.createElement("path",{className:"cls-1",d:"M60.39 0A60.39 60.39 0 0041.3 117.69c3 .56 4.12-1.31 4.12-2.91 0-1.44-.05-6.19-.08-11.24C28.54 107.19 25 96.42 25 96.42c-2.75-7-6.71-8.84-6.71-8.84-5.48-3.75.41-3.67.41-3.67 6.07.43 9.26 6.22 9.26 6.22 5.39 9.23 14.13 6.57 17.57 5 .55-3.9 2.11-6.56 3.84-8.07C36 85.55 21.85 80.37 21.85 57.23A23.35 23.35 0 0128.08 41c-.63-1.52-2.7-7.66.58-16 0 0 5.07-1.62 16.61 6.19a57.36 57.36 0 0130.25 0C87 23.42 92.11 25 92.11 25c3.28 8.32 1.22 14.46.59 16a23.34 23.34 0 016.21 16.21c0 23.2-14.12 28.3-27.57 29.8 2.16 1.87 4.09 5.55 4.09 11.18 0 8.08-.06 14.59-.06 16.57 0 1.61 1.08 3.49 4.14 2.9A60.39 60.39 0 0060.39 0z"}),d.createElement("path",{className:"cls-2",d:"M22.87 86.7c-.13.3-.6.39-1 .19s-.69-.61-.55-.91.61-.39 1-.19.69.61.54.91zM25.32 89.43c-.29.27-.85.14-1.24-.28a.92.92 0 01-.17-1.25c.3-.27.84-.14 1.24.28s.47 1 .17 1.25zM27.7 92.91c-.37.26-1 0-1.35-.52s-.37-1.18 0-1.44 1 0 1.35.51.37 1.19 0 1.45zM31 96.27a1.13 1.13 0 01-1.59-.27c-.53-.49-.68-1.18-.34-1.54s1-.27 1.56.23.68 1.18.33 1.54zM35.46 98.22c-.15.47-.82.69-1.51.49s-1.13-.76-1-1.24.82-.7 1.51-.49 1.13.76 1 1.24zM40.4 98.58c0 .5-.56.91-1.28.92s-1.3-.38-1.31-.88.56-.91 1.29-.92 1.3.39 1.3.88zM45 97.8c.09.49-.41 1-1.12 1.12s-1.35-.17-1.44-.66.42-1 1.12-1.12 1.35.17 1.44.66z"})))))}}],h=i(91850);let v=(0,c.Z)(t=>({cardArea:{borderRadius:t.spacing(3),height:t.spacing(35)},headingSubTitle:{marginTop:t.spacing(1),marginBottom:t.spacing(6.5)},developBlock:{marginTop:154},icon:{width:32,height:32,fill:"light"===t.palette.mode?"#FFFFFF":"#06043E"},iconWrapper:{width:64,height:64,padding:16,background:"light"===t.palette.mode?"#03232E":"#FFFFFF",borderRadius:6,marginBottom:20}}));var ContributeContainers_GetInvolvedSection=()=>{let t=v();return(0,o.jsxs)(s.ZP,{container:!0,item:!0,xs:12,md:9,spacing:4,justifyContent:"center",children:[(0,o.jsxs)(s.ZP,{item:!0,container:!0,xs:10,justifyContent:"center",alignItems:"center",direction:"column",wrap:"nowrap",className:t.developBlock,children:[(0,o.jsx)(r.Z,{variant:"h1",align:"center",paragraph:!0,children:"Contribute to the Parrot Project"}),(0,o.jsx)(r.Z,{className:t.headingSubTitle,variant:"subtitle2Semi",align:"center",children:"ParrotOS was born as a fully open source project, anyone can see what is inside."})]}),p.map((e,i)=>(0,o.jsx)(s.ZP,{item:!0,sm:12,lg:6,children:(0,o.jsx)(l.Z,{className:t.cardArea,href:e.url,children:(0,o.jsx)(h.Z,{title:e.title,Icon:e.icon,children:e.description})})},"card-".concat(i)))]})}}}]);”ò¿Ÿ  Ë        ¡§\l      self   ¶sR&      webpackChunk_N_E   Ñu2      push   wîU3      83622      BmL      sanitizeNavProps   6CY>	      className      °9ï      sanitizeProps      kÔÂ^	      animation      &oª7      fade	   ∑\o      timeout
+    
+}N      children   èG~"      strictIndexing     †Ób      autoPlay   çJÑ[      stopAutoPlayOnHover    szÇﬁ      interval   ÚπwŒ      reverseEdgeAnimationDirection      Ò B      swipe      1Aè‚      navButtonsAlwaysInvisible      7èå      navButtonsAlwaysVisible    I      cycleNavigation    N0AØ      fullHeightHover    )≥$]      navButtonsWrapperProps     Ï™ﬂw      navButtonsProps    Æ	      NavButton      :ëT      NextIcon   	ùg      jsx    ˜ûe      fontSize   ﬂue…      opacity    øÀ É      PrevIcon   ücÖe
+      indicators     œ‘æ      indicatorContainerProps    HˇΩ≠      indicatorIconButtonProps    &a™∑      activeIndicatorIconButtonProps!     lÜ&
+      IndicatorIcon"      t®$ä      onChange#   B6≤}      changeOnFirstRender$    >∆ß"      prev%   ¡B5      Carousel&   ≤xi	      Component'      dJ∆      componentDidMount(       ¶      props)      ™9ëE	      setActive*      4„#      componentWillUnmount+   mêÅ      stop,   â      componentDidUpdate-     ÛWÄπ      reset.      ”Ä∏L      Children/   ≈“Ó      timer0      bPk      clearInterval1      Ïà       setInterval2    ¢]¡Ï      isArray3    å®Px      active4     *∆Î      setState5   }∆e
+      prevActive6     h’7`	      displayed7      3AtŸ
+      setTimeout8     blBk      exit9   ı/F/      stopPropagation:    ‘ÍÕ˜      render;     uw˝      classes<    ¶¢Ç      concat=     äµ¨æ      buttonVisible>      ’–z      buttonHidden?   ˙U~      button@     ÏP`ç      buttonWrapperA      0ı
+      fullHeightHoverWrapperB     PòR.      compareActiveDisplayedC     xÓ]]
+      showButtonD     a…      jsxsE   ú≥ÊŸ      divF    Rª‚Ú      rootG   ‚ì¯z      onMouseOverH    	]
+      onMouseOutI     9Ã      mapJ    ´g°ó      CarouselItemK   e}ü      displayL    Ès∂~      isNextM     Qj^      childN      µ~üE      carousel-itemO      ÿÎgO      carousel-item0P      ’qÓ      flexQ   ‡ÄŒ      gapR    ∑·∏œ	      marginTopS      úíçæ      24pxT   Ç©ûô      justifyContentU     rLtö      centerV     ;ã¢Ô      onClickW    ı—ø¨
+      aria-labelX      ¡˜_      PreviousY   yK
+      IndicatorsZ      Óﬂ·      press[      2tÎ      Next\   G‘ãb      onSwipedLeft]   çÇm“      onSwipedRight^      ü‡˚Å      block_      ,Ω      none`   ˇõ…‰      slidea      î’	ñ	      directionb      ı]á      leftc    ë∏.      rightd      ∑…≈      heighte     ª?y      100%f   Îå∂      indicatorIcong      £¯E"	      indicatorh      ‰£Õœ      carousel indicatori     √úΩ      smallj      Ñ€ËW      hiddenk     ì˙@	      textAlignl      5˜í;      12pxm   `ô¬A      min-contentn    Î±ﬁ	      alignSelfo      ˇ∆N      cursorp     ˘Èÿ9      pointerq    Ã∏
+      transitionr     ‡Ä^      200mss      /·´B      paddingt    °ÂÆg      &:hoveru    Ï
+ó      colorv      Ê^rU      palettew    à3¿µ      textx   uòhS      primaryy    SœÃÄ      &:activez   ∂Cõ      backgroundColor{    l≈=Ñ      transparent|    |©w·	      & $button}      >	≈      filter~     ﬂ+–      brightness(120%)   ˘ªs°      0.4Ä    $√Á      topÅ    ù,é
+      backgroundÇ     ÎƒJ˚      widthÉ      Lé	Ò      30pxÑ   Ëñ¬º      0.6 !importantÖ     ƒ–Á      91850Ü      ∏=ÌL      borderRadiusá   ªÙõ∏      flexDirectionà      ä"’g      columnâ     VXﬂJ      iconä   "q˚D      lightã      |<Ëô      #FFFFFFå    Ç3xÇ      #06043Eç    ?∑Í_      iconWrapperé    úÒ¨      #03232Eè    FŸEÈ      marginBottomê   [(fL      textTransformë      ŒZRà      #05EEFFí    wö9      paddingLeftì    }™Ô      paddingRightî   GÁ$W
+      marginLeftï     z¡≤S      autoñ   òh;      bodyó   !H	ß      arrowò      C˝Ì
+      fullHeightô     ;}«—      Iconö   “E      titleõ      r5… 
+      buttonTextú     ¨ô_´
+      buttonLinkù     È Ñ9      CustomFooterû   â.ã      outLinkü    M˚ù	      elevation†      ¥·Ù†      variant°    ’ÀÍ	      body1Semi¢      ¯2áâ      window£     óx5      open§   9“◊^      _blank•     ¸iE      noopener,noreferrer¶    0+QA      locationß   ª©`X      href®   ,Ï·{      71089©      ◊Ÿy'      ContributeContainers_GetInvolvedSection™    'DA&      _extends´   ïn.      assign¨     ‡Õ      bind≠   ]πJ(      gitlab_extendsÆ     2≤}_      GitLabØ     Ñàö      description∞    Ç›¢˙Ö      The platform where the source code of the parrot packages is hosted. Join it to contribute to our source code and improve the system.±      åW?      https://gitlab.com/parrotsec≤   DC      createElement≥      aáﬁå      svg¥    `ø%∏      xmlnsµ      AïM      http://www.w3.org/2000/svg∂     -°7·      viewBox∑    i´Ç      0 0 338.97 313.45∏      [8‰ô	      Livello_2π      ïîÆ	      data-name∫      ˘£e	      Livello 2ª      ·É*      Livello_1-2º    ≤ù¶	      Livello 1Ω      ":k      pathæ   ‹}∆      cls-1ø       ·ı°     M338 175.58l-18-55.59v.08a.29.29 0 000-.09L284.08 9.66A14.11 14.11 0 00270.55 0a13.93 13.93 0 00-13.37 9.75l-34 104.7H115.86L81.78 9.74A13.92 13.92 0 0068.42 0h-.07a14.21 14.21 0 00-13.49 9.75L19.13 120V120.01L1 175.58a20.27 20.27 0 007.36 22.7l156.42 113.64.07.05.2.14-.19-.13a7.25 7.25 0 00.75.47l.1.06h.2c.13.07.28.12.42.18l.39.16H167.01a5.27 5.27 0 00.57.14l.23.05h.32a8.34 8.34 0 001.13.09 8.32 8.32 0 001.12-.09h.32l.23-.05c.19 0 .38-.08.57-.14h.26l.41-.17.39-.16H172.77l.11-.07A7.17 7.17 0 00174 312h.06l.08-.05 156.47-113.68a20.25 20.25 0 007.39-22.69zM270.64 20l30.68 94.45H240zM296 130.43l-12.52 16-92.38 118.34 43.68-134.34zm-134.12 177.5v.07zm-14-43.15L43.07 130.43h61.18zM68.33 20l30.73 94.45H37.7zM17.75 185.36a4.33 4.33 0 01-1.56-4.84l13.47-41.33 98.67 126.51zM164.5 311.71l-.09-.07a1.29 1.29 0 01-.17-.16c-.12-.09-.23-.2-.34-.3a8.42 8.42 0 00.72.62zm5-32.09l-25.67-79.06-22.76-70.13H218zm5.25 31.84l-.18.16-.09.07a1.66 1.66 0 01-.21.16 6.91 6.91 0 00.71-.61zm146.47-126.11l-110.56 80.32 98.7-126.47 13.41 41.31a4.3 4.3 0 01-1.55 4.84z¿     rSÇ      logo_art¡   ˆ&Ü"      logo art¬   7…{Z      GitHub - backup mirror√     ¿ÑÏü\      The repository where we keep a copy of the most important code in case our servers are down.ƒ   {€—      https://github.com/parrotsec≈   QL¢û      0 0 120.78 117.79∆      
+Óﬂ´      Layer_1«    ìCÇ{      Layer 1»    zoÇa     M60.39 0A60.39 60.39 0 0041.3 117.69c3 .56 4.12-1.31 4.12-2.91 0-1.44-.05-6.19-.08-11.24C28.54 107.19 25 96.42 25 96.42c-2.75-7-6.71-8.84-6.71-8.84-5.48-3.75.41-3.67.41-3.67 6.07.43 9.26 6.22 9.26 6.22 5.39 9.23 14.13 6.57 17.57 5 .55-3.9 2.11-6.56 3.84-8.07C36 85.55 21.85 80.37 21.85 57.23A23.35 23.35 0 0128.08 41c-.63-1.52-2.7-7.66.58-16 0 0 5.07-1.62 16.61 6.19a57.36 57.36 0 0130.25 0C87 23.42 92.11 25 92.11 25c3.28 8.32 1.22 14.46.59 16a23.34 23.34 0 016.21 16.21c0 23.2-14.12 28.3-27.57 29.8 2.16 1.87 4.09 5.55 4.09 11.18 0 8.08-.06 14.59-.06 16.57 0 1.61 1.08 3.49 4.14 2.9A60.39 60.39 0 0060.39 0z…      Î¨†      cls-2       oq’HE     M22.87 86.7c-.13.3-.6.39-1 .19s-.69-.61-.55-.91.61-.39 1-.19.69.61.54.91zM25.32 89.43c-.29.27-.85.14-1.24-.28a.92.92 0 01-.17-1.25c.3-.27.84-.14 1.24.28s.47 1 .17 1.25zM27.7 92.91c-.37.26-1 0-1.35-.52s-.37-1.18 0-1.44 1 0 1.35.51.37 1.19 0 1.45zM31 96.27a1.13 1.13 0 01-1.59-.27c-.53-.49-.68-1.18-.34-1.54s1-.27 1.56.23.68 1.18.33 1.54zM35.46 98.22c-.15.47-.82.69-1.51.49s-1.13-.76-1-1.24.82-.7 1.51-.49 1.13.76 1 1.24zM40.4 98.58c0 .5-.56.91-1.28.92s-1.3-.38-1.31-.88.56-.91 1.29-.92 1.3.39 1.3.88zM45 97.8c.09.49-.41 1-1.12 1.12s-1.35-.17-1.44-.66.42-1 1.12-1.12 1.35.17 1.44.66zÀ      ñ◊      cardAreaÃ   #‡¶      spacingÕ    ôË∂      headingSubTitleŒ     Ò      developBlockœ   -‚
+Ë	      container–      ˝ÑÃ∫      item—   Å
+      alignItems“     —Íc      wrap”   ó πE      nowrap‘     ‘}ùò      align’      ÖŒ˚	      paragraph÷      íH#7       Contribute to the Parrot Project◊   â–µ      subtitle2Semiÿ      ¯ÜzwP      ParrotOS was born as a fully open source project, anyone can see what is inside.Ÿ   Ùg/:      card-‹      ÁR≈      83622/sanitizeProps/<.onChange<›    –Å      83622/sanitizeProps/<.next<ﬁ    Xï-”      83622/sanitizeProps/<.prev<Ê    Ôˆ5      83622/setActive/e<Á     ?!·      83622/setActive/<Ë      ˘˛53      83622/setActive/</<    s{S      83622/render/<.children<˜   ˝è®p
+      83622/e.Z<¯     vç∫       91850/c<˘   =‹Xœ	      91850/e.Z˝      2≤Û      71089/_extends/_extends<ˇ   ò÷(;$      71089/gitlab_extends/gitlab_extends<  hºÏ/      71089/v<  è"}9      71089/ContributeContainers_GetInvolvedSection/<.children<     /   Â  C   /           f   Ô%,â                                                                                                                                                                      	                
+                                                                                                                                                                                                                    	                                 
+                                                                                                                                         !                                  #                                 %                                '      
+         (                 (                 *                (                 (                 (                                                    0               1           !      1           "      3                4           #                 $      6               7           &      8           '      7           (      :           )      7           %      7           *      7           +      7           ,      7           -      @                A           .      ≥Oåc                        t  e  i  n `a `o `s `r `l `c `d `p `h `v  u  m `g `y `J  PY  P           P  P%               t `         e                                              t `e  i  o           s  r  l  d  p  h  v  u  m  g  y  x           e `         i  a  o  g                               t              t  C  e  P  r  j  w  b  g  l  y  d  i  v  a  f  I  x  A  c  N  p  z  h  u  F  m           Z  B                                                            %              t  Ñ   Ä                 Ñ            t  e                Ñ               t  Ñ            e  i  n  a                Ñ                 Ñ            t  e                Ñ            t              t `   Ñ  `         e `i `n `a  o  s  r `                                                            t  Ñ            e  i  n  a              t  Ñ            e  i  n  a                e `t  Ñ  `!      !   C  P  r `H  j  w  b  o `Z  E  _  B  PB  y  d `i `v  a  L  f  s `I  k  x  A  N  p `z  h  u `F  m  C                                            t                                               t  e               t  	            t  e  i  n `a `o `s `r `l           c `             t               t  	      	   e  i  l  d  p `h  v `u  m                              t  e `i `n `a `o `s `r `l `c  d `™  P≠  Pp `h `©  P         v `                             t  e  i  n                                  t  e  i  n                                  t               t               t                            t `             e  i  Ø¬0∞IÙ$KEÆ˙ö              ø   Ä¯ˇ           
+    \  ]             
+   ˜  
+         K          
+          d          
+               
+       ˜             
+     ˜     
+      ˜             
+     ˜     
+      ˜             
+     ˜                                  ˜     
+                ˜     
+                                         3  5  6        3  5  6        6     
+       ˜     
+      ˜           G  H  
+  	   -      K  3  L  M    	    t  $          K  3  M    	          K  ˜  R  T  
+          Q             (    ;  ;  3  Z         !             <     F    g  f  3  @  A  =  >  ?  t  $           ú          k  K  Q  d  n  T         o  q  s  t  y  u         u          u               
+     u  z     
+    z  t         |     
+     }       
+    d  Ä                        (     z  u  Ç  d    q  o  t                                #   F  â  ç  ?  ñ  ó  ò        Ü  s  d  K  á          ¶   Ç  d        Ç  d  s  Å  Ü  è     #    ê  u  í  ì  î  Ü  R        K  R  è     
+   ¶   î         d     #     
+  ô  ö  õ  ú  ù  û     
+     
+              
+     †  
+           †  
+        V    
+                                Z          ö  Ø  4  â     
+      ¥  ∂     
+    ç π     
+    ç π           d  ç π           ö  Ø  4  â     
+      ¥  ∂     
+    ç π     
+    ç π     
+      d     
+      d         À  Õ  Œ  â  ç     
+     Ü  d     
+    R  è         R          Ç  d  ¶         Ç  d  s  Å  Ü  è     #    œ  –  \ ç Ã  T  
+  	   -   –  œ  \ T  —  a  “    
+          †  ‘  ’  
+             †  ‘  
+           –   P 
+             ß  
+        ö  ô  
+  á&’™ç!´!/   ∞    ß∞Ãﬂ∞   l                          ∫   ∫   J   ù   ó   ﬁh    ó   M   ‡J   „h   :   i    9   	¶Fm   ?	 fm   ?	±m   ?i   w ﬁ• `∞ 6
+
+Ä "•
+Ä ˘ˇˇÿUPÄ ;“PÄ  àÓ÷;Ë                  $      œ   ∞±  ﬁm   Õ  ﬁm   Õ  ﬁª  	ÖOs Õ  ﬁª  	c@s Õ  ﬁª  €s Õ  ﬁª  Fîs Õ  ﬁª  D£s Õ  ﬁª  s Õ  ﬁª  	˙ns Õ  ﬁª  ¯’s Õ	  ﬁª  Ù@s Õ
+  ﬁª  	os Õ  ﬁª  	‰s Ã   ﬁª  	í<s Ã  ﬁª ‡J   „Ω  s Õ  ﬁª  	ﬁs Õ  ﬁª  ±s Õ  ﬁm   ≥   ﬁm   ≥   ﬁ∞±  ﬁ¿  J   p‡ö   ó   ‡J	   ô   ó   ﬁr	ó   ;„q
+   „·>	   =   m   =   m   =   m   =   m   =   m   =   m   =   m   =   m   =   m   =   m   =   ﬁ±  —±  ﬁª ﬁΩ   J     m!   s  Ω  s M    ﬁ–• ° `P	
+`P	
+`P	
+`P	
+`P	
+`P		`P	
+`P	
+`P	
+`P	
+`P
+`P
+`
+ˇˇˇ˛P	`P	
+`P	`j`Ä í`fƒ #
+y
+#
+Ä 
+?
+f
+N
+Ä ⁄
+Ä  “
+Ä  “ï Ä `
+ˇˇˇˇPÄ oˇˇˇˇP
+
+P          ˇˇˇˇ   2  ¥       ∏   cöö∏   Ä                         8‡ª  ƒ    ‰‰w ﬁª  J   ö   ó   ª  J   ô   ó   9   ó   <   ª  J   ö   ó   ª  J   ô   ó      ó   <   ¢ `í  	¥  
+	¥ Ä‹	  ±Zº	  %         #       ƒ      ∞±  ±  ﬁª  J   Ã  ú   ó   ﬁΩ  ó   ö   ó   Ω  ô   ó      ó   ±  ﬁª  J   ö   ó   ª  J   ô.   ó      Ω  ö   ó
+   Ùô   ó
+   » ó
+   ±  ﬁ8ª  J   Ã  ú   ó   ﬁΩ  ó   ö   ó   Ω  ô   ó      ó   <   ª  J   Ã  ú   ó   ﬁΩ  ó   ö   ó   Ω  ô   ó   h    ó   <   ª  J   Ã  ú   ó   ﬁΩ  ó   ö   ó   Ω  ô   ó   ó   <   ª  J	   Ã  ù!   ó!   ﬁΩ  ù   ó#   ﬁΩ  ó#   <	   ª  J
+   Ã  ù!   ó'   ﬁΩ  ù   ó)   ﬁΩ  ó)   <
+   ª  J   Ã
+  ù!   ó-   ﬁΩ
+  ù   ó/   ﬁΩ
+  ó/   <   ª  J   Ã  ú   ó3   ﬁΩ  ó4   ö   ó5   Ω  ô   ó5   †ó5   <   Ω  <   ª  J   Ã  ù!   ó:   ﬁΩ  ù   ó<   ﬁΩ  ó<   <   Ω  <   ª  J   Ã  ù!   óA   ﬁΩ  ù   óC   ﬁΩ  óC   <   ª  J   Ã  ú!   óG   ﬁΩ  ú   óI   ﬁΩ  óI   <   ª  J   Ã  ù!   óM   ﬁΩ  ù   óO   ﬁΩ  óO   <   ª  J   Ã  ù!   óS   ﬁΩ  ù   óU   ﬁΩ  óU   <   ª  J   Ã	  ú!   óY   ﬁΩ	  ú   ó[   ﬁΩ	  ó[   <   ¿   µ    ª  J   Ã  ú   ó_   ﬁΩ  ó`   ö   óa   Ω  ô   óa   9   ób   s <   ¿    ª  J   Ã  ú   óg   ﬁΩ  óh   ö   ói   Ω  ô   ói   9   ój   s <   ª  J   <   ª  J   Ã  ú   óq   ﬁΩ  ór   ö   ós   Ω  ôH   ós   ﬁ¿  J    ¿  J   9   9   <   
+      ‡?<   <   s ó{   <   ª  J    Ã  ú   ó   ﬁΩ  óÄ   ö   óÅ   Ω  ôH   óÅ   ﬁ¿  J    ¿  J   9!   9"   <   
+      ‡?<   <   s óâ   <    ª  J#   Ã  ù!   óç   ﬁΩ  ù   óè   ﬁΩ  óè   <#   ¿    ª  J$   Ã  ú   óì   ﬁΩ  óî   ö   óï   Ω  ô   óï   9%   óñ   s <$   ¿    ª  J&   Ã  ú   óõ   ﬁΩ  óú   ö   óù   Ω  ô   óù   9'   óû   s <&   ¿    ª  J(   Ã   ú   ó£   ﬁΩ   ó§   ö   ó•   Ω   ô   ó•   9)   ó¶   s <(   ª  J*   <*   ª  J+   Ã  ú   ó≠   ﬁΩ  óÆ   ö   óØ   Ω  ô   óØ   m,   óØ   <+   ª  J-   Ã  ú!   ó≥   ﬁΩ  ú   óµ   ﬁΩ  óµ   <-   ª  J.   Ã  ú   óπ   ﬁΩ  ó∫   ö   óª   Ω  ô   óª   m/   óª   <.   ª  J0   Ã  ú   óø   ﬁΩ  ó¿   ö   ó¡   Ω  ô   ó¡   m1   ó¡   <0   ‡ª  ƒ2    ‰‰w ﬁ§—•—• 
+?`ò 	± `© © 
+`ò 	± ò 	± ò 	≠ ò 	û ò 	û ò 	û ò 	Ø 	&ò $	û 	
+ò 	û "ò  	û  ò 	û ò 	û ò 	û (ò 	¨ ˇˇˇ¡PG!ò 	¨ ˇˇˇ»P@ò 	¢ 
+ì ˇˇˇÁP'ò 	¢ 
+ì ˇˇˇÁP'ò 	û )ò 	¨ ˇˇˇ¿PH*ò 	¨ ˇˇˇøPI0ò %	¨ ˇˇˇπPOò 	± ò 	û ò 	± ò 	± í TÄ‹	         $  ˇˇˇˇ    "         $   Hªcõ$                               • $   Hªcõ$                               • $   Hªcõ$                               • ƒ   -¬BÀ¥   i                       ›Ã   ﬁ∞±  ±  ﬁ¿   µ    Ω   J   s e‡J   ±  ﬁ‡J   ±  ﬁﬁΩ   ‡J   „Ω  Ω  w ﬁΩ   ‡J   „w  ﬁ—•
+$`	ˇˇˇˇPõ `ˇˇˇÌPPPÄƒ         b   ˇˇˇˇ@   /Ö˙(@                           ›Ã   ﬁΩ   ‡J   „w  ﬁ•`PPÃ  Ô¿”Lº  @        	             ›Ã   ﬁ∞±  ±  ±  ±  ﬁ¿   µ    ª  s À  ﬁ¿    Ω   J   s e‡J   ±  ﬁ‡J   ±  ﬁ‡J   ±  ﬁ‡J   ±  ﬁﬁΩ  ª  J   ù   ó
+   ﬁΩ  ª  J   ó   ú   ó   ﬁΩ   ‡J   „w  ó   ﬁ¿  J   ‡J	   „Ω  s ¿  J   ‡J	   „ª  J   s ú   ó   ﬁΩ   ‡J
+   „Ω  w ó   ﬁª  J   Ω  ú   ó   ﬁΩ   ‡J
+   „Ω  w ó   ﬁ—•í `ˇˇˇÚP?`	ˇˇˇˇP± `ò § P	ë ˇˇˇ˙Pë ˇˇˇ˙Pö "ˇˇˇˆP	
+õ ˇˇˇˆP
+PÄÄÃ        9  ˇˇˇˇt   ˙)‹t   >                       ›Ã   ﬁΩ   J   ú(   ó   ﬁ∫    Ω   J   w ﬁΩ   M   ó   ﬁ•`î 	ˇˇˇÚPê PÄÃ   _Í∆‡º   u                	      ›Ã   ﬁ∞±  ±  ﬁ¿   µ    Ω   J   s e‡J   ±  ﬁ‡J   ±  ﬁﬁΩ  ú*   ó   ﬁΩ   ∫    Ω   J   Ω  s M   ó	   ﬁ—•
+`	ˇˇˇˇPõ `ô 	
+ˇˇˇÍPPÄÄÄÃ         n   ˇˇˇˇ∏   d,ÎΩ®   d                       ›Ã   ﬁ∞±  ﬁ¿   µ    Ω   J   s e‡J   ±  ﬁﬁΩ   ‡J   „w  ﬁΩ  ú   ó   ﬁΩ   ‡J   „w  ó   ﬁ—•`	ˇˇˇˇPê `Pö P
+PÄÄ∏         ]   ˇˇˇˇ¿  èHú˜∞  ,               1      º  Õ   ﬁ€Ã   ﬁ›Õ   ﬁœ   ∞±  ±  ±  ﬁΩ   J   ú   ó   ﬁΩ   Kó   ö   ó   Ω   Kô   ó   m   ó   ≥   ﬁΩ   J   ù'   ó   ﬁΩ   Kù   ó   ﬁΩ   Kó   ≥   ﬁ¿  µ   ¿  J   s e‡J   ≥   ﬁ‡J   ±  ﬁ‡J   ±  ﬁ‡J   ±  ﬁﬁ∫	   ‡J
+   „Ω  s ö|   ó   Ω  ú7   ó   ﬁ¿  Ω  J   'ú   ó   ﬁΩ  J   'Õ  ó    ﬁΩ  ú#   ó!   ﬁ¿  ú   ó#   ﬁÕ  ó#   ô   ó#   Õ  ó#   ﬁ¿  J   J   ≥   ﬁ¿  ‡J   „9   ¿  <   ¿   <   ¿   <   ¿  J   w ﬁ∫    m   Ω  ö   ó/   Ω  J   ô   ó0   Ω  ó0   w ﬁ–•ñ ì `ñ 	∂ #`ò 	• N`
+ˇˇˇˇP≤ `ˇˇˇ¯Pî ≠ ¬ `ï `
+	
+
+
+ˇˇˇ”P9< 
+¨ ˇˇˇØPcP¿          ˇˇˇˇ$   Hªcõ$                               • X   ‘ƒœX   %                          ¿  ‡J   „9   ¿  <   m   w ﬁ• `
+ˇˇˇÈP0Pî   f‚©î   R                          ¿   µ   úA   ó   ﬁ¿   µ    ¿  ¿   µ   w ﬁ¿   µ    ¿  ¿   w ó   ﬁ• `ï 
+ˇˇˇ¸Pˇˇˇ¸P	PÄÄÄ  å÷{øp          	             ›Ã   ﬁ∞±  ±  ±  ±  ﬁ¿   µ    Ω   J   s e‡J   ±  ﬁ‡J   ±  ﬁ‡J   ±  ﬁﬁΩ   J   J   &¿  J   ‡J	   „Ω  s 'ö;   ó   Ω  ö   ó   ô   ó   Ω   J   J   ó   ô   ó   Ω   J   J   &ó   ±  ﬁΩ   ‡J
+   „Ω  Ω  w ﬁª  ù   ó   ﬁª  ‡J   „w  ó   ﬁ—•í *`	ˇˇˇˇP¶ `ê ë ˇˇˇ˙P‡ 5`ˇˇˇÙPô P
+PÄÄ          ˇˇˇˇ|  !Àæl          	             ›Ã   ﬁ∞±  ±  ±  ±  ﬁ¿   µ    Ω   J   s e‡J   ±  ﬁ‡J   ±  ﬁ‡J   ±  ﬁﬁΩ   J   J   'öT   ó
+   Ω  ö)   ó   ¿  J   ‡J	   „Ω  s 'ô   ó   Ω   J   J   ó   ô   ó   Ω   J   J   'ó   ±  ﬁΩ   ‡J
+   „Ω  Ω  w ﬁª  ù   ó   ﬁª  ‡J   „w  ó   ﬁ—•í *`	ˇˇˇˇP¶ `ª )ˇˇˇ˙P∆ 1`ˇˇˇÙPô P
+P|          ˇˇˇˇ‰
+  Yù˝Æƒ
+  ô        0       ÿ       ›Õ   ﬁœ   ∞±  ±  ±  ±  ±  ±  ±  ±  ±	  ±
+  ±  ±  ±  ±  ±  ±  ±  ±  ±  ±  ±  ±  ±  ±  ±  ﬁ¿  Õ  ﬁ¿  µ   ¿  J   s e‡J   ≥   ﬁ‡J   ±  ﬁ‡J   ≥   ﬁ‡J   ≥   ﬁ‡J   ≥   ﬁ‡J   ≥   ﬁ‡J	   ≥   ﬁ‡J
+   ±  ﬁ‡J   ±  ﬁ‡J   ≥ 	  ﬁ‡J   ±  ﬁ‡J   ±  ﬁ‡J   ±  ﬁ‡J   ±  ﬁ‡J   ±  ﬁ‡J   ±  ﬁ‡J   ±  ﬁ‡J   ±  ﬁ‡J   ±  ﬁ‡J   ±  ﬁ‡J   ±  ﬁﬁ¿  J   e‡J   ±  ﬁﬁΩ  e9    <    <   „‡J   ±  ﬁ‡J   ±  ﬁ‡8‡‰‰ƒ    ‰‰‰w ﬁ±
+  ﬁﬁΩ  e9    <    <   „‡J   ±  ﬁ‡J   ±  ﬁ‡8‡‰‰ƒ    ‰‰‰w ﬁ±  ﬁﬁ   ‡J   „Ω  ö   ó+   Ω  J   ô   ó,   Ω  J    ó-   s ±  ﬁ   ‡J   „Ω  J!   "   s ‡J   „Ω  "   s ‡J   „Ω  s ±  ﬁ   ‡J   „Ω  J#   "   s ‡J   „Ω  ö   ó:   Ω  J$   ô   ó;      ó;   "   s ‡J   „Ω  s ±	  ﬁm%   ≥   ﬁm&   ±  ﬁﬁ¿  J'    (   9)      ‡J   „Ω  J*   "   s ‡J   „Ω  ù   óE   ﬁ   óE   s <   m+   <,   m-   <.   h   ∫/   ‡J0   „¿   s ö#   óN   ¿   ‡J1   „m2   s ôS   óP   ﬁ¿  J3    ¿  94   <5   <6   ¿   <7   ¿   <   ¿   <   8   s óX   i    ﬁ¿  J'    ¿  J9   9:   ;   <5   9<   <=   <   >   <?   @   <A   h   Ω  ú©  ód   ﬁΩ   s úï  óf   ﬁﬁ¿  J3    (   8   ‡J   „Ω	  "   s ‡J   „Ω  JB   s <   Ω  <   ‡Ω  ƒC    ‰‰w ﬁΩ  öú   ós   Ω   8¿  JB   <D   Ω  <   Ω  J   Ã   ú   óz   ﬁΩ   ó{   ö   ó|   Ω   ô   ó|   9E   ó}   <   <F   <B   ‡Ω
+  ƒC    ‰‰w ﬁs ôÄ   óÉ   ﬁ¿  J3    ¿  J9   8   ‡J   „Ω  s <   ¿  JB   <D   G   <H   Ω  J   <   ‡Ω
+  ƒC    ‰‰w ﬁΩ  <   s óí   <   s óî   i    Ω  öó   óï   ﬁ¿  J3    ¿  9I   Ω  <   ¿  JJ   ‡JK   „¿   s <L   ¿  JM   J6   <6   ¿  JN   <O   Ω  <   Ω  <   Ω  <   Ω  <   s ô   ó¶   ó¶   i   Ω  úÑ  ó®   ﬁΩ   s úp  ó™   ﬁﬁ¿  J3    (   8   ‡J   „Ω	  "   s ‡J   „Ω  JF   s <   Ω  <   ‡Ω  ƒC    ‰‰w ﬁΩ  ö|   ó∑   Ω   8¿  JF   <D   Ω  <   Ω  ö   óΩ   Ω  ô   óΩ   9P   óæ   <   <F   <B   ‡Ω
+  ƒC    ‰‰w ﬁs ô{   óƒ   ﬁ¿  J3    ¿  J9   8   ‡J   „Ω  s <   ¿  JF   <D   Q   <H   Ω  <   ‡Ω
+  ƒC    ‰‰w ﬁΩ  <   s ó“   <   s ó‘   i   <   s i   <   s §–•–•Î 	`Ä è`
+ˇˇˇˇPˇÙ `ó &`Æ ˇˇˇ˙ú #`Æ ˇˇˇ˙ú 
+`
+Ø ˇˇˇ˘P+`
+ˇˇˇ˘P
+	ˇˇˇ˘P
+ˇˇˇ˘P`
+ˇˇˇ˘P
+#∞ ˇˇˇ˘P
+1ˇˇˇ˘P!`Ä  ∆`
+Ä  †` ê ˇˇˇ˘P
+ô ˇˇˇ˘P
+!
+!
+ˇˇˇ¯Pô ˇˇˇ¸PÄ  „
+
+
+ˇˇˇ»PV
+
+
+
+
+ñ Pê 	ˇˇˇ˘P
+	ˇˇˇ˘P	ì  		î 	ô 	± ì ˇˇˇ•Pc
+ˇˇˇ˘P
+
+ì 	ˇˇˇ¶PˇˇˇBPÄ '	
+ë ˇˇˇ˙P	î 			!	ˇˇˇJPò Ä  Õñ Pê 	ˇˇˇ˘P
+	ˇˇˇ˘P	ì  		î 	¨ ì ˇˇˇºPL
+ˇˇˇ˘P
+
+	ì 	ˇˇˇ∞PˇˇˇYPí ˇˇ˝pPˇˇ˛!PÄ zTÄÄÄ‰
+        å  ˇˇˇˇ    ñ         P  ÖXP                           ¿  J   J   ú;   ó   ﬁ¿  J   J   ¿  J   ‡J   „¿   µ   s 'ó   ö   ó   ¿   µ   ôò   ó   ¿  J   J   ¿  J   ‡J   „¿   µ   s 'ú   ó   ﬁ¿  J   J   ó   ö   ó   ¿   µ   ô)   ó   ¿  J   J   ¿  J   J   ó   ¢ `™ +ë 
+ˇˇˇ˙Pï § ë 
+ˇˇˇ˙Pí ¬ *ï ÄÄT  àl›4  „                       €Ã   ﬁ∞±  ﬁΩ   J   ù%   ó   ﬁΩ   Kù   ó   ﬁΩ   Kó   ±  ﬁ¿ 	  µ 	  ùÜ   ó   ﬁΩ  ú=   ó   ﬁ¿  J   J   &¿  J   ‡J   „¿   µ   s 'ó   ú4   ó   ﬁΩ  ú   ó   ﬁ¿  J   J   'ó   ó   §—•—•`ó 	¢ `  ó † ë 
+ˇˇˇ˙Pó  Æ TÄÄT        ‹   ˇˇˇˇ    ‡          X   uæƒX   +                          ¿   µ   ú   ó   ﬁ¿  ‡J   „w  ó   ﬁ• `° P	PÄÄX   ºDç·X   +                          ¿   µ   ú   ó   ﬁ¿  ‡J   „w  ó   ﬁ• `° P	PÄÄ   ;2¨‰   √                         ﬁ¿  J    ¿  9   ª ¿  J   J   <   ª ¿  J   J   <   ¿   µ    s  <   ª  <   ¿   µ   <	   ¿   µ   <
+   ¿   µ   <   ¿  J   <   ¿  J   <      ‡J   „ª s s ¢ `ï ï P
+ˇˇˇ˘Pˇˇˇ>PÄ  ÀÄÄÄ¥   ∑ƒM¥   l                	      ›Ã   ﬁ5Ã  ﬁ≈ÜÄª  Ω  É Ω   áﬁ±   ﬁ¿   s   Ω   ∂w ﬁΩ   ∂9   <   <   <   M   ﬁΩ   ∂M   ﬁΩ   ¶§•`ˇˇˇˇˇˇˇ˙P	VˇˇˇˇP
+	VÄ|  &®an\  ß  	             B      º  Õ   ﬁ∞±   ﬁ¿   J   ö8   ó   ﬁ¿  J    9   m   <   m   <   s ô   ó   9	   ó   ±   ﬁﬁ¿  J
+       9   9   ¿   J   ö   ó      ô   ó      ó   <   <      ¿   J   ö   ó   ﬁ¿  J
+    ¿	  J   8¿   J   ö<   ó   ¿   J   ö   ó      ô   ó      ó   ô2   ó   ¿   J   ö   ó      ô   ó      ó   <   ¿   J   ú   ó   ﬁ¿   J   ó   <   ¿   J   <   ‡Ω   ƒ    ‰‰w ﬁﬁ¿  J
+       9   ¿   J   <   s <   s ô≤   ó+   ﬁ¿  J
+    ¿
+  J   8¿   J   ú   ó0   ﬁ¿   J   ó1   <   ¿   J   <   9    !   <"   <   ‡Ω   ƒ    ‰‰w ﬁﬁ¿  J
+       9#   ¿   J   <   s <   s ó@   <   s §—•—•	`î 	
+
+ˇˇˇ‰Pú K` ê ∑ "ï 
+˝ C© ì  
+ê ˇˇˇ¯PˇˇˇwPÄ  ß
+© ì  
+ê ˇˇˇ¯Pˇˇˇ§Pˇˇ˛¯PÄ ÇTÄ|     	   ù  ˇˇˇˇ    §         <   Xßüß<                             ¿   ‡J   „s  ¢ `PÄÄÄd   —ø{d   2                          ¿   ö   ó   ô   ó   ¿   ‡J   „s  ó   ¢ `ê ò 	PÄÄÄ`  º«  ¨  	             ã      $º  Õ   ﬁ∞±  ±  ±  ±  ±  ±  ±	  ±
+  ±  ±  ±  ±  ﬁ¿   e‡J   ±  ﬁﬁ¿   J   ö   ó   ¿   J   ô7   ó   ﬁ¿  J    ¿  J   9   Ω  J   <   s ó   ±  ﬁ¿   J	   Ã   ú   ó   ﬁΩ   ó   ö   ó   Ω   ô#   ó   9
+      <   9   <   ó   e9    <    <   „‡J   ±  ﬁ‡J   ±  ﬁ‡8‡‰‰ƒ    ‰‰‰w ﬁ±  ﬁﬁ¿   J   Ã  ú   ó   ﬁΩ  ó    ö   ó!   Ω  ô#   ó!   9      <   9   <   ó%   e9    <    <   „‡J   ±  ﬁ‡J   ±	  ﬁ‡8‡‰‰ƒ    ‰‰‰w ﬁ±
+  ﬁﬁh    ±  ﬁœ   ≥   ﬁ”   ò.   ¿   ¿  J   öm  ó1   ∞±  ±  ±  ±  ﬁ¿   ¿  J   öe   ó4      ‡J   „Ω  J      s ‡J   „Ω     s ‡J   „Ω  J      s ‡J   „Ω  s ô5   ó>      ‡J   „Ω  J      s ‡J   „Ω  s óC   ±  ﬁ¿   ¿  J   ö6   óF   8‡Ω  ƒ    ‰‰w ﬁ‡Ω	  ƒ    ‰‰w ﬁô   óK   Ω  óK   ±  ﬁ¿   ¿  J   ö6   óN   8‡Ω  ƒ    ‰‰w ﬁ‡Ω
+  ƒ    ‰‰w ﬁô   óS   Ω  óS   ±  ﬁΩ  J   ú   óV   ﬁΩ     M   óW   ﬁﬁ¿  J    ¿  J   8Ω  <   Ω  <   m   <       <!   ‡Ω  ƒ    ‰‰w ﬁ   ‡J   „Ω  J      s ‡J   „¿   &s <   Ω  <"   ¿   s ±  ﬁΩ  ‡J#   „Ω  w ﬁ—”   ¿   0(Õ   ﬁôÇ˝ˇˇóm   –¿   J$   Ã  ú   óp   ﬁΩ  óq   ö   ór   Ω  ô#   ór   9%      <   9&   <   óv   e9'    <    <   „‡J   ±  ﬁ‡J   ±  ﬁ‡8‡‰‰ƒ    ‰‰‰w ﬁ±  ﬁﬁﬁ¿  J    (   8   ‡J   „Ω  J)      s ‡J   „Ω  s <   Ω  <   ‡Ω  ƒ    ‰‰w ﬁΩ  <"   s §—•—•	≤ `í `	© !
+ˇˇˇ˙P=`ö 	ß 
+π ˇˇˇ∏ú m`ö %	ß 
+π ˇˇˇ≤ú Z` `fï í `° ˇˇˇ˘P
+	ˇˇˇ˘P
+ˇˇˇ˘P
+ˇˇˇ˘Pô ˇˇˇ˘P
+ˇˇˇ˘P`ñ 
+ì ´ 
+`ñ 
+ì ´ `	© ?`
+		
+
+ì ˇˇˇ˘P
+#ˇˇˇ˘P	ˇˇˇwPÄ  å`ˇˇˇ˚P
+ˇˇ˛c`ò Ä √`ö 	ß 
+π ˇˇˇπú Q` ê ˇˇˇ˘P
+ ˇˇˇ˘P
+	ì 	ˇˇˇªPQTÄÄ`  P     	   ¢  ˇˇˇˇ     ï         0  L         ©                  É  L   >¥ƒL                             ¿  ‡J   „¿   µ   w ﬁ• `
+ˇˇˇ˙PPÄÄ   _åÑ   k                 ]       ﬁ¿  J    9   9      <   <   9      <	   
+   <      <      <      <      <   <   9      <      <   <   9   ª  J   J   J   <   <   9   ª  J   J   J   <   <    ﬁ¿  J!    ª  J   J   J   
+      ‡?s <   <"   9#   
+<$   <%   9&   ª  J   J   J   <   ﬁ¿  J!    ª  J   J   J   
+öôôôôô…?s <'   <(   9)   *   <'   9+   9,   -   <.   /   <0   <1   <   <2   93   4   <   <5   <6   97   <0   <8   99   <0   <:   9;   ª  J   J<   J=   <'   ª  J   J   J   <   (<>   (<   ?   <$      <      <   9@   A   <0   <   <B   9C   <D   9E   <F   s ¢ `
+
+
+
+
+
+
+
+ú ú  õ ˇˇˇˇPó  õ ˇˇˇˇP
+
+ô 
+ó -ó 	
+
+
+
+î 
+
+ˇˇ¸ßPÄ aÄ  Oº3¯   ì                 	      œ   ª  	ÖOs Õ  ﬁª  	≥ms Õ  ﬁª  	bs Õ  ﬁª  ı=s Õ  ﬁª  	)s Õ  ﬁª  	Ä's Ã   ﬁﬁΩ   J    m   s ≥   ﬁª m   M   ﬁ–• `P	
+`P	
+`P	
+`P	
+`P	
+`P`
+ˇˇˇˇP	Ä d`Ä *PÄ        ç   ˇˇˇˇd  á∏Ad  Ó                 :       9   9   <    <      <      <   	   <
+   <   9      ª  J   J   ö   ó      ô   ó      ó   <    <    <   <   9   @<   @<   <      ª  J   J   ö   ó      ô   ó      ó   <   <   <   <   9      <      ª  J   J   ö   ó#      ô   ó#      ó#   <   <   <    <!   
+<   "   <#   <$   9%   &   <   <#   <   <'   9(      ª  J   J   ö   ó4      ô   ó4      ó4   <   <!   <)   9*      <   <+   ¢ `
+
+∂ #		
+∂ #
+∂ #
+∂ #§  %4‹IÑ  π                I      œ   ∞±   ±  ±  ±  ±  ±  ±  ﬁª  e9    <    <    <    <    <    <    <	   „‡J   ±   ﬁ‡J   ±  ﬁ‡J   ±  ﬁ‡J   ±  ﬁ‡J   ≥   ﬁ‡J   ±  ﬁ‡J	   ≥   ﬁ‡8‡‰‰ƒ
+    ‰‰‰w ﬁ±  ﬁﬁ¿  µ   s  ±  ﬁﬁ¿  J    ¿  J   8Ω  J   <   <   ‡Ω  ƒ    ‰‰w ﬁh   ﬁ¿  J       9   Ω  J   <   ﬁ¿  J    Ω  9   Ω  J   <   s <   s i    ﬁ¿  J    ¿  J   9      <   Ω  <   s i   ﬁ¿  J    ¿  J   9   Ω  J   <      <   Ω   <   s i   Ω  ö   ó7   Ω  ôü   ó7   Ω  öã   ó8   ﬁ¿  J    ¿  J   9   m   <   Ω  J    <   h   Ω  i    ﬁ¿  J    ¿  J   9!   Ω  J"   <   s i   <   s ô   óG   óG   i   <   s §–•–• £ X`ˇˇˇˇ˙ú 
+`ì ` 
+ì ê  
+ˇˇˇ¸PˇˇˇŒPL
+
+	ˇˇˇÌP!
+
+	ˇˇˇ’P8´ 
+
+Z
+	
+ˇˇˇ˙PˇˇˇxPù ˇˇ˛˙PÄ ≤TÄÄ§        ≥  ˇˇˇˇ    ∂         †   ∫7ß\†   l                          ¿   µ   ú[   ó   ﬁ¿   µ   ö-   ó   ∫   ‡J   „¿         w ô   ó   ∫   J   ¿   M   ó   ﬁ• `µ ˇˇˇ˚Pß >PÄÄÄ  mÚ*   i                     º Õ   ﬁº Õ   ﬁœ   m   Õ  ﬁm   Õ  ﬁ¿  ‡J   „¿  9   m   <   w ﬁ¿   	ÖOs Õ  ﬁ¿   	fSs Õ  ﬁ¿   ı=s Õ  ﬁ¿   ˆ&s Õ	  ﬁ¿   	Ä's Ã   ﬁ¿   	ﬁs Õ
+  ﬁh   9   	   <
+      <      <   m   <   i    9      <
+      <      <   m   <   i   Õ  ﬁ¿   	 fs Õ  ﬁﬁΩ   J    m   s ≥   ﬁm   Õ  ﬁ–•í õ `
+ˇˇˇ˚PN`
+P	
+`
+P	
+`	P	
+`	P		`
+P
+`
+P	Ä ‰`
+
+Ä  î
+#Ä y
+
+k
+#ï Ä `
+P	`
+ˇˇˇˇP	Ä †`Ä ÙP        Q  ˇˇˇˇ0   Zœß0                              ¿  ¢• `.QÄÄê   &„…Uê   X                	        €Ã   ﬁ∫   J   ö#   ó   ∫   J   ‡J   „s  ô   ó   m   ó   Õ  ‡J   „Ω   s ¢•`• ,P§ Ä  öˇˇˇıPQÄ4  %≤·5  ∑         
+             €Ã  ﬁÃ   ﬁò    Ω   Ω  J   öç   ó   Ω  Ω   KÃ  ﬁΩ  ^ò   _`õR   ó   Ã  9   J   ‡J   „Ω  Ω  s ú   ó   ﬁª  Ω  Ω  Ω  KOó   ﬁﬁô´ˇˇˇó   aΩ   0(Ã   ﬁôdˇˇˇó   ª  ¢• `fî ``ó ˇˇˇ˜`ë ˇˇˇ˘P• ˇˇˇ›ˇˇˇË`ï R`Q4        =   Z             °   ê   5û‡Üê   X                	        €Ã   ﬁ∫   J   ö#   ó   ∫   J   ‡J   „s  ô   ó   m   ó   Õ  ‡J   „Ω   s ¢•`• 2P§ Ä  öˇˇˇıPQÄ4  %≤·5  ∑         
+             €Ã  ﬁÃ   ﬁò    Ω   Ω  J   öç   ó   Ω  Ω   KÃ  ﬁΩ  ^ò   _`õR   ó   Ã  9   J   ‡J   „Ω  Ω  s ú   ó   ﬁª  Ω  Ω  Ω  KOó   ﬁﬁô´ˇˇˇó   aΩ   0(Ã   ﬁôdˇˇˇó   ª  ¢• `fî ``ó ˇˇˇ˜`ë ˇˇˇ˘P• ˇˇˇ›ˇˇˇË`ï R`Q4        =   Z             °   h  Òä∫óh                           ¿
+  ‡J   „   ¿   9      <      <   ª  s ¿  ù´   ó   ﬁ¿
+  ‡J   „   9	   
+   <      <   ¿
+  ‡J   „   9      <      <   ¿
+  ‡J   „   9      <      <      <      <   s s s Õ  ó   s ¢• `ë 
+#
+ˇˇˇ∞PS° 
+
+ë 
+
+ë 
+
+Ä 
+
+ˇˇ˚´Pˇˇˇ¡Pˇˇˇ√PˇˇˇëPÄ \QÄÄÄå  ‚◊cå  	                        ¿
+  ‡J   „   ¿   9      <      <   ª  s ¿  ùƒ   ó   ﬁ¿
+  ‡J   „   9	   
+   <      <   ¿
+  ‡J   „   9      <      <   ¿
+  ‡J   „   9      <      <   s ¿
+  ‡J   „   9      <      <   s s s Õ  ó   s ¢• `ë 	
+#
+ˇˇˇ∂PM° 
+
+ë 
+
+ë 
+
+ˇˇˇÿPÄ êë 
+
+ˇˇˇÿPˇˇ˝5Pˇˇˇ√PˇˇˇóPÄ ËQÄÄÄú  &Ìqòú  =                 )       9   9   ª  ‡J   „s <   ª  ‡J   „#s <   <   9   ª  ‡J   „s <   ª  ‡J   „
+      @s <	   <
+   9   ö <   <   9    <    <      ª  J   J   ö   ó      ô   ó      ó   <   <   9   @<   @<   <      ª  J   J   ö   ó%      ô   ó%      ó%   <   <   <	   <   ¢ `
+P	PPì P	
+ª $	
+∂ #h  qxåOH  ú                 /       œ   ¿  µ   s  ≥   ﬁﬁ¿  J    ¿  J   9   <   <   <   	<   <	   
+   <   h   ﬁ¿  J    ¿  J   9   <   <   
+<   
+   <   
+   <      <      <   ¿   J   <   h   ﬁ¿  J    ¿  J   9      <   
+   <   <      <   s i    ﬁ¿  J    ¿  J   9   ¿   J   <      <   
+   <       <   s i   <   s i    ¿  ‡J!   „m"   s i   <   s §–•–• `î ` 
+
+
+
+
+
+
+
+
+
+
+
+ˇˇˇ—P^
+
+
+
+ˇˇˇ∑Pˇˇ˛ˇPÄ ´ˇˇˇ¸Pˇˇ˝ˆPÄ ‘TÄÄÄh        ñ  ˇˇˇˇ    ô         H  G]tH  ÷                         ﬁ¿  J    ¿  J   9   <   <   <   ﬁ¿  J    ¿	  J   9   ¿   µ   J	   <
+   ª  J   <   ﬁ¿  J    ¿  J   9   ª  J   <   ª  J   <   ª  J   <   s <   s <      ‡J   „ª s s ¢ `
+ 
+
+î  
+
+ˇˇˇ‡Pˇˇˇ»Ptˇˇˇ˘PˇˇˇXPÄ  ±ÄÄ3ıÿ  `t    `$    `  `  6   @  p\    p]    @  E    @  @K  ^  _  ˜  `    Z  3  L  b  c  a  ó 	  P     @M  
+    @e  d    @  `Z    `  `;  !    Z  	  @f      
+  @â     @˜    @O        @  @  @	  `;  
+  `3  <  g     P   W  h    pV  i  Â  
+        @  @  @E      `P   ˜    @  â     `  `  `  `  `    	    â   
+  ˙                           @    @      Z    @  @    ˜      @  @      @    @     @!  "    p#  t    p$    pP     `  @3  5  6  Ô  /    `  `(  ˙   #  )  Ï    `+    `  `(      
+  ˙   -  .  R   )    `/  0    `  `(      1  t  /    `  `(    +  Ï     `"  `!  `4    @6    p  `  `;    p(  "  	  
+    h  2  Ô  3  4    @5  6  -  7    p8  #  `$  `(  
+  t    Ô  3  .  R   )  9  %  `&  `(  
+  $    Ô  3  .  R   )  9  )  `Ô  3  5  .  R   *  `+  `;  Ô  3  .  R   ,  `+  -  `-  .  `  #  @Ô  6  K  3  L  M    	    t  $  N  <  '  `(  `(  
+          	                               !  ;     @˜  O   !  @â   <  =  >  ?     @  A    p  pD  E  "  @F    pG    pH  h  2  I    p  $  @K  3  M  O  Z  %  @P  &  @Q  S  R  U  T  $  P   V  '  @t  X  W  (  @.  R   ;  Ô  )  Z  )  @[  /  `Z  *  @+  @j  ú  F  ,  @U  k  P  K  l  Q  m  d  n  T    -  @p  o  r  q  s  .  @v  w  x  u  t  /  @y  Z
+ g  0  @  f  1  @z  3  2  @{  3  @4  @~  }      |  @  5  @e  Ä  A  6  @=  7  @>  8  @Å  h   Ç  É  9  @Ñ  ?  :  @t  ;  @$    `  `  p  pn    p  p  `&  ≤    pM     p'    p*  	  p,  
+  p+    pÏ    p-    p)    pt    p$    p:  Z    p2  `<  @=  @Ü  s  e  d  P  K  à  á  F  >  @ä  v  a  ã  å  ¶   Ç  â  ?  @é  Å  è  ç  @  @_  ê  ë  u  í  ì  î  ï  R  ?  A  @^  ñ  B  @ó  C  @ò  5  `¢  £  §  •  ¶  ß  3  `4  `D  @
+  ô  ö  õ  ú  ù  û  O   D  Z  F    ü  P     E  E  @ç  F  @â  G  @E †  H  @ñ  °  I  @#  pV  ?  J  @ó  0  `1  `Z  !  p"  p9  `;  K  @Î   4   8  `e  ´  ¨  '  p
+   ;  `;  L  @Î   4   :  `e  ´  ¨  )  p
+   <  `=  `≤  ≥  O  @µ  ¥  ∑  ∂  g  P  @∏  ç ∫  π  Q  @ª  º  Ω  R  @æ    ø  d  ¿  ¡  >  `≤  ≥  T  @µ  ¥  ≈  ∂  g  U  @∏  ç ∫  π  V  @∆  «  Ω  W  @æ    »  d  X  @…     ?  `Y  @Z  @Ã  Ü  d  À  [  @R  è  Õ  \  @Œ  ]  @Ç  ä  v  a  ã  å  ¶   â  ^  @s  é  Å  ç  B  `  s c  @–   P Z  d  @À    4  ß  e  @ö  â  ô  Ø  
+  Ÿ  <  @  `A  `D  s _  @œ  –  \ ç Ã  U  T  `  @—  à  a  ”  “  Œ      Z  a  @A †  ‘  ’  ÷  
+  b  @Õ  ◊  ÿ  I  .  p6  `7  `&  p(  pd  M  @%  pZ  N  @Æ  ö  ∞  Ø  ±  4  *  pâ  S  @¬  √  ƒ  +  p,  p-  p   `          @  @  p   p$  pˇXÑ‹  	              ™  "           T            !
+ ]   3         !
+ Z      ‹      ! [      ›      ! \      ﬁ      ! ó      '      "  û      *      "  †      ,      "  ´      +      "  Æ      Ï      "  ∂      -      "  √      )      "  º      Ê      ! æ      Á      ! Ω      Ë      ! ÿ      t      "  ‰      $      "    R   :      "        B      !
+ ˆ      C        ˝      G      !
+ ˇ      H      !
+            ! ê      %      #    $   J               \      !
+       ]      !
+ *   *   Y        (      V      !
+ c  G   ˜      ! "     Ö        Ã  ,   ¯      ! ˇ  #   ˘      ! ¯     V      !
+ ƒ     ®        =     Z        ,     ™        '     ˝        7     ≠        2     ˇ        >     â        W     â        q          ! °  #   ©      !
+ å          ! ùH©¿      <      <                Ä Z   "  R   "     [              x    x                á  	  á  	     à           b  h  b  h     c            “  ÿ  “  ÿ     ”            ˛  	  ˛  	     ˇ           M	  µ	  <	  µ	     N	           …	  ÿ	  µ	  ÿ	      	           Í	  ›
+  ÿ	  ›
+     Î	          ·
+    ›
+       ‚
+           !  Ç    Ç     "           á  –  Ç  –     à          ÇŸ  ™  –  ™     ⁄                                    Q  å  Q  å     R            r  ä  r  ä     s           Æ  |  ™  |     Ø          Ä  N  |  N     Å         Ç T    N       U            %  ﬂ  %  ﬂ     &           Û  ä  Î  ä     Ù            ›  Ò  ›  Ò     ﬁ            ˝    ˝       ˛            4    4       5         
+ !  w  	  x     "         Ä é  Ö  y  Ö     è           ∑  √  ∑  √     ∏            “  Ì  “  Ì     ”          Ä ò  l  Ö  l     ô           .  >  .  >     /            x  ‰"  x  ‰"     y         Ä ˇ"  È'  ˜"  È'      #           [#  º%  [#  º%     \#           ¬%  Ë'  ¬%  Ë'     √%           I'  ö'  I'  ö'     J'          Ä ¯'  <  '  <     ˘'           (  C(  	(  C(     (           †(  t)  è(  t)     °(           ﬁ(  \)  ÷(  \)     ﬂ(          ã)  e*  t)  e*     å)           œ)  M*  «)  M*     –)           @+  ™0  8+  ™0     A+           g1  ]7  _1  ]7     h1           y7  Í8  y7  Í8     z7           9  <  9  <     9            E;  <  E;  <     F;         5°›kañ∂1}ª      gﬁ^ﬂgﬁ^·H ‹?gﬂsè   í    O^firstPartyDomain=parrotsec.org&partitionKey=%28https%2Cparrotsec.org%29,:https://start.parrotsec.org/_next/static/chunks/703-06b4f8ec3edcdffa.js strongly-framed 1 security-info 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 request-method GET response-head HTTP/2 200 
+date: Sat, 22 Mar 2025 06:18:52 GMT
+content-type: application/javascript
+content-length: 15377
+last-modified: Thu, 13 Mar 2025 19:23:45 GMT
+etag: "67d330c1-3c11"
+accept-ranges: bytes
+strict-transport-security: max-age=31536000; includeSubDomains
+X-Firefox-Spdy: h2
+ original-response-headers date: Sat, 22 Mar 2025 06:18:52 GMT
+content-type: application/javascript
+content-length: 15377
+last-modified: Thu, 13 Mar 2025 19:23:45 GMT
+etag: "67d330c1-3c11"
+accept-ranges: bytes
+strict-transport-security: max-age=31536000; includeSubDomains
+X-Firefox-Spdy: h2
+ ctid 2 uncompressed-len 0 net-response-time-onstart 2694 net-response-time-onstop 2697 alt-data 1;15377,javascript/moz-script-bytecode-20250224130137-8l alt-data-from-child 1  Ë

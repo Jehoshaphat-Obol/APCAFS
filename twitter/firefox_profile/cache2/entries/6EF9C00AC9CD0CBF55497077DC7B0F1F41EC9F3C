@@ -1,0 +1,489 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[431],{92625:function(e,a,t){var r,l,n=t(67294);function _extends(){return(_extends=Object.assign?Object.assign.bind():function(e){for(var a=1;a<arguments.length;a++){var t=arguments[a];for(var r in t)({}).hasOwnProperty.call(t,r)&&(e[r]=t[r])}return e}).apply(null,arguments)}a.Z=function(e){return n.createElement("svg",_extends({xmlns:"http://www.w3.org/2000/svg",xmlnsXlink:"http://www.w3.org/1999/xlink",viewBox:"0 0 148.17 42.71"},e),r||(r=n.createElement("defs",null,n.createElement("linearGradient",{id:"linear-gradient",x1:131.15,y1:25.3,x2:143.52,y2:33.64,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#febe2d"}),n.createElement("stop",{offset:1,stopColor:"#f85e23"})),n.createElement("linearGradient",{id:"GradientFill_3",x1:16.85,y1:6.11,x2:36.49,y2:6.11,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#fbaa19"}),n.createElement("stop",{offset:1,stopColor:"#ef3e23"})),n.createElement("linearGradient",{id:"GradientFill_4",x1:15.77,y1:31.08,x2:17.31,y2:26.87,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#f78d1e"}),n.createElement("stop",{offset:1,stopColor:"#f37121"})),n.createElement("linearGradient",{id:"GradientFill_2",x1:3.56,y1:32.53,x2:27.49,y2:6.88,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#febe2d"}),n.createElement("stop",{offset:1,stopColor:"#f04e23"})),n.createElement("linearGradient",{id:"GradientFill_5",x1:20.47,y1:17.54,x2:7.23,y2:37.92,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#ea4425"}),n.createElement("stop",{offset:1,stopColor:"#fdbb27"})),n.createElement("linearGradient",{id:"GradientFill_6",x1:.24,y1:10.57,x2:42.04,y2:10.57,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#f47920"}),n.createElement("stop",{offset:1,stopColor:"#e93825"})),n.createElement("linearGradient",{id:"GradientFill_7",x1:-21.84,y1:7.78,x2:63.21,y2:7.78,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#fdca0b"}),n.createElement("stop",{offset:1,stopColor:"#f5841f"})),n.createElement("linearGradient",{id:"GradientFill_8",x1:8.54,y1:18.07,x2:17.39,y2:48.94,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#e73c25"}),n.createElement("stop",{offset:1,stopColor:"#faa21b"})),n.createElement("linearGradient",{id:"GradientFill_9",x1:-51.37,y1:23.08,x2:74.88,y2:23.08,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#fdba12"}),n.createElement("stop",{offset:1,stopColor:"#f7921e"})),n.createElement("linearGradient",{id:"GradientFill_2-2",x1:.08,y1:16.72,x2:4.81,y2:17.56,xlinkHref:"#GradientFill_2"}))),l||(l=n.createElement("g",{id:"Layer_2","data-name":"Layer 2"},n.createElement("g",{id:"Layer_1-2","data-name":"Layer 1",fillRule:"evenodd"},n.createElement("path",{d:"M125.05 30.91a1.1 1.1 0 00-1 1c-.08.59.24 1 .75 1a1.12 1.12 0 001-1 .78.78 0 00-.76-1zm7.36-5.71a3.13 3.13 0 00-2.73 1.48l.2-1.4h-1.71l-1.09 7.53h1.71l.54-3.7a2.28 2.28 0 012.15-2.17c1 0 1.47.65 1.32 1.7l-.6 4.17h1.72l.68-4.7c.26-1.79-.57-2.91-2.19-2.91zm7.21 0a4.22 4.22 0 00-4.13 3.85c-.32 2.26.88 3.81 3.07 3.81a4.35 4.35 0 003.14-1.29l-.77-1a2.93 2.93 0 01-2 .84 1.67 1.67 0 01-1.76-1.71h5.19c.57-2.74-.25-4.47-2.72-4.47zm-2.33 3.24a2.27 2.27 0 012.14-1.82 1.47 1.47 0 011.57 1.84zm9.83 2.56a2.49 2.49 0 01-1 .31c-.46 0-.7-.24-.6-1l.49-3.4h2l.19-1.33h-2l.3-2.08h-1.69l-.3 2.08h-1l-.18 1.33h1l-.53 3.72c-.23 1.55.59 2.26 1.74 2.26a3.66 3.66 0 001.84-.55z",fill:"url(#linear-gradient)"}),n.createElement("path",{d:"M44.62 22.83a1.33 1.33 0 11-1.32 1.33 1.33 1.33 0 011.32-1.33zm13.21-3.69a6.64 6.64 0 013.91-1.36 5.75 5.75 0 014.39 1.94 7.1 7.1 0 011.37 5.8 8.87 8.87 0 01-6 7.55 7.72 7.72 0 01-2.07.29 4.51 4.51 0 01-3.91-1.93l-.18 1.28a.26.26 0 01-.25.21H52a.21.21 0 01-.17-.07.23.23 0 010-.18l1.07-7.38h-4a1.14 1.14 0 01-1.13-1.13A1.14 1.14 0 0148.82 23h8.62a5.2 5.2 0 00-1.12 2.56c-.31 2.15.76 4.16 3.09 4.16a4.71 4.71 0 004.46-4.2c.3-2.11-.91-4.11-3.15-4.11h-9.83a1.14 1.14 0 01-1.13-1.14 1.14 1.14 0 011.13-1.13h2.85l.81-5.66a.26.26 0 01.25-.21H58a.24.24 0 01.16.07.23.23 0 010 .18l-.81 5.62zm19.56 12.48a5.29 5.29 0 01-4.14 1.74c-3.94 0-5-2.89-4.51-6.31L70 18.44a.27.27 0 01.25-.22h3.15a.21.21 0 01.16.08.21.21 0 010 .17l-1.12 7.75c-.26 1.84 0 3.5 2.15 3.49s3-1.48 3.33-3.42l1.13-7.85a.27.27 0 01.25-.22h3.17a.21.21 0 01.16.08.21.21 0 010 .17l-2 14.24a.26.26 0 01-.25.21h-3a.21.21 0 01-.17-.07.23.23 0 01-.05-.18l.15-1.05zm10.86-12.11a5.36 5.36 0 014.12-1.73c3.91 0 5 2.88 4.48 6.34l-1.24 8.59a.24.24 0 01-.24.21H92.2a.19.19 0 01-.16-.07.2.2 0 01-.05-.18L93.1 25c.26-1.81.07-3.53-2.12-3.52s-3 1.51-3.3 3.42l-1.14 7.86a.25.25 0 01-.24.21h-3.17a.22.22 0 01-.17-.07.22.22 0 010-.18l2-14.23a.26.26 0 01.25-.22h3a.19.19 0 01.16.08.18.18 0 01.05.17l-.15 1zm14.89 0a5.36 5.36 0 014.12-1.73c3.91 0 5 2.88 4.48 6.34l-1.24 8.59a.25.25 0 01-.24.21h-3.17a.19.19 0 01-.16-.07.2.2 0 01-.05-.18L108 25c.26-1.81.07-3.53-2.12-3.52s-3 1.51-3.31 3.42l-1.13 7.86a.25.25 0 01-.24.21H98a.22.22 0 01-.17-.07.22.22 0 010-.18l2-14.23a.26.26 0 01.24-.22h3a.19.19 0 01.16.08.21.21 0 01.05.17l-.15 1zm12.4 12.62l-3-13.61a.21.21 0 010-.2.24.24 0 01.19-.1h3.38a.21.21 0 01.21.17l1.75 8.81 4.26-8.83a.24.24 0 01.22-.15H126a.2.2 0 01.18.11.22.22 0 010 .22l-9.78 19.21a.24.24 0 01-.22.14h-3.39a.19.19 0 01-.18-.11.22.22 0 010-.22z",fill:"#fff"}),n.createElement("path",{d:"M21 6.85l9.87 5.36L21.75 0A6.8 6.8 0 0021 6.85z",fill:"url(#GradientFill_3)"}),n.createElement("path",{d:"M16.54 26.73A2.25 2.25 0 1114.29 29a2.25 2.25 0 012.25-2.27z",fill:"url(#GradientFill_4)"}),n.createElement("path",{d:"M9.67 1.79l27.64 15a1.34 1.34 0 010 2.41 21.49 21.49 0 01-6.77 2.64l-5.75 11.8s-1.82 4.14-6.83 2.55c2.1-2.1 4.64-4 4.64-7.23a6.07 6.07 0 00-12.14 0c0 4.22 4.16 6 6.47 8.93a3.8 3.8 0 01-.33 4.79c-2.87-2.84-8.42-7.63-10.7-10.77a9.1 9.1 0 01-1.95-5.55 10.45 10.45 0 017.38-9.46 12.05 12.05 0 013.88-.47 12.58 12.58 0 015.2 1.57c2.45 1.44 3.64 1.06 5.33-.36 1-.82 2.09-3.49.4-4.11a12.14 12.14 0 00-1.69-.42c-3.14-.61-8.63-1.19-10.65-2.34C10.59 9 8.43 5.35 9.67 1.79z",fill:"url(#GradientFill_2)"}),n.createElement("path",{d:"M22.55 29.35zm0-.36C23.83 22.26 17 15.84 11.76 16.8l.35-.08q-.42.09-.81.21a10.45 10.45 0 00-7.38 9.46 9.1 9.1 0 002 5.55c2.28 3.14 7.83 7.93 10.7 10.77a3.8 3.8 0 00.33-4.79C14.59 35 10.43 33.21 10.43 29a6.07 6.07 0 0112.14 0z",fill:"url(#GradientFill_5)"}),n.createElement("path",{d:"M9.67 1.79l21 11.44.6.33c.5.39 1 1.17.35 2.61-1 2.15-5 4.23-9.61 2.6 1.44.42 2.42-.06 3.68-1.12 1-.82 2.09-3.49.4-4.11a12.14 12.14 0 00-1.69-.42c-3.14-.61-8.63-1.19-10.65-2.34C10.59 9 8.43 5.35 9.67 1.79z",fill:"url(#GradientFill_6)"}),n.createElement("path",{d:"M9.67 1.79c2.17 8 15.38 8.66 22 12z",fill:"url(#GradientFill_7)"}),n.createElement("path",{d:"M16.9 37.92C14.59 35 10.43 33.21 10.43 29a6.07 6.07 0 015.32-6A8.78 8.78 0 007 31.75a8.54 8.54 0 00.18 1.76c1.91 2.16 4.67 4.71 7 6.87.91.85 1.75 1.65 2.44 2.33a4.18 4.18 0 001-2.37 3.66 3.66 0 00-.72-2.42z",fill:"url(#GradientFill_8)"}),n.createElement("path",{d:"M22.52 29.71a5.81 5.81 0 00.05-.72C23.83 22.26 17 15.84 11.76 16.8a12.49 12.49 0 013.42-.34c6.87.28 8.79 7.62 7.34 13.25z",fill:"url(#GradientFill_9)"}),n.createElement("path",{d:"M2.26 14.84a2.27 2.27 0 012.26 2.27v2.26H2.26A2.26 2.26 0 010 17.11a2.27 2.27 0 012.26-2.27z",fill:"url(#GradientFill_2-2)"})))))}},23567:function(e,a,t){var r,l,n=t(67294);function _extends(){return(_extends=Object.assign?Object.assign.bind():function(e){for(var a=1;a<arguments.length;a++){var t=arguments[a];for(var r in t)({}).hasOwnProperty.call(t,r)&&(e[r]=t[r])}return e}).apply(null,arguments)}a.Z=function(e){return n.createElement("svg",_extends({id:"Livello_1",xmlns:"http://www.w3.org/2000/svg",xmlnsXlink:"http://www.w3.org/1999/xlink",viewBox:"0 0 250 250"},e),r||(r=n.createElement("defs",null,n.createElement("clipPath",{id:"clippath"},n.createElement("path",{className:"st0",d:"M-2.84 0h255.68v250H-2.84z"})),n.createElement("clipPath",{id:"clippath-1"},n.createElement("path",{className:"st0",d:"M179.8 60.92a4.11 4.11 0 00-1.69 5.56c4.71 8.84 7.2 18.84 7.2 28.92 0 6.71-1.07 13.31-3.18 19.6l-.54 1.6 11.22 22.86c-14.99 23.04-40.14 36.72-67.72 36.72a4.11 4.11 0 100 8.22c31.21 0 59.59-15.9 75.93-42.54l1.18-1.93-11.75-23.95a69.738 69.738 0 003.09-20.59c0-11.43-2.82-22.77-8.16-32.79a4.106 4.106 0 00-3.63-2.18c-.65 0-1.31.16-1.93.48"})),n.createElement("clipPath",{id:"clippath-2"},n.createElement("path",{className:"st0",d:"M136.65 52.55c-.73 2.15.42 4.48 2.57 5.21 16.12 5.47 26.96 20.59 26.96 37.63 0 13.35-6.65 25.73-17.78 33.12a4.11 4.11 0 00-1.15 5.7c.79 1.19 2.1 1.84 3.43 1.84.78 0 1.57-.22 2.27-.69 13.44-8.92 21.46-23.87 21.46-39.97 0-20.56-13.08-38.82-32.54-45.42-.44-.15-.88-.22-1.32-.22-1.71 0-3.31 1.08-3.9 2.79"})),n.createElement("clipPath",{id:"clippath-3"},n.createElement("path",{className:"st0",d:"M100.96 11.07l-1.79.53-13.82 24.17a72.081 72.081 0 00-21.08 21.62c-10.23 16.18-13.49 35.23-9.2 53.65 4.29 18.42 15.64 34 31.93 43.87 4.46 2.7 9.21 4.91 14.13 6.58l2.97 1.01 12.6-14.88c3.85.25 11.34.32 18.19-1.97 2.39-.8 3.69-3.35 2.91-5.69-.78-2.34-3.35-3.6-5.74-2.8-6.25 2.09-14.12 1.68-16.62 1.34l-2.51-.34-11.67 13.78a63.164 63.164 0 01-9.43-4.68c-29.39-17.8-38.31-56.02-19.86-85.2 4.97-7.86 11.44-14.4 19.24-19.43l.94-.61 13.07-22.86c19.32-5.22 39.55-3.17 57.17 5.85 2.22 1.14 4.97.27 6.16-1.93 1.13-2.1.41-4.67-1.59-5.88-.09-.06-.19-.11-.28-.16a88.045 88.045 0 00-40.17-9.68c-8.53 0-17.13 1.23-25.55 3.71"})),n.createElement("clipPath",{id:"clippath-4"},n.createElement("path",{className:"st0",d:"M114.67 44.18c-14.23 3-26.3 11.34-33.96 23.47-15.39 24.34-7.73 56.37 17.08 71.4 2.13 1.29 4.93.64 6.25-1.45a4.39 4.39 0 00-1.46-6.12c-20.56-12.45-26.9-38.99-14.15-59.16 6.36-10.05 16.35-16.96 28.15-19.45 2.45-.52 4.01-2.88 3.49-5.28a4.437 4.437 0 00-2.05-2.85 4.627 4.627 0 00-3.34-.56"})),n.createElement("clipPath",{id:"clippath-5"},n.createElement("path",{className:"st0",d:"M164.69 149.7c-1.33-.81-1.75-2.53-.91-3.82.81-1.31 2.58-1.7 3.88-.91 1.33.81 1.74 2.51.91 3.82-.53.85-1.46 1.32-2.41 1.32-.5 0-1.02-.13-1.48-.41m-8.61-8.49c-1.58 2.47-2.08 5.3-1.64 7.97-10.9 5.71-21.95 8.14-34.24 6.98-2.49-.23-4.72 1.56-4.96 4.01-.25 2.45 1.58 4.61 4.07 4.86 14.25 1.33 27.31-1.56 39.89-8.26.23.17.46.33.73.5 5.57 3.36 12.92 1.66 16.39-3.8 3.45-5.48 1.72-12.67-3.84-16.05-1.94-1.18-4.1-1.74-6.24-1.74-4 0-7.9 1.97-10.15 5.54"})),n.createElement("clipPath",{id:"clippath-6"},n.createElement("path",{className:"st0",d:"M69.54 27.36a2.968 2.968 0 01-.98-4.13c.87-1.41 2.76-1.85 4.19-.98 1.43.87 1.89 2.72 1 4.13a3.09 3.09 0 01-4.21.98m-8.71-8.81a11.66 11.66 0 00-.96 10.59 91.307 91.307 0 00-13.94 17.09C32.87 66.89 28.8 91.28 34.44 114.91c5.65 23.63 20.35 43.67 41.41 56.43 23.16 14.02 51.34 17.36 77.32 9.14 2.37-.77 3.7-3.28 2.93-5.61-.77-2.33-3.32-3.61-5.71-2.87-23.43 7.43-48.85 4.42-69.74-8.22-39.23-23.76-51.34-74.39-27-112.89 3.53-5.59 7.7-10.69 12.42-15.28 5.48 2.47 12.11.6 15.37-4.55 3.53-5.59 1.76-12.92-3.91-16.36-1.98-1.2-4.18-1.77-6.35-1.77-4.07 0-8.06 2-10.36 5.63"})),n.createElement("clipPath",{id:"clippath-7"},n.createElement("path",{className:"st0",d:"M164.96 46.22c-1.16-.71-1.52-2.2-.79-3.34.73-1.14 2.24-1.5 3.41-.79 1.16.71 1.54 2.2.81 3.34-.47.74-1.29 1.15-2.12 1.15-.45 0-.9-.12-1.3-.36M108.62 28c-2.43.58-3.95 2.99-3.36 5.38.58 2.37 3.03 3.84 5.48 3.26 15.1-3.57 30.65-1.47 44.11 5.9-.64 4.32 1.31 8.81 5.34 11.24 5.42 3.28 12.54 1.62 15.91-3.68 3.36-5.32 1.68-12.32-3.72-15.6-4.07-2.45-9.12-2.14-12.79.44-10.62-5.88-22.38-8.89-34.33-8.89-5.54 0-11.11.65-16.63 1.95"})),n.createElement("clipPath",{id:"clippath-8"},n.createElement("path",{className:"st0",d:"M100.52 75.33c-6.52 7.81-8.68 18.09-5.81 28.02 1.43 4.94 4.17 9.47 7.89 13.04 5.59 5.38 12.69 8.33 20.08 8.56 3.14.1 6.33-.29 9.49-1.2 4.82-1.37 9.22-3.99 12.75-7.5l.06-.06c1.6-1.6 2.99-3.34 4.15-5.17 1.02-1.6.81-3.47-.19-4.8-.02 1.62-1.31 2.91-2.93 2.91s-2.91-1.31-2.91-2.93c0-.48.1-.91.31-1.31-.75.35-1.39.91-1.85 1.62-.21.35-.46.69-.71 1.02-1.06 1.41-2.24 2.68-3.57 3.76-4.07 3.39-9.32 5.15-14.97 4.86-2.58-.12-5.11-.75-7.46-1.85-8.22-3.82-13.06-11.86-12.61-20.89.15-2.57.77-5.13 1.87-7.48 3.91-8.43 12.07-12.86 20.25-12.61 4.22.15 8.45 1.52 12.09 4.22 2.35 1.74 4.26 3.9 5.69 6.33.77 1.31 2.1 2.18 3.61 2.22l.27.02c3.3.1 5.54-3.47 3.9-6.33-2.43-4.28-5.92-7.93-10.26-10.68-4.89-3.07-10.42-4.56-15.92-4.56-8.73 0-17.37 3.74-23.25 10.79"})),n.createElement("clipPath",{id:"clippath-9"},n.createElement("path",{className:"st0",d:"M143.11 106.19c0-.48.1-.91.31-1.31.69-1.38 2.43-2.11 4.21-1.18.82.43 1.32 1.29 1.32 2.21v.4c0 .95-.46 1.87-1.29 2.34-2.24 1.29-4.55-.31-4.55-2.47m-7.2.01c0 1.85.5 3.59 1.39 5.09 1.56 2.72 4.36 4.61 7.62 4.96.37.04.73.06 1.1.06 5.59 0 10.11-4.53 10.11-10.11s-4.53-10.11-10.11-10.11-10.11 4.53-10.11 10.11"})),n.createElement("clipPath",{id:"clippath-10"},n.createElement("path",{className:"st0",d:"M206.48 116.31a2.601 2.601 0 115.202.002 2.601 2.601 0 01-5.202-.002m-8.98 0c0 6.4 5.18 11.58 11.58 11.58s11.58-5.18 11.58-11.58-5.18-11.58-11.58-11.58-11.58 5.18-11.58 11.58"})),n.createElement("clipPath",{id:"clippath-11"},n.createElement("path",{className:"st0",d:"M187.97 38.23c-1.75 1.44-2 4.03-.55 5.78 11.89 14.41 18.44 32.66 18.44 51.38 0 3.74-.27 7.47-.78 11.16.96-.23 1.95-.37 2.97-.37 1.86 0 3.63.41 5.22 1.14.53-3.95.81-7.93.81-11.94 0-20.63-7.22-40.73-20.33-56.62-.81-.99-1.99-1.5-3.17-1.5-.92 0-1.85.31-2.61.94"})),n.createElement("clipPath",{id:"clippath-12"},n.createElement("path",{className:"st0",d:"M4.58 221.94c0 12.13 9.29 20.9 21.71 20.9 6.67 0 12.36-2.38 16.14-6.79l-4.88-4.64c-2.96 3.25-6.62 4.82-10.85 4.82-8.42 0-14.51-5.92-14.51-14.28s6.09-14.28 14.51-14.28c4.24 0 7.89 1.57 10.85 4.76l4.88-4.59c-3.77-4.41-9.46-6.79-16.08-6.79-12.48 0-21.77 8.77-21.77 20.9"})),n.createElement("clipPath",{id:"clippath-13"},n.createElement("path",{className:"st0",d:"M115.67 201.3h7.31v40.58h-7.31z"})),n.createElement("clipPath",{id:"clippath-14"},n.createElement("path",{className:"st0",d:"M153 207.79h9.77c8.97 0 14.78 5.46 14.78 13.8s-5.81 13.8-14.78 13.8H153v-27.6zm-7.3-6.49v40.58h17.74c13.16 0 22.15-8.12 22.15-20.29s-8.99-20.29-22.15-20.29H145.7z"})),n.createElement("clipPath",{id:"clippath-15"},n.createElement("path",{className:"st0",d:"M209.86 221.94c0-8.3 6.09-14.28 14.28-14.28s14.28 5.98 14.28 14.28-6.09 14.28-14.28 14.28-14.28-5.98-14.28-14.28m-7.6 0c0 12.02 9.29 20.9 21.88 20.9s21.88-8.82 21.88-20.9-9.29-20.9-21.88-20.9-21.88 8.88-21.88 20.9"})),n.createElement("clipPath",{id:"clippath-16"},n.createElement("path",{className:"st0",d:"M72.88 201.3l-18.63 41.39h8.12l4.15-9.74 2.44-5.68h-.03l7.66-17.87 7.71 17.87h-.03l6.63 15.42h8.24L80.45 201.3h-7.57z"})),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_16","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.77,x2:.21,y2:-.77,gradientTransform:"matrix(270.56 0 0 -270.56 211.64 -85.15)",gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#a73e3b"}),n.createElement("stop",{offset:.2,stopColor:"#a73e3b"}),n.createElement("stop",{offset:.8,stopColor:"#dfaf5e"}),n.createElement("stop",{offset:1,stopColor:"#dfaf5e"})),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_161","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.83,x2:.21,y2:-.83,gradientTransform:"matrix(270.56 0 0 -270.56 194.29 -130.86)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_162","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.84,x2:.21,y2:-.84,gradientTransform:"matrix(270.56 0 0 -270.56 182.42 -141.4)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_163","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.8,x2:.21,y2:-.8,gradientTransform:"matrix(270.56 0 0 -270.56 183.57 -125.47)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_164","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.75,x2:.21,y2:-.75,gradientTransform:"matrix(270.56 0 0 -270.56 225.07 -51.52)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_165","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.8,x2:.21,y2:-.8,gradientTransform:"matrix(270.56 0 0 -270.56 188.3 -115.15)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_166","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.85,x2:.21,y2:-.85,gradientTransform:"matrix(270.56 0 0 -270.56 163.77 -189.27)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_167","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.81,x2:.21,y2:-.81,gradientTransform:"matrix(270.56 0 0 -270.56 189.78 -125.1)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_168","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.8,x2:.21,y2:-.8,gradientTransform:"matrix(270.56 0 0 -270.56 200.1 -109.68)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_169","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.76,x2:.21,y2:-.76,gradientTransform:"matrix(270.56 0 0 -270.56 216.16 -89.54)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_1610","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.79,x2:.21,y2:-.79,gradientTransform:"matrix(270.56 0 0 -270.56 190.37 -142.33)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_1611","data-name":"Sfumatura senza nome 16",x1:.78,y1:-.86,x2:1.59,y2:-.86,gradientTransform:"matrix(0 224.12 224.12 0 215.46 43.3)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_1612","data-name":"Sfumatura senza nome 16",x1:.78,y1:-.92,x2:1.59,y2:-.92,gradientTransform:"matrix(0 224.12 224.12 0 324.44 -25.15)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_1613","data-name":"Sfumatura senza nome 16",x1:.78,y1:-.93,x2:1.59,y2:-.93,gradientTransform:"matrix(0 224.12 224.12 0 373.17 -58.26)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_1614","data-name":"Sfumatura senza nome 16",x1:.78,y1:-.99,x2:1.59,y2:-.99,gradientTransform:"matrix(0 224.12 224.12 0 446.34 -100.11)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_1615","data-name":"Sfumatura senza nome 16",x1:.78,y1:-.85,x2:1.59,y2:-.85,gradientTransform:"matrix(0 224.12 224.12 0 267.06 5.28)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("style",null,".st0{fill:none}"))),l||(l=n.createElement("g",{clipPath:"url(#clippath)"},n.createElement("g",{clipPath:"url(#clippath-1)"},n.createElement("path",{transform:"rotate(-33.5 161.6 122.43)",fill:"url(#Sfumatura_senza_nome_16)",d:"M93.5 48.31h136.16v148.21H93.5z"})),n.createElement("g",{clipPath:"url(#clippath-2)"},n.createElement("path",{transform:"rotate(-33.5 155.171 92.92)",fill:"url(#Sfumatura_senza_nome_161)",d:"M115.3 46.31h79.72v93.2H115.3z"})),n.createElement("g",{clipPath:"url(#clippath-3)"},n.createElement("path",{transform:"rotate(-33.5 110.252 84.927)",fill:"url(#Sfumatura_senza_nome_162)",d:"M17.84-12.57h184.79v195H17.84z"})),n.createElement("g",{clipPath:"url(#clippath-4)"},n.createElement("path",{transform:"rotate(-33.5 92.964 92.225)",fill:"url(#Sfumatura_senza_nome_163)",d:"M43.34 36.83h99.21V147.6H43.34z"})),n.createElement("g",{clipPath:"url(#clippath-5)"},n.createElement("path",{transform:"rotate(-33.5 147.38 151.017)",fill:"url(#Sfumatura_senza_nome_164)",d:"M111.89 120.34h70.95v61.34h-70.95z"})),n.createElement("g",{clipPath:"url(#clippath-6)"},n.createElement("path",{transform:"rotate(-33.5 92.86 100.818)",fill:"url(#Sfumatura_senza_nome_165)",d:"M-9.07-7.82h203.83v217.27H-9.07z"})),n.createElement("g",{clipPath:"url(#clippath-7)"},n.createElement("path",{transform:"rotate(-33.5 142.079 41.547)",fill:"url(#Sfumatura_senza_nome_166)",d:"M102.33 7.98h79.48v67.14h-79.48z"})),n.createElement("g",{clipPath:"url(#clippath-8)"},n.createElement("path",{transform:"rotate(-33.5 121.735 94.815)",fill:"url(#Sfumatura_senza_nome_167)",d:"M80.11 53.08h83.22v83.43H80.11z"})),n.createElement("g",{clipPath:"url(#clippath-9)"},n.createElement("path",{transform:"rotate(-33.5 146.045 106.208)",fill:"url(#Sfumatura_senza_nome_168)",d:"M132.01 92.18h28.03v28.03h-28.03z"})),n.createElement("g",{clipPath:"url(#clippath-10)"},n.createElement("path",{transform:"rotate(-33.5 209.1 116.307)",fill:"url(#Sfumatura_senza_nome_169)",d:"M193.03 100.26h32.09v32.09h-32.09z"})),n.createElement("g",{clipPath:"url(#clippath-11)"},n.createElement("path",{transform:"rotate(-33.5 200.055 72.313)",fill:"url(#Sfumatura_senza_nome_1610)",d:"M168.97 35.35h62.11v73.93h-62.11z"})),n.createElement("g",{clipPath:"url(#clippath-12)"},n.createElement("path",{transform:"rotate(-45.63 23.492 221.93)",fill:"url(#Sfumatura_senza_nome_1611)",d:"M-4.66 193.8h56.34v56.28H-4.66z"})),n.createElement("g",{clipPath:"url(#clippath-13)"},n.createElement("path",{transform:"rotate(-45.63 119.25 221.924)",fill:"url(#Sfumatura_senza_nome_1612)",d:"M102.1 205.04h34.32v33.81H102.1z"})),n.createElement("g",{clipPath:"url(#clippath-14)"},n.createElement("path",{transform:"rotate(-45.63 165.565 221.934)",fill:"url(#Sfumatura_senza_nome_1613)",d:"M137.09 193.46h56.97v56.96h-56.97z"})),n.createElement("g",{clipPath:"url(#clippath-15)"},n.createElement("path",{transform:"rotate(-45.63 224.124 221.933)",fill:"url(#Sfumatura_senza_nome_1614)",d:"M193.9 191.69h60.48v60.51H193.9z"})),n.createElement("g",{clipPath:"url(#clippath-16)"},n.createElement("path",{transform:"rotate(-45.63 76.682 221.923)",fill:"url(#Sfumatura_senza_nome_1615)",d:"M46.77 191.99h59.85v59.91H46.77z"})))))}}}]);        §‹  x§‹[#   20250224130137-8lá‹   Öù™G   https://start.parrotsec.org/_next/static/chunks/431-a24ffc8fec2bc8b2.js      tU  "use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[431],{92625:function(e,a,t){var r,l,n=t(67294);function _extends(){return(_extends=Object.assign?Object.assign.bind():function(e){for(var a=1;a<arguments.length;a++){var t=arguments[a];for(var r in t)({}).hasOwnProperty.call(t,r)&&(e[r]=t[r])}return e}).apply(null,arguments)}a.Z=function(e){return n.createElement("svg",_extends({xmlns:"http://www.w3.org/2000/svg",xmlnsXlink:"http://www.w3.org/1999/xlink",viewBox:"0 0 148.17 42.71"},e),r||(r=n.createElement("defs",null,n.createElement("linearGradient",{id:"linear-gradient",x1:131.15,y1:25.3,x2:143.52,y2:33.64,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#febe2d"}),n.createElement("stop",{offset:1,stopColor:"#f85e23"})),n.createElement("linearGradient",{id:"GradientFill_3",x1:16.85,y1:6.11,x2:36.49,y2:6.11,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#fbaa19"}),n.createElement("stop",{offset:1,stopColor:"#ef3e23"})),n.createElement("linearGradient",{id:"GradientFill_4",x1:15.77,y1:31.08,x2:17.31,y2:26.87,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#f78d1e"}),n.createElement("stop",{offset:1,stopColor:"#f37121"})),n.createElement("linearGradient",{id:"GradientFill_2",x1:3.56,y1:32.53,x2:27.49,y2:6.88,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#febe2d"}),n.createElement("stop",{offset:1,stopColor:"#f04e23"})),n.createElement("linearGradient",{id:"GradientFill_5",x1:20.47,y1:17.54,x2:7.23,y2:37.92,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#ea4425"}),n.createElement("stop",{offset:1,stopColor:"#fdbb27"})),n.createElement("linearGradient",{id:"GradientFill_6",x1:.24,y1:10.57,x2:42.04,y2:10.57,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#f47920"}),n.createElement("stop",{offset:1,stopColor:"#e93825"})),n.createElement("linearGradient",{id:"GradientFill_7",x1:-21.84,y1:7.78,x2:63.21,y2:7.78,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#fdca0b"}),n.createElement("stop",{offset:1,stopColor:"#f5841f"})),n.createElement("linearGradient",{id:"GradientFill_8",x1:8.54,y1:18.07,x2:17.39,y2:48.94,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#e73c25"}),n.createElement("stop",{offset:1,stopColor:"#faa21b"})),n.createElement("linearGradient",{id:"GradientFill_9",x1:-51.37,y1:23.08,x2:74.88,y2:23.08,gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#fdba12"}),n.createElement("stop",{offset:1,stopColor:"#f7921e"})),n.createElement("linearGradient",{id:"GradientFill_2-2",x1:.08,y1:16.72,x2:4.81,y2:17.56,xlinkHref:"#GradientFill_2"}))),l||(l=n.createElement("g",{id:"Layer_2","data-name":"Layer 2"},n.createElement("g",{id:"Layer_1-2","data-name":"Layer 1",fillRule:"evenodd"},n.createElement("path",{d:"M125.05 30.91a1.1 1.1 0 00-1 1c-.08.59.24 1 .75 1a1.12 1.12 0 001-1 .78.78 0 00-.76-1zm7.36-5.71a3.13 3.13 0 00-2.73 1.48l.2-1.4h-1.71l-1.09 7.53h1.71l.54-3.7a2.28 2.28 0 012.15-2.17c1 0 1.47.65 1.32 1.7l-.6 4.17h1.72l.68-4.7c.26-1.79-.57-2.91-2.19-2.91zm7.21 0a4.22 4.22 0 00-4.13 3.85c-.32 2.26.88 3.81 3.07 3.81a4.35 4.35 0 003.14-1.29l-.77-1a2.93 2.93 0 01-2 .84 1.67 1.67 0 01-1.76-1.71h5.19c.57-2.74-.25-4.47-2.72-4.47zm-2.33 3.24a2.27 2.27 0 012.14-1.82 1.47 1.47 0 011.57 1.84zm9.83 2.56a2.49 2.49 0 01-1 .31c-.46 0-.7-.24-.6-1l.49-3.4h2l.19-1.33h-2l.3-2.08h-1.69l-.3 2.08h-1l-.18 1.33h1l-.53 3.72c-.23 1.55.59 2.26 1.74 2.26a3.66 3.66 0 001.84-.55z",fill:"url(#linear-gradient)"}),n.createElement("path",{d:"M44.62 22.83a1.33 1.33 0 11-1.32 1.33 1.33 1.33 0 011.32-1.33zm13.21-3.69a6.64 6.64 0 013.91-1.36 5.75 5.75 0 014.39 1.94 7.1 7.1 0 011.37 5.8 8.87 8.87 0 01-6 7.55 7.72 7.72 0 01-2.07.29 4.51 4.51 0 01-3.91-1.93l-.18 1.28a.26.26 0 01-.25.21H52a.21.21 0 01-.17-.07.23.23 0 010-.18l1.07-7.38h-4a1.14 1.14 0 01-1.13-1.13A1.14 1.14 0 0148.82 23h8.62a5.2 5.2 0 00-1.12 2.56c-.31 2.15.76 4.16 3.09 4.16a4.71 4.71 0 004.46-4.2c.3-2.11-.91-4.11-3.15-4.11h-9.83a1.14 1.14 0 01-1.13-1.14 1.14 1.14 0 011.13-1.13h2.85l.81-5.66a.26.26 0 01.25-.21H58a.24.24 0 01.16.07.23.23 0 010 .18l-.81 5.62zm19.56 12.48a5.29 5.29 0 01-4.14 1.74c-3.94 0-5-2.89-4.51-6.31L70 18.44a.27.27 0 01.25-.22h3.15a.21.21 0 01.16.08.21.21 0 010 .17l-1.12 7.75c-.26 1.84 0 3.5 2.15 3.49s3-1.48 3.33-3.42l1.13-7.85a.27.27 0 01.25-.22h3.17a.21.21 0 01.16.08.21.21 0 010 .17l-2 14.24a.26.26 0 01-.25.21h-3a.21.21 0 01-.17-.07.23.23 0 01-.05-.18l.15-1.05zm10.86-12.11a5.36 5.36 0 014.12-1.73c3.91 0 5 2.88 4.48 6.34l-1.24 8.59a.24.24 0 01-.24.21H92.2a.19.19 0 01-.16-.07.2.2 0 01-.05-.18L93.1 25c.26-1.81.07-3.53-2.12-3.52s-3 1.51-3.3 3.42l-1.14 7.86a.25.25 0 01-.24.21h-3.17a.22.22 0 01-.17-.07.22.22 0 010-.18l2-14.23a.26.26 0 01.25-.22h3a.19.19 0 01.16.08.18.18 0 01.05.17l-.15 1zm14.89 0a5.36 5.36 0 014.12-1.73c3.91 0 5 2.88 4.48 6.34l-1.24 8.59a.25.25 0 01-.24.21h-3.17a.19.19 0 01-.16-.07.2.2 0 01-.05-.18L108 25c.26-1.81.07-3.53-2.12-3.52s-3 1.51-3.31 3.42l-1.13 7.86a.25.25 0 01-.24.21H98a.22.22 0 01-.17-.07.22.22 0 010-.18l2-14.23a.26.26 0 01.24-.22h3a.19.19 0 01.16.08.21.21 0 01.05.17l-.15 1zm12.4 12.62l-3-13.61a.21.21 0 010-.2.24.24 0 01.19-.1h3.38a.21.21 0 01.21.17l1.75 8.81 4.26-8.83a.24.24 0 01.22-.15H126a.2.2 0 01.18.11.22.22 0 010 .22l-9.78 19.21a.24.24 0 01-.22.14h-3.39a.19.19 0 01-.18-.11.22.22 0 010-.22z",fill:"#fff"}),n.createElement("path",{d:"M21 6.85l9.87 5.36L21.75 0A6.8 6.8 0 0021 6.85z",fill:"url(#GradientFill_3)"}),n.createElement("path",{d:"M16.54 26.73A2.25 2.25 0 1114.29 29a2.25 2.25 0 012.25-2.27z",fill:"url(#GradientFill_4)"}),n.createElement("path",{d:"M9.67 1.79l27.64 15a1.34 1.34 0 010 2.41 21.49 21.49 0 01-6.77 2.64l-5.75 11.8s-1.82 4.14-6.83 2.55c2.1-2.1 4.64-4 4.64-7.23a6.07 6.07 0 00-12.14 0c0 4.22 4.16 6 6.47 8.93a3.8 3.8 0 01-.33 4.79c-2.87-2.84-8.42-7.63-10.7-10.77a9.1 9.1 0 01-1.95-5.55 10.45 10.45 0 017.38-9.46 12.05 12.05 0 013.88-.47 12.58 12.58 0 015.2 1.57c2.45 1.44 3.64 1.06 5.33-.36 1-.82 2.09-3.49.4-4.11a12.14 12.14 0 00-1.69-.42c-3.14-.61-8.63-1.19-10.65-2.34C10.59 9 8.43 5.35 9.67 1.79z",fill:"url(#GradientFill_2)"}),n.createElement("path",{d:"M22.55 29.35zm0-.36C23.83 22.26 17 15.84 11.76 16.8l.35-.08q-.42.09-.81.21a10.45 10.45 0 00-7.38 9.46 9.1 9.1 0 002 5.55c2.28 3.14 7.83 7.93 10.7 10.77a3.8 3.8 0 00.33-4.79C14.59 35 10.43 33.21 10.43 29a6.07 6.07 0 0112.14 0z",fill:"url(#GradientFill_5)"}),n.createElement("path",{d:"M9.67 1.79l21 11.44.6.33c.5.39 1 1.17.35 2.61-1 2.15-5 4.23-9.61 2.6 1.44.42 2.42-.06 3.68-1.12 1-.82 2.09-3.49.4-4.11a12.14 12.14 0 00-1.69-.42c-3.14-.61-8.63-1.19-10.65-2.34C10.59 9 8.43 5.35 9.67 1.79z",fill:"url(#GradientFill_6)"}),n.createElement("path",{d:"M9.67 1.79c2.17 8 15.38 8.66 22 12z",fill:"url(#GradientFill_7)"}),n.createElement("path",{d:"M16.9 37.92C14.59 35 10.43 33.21 10.43 29a6.07 6.07 0 015.32-6A8.78 8.78 0 007 31.75a8.54 8.54 0 00.18 1.76c1.91 2.16 4.67 4.71 7 6.87.91.85 1.75 1.65 2.44 2.33a4.18 4.18 0 001-2.37 3.66 3.66 0 00-.72-2.42z",fill:"url(#GradientFill_8)"}),n.createElement("path",{d:"M22.52 29.71a5.81 5.81 0 00.05-.72C23.83 22.26 17 15.84 11.76 16.8a12.49 12.49 0 013.42-.34c6.87.28 8.79 7.62 7.34 13.25z",fill:"url(#GradientFill_9)"}),n.createElement("path",{d:"M2.26 14.84a2.27 2.27 0 012.26 2.27v2.26H2.26A2.26 2.26 0 010 17.11a2.27 2.27 0 012.26-2.27z",fill:"url(#GradientFill_2-2)"})))))}},23567:function(e,a,t){var r,l,n=t(67294);function _extends(){return(_extends=Object.assign?Object.assign.bind():function(e){for(var a=1;a<arguments.length;a++){var t=arguments[a];for(var r in t)({}).hasOwnProperty.call(t,r)&&(e[r]=t[r])}return e}).apply(null,arguments)}a.Z=function(e){return n.createElement("svg",_extends({id:"Livello_1",xmlns:"http://www.w3.org/2000/svg",xmlnsXlink:"http://www.w3.org/1999/xlink",viewBox:"0 0 250 250"},e),r||(r=n.createElement("defs",null,n.createElement("clipPath",{id:"clippath"},n.createElement("path",{className:"st0",d:"M-2.84 0h255.68v250H-2.84z"})),n.createElement("clipPath",{id:"clippath-1"},n.createElement("path",{className:"st0",d:"M179.8 60.92a4.11 4.11 0 00-1.69 5.56c4.71 8.84 7.2 18.84 7.2 28.92 0 6.71-1.07 13.31-3.18 19.6l-.54 1.6 11.22 22.86c-14.99 23.04-40.14 36.72-67.72 36.72a4.11 4.11 0 100 8.22c31.21 0 59.59-15.9 75.93-42.54l1.18-1.93-11.75-23.95a69.738 69.738 0 003.09-20.59c0-11.43-2.82-22.77-8.16-32.79a4.106 4.106 0 00-3.63-2.18c-.65 0-1.31.16-1.93.48"})),n.createElement("clipPath",{id:"clippath-2"},n.createElement("path",{className:"st0",d:"M136.65 52.55c-.73 2.15.42 4.48 2.57 5.21 16.12 5.47 26.96 20.59 26.96 37.63 0 13.35-6.65 25.73-17.78 33.12a4.11 4.11 0 00-1.15 5.7c.79 1.19 2.1 1.84 3.43 1.84.78 0 1.57-.22 2.27-.69 13.44-8.92 21.46-23.87 21.46-39.97 0-20.56-13.08-38.82-32.54-45.42-.44-.15-.88-.22-1.32-.22-1.71 0-3.31 1.08-3.9 2.79"})),n.createElement("clipPath",{id:"clippath-3"},n.createElement("path",{className:"st0",d:"M100.96 11.07l-1.79.53-13.82 24.17a72.081 72.081 0 00-21.08 21.62c-10.23 16.18-13.49 35.23-9.2 53.65 4.29 18.42 15.64 34 31.93 43.87 4.46 2.7 9.21 4.91 14.13 6.58l2.97 1.01 12.6-14.88c3.85.25 11.34.32 18.19-1.97 2.39-.8 3.69-3.35 2.91-5.69-.78-2.34-3.35-3.6-5.74-2.8-6.25 2.09-14.12 1.68-16.62 1.34l-2.51-.34-11.67 13.78a63.164 63.164 0 01-9.43-4.68c-29.39-17.8-38.31-56.02-19.86-85.2 4.97-7.86 11.44-14.4 19.24-19.43l.94-.61 13.07-22.86c19.32-5.22 39.55-3.17 57.17 5.85 2.22 1.14 4.97.27 6.16-1.93 1.13-2.1.41-4.67-1.59-5.88-.09-.06-.19-.11-.28-.16a88.045 88.045 0 00-40.17-9.68c-8.53 0-17.13 1.23-25.55 3.71"})),n.createElement("clipPath",{id:"clippath-4"},n.createElement("path",{className:"st0",d:"M114.67 44.18c-14.23 3-26.3 11.34-33.96 23.47-15.39 24.34-7.73 56.37 17.08 71.4 2.13 1.29 4.93.64 6.25-1.45a4.39 4.39 0 00-1.46-6.12c-20.56-12.45-26.9-38.99-14.15-59.16 6.36-10.05 16.35-16.96 28.15-19.45 2.45-.52 4.01-2.88 3.49-5.28a4.437 4.437 0 00-2.05-2.85 4.627 4.627 0 00-3.34-.56"})),n.createElement("clipPath",{id:"clippath-5"},n.createElement("path",{className:"st0",d:"M164.69 149.7c-1.33-.81-1.75-2.53-.91-3.82.81-1.31 2.58-1.7 3.88-.91 1.33.81 1.74 2.51.91 3.82-.53.85-1.46 1.32-2.41 1.32-.5 0-1.02-.13-1.48-.41m-8.61-8.49c-1.58 2.47-2.08 5.3-1.64 7.97-10.9 5.71-21.95 8.14-34.24 6.98-2.49-.23-4.72 1.56-4.96 4.01-.25 2.45 1.58 4.61 4.07 4.86 14.25 1.33 27.31-1.56 39.89-8.26.23.17.46.33.73.5 5.57 3.36 12.92 1.66 16.39-3.8 3.45-5.48 1.72-12.67-3.84-16.05-1.94-1.18-4.1-1.74-6.24-1.74-4 0-7.9 1.97-10.15 5.54"})),n.createElement("clipPath",{id:"clippath-6"},n.createElement("path",{className:"st0",d:"M69.54 27.36a2.968 2.968 0 01-.98-4.13c.87-1.41 2.76-1.85 4.19-.98 1.43.87 1.89 2.72 1 4.13a3.09 3.09 0 01-4.21.98m-8.71-8.81a11.66 11.66 0 00-.96 10.59 91.307 91.307 0 00-13.94 17.09C32.87 66.89 28.8 91.28 34.44 114.91c5.65 23.63 20.35 43.67 41.41 56.43 23.16 14.02 51.34 17.36 77.32 9.14 2.37-.77 3.7-3.28 2.93-5.61-.77-2.33-3.32-3.61-5.71-2.87-23.43 7.43-48.85 4.42-69.74-8.22-39.23-23.76-51.34-74.39-27-112.89 3.53-5.59 7.7-10.69 12.42-15.28 5.48 2.47 12.11.6 15.37-4.55 3.53-5.59 1.76-12.92-3.91-16.36-1.98-1.2-4.18-1.77-6.35-1.77-4.07 0-8.06 2-10.36 5.63"})),n.createElement("clipPath",{id:"clippath-7"},n.createElement("path",{className:"st0",d:"M164.96 46.22c-1.16-.71-1.52-2.2-.79-3.34.73-1.14 2.24-1.5 3.41-.79 1.16.71 1.54 2.2.81 3.34-.47.74-1.29 1.15-2.12 1.15-.45 0-.9-.12-1.3-.36M108.62 28c-2.43.58-3.95 2.99-3.36 5.38.58 2.37 3.03 3.84 5.48 3.26 15.1-3.57 30.65-1.47 44.11 5.9-.64 4.32 1.31 8.81 5.34 11.24 5.42 3.28 12.54 1.62 15.91-3.68 3.36-5.32 1.68-12.32-3.72-15.6-4.07-2.45-9.12-2.14-12.79.44-10.62-5.88-22.38-8.89-34.33-8.89-5.54 0-11.11.65-16.63 1.95"})),n.createElement("clipPath",{id:"clippath-8"},n.createElement("path",{className:"st0",d:"M100.52 75.33c-6.52 7.81-8.68 18.09-5.81 28.02 1.43 4.94 4.17 9.47 7.89 13.04 5.59 5.38 12.69 8.33 20.08 8.56 3.14.1 6.33-.29 9.49-1.2 4.82-1.37 9.22-3.99 12.75-7.5l.06-.06c1.6-1.6 2.99-3.34 4.15-5.17 1.02-1.6.81-3.47-.19-4.8-.02 1.62-1.31 2.91-2.93 2.91s-2.91-1.31-2.91-2.93c0-.48.1-.91.31-1.31-.75.35-1.39.91-1.85 1.62-.21.35-.46.69-.71 1.02-1.06 1.41-2.24 2.68-3.57 3.76-4.07 3.39-9.32 5.15-14.97 4.86-2.58-.12-5.11-.75-7.46-1.85-8.22-3.82-13.06-11.86-12.61-20.89.15-2.57.77-5.13 1.87-7.48 3.91-8.43 12.07-12.86 20.25-12.61 4.22.15 8.45 1.52 12.09 4.22 2.35 1.74 4.26 3.9 5.69 6.33.77 1.31 2.1 2.18 3.61 2.22l.27.02c3.3.1 5.54-3.47 3.9-6.33-2.43-4.28-5.92-7.93-10.26-10.68-4.89-3.07-10.42-4.56-15.92-4.56-8.73 0-17.37 3.74-23.25 10.79"})),n.createElement("clipPath",{id:"clippath-9"},n.createElement("path",{className:"st0",d:"M143.11 106.19c0-.48.1-.91.31-1.31.69-1.38 2.43-2.11 4.21-1.18.82.43 1.32 1.29 1.32 2.21v.4c0 .95-.46 1.87-1.29 2.34-2.24 1.29-4.55-.31-4.55-2.47m-7.2.01c0 1.85.5 3.59 1.39 5.09 1.56 2.72 4.36 4.61 7.62 4.96.37.04.73.06 1.1.06 5.59 0 10.11-4.53 10.11-10.11s-4.53-10.11-10.11-10.11-10.11 4.53-10.11 10.11"})),n.createElement("clipPath",{id:"clippath-10"},n.createElement("path",{className:"st0",d:"M206.48 116.31a2.601 2.601 0 115.202.002 2.601 2.601 0 01-5.202-.002m-8.98 0c0 6.4 5.18 11.58 11.58 11.58s11.58-5.18 11.58-11.58-5.18-11.58-11.58-11.58-11.58 5.18-11.58 11.58"})),n.createElement("clipPath",{id:"clippath-11"},n.createElement("path",{className:"st0",d:"M187.97 38.23c-1.75 1.44-2 4.03-.55 5.78 11.89 14.41 18.44 32.66 18.44 51.38 0 3.74-.27 7.47-.78 11.16.96-.23 1.95-.37 2.97-.37 1.86 0 3.63.41 5.22 1.14.53-3.95.81-7.93.81-11.94 0-20.63-7.22-40.73-20.33-56.62-.81-.99-1.99-1.5-3.17-1.5-.92 0-1.85.31-2.61.94"})),n.createElement("clipPath",{id:"clippath-12"},n.createElement("path",{className:"st0",d:"M4.58 221.94c0 12.13 9.29 20.9 21.71 20.9 6.67 0 12.36-2.38 16.14-6.79l-4.88-4.64c-2.96 3.25-6.62 4.82-10.85 4.82-8.42 0-14.51-5.92-14.51-14.28s6.09-14.28 14.51-14.28c4.24 0 7.89 1.57 10.85 4.76l4.88-4.59c-3.77-4.41-9.46-6.79-16.08-6.79-12.48 0-21.77 8.77-21.77 20.9"})),n.createElement("clipPath",{id:"clippath-13"},n.createElement("path",{className:"st0",d:"M115.67 201.3h7.31v40.58h-7.31z"})),n.createElement("clipPath",{id:"clippath-14"},n.createElement("path",{className:"st0",d:"M153 207.79h9.77c8.97 0 14.78 5.46 14.78 13.8s-5.81 13.8-14.78 13.8H153v-27.6zm-7.3-6.49v40.58h17.74c13.16 0 22.15-8.12 22.15-20.29s-8.99-20.29-22.15-20.29H145.7z"})),n.createElement("clipPath",{id:"clippath-15"},n.createElement("path",{className:"st0",d:"M209.86 221.94c0-8.3 6.09-14.28 14.28-14.28s14.28 5.98 14.28 14.28-6.09 14.28-14.28 14.28-14.28-5.98-14.28-14.28m-7.6 0c0 12.02 9.29 20.9 21.88 20.9s21.88-8.82 21.88-20.9-9.29-20.9-21.88-20.9-21.88 8.88-21.88 20.9"})),n.createElement("clipPath",{id:"clippath-16"},n.createElement("path",{className:"st0",d:"M72.88 201.3l-18.63 41.39h8.12l4.15-9.74 2.44-5.68h-.03l7.66-17.87 7.71 17.87h-.03l6.63 15.42h8.24L80.45 201.3h-7.57z"})),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_16","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.77,x2:.21,y2:-.77,gradientTransform:"matrix(270.56 0 0 -270.56 211.64 -85.15)",gradientUnits:"userSpaceOnUse"},n.createElement("stop",{offset:0,stopColor:"#a73e3b"}),n.createElement("stop",{offset:.2,stopColor:"#a73e3b"}),n.createElement("stop",{offset:.8,stopColor:"#dfaf5e"}),n.createElement("stop",{offset:1,stopColor:"#dfaf5e"})),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_161","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.83,x2:.21,y2:-.83,gradientTransform:"matrix(270.56 0 0 -270.56 194.29 -130.86)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_162","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.84,x2:.21,y2:-.84,gradientTransform:"matrix(270.56 0 0 -270.56 182.42 -141.4)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_163","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.8,x2:.21,y2:-.8,gradientTransform:"matrix(270.56 0 0 -270.56 183.57 -125.47)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_164","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.75,x2:.21,y2:-.75,gradientTransform:"matrix(270.56 0 0 -270.56 225.07 -51.52)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_165","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.8,x2:.21,y2:-.8,gradientTransform:"matrix(270.56 0 0 -270.56 188.3 -115.15)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_166","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.85,x2:.21,y2:-.85,gradientTransform:"matrix(270.56 0 0 -270.56 163.77 -189.27)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_167","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.81,x2:.21,y2:-.81,gradientTransform:"matrix(270.56 0 0 -270.56 189.78 -125.1)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_168","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.8,x2:.21,y2:-.8,gradientTransform:"matrix(270.56 0 0 -270.56 200.1 -109.68)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_169","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.76,x2:.21,y2:-.76,gradientTransform:"matrix(270.56 0 0 -270.56 216.16 -89.54)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_1610","data-name":"Sfumatura senza nome 16",x1:-.6,y1:-.79,x2:.21,y2:-.79,gradientTransform:"matrix(270.56 0 0 -270.56 190.37 -142.33)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_1611","data-name":"Sfumatura senza nome 16",x1:.78,y1:-.86,x2:1.59,y2:-.86,gradientTransform:"matrix(0 224.12 224.12 0 215.46 43.3)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_1612","data-name":"Sfumatura senza nome 16",x1:.78,y1:-.92,x2:1.59,y2:-.92,gradientTransform:"matrix(0 224.12 224.12 0 324.44 -25.15)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_1613","data-name":"Sfumatura senza nome 16",x1:.78,y1:-.93,x2:1.59,y2:-.93,gradientTransform:"matrix(0 224.12 224.12 0 373.17 -58.26)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_1614","data-name":"Sfumatura senza nome 16",x1:.78,y1:-.99,x2:1.59,y2:-.99,gradientTransform:"matrix(0 224.12 224.12 0 446.34 -100.11)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("linearGradient",{id:"Sfumatura_senza_nome_1615","data-name":"Sfumatura senza nome 16",x1:.78,y1:-.85,x2:1.59,y2:-.85,gradientTransform:"matrix(0 224.12 224.12 0 267.06 5.28)",xlinkHref:"#Sfumatura_senza_nome_16"}),n.createElement("style",null,".st0{fill:none}"))),l||(l=n.createElement("g",{clipPath:"url(#clippath)"},n.createElement("g",{clipPath:"url(#clippath-1)"},n.createElement("path",{transform:"rotate(-33.5 161.6 122.43)",fill:"url(#Sfumatura_senza_nome_16)",d:"M93.5 48.31h136.16v148.21H93.5z"})),n.createElement("g",{clipPath:"url(#clippath-2)"},n.createElement("path",{transform:"rotate(-33.5 155.171 92.92)",fill:"url(#Sfumatura_senza_nome_161)",d:"M115.3 46.31h79.72v93.2H115.3z"})),n.createElement("g",{clipPath:"url(#clippath-3)"},n.createElement("path",{transform:"rotate(-33.5 110.252 84.927)",fill:"url(#Sfumatura_senza_nome_162)",d:"M17.84-12.57h184.79v195H17.84z"})),n.createElement("g",{clipPath:"url(#clippath-4)"},n.createElement("path",{transform:"rotate(-33.5 92.964 92.225)",fill:"url(#Sfumatura_senza_nome_163)",d:"M43.34 36.83h99.21V147.6H43.34z"})),n.createElement("g",{clipPath:"url(#clippath-5)"},n.createElement("path",{transform:"rotate(-33.5 147.38 151.017)",fill:"url(#Sfumatura_senza_nome_164)",d:"M111.89 120.34h70.95v61.34h-70.95z"})),n.createElement("g",{clipPath:"url(#clippath-6)"},n.createElement("path",{transform:"rotate(-33.5 92.86 100.818)",fill:"url(#Sfumatura_senza_nome_165)",d:"M-9.07-7.82h203.83v217.27H-9.07z"})),n.createElement("g",{clipPath:"url(#clippath-7)"},n.createElement("path",{transform:"rotate(-33.5 142.079 41.547)",fill:"url(#Sfumatura_senza_nome_166)",d:"M102.33 7.98h79.48v67.14h-79.48z"})),n.createElement("g",{clipPath:"url(#clippath-8)"},n.createElement("path",{transform:"rotate(-33.5 121.735 94.815)",fill:"url(#Sfumatura_senza_nome_167)",d:"M80.11 53.08h83.22v83.43H80.11z"})),n.createElement("g",{clipPath:"url(#clippath-9)"},n.createElement("path",{transform:"rotate(-33.5 146.045 106.208)",fill:"url(#Sfumatura_senza_nome_168)",d:"M132.01 92.18h28.03v28.03h-28.03z"})),n.createElement("g",{clipPath:"url(#clippath-10)"},n.createElement("path",{transform:"rotate(-33.5 209.1 116.307)",fill:"url(#Sfumatura_senza_nome_169)",d:"M193.03 100.26h32.09v32.09h-32.09z"})),n.createElement("g",{clipPath:"url(#clippath-11)"},n.createElement("path",{transform:"rotate(-33.5 200.055 72.313)",fill:"url(#Sfumatura_senza_nome_1610)",d:"M168.97 35.35h62.11v73.93h-62.11z"})),n.createElement("g",{clipPath:"url(#clippath-12)"},n.createElement("path",{transform:"rotate(-45.63 23.492 221.93)",fill:"url(#Sfumatura_senza_nome_1611)",d:"M-4.66 193.8h56.34v56.28H-4.66z"})),n.createElement("g",{clipPath:"url(#clippath-13)"},n.createElement("path",{transform:"rotate(-45.63 119.25 221.924)",fill:"url(#Sfumatura_senza_nome_1612)",d:"M102.1 205.04h34.32v33.81H102.1z"})),n.createElement("g",{clipPath:"url(#clippath-14)"},n.createElement("path",{transform:"rotate(-45.63 165.565 221.934)",fill:"url(#Sfumatura_senza_nome_1613)",d:"M137.09 193.46h56.97v56.96h-56.97z"})),n.createElement("g",{clipPath:"url(#clippath-15)"},n.createElement("path",{transform:"rotate(-45.63 224.124 221.933)",fill:"url(#Sfumatura_senza_nome_1614)",d:"M193.9 191.69h60.48v60.51H193.9z"})),n.createElement("g",{clipPath:"url(#clippath-16)"},n.createElement("path",{transform:"rotate(-45.63 76.682 221.923)",fill:"url(#Sfumatura_senza_nome_1615)",d:"M46.77 191.99h59.85v59.91H46.77z"})))))}}}]);”ò¿ŸÊ   ‰         ¡§\l      self   ¶sR&      webpackChunk_N_E   Ñu2      push   •éOÇ      92625      'DA&      _extends   ïn.      assign     ‡Õ      bind   DC      createElement      aáﬁå      svg	    `ø%∏      xmlns
+      AïM      http://www.w3.org/2000/svg     µ{ y
+      xmlnsXlink     ˜˛˜      http://www.w3.org/1999/xlink   -°7·      viewBox    ß‹ûx      0 0 148.17 42.71   –Ê$©      defs   ]Xé      linearGradient     è≠      linear-gradient    äÓL      gradientUnits      «÷^s      userSpaceOnUse     mêÅ      stop   ûäêu	      stopColor      F‰’Ä      #febe2d    ”kÅ+      #f85e23    —çAŒ      GradientFill_3     [ﬁÚ      #fbaa19    [;≤(      #ef3e23    nÓVÂ      GradientFill_4     Ãï¿F      #f78d1e    «§      #f37121    
+0      GradientFill_2     ”y U      #f04e23     'héÉ      GradientFill_5!     ¨9˛      #ea4425"    º€"      #fdbb27#    ¸˙Á®      GradientFill_6$     9 ﬂ?      #f47920%    t\™      #e93825&    µtG      GradientFill_7'     N˜Ïf      #fdca0b(    âÊ¶=      #f5841f)    ¬9Ωz      GradientFill_8*     1pÜ      #e73c25+    ª–’y      #faa21b,    {≥Ù      GradientFill_9-     ‘˝≤¶      #fdba12.    se#ã      #f7921e/    –(Æ      GradientFill_2-20   j
+¯É	      xlinkHref1      ∂ÖxP      #GradientFill_22    Qt®      Layer_23    ïîÆ	      data-name4      h÷€†      Layer 25    ø•,©	      Layer_1-26      ìCÇ{      Layer 17    ı      fillRule8   e"è`      evenodd9    ":k      path:   g∏ë     M125.05 30.91a1.1 1.1 0 00-1 1c-.08.59.24 1 .75 1a1.12 1.12 0 001-1 .78.78 0 00-.76-1zm7.36-5.71a3.13 3.13 0 00-2.73 1.48l.2-1.4h-1.71l-1.09 7.53h1.71l.54-3.7a2.28 2.28 0 012.15-2.17c1 0 1.47.65 1.32 1.7l-.6 4.17h1.72l.68-4.7c.26-1.79-.57-2.91-2.19-2.91zm7.21 0a4.22 4.22 0 00-4.13 3.85c-.32 2.26.88 3.81 3.07 3.81a4.35 4.35 0 003.14-1.29l-.77-1a2.93 2.93 0 01-2 .84 1.67 1.67 0 01-1.76-1.71h5.19c.57-2.74-.25-4.47-2.72-4.47zm-2.33 3.24a2.27 2.27 0 012.14-1.82 1.47 1.47 0 011.57 1.84zm9.83 2.56a2.49 2.49 0 01-1 .31c-.46 0-.7-.24-.6-1l.49-3.4h2l.19-1.33h-2l.3-2.08h-1.69l-.3 2.08h-1l-.18 1.33h1l-.53 3.72c-.23 1.55.59 2.26 1.74 2.26a3.66 3.66 0 001.84-.55z;      6ÁüL      url(#linear-gradient)<      ¿Õ™Ò˝     M44.62 22.83a1.33 1.33 0 11-1.32 1.33 1.33 1.33 0 011.32-1.33zm13.21-3.69a6.64 6.64 0 013.91-1.36 5.75 5.75 0 014.39 1.94 7.1 7.1 0 011.37 5.8 8.87 8.87 0 01-6 7.55 7.72 7.72 0 01-2.07.29 4.51 4.51 0 01-3.91-1.93l-.18 1.28a.26.26 0 01-.25.21H52a.21.21 0 01-.17-.07.23.23 0 010-.18l1.07-7.38h-4a1.14 1.14 0 01-1.13-1.13A1.14 1.14 0 0148.82 23h8.62a5.2 5.2 0 00-1.12 2.56c-.31 2.15.76 4.16 3.09 4.16a4.71 4.71 0 004.46-4.2c.3-2.11-.91-4.11-3.15-4.11h-9.83a1.14 1.14 0 01-1.13-1.14 1.14 1.14 0 011.13-1.13h2.85l.81-5.66a.26.26 0 01.25-.21H58a.24.24 0 01.16.07.23.23 0 010 .18l-.81 5.62zm19.56 12.48a5.29 5.29 0 01-4.14 1.74c-3.94 0-5-2.89-4.51-6.31L70 18.44a.27.27 0 01.25-.22h3.15a.21.21 0 01.16.08.21.21 0 010 .17l-1.12 7.75c-.26 1.84 0 3.5 2.15 3.49s3-1.48 3.33-3.42l1.13-7.85a.27.27 0 01.25-.22h3.17a.21.21 0 01.16.08.21.21 0 010 .17l-2 14.24a.26.26 0 01-.25.21h-3a.21.21 0 01-.17-.07.23.23 0 01-.05-.18l.15-1.05zm10.86-12.11a5.36 5.36 0 014.12-1.73c3.91 0 5 2.88 4.48 6.34l-1.24 8.59a.24.24 0 01-.24.21H92.2a.19.19 0 01-.16-.07.2.2 0 01-.05-.18L93.1 25c.26-1.81.07-3.53-2.12-3.52s-3 1.51-3.3 3.42l-1.14 7.86a.25.25 0 01-.24.21h-3.17a.22.22 0 01-.17-.07.22.22 0 010-.18l2-14.23a.26.26 0 01.25-.22h3a.19.19 0 01.16.08.18.18 0 01.05.17l-.15 1zm14.89 0a5.36 5.36 0 014.12-1.73c3.91 0 5 2.88 4.48 6.34l-1.24 8.59a.25.25 0 01-.24.21h-3.17a.19.19 0 01-.16-.07.2.2 0 01-.05-.18L108 25c.26-1.81.07-3.53-2.12-3.52s-3 1.51-3.31 3.42l-1.13 7.86a.25.25 0 01-.24.21H98a.22.22 0 01-.17-.07.22.22 0 010-.18l2-14.23a.26.26 0 01.24-.22h3a.19.19 0 01.16.08.21.21 0 01.05.17l-.15 1zm12.4 12.62l-3-13.61a.21.21 0 010-.2.24.24 0 01.19-.1h3.38a.21.21 0 01.21.17l1.75 8.81 4.26-8.83a.24.24 0 01.22-.15H126a.2.2 0 01.18.11.22.22 0 010 .22l-9.78 19.21a.24.24 0 01-.22.14h-3.39a.19.19 0 01-.18-.11.22.22 0 010-.22z=      ÷»œ      #fff>   }Kª®/      M21 6.85l9.87 5.36L21.75 0A6.8 6.8 0 0021 6.85z?    PıRY      url(#GradientFill_3)@   Ë7<      M16.54 26.73A2.25 2.25 0 1114.29 29a2.25 2.25 0 012.25-2.27zA   vÁk∆      url(#GradientFill_4)B   L#EŒ     M9.67 1.79l27.64 15a1.34 1.34 0 010 2.41 21.49 21.49 0 01-6.77 2.64l-5.75 11.8s-1.82 4.14-6.83 2.55c2.1-2.1 4.64-4 4.64-7.23a6.07 6.07 0 00-12.14 0c0 4.22 4.16 6 6.47 8.93a3.8 3.8 0 01-.33 4.79c-2.87-2.84-8.42-7.63-10.7-10.77a9.1 9.1 0 01-1.95-5.55 10.45 10.45 0 017.38-9.46 12.05 12.05 0 013.88-.47 12.58 12.58 0 015.2 1.57c2.45 1.44 3.64 1.06 5.33-.36 1-.82 2.09-3.49.4-4.11a12.14 12.14 0 00-1.69-.42c-3.14-.61-8.63-1.19-10.65-2.34C10.59 9 8.43 5.35 9.67 1.79zC     ∑Û,›      url(#GradientFill_2)D   fpî˝·      M22.55 29.35zm0-.36C23.83 22.26 17 15.84 11.76 16.8l.35-.08q-.42.09-.81.21a10.45 10.45 0 00-7.38 9.46 9.1 9.1 0 002 5.55c2.28 3.14 7.83 7.93 10.7 10.77a3.8 3.8 0 00.33-4.79C14.59 35 10.43 33.21 10.43 29a6.07 6.07 0 0112.14 0zE      :V8      url(#GradientFill_5)F    ⁄ÿ∆Ã      M9.67 1.79l21 11.44.6.33c.5.39 1 1.17.35 2.61-1 2.15-5 4.23-9.61 2.6 1.44.42 2.42-.06 3.68-1.12 1-.82 2.09-3.49.4-4.11a12.14 12.14 0 00-1.69-.42c-3.14-.61-8.63-1.19-10.65-2.34C10.59 9 8.43 5.35 9.67 1.79zG   «∂p      url(#GradientFill_6)H   kK#      M9.67 1.79c2.17 8 15.38 8.66 22 12zI    kÓM°      url(#GradientFill_7)J   Êœ"Œ      M16.9 37.92C14.59 35 10.43 33.21 10.43 29a6.07 6.07 0 015.32-6A8.78 8.78 0 007 31.75a8.54 8.54 0 00.18 1.76c1.91 2.16 4.67 4.71 7 6.87.91.85 1.75 1.65 2.44 2.33a4.18 4.18 0 001-2.37 3.66 3.66 0 00-.72-2.42zK     ÕíG      url(#GradientFill_8)L   âﬂ»y      M22.52 29.71a5.81 5.81 0 00.05-.72C23.83 22.26 17 15.84 11.76 16.8a12.49 12.49 0 013.42-.34c6.87.28 8.79 7.62 7.34 13.25zM      ëp      url(#GradientFill_9)N   âM!ö\      M2.26 14.84a2.27 2.27 0 012.26 2.27v2.26H2.26A2.26 2.26 0 010 17.11a2.27 2.27 0 012.26-2.27zO   Ô*Âm      url(#GradientFill_2-2)P     „’Lc      23567Q      0À=ø	      Livello_1R      W'b™      0 0 250 250S    ¶ƒ]õ      clipPathT   ÑˇGI      clippathU   6CY>	      classNameV      6òÛ˚      st0W    Ã~@Ó      M-2.84 0h255.68v250H-2.84zX     Y]≈
+      clippath-1Y     IT!
+P     M179.8 60.92a4.11 4.11 0 00-1.69 5.56c4.71 8.84 7.2 18.84 7.2 28.92 0 6.71-1.07 13.31-3.18 19.6l-.54 1.6 11.22 22.86c-14.99 23.04-40.14 36.72-67.72 36.72a4.11 4.11 0 100 8.22c31.21 0 59.59-15.9 75.93-42.54l1.18-1.93-11.75-23.95a69.738 69.738 0 003.09-20.59c0-11.43-2.82-22.77-8.16-32.79a4.106 4.106 0 00-3.63-2.18c-.65 0-1.31.16-1.93.48Z   ◊Ic
+      clippath-2[     ü?£Õ,     M136.65 52.55c-.73 2.15.42 4.48 2.57 5.21 16.12 5.47 26.96 20.59 26.96 37.63 0 13.35-6.65 25.73-17.78 33.12a4.11 4.11 0 00-1.15 5.7c.79 1.19 2.1 1.84 3.43 1.84.78 0 1.57-.22 2.27-.69 13.44-8.92 21.46-23.87 21.46-39.97 0-20.56-13.08-38.82-32.54-45.42-.44-.15-.88-.22-1.32-.22-1.71 0-3.31 1.08-3.9 2.79\   ÀPÅ
+      clippath-3]     WÓ\√a     M100.96 11.07l-1.79.53-13.82 24.17a72.081 72.081 0 00-21.08 21.62c-10.23 16.18-13.49 35.23-9.2 53.65 4.29 18.42 15.64 34 31.93 43.87 4.46 2.7 9.21 4.91 14.13 6.58l2.97 1.01 12.6-14.88c3.85.25 11.34.32 18.19-1.97 2.39-.8 3.69-3.35 2.91-5.69-.78-2.34-3.35-3.6-5.74-2.8-6.25 2.09-14.12 1.68-16.62 1.34l-2.51-.34-11.67 13.78a63.164 63.164 0 01-9.43-4.68c-29.39-17.8-38.31-56.02-19.86-85.2 4.97-7.86 11.44-14.4 19.24-19.43l.94-.61 13.07-22.86c19.32-5.22 39.55-3.17 57.17 5.85 2.22 1.14 4.97.27 6.16-1.93 1.13-2.1.41-4.67-1.59-5.88-.09-.06-.19-.11-.28-.16a88.045 88.045 0 00-40.17-9.68c-8.53 0-17.13 1.23-25.55 3.71^      Ñ ∏ü
+      clippath-4_     â5     M114.67 44.18c-14.23 3-26.3 11.34-33.96 23.47-15.39 24.34-7.73 56.37 17.08 71.4 2.13 1.29 4.93.64 6.25-1.45a4.39 4.39 0 00-1.46-6.12c-20.56-12.45-26.9-38.99-14.15-59.16 6.36-10.05 16.35-16.96 28.15-19.45 2.45-.52 4.01-2.88 3.49-5.28a4.437 4.437 0 00-2.05-2.85 4.627 4.627 0 00-3.34-.56`      =D=
+      clippath-5a     ¬≠EYπ     M164.69 149.7c-1.33-.81-1.75-2.53-.91-3.82.81-1.31 2.58-1.7 3.88-.91 1.33.81 1.74 2.51.91 3.82-.53.85-1.46 1.32-2.41 1.32-.5 0-1.02-.13-1.48-.41m-8.61-8.49c-1.58 2.47-2.08 5.3-1.64 7.97-10.9 5.71-21.95 8.14-34.24 6.98-2.49-.23-4.72 1.56-4.96 4.01-.25 2.45 1.58 4.61 4.07 4.86 14.25 1.33 27.31-1.56 39.89-8.26.23.17.46.33.73.5 5.57 3.36 12.92 1.66 16.39-3.8 3.45-5.48 1.72-12.67-3.84-16.05-1.94-1.18-4.1-1.74-6.24-1.74-4 0-7.9 1.97-10.15 5.54b      ˆΩ'‹
+      clippath-6c     0¯Ô0     M69.54 27.36a2.968 2.968 0 01-.98-4.13c.87-1.41 2.76-1.85 4.19-.98 1.43.87 1.89 2.72 1 4.13a3.09 3.09 0 01-4.21.98m-8.71-8.81a11.66 11.66 0 00-.96 10.59 91.307 91.307 0 00-13.94 17.09C32.87 66.89 28.8 91.28 34.44 114.91c5.65 23.63 20.35 43.67 41.41 56.43 23.16 14.02 51.34 17.36 77.32 9.14 2.37-.77 3.7-3.28 2.93-5.61-.77-2.33-3.32-3.61-5.71-2.87-23.43 7.43-48.85 4.42-69.74-8.22-39.23-23.76-51.34-74.39-27-112.89 3.53-5.59 7.7-10.69 12.42-15.28 5.48 2.47 12.11.6 15.37-4.55 3.53-5.59 1.76-12.92-3.91-16.36-1.98-1.2-4.18-1.77-6.35-1.77-4.07 0-8.06 2-10.36 5.63d   Ø7_z
+      clippath-7e     Ã·Å*§     M164.96 46.22c-1.16-.71-1.52-2.2-.79-3.34.73-1.14 2.24-1.5 3.41-.79 1.16.71 1.54 2.2.81 3.34-.47.74-1.29 1.15-2.12 1.15-.45 0-.9-.12-1.3-.36M108.62 28c-2.43.58-3.95 2.99-3.36 5.38.58 2.37 3.03 3.84 5.48 3.26 15.1-3.57 30.65-1.47 44.11 5.9-.64 4.32 1.31 8.81 5.34 11.24 5.42 3.28 12.54 1.62 15.91-3.68 3.36-5.32 1.68-12.32-3.72-15.6-4.07-2.45-9.12-2.14-12.79.44-10.62-5.88-22.38-8.89-34.33-8.89-5.54 0-11.11.65-16.63 1.95f   h±ñ
+      clippath-8g     ãÉO˜·     M100.52 75.33c-6.52 7.81-8.68 18.09-5.81 28.02 1.43 4.94 4.17 9.47 7.89 13.04 5.59 5.38 12.69 8.33 20.08 8.56 3.14.1 6.33-.29 9.49-1.2 4.82-1.37 9.22-3.99 12.75-7.5l.06-.06c1.6-1.6 2.99-3.34 4.15-5.17 1.02-1.6.81-3.47-.19-4.8-.02 1.62-1.31 2.91-2.93 2.91s-2.91-1.31-2.91-2.93c0-.48.1-.91.31-1.31-.75.35-1.39.91-1.85 1.62-.21.35-.46.69-.71 1.02-1.06 1.41-2.24 2.68-3.57 3.76-4.07 3.39-9.32 5.15-14.97 4.86-2.58-.12-5.11-.75-7.46-1.85-8.22-3.82-13.06-11.86-12.61-20.89.15-2.57.77-5.13 1.87-7.48 3.91-8.43 12.07-12.86 20.25-12.61 4.22.15 8.45 1.52 12.09 4.22 2.35 1.74 4.26 3.9 5.69 6.33.77 1.31 2.1 2.18 3.61 2.22l.27.02c3.3.1 5.54-3.47 3.9-6.33-2.43-4.28-5.92-7.93-10.26-10.68-4.89-3.07-10.42-4.56-15.92-4.56-8.73 0-17.37 3.74-23.25 10.79h      !+Œ∂
+      clippath-9i     ›x|Â/     M143.11 106.19c0-.48.1-.91.31-1.31.69-1.38 2.43-2.11 4.21-1.18.82.43 1.32 1.29 1.32 2.21v.4c0 .95-.46 1.87-1.29 2.34-2.24 1.29-4.55-.31-4.55-2.47m-7.2.01c0 1.85.5 3.59 1.39 5.09 1.56 2.72 4.36 4.61 7.62 4.96.37.04.73.06 1.1.06 5.59 0 10.11-4.53 10.11-10.11s-4.53-10.11-10.11-10.11-10.11 4.53-10.11 10.11j    »`=ª      clippath-10k    Àêû¯Æ      M206.48 116.31a2.601 2.601 0 115.202.002 2.601 2.601 0 01-5.202-.002m-8.98 0c0 6.4 5.18 11.58 11.58 11.58s11.58-5.18 11.58-11.58-5.18-11.58-11.58-11.58-11.58 5.18-11.58 11.58l     Å⁄tY      clippath-11m    ÀÁÑw      M187.97 38.23c-1.75 1.44-2 4.03-.55 5.78 11.89 14.41 18.44 32.66 18.44 51.38 0 3.74-.27 7.47-.78 11.16.96-.23 1.95-.37 2.97-.37 1.86 0 3.63.41 5.22 1.14.53-3.95.81-7.93.81-11.94 0-20.63-7.22-40.73-20.33-56.62-.81-.99-1.99-1.5-3.17-1.5-.92 0-1.85.31-2.61.94n   :T¨˜      clippath-12o    gùj
+     M4.58 221.94c0 12.13 9.29 20.9 21.71 20.9 6.67 0 12.36-2.38 16.14-6.79l-4.88-4.64c-2.96 3.25-6.62 4.82-10.85 4.82-8.42 0-14.51-5.92-14.51-14.28s6.09-14.28 14.51-14.28c4.24 0 7.89 1.57 10.85 4.76l4.88-4.59c-3.77-4.41-9.46-6.79-16.08-6.79-12.48 0-21.77 8.77-21.77 20.9p     ÛÕ„ï      clippath-13q    “…«q      M115.67 201.3h7.31v40.58h-7.31zr    ¨G4      clippath-14s    Ω6ª)¢      M153 207.79h9.77c8.97 0 14.78 5.46 14.78 13.8s-5.81 13.8-14.78 13.8H153v-27.6zm-7.3-6.49v40.58h17.74c13.16 0 22.15-8.12 22.15-20.29s-8.99-20.29-22.15-20.29H145.7zt     e¡R“      clippath-15u    Xªı9’      M209.86 221.94c0-8.3 6.09-14.28 14.28-14.28s14.28 5.98 14.28 14.28-6.09 14.28-14.28 14.28-14.28-5.98-14.28-14.28m-7.6 0c0 12.02 9.29 20.9 21.88 20.9s21.88-8.82 21.88-20.9-9.29-20.9-21.88-20.9-21.88 8.88-21.88 20.9v      ;äp      clippath-16w    ›û˛u      M72.88 201.3l-18.63 41.39h8.12l4.15-9.74 2.44-5.68h-.03l7.66-17.87 7.71 17.87h-.03l6.63 15.42h8.24L80.45 201.3h-7.57zx      ,
+Z      Sfumatura_senza_nome_16y    ˆ√a@      Sfumatura senza nome 16z    k 2†      gradientTransform{      L¯¸(      matrix(270.56 0 0 -270.56 211.64 -85.15)|   æ;W      #a73e3b}    ?èi      #dfaf5e~    ÍÃƒî      Sfumatura_senza_nome_161   GÌÈ‹)      matrix(270.56 0 0 -270.56 194.29 -130.86)Ä      –‡ä      #Sfumatura_senza_nome_16Å   1Sçˆ      Sfumatura_senza_nome_162Ç   ï{=≥(      matrix(270.56 0 0 -270.56 182.42 -141.4)É   xŸUX      Sfumatura_senza_nome_163Ñ   IË“R)      matrix(270.56 0 0 -270.56 183.57 -125.47)Ö      á-⁄´      Sfumatura_senza_nome_164Ü   ¥Ì‹6(      matrix(270.56 0 0 -270.56 225.07 -51.52)á   Œ≥¢      Sfumatura_senza_nome_165à    ,4(      matrix(270.56 0 0 -270.56 188.3 -115.15)â   :ko      Sfumatura_senza_nome_166ä   ÌÇæ‘)      matrix(270.56 0 0 -270.56 163.77 -189.27)ã      \¿3—      Sfumatura_senza_nome_167å   f„∆Û(      matrix(270.56 0 0 -270.56 189.78 -125.1)ç   €x@A      Sfumatura_senza_nome_168é   ‹Ù(      matrix(270.56 0 0 -270.56 200.1 -109.68)è   "ˇ£      Sfumatura_senza_nome_169ê   ˜#Å(      matrix(270.56 0 0 -270.56 216.16 -89.54)ë   “t.      Sfumatura_senza_nome_1610í      =íbÿ)      matrix(270.56 0 0 -270.56 190.37 -142.33)ì      ãá´Ã      Sfumatura_senza_nome_1611î      ≠˜≈Ä%      matrix(0 224.12 224.12 0 215.46 43.3)ï      `Ú      Sfumatura_senza_nome_1612ñ      ‹cD'      matrix(0 224.12 224.12 0 324.44 -25.15)ó    î<ê      Sfumatura_senza_nome_1613ò      &ÊH'      matrix(0 224.12 224.12 0 373.17 -58.26)ô    ∂ÙQß      Sfumatura_senza_nome_1614ö      F§ô§(      matrix(0 224.12 224.12 0 446.34 -100.11)õ   onâE      Sfumatura_senza_nome_1615ú      √`!%      matrix(0 224.12 224.12 0 267.06 5.28)ù      ´˙~      .st0{fill:none}û    ©π      url(#clippath)ü     Û¯©:      url(#clippath-1)†   RË|	      transform°      ¨∏Ì;      rotate(-33.5 161.6 122.43)¢     ØîE€      url(#Sfumatura_senza_nome_16)£      ·Bƒ      M93.5 48.31h136.16v148.21H93.5z§    úr∂      url(#clippath-2)•   Â¥Ê†      rotate(-33.5 155.171 92.92)¶    '»      url(#Sfumatura_senza_nome_161)ß     *√Ûf      M115.3 46.31h79.72v93.2H115.3z®     @™·E      url(#clippath-3)©   ﬁI÷:      rotate(-33.5 110.252 84.927)™   [ü‚·      url(#Sfumatura_senza_nome_162)´     ‰˝≤w      M17.84-12.57h184.79v195H17.84z¨     ë‚õ      url(#clippath-4)≠   ´ëIô      rotate(-33.5 92.964 92.225)Æ    èr7U      url(#Sfumatura_senza_nome_163)Ø     WNÎñ      M43.34 36.83h99.21V147.6H43.34z∞    ÿˇÆÚ      url(#clippath-5)±   f!/g      rotate(-33.5 147.38 151.017)≤   *Õ]      url(#Sfumatura_senza_nome_164)≥     èô†–"      M111.89 120.34h70.95v61.34h-70.95z¥     E)¯      url(#clippath-6)µ   ™7;k      rotate(-33.5 92.86 100.818)∂    TYo      url(#Sfumatura_senza_nome_165)∑     ù?ß       M-9.07-7.82h203.83v217.27H-9.07z∏   	òƒv      url(#clippath-7)π   Ω¸ø      rotate(-33.5 142.079 41.547)∫   í±ˇ∞      url(#Sfumatura_senza_nome_166)ª     hK1       M102.33 7.98h79.48v67.14h-79.48zº   1h\•      url(#clippath-8)Ω   ◊ƒ®      rotate(-33.5 121.735 94.815)æ   ÊªCÎ      url(#Sfumatura_senza_nome_167)ø     4b      M80.11 53.08h83.22v83.43H80.11z¿    :Œ
+>      url(#clippath-9)¡   ^}T      rotate(-33.5 146.045 106.208)¬      E »•      url(#Sfumatura_senza_nome_168)√     µ’àÿ!      M132.01 92.18h28.03v28.03h-28.03zƒ      ∏ÆU≈      url(#clippath-10)≈      ©m¨ù      rotate(-33.5 209.1 116.307)∆    nùe      url(#Sfumatura_senza_nome_169)«     J+◊ê"      M193.03 100.26h32.09v32.09h-32.09z»     ÏÅ™8      url(#clippath-11)…      »Z5      rotate(-33.5 200.055 72.313)    8˝ c      url(#Sfumatura_senza_nome_1610)À    sJÀk!      M168.97 35.35h62.11v73.93h-62.11zÃ      K∆.Û      url(#clippath-12)Õ      A∏¥£      rotate(-45.63 23.492 221.93)Œ   l–u÷      url(#Sfumatura_senza_nome_1611)œ    ûÔa\      M-4.66 193.8h56.34v56.28H-4.66z–    tcÃR      url(#clippath-13)—      4VÎ      rotate(-45.63 119.25 221.924)“      À˙ê      url(#Sfumatura_senza_nome_1612)”    ˚ˇ0Ñ       M102.1 205.04h34.32v33.81H102.1z‘   aeI/      url(#clippath-14)’      Ü[™      rotate(-45.63 165.565 221.934)÷     >À      url(#Sfumatura_senza_nome_1613)◊    +ÛÒó"      M137.09 193.46h56.97v56.96h-56.97zÿ     µoçi      url(#clippath-15)Ÿ      ns7I      rotate(-45.63 224.124 221.933)⁄     Sˆ´      url(#Sfumatura_senza_nome_1614)€    %§º       M193.9 191.69h60.48v60.51H193.9z‹   0Õ3´      url(#clippath-16)›      ”F4      rotate(-45.63 76.682 221.923)ﬁ      ß `Â      url(#Sfumatura_senza_nome_1615)ﬂ    Öf•œ       M46.77 191.99h59.85v59.91H46.77z·   √˜ıE      92625/_extends/_extends<‚   ≥6∑˜	      92625/a.Z‰      ªdí       23567/_extends/_extends<Â   Ê§y«	      23567/a.Z     	   •  	   	           Ü   Ô%,â                                                                                                                                                            ≥Oåc                         e  a  t  r `l `n `  P                             e  a  t  r                  e               e  a  t  r `l `n `  P                             e  a  t  r                  e  Ø¬0∞IÙ$KEÆ˙ö              Ø   Ä¯ˇ                      	            ç A Å B Ç      
+    ñ       
+    ñ           ç A Å B Ç      
+    ñ       
+    ñ           ç A Å B Ç      
+    ñ       
+    ñ           ç A Å B Ç      
+    ñ       
+    ñ           ç A Å B Ç      
+    ñ       
+    ñ           ç A Å B Ç      
+    ñ       
+    ñ           ç A Å B Ç      
+    ñ       
+    ñ           ç A Å B Ç      
+    ñ       
+    ñ           ç A Å B Ç      
+    ñ       
+    ñ           ç A Å B Ç 0     
+    ç 3         ç 3  7     
+   d  ¶      
+    d  ¶      
+    d  ¶      
+    d  ¶      
+    d  ¶      
+    d  ¶      
+    d  ¶      
+    d  ¶      
+    d  ¶      
+    d  ¶      
+    d  ¶                 ç 	               ç    
+     U  d         ç    
+     U  d         ç    
+     U  d         ç    
+     U  d         ç    
+     U  d         ç    
+     U  d         ç    
+     U  d         ç    
+     U  d         ç    
+     U  d         ç    
+     U  d         ç    
+     U  d         ç    
+     U  d         ç    
+     U  d         ç    
+     U  d         ç    
+     U  d         ç    
+     U  d         ç    
+     U  d     (    ç 3  A Å B Ç z       
+      ñ       
+    ñ       
+    ñ       
+    ñ       (    ç 3  A Å B Ç z  0     (      ç 3  A Å B Ç z  0     (      ç 3  A Å B Ç z  0     (      ç 3  A Å B Ç z  0     (      ç 3  A Å B Ç z  0     (      ç 3  A Å B Ç z  0     (      ç 3  A Å B Ç z  0     (      ç 3  A Å B Ç z  0     (      ç 3  A Å B Ç z  0     (      ç 3  A Å B Ç z  0     (      ç 3  A Å B Ç z  0     (      ç 3  A Å B Ç z  0     (      ç 3  A Å B Ç z  0     (      ç 3  A Å B Ç z  0     (      ç 3  A Å B Ç z  0           S          S          †  ¶   d        S          †  ¶   d        S          †  ¶   d        S          †  ¶   d        S          †  ¶   d        S          †  ¶   d        S          †  ¶   d        S          †  ¶   d        S          †  ¶   d        S          †  ¶   d        S          †  ¶   d        S          †  ¶   d        S          †  ¶   d        S          †  ¶   d        S          †  ¶   d        S          †  ¶   d  á&’™ç!´!	   †    √Ωr†   a                          ∫   ∫   J   ù   ó   ﬁh    ó   M   ‡J   „h   :   i    9   	—im   ?\m   ?i   w ﬁ• `∞ 6
+
+Ä ¿ˇˇ„3PÄ U5PÄ`   _7«`   +                         m   Õ   ﬁª  	ﬁs Õ   ﬁª m   M   ﬁ•`P	Ä  Ì`Ä ∞PÄÄê   ªœm‰ê   X                	        €Ã   ﬁ∫   J   ö#   ó   ∫   J   ‡J   „s  ô   ó   m   ó   Õ   ‡J   „Ω   s ¢•`• ,P§ Ä  öˇˇˇıPQÄ4  %≤·5  ∑         
+             €Ã  ﬁÃ   ﬁò    Ω   Ω  J   öç   ó   Ω  Ω   KÃ  ﬁΩ  ^ò   _`õR   ó   Ã  9   J   ‡J   „Ω  Ω  s ú   ó   ﬁª  Ω  Ω  Ω  KOó   ﬁﬁô´ˇˇˇó   aΩ   0(Ã   ﬁôdˇˇˇó   ª  ¢• `fî ``ó ˇˇˇ˜`ë ˇˇˇ˘P• ˇˇˇ›ˇˇˇË`ï R`Q4        =   Z             °      ÛÇäT   µ	                       ¿   ‡J   „   ¿    9      <      <      <	   ª  s ¿   ù˘  ó   ﬁ¿   ‡J   „
+   ¿   ‡J   „   9      <   
+ÕÃÃÃÃd`@<   
+ÕÃÃÃÃL9@<   
+q=
+◊£a@<   
+R∏ÖÎ—@@<      <   ¿   ‡J   „   9   <      <   s ¿   ‡J   „   9   <      <   s s ¿   ‡J   „   9      <   
+öôôôôŸ0@<   
+q=
+◊£p@<   
+ÖÎQ∏>B@<   
+q=
+◊£p@<      <   ¿   ‡J   „   9   <      <   s ¿   ‡J   „   9    <   !   <   s s ¿   ‡J   „   9"   #   <   
+
+◊£p=ä/@<   
+ÆG·z?@<   
+è¬ı(\O1@<   
+ÖÎQ∏ﬁ:@<      <   ¿   ‡J   „   9$   <   %   <   s ¿   ‡J   „   9&   <   '   <   s s ¿   ‡J   „   9(   )   <   
+{ÆG·z@<   
+§p=
+◊C@@<   
+=
+◊£p};@<   
+ÖÎQ∏Ö@<      <   ¿   ‡J   „   9*   <      <   s ¿   ‡J   „   9+   <   ,   <   s s ¿   ‡J   „   9-   .   <   
+∏ÖÎQx4@<   
+
+◊£p=ä1@<   
+ÏQ∏ÖÎ@<   
+ˆ(\è¬ıB@<      <   ¿   ‡J   „   9/   <   0   <   s ¿   ‡J   „   91   <   2   <   s s ¿   ‡J   „   93   4   <   
+∏ÖÎQ∏Œ?<   
+§p=
+◊#%@<   
+ÖÎQ∏E@<   
+§p=
+◊#%@<      <   ¿   ‡J   „   95   <   6   <   s ¿   ‡J   „   97   <   8   <   s s ¿   ‡J   „   99   :   <   
+◊£p=
+◊5¿<   
+ÖÎQ∏@<   
+{ÆG·öO@<   
+ÖÎQ∏@<      <   ¿   ‡J   „   9;   <   <   <   s ¿   ‡J   „   9=   <   >   <   s s ¿   ‡J   „   9?   @   <   
+ÆG·z!@<   
+R∏ÖÎ2@<   
+§p=
+◊c1@<   
+∏ÖÎQxH@<      <   ¿   ‡J   „   9A   <   B   <   s ¿   ‡J   „   9C   <   D   <   s s ¿   ‡J   „   9E   F   <   
+è¬ı(\ØI¿<   
+ÆG·z7@<   
+∏ÖÎQ∏R@<   
+ÆG·z7@<      <   ¿   ‡J   „   9G   <   H   <   s ¿   ‡J   „   9I   <   J   <   s s ¿   ‡J   „   9K   L   <   
+{ÆG·z¥?<   
+∏ÖÎQ∏0@<   
+=
+◊£p=@<   
+è¬ı(\è1@<   M   <N   s s Õ   óΩ   ¿   ùc  óæ   ﬁ¿   ‡J   „O   9P   Q   <   R   <S   ¿   ‡J   „O   9T   U   <   V   <S   W   <X   ¿   ‡J   „Y   9Z   [   <\   ]   <^   s ¿   ‡J   „Y   9_   `   <\   a   <^   s ¿   ‡J   „Y   9b   c   <\   d   <^   s ¿   ‡J   „Y   9e   f   <\   g   <^   s ¿   ‡J   „Y   9h   i   <\   j   <^   s ¿   ‡J   „Y   9k   l   <\   m   <^   s ¿   ‡J   „Y   9n   o   <\   p   <^   s ¿   ‡J   „Y   9q   r   <\   s   <^   s ¿   ‡J   „Y   9t   u   <\   v   <^   s ¿   ‡J   „Y   9w   x   <\   y   <^   s ¿   ‡J   „Y   9z   {   <\   |   <^   s s s Õ   ó   s ¢• `ë 	
+#
+*
+ˇˇˇçPv¢ "ë !
+
+
+	
+ ë 	
+ˇˇˇ·P5ë 	
+ˇˇˇ·PˇˇˇMPÄ  Èë !
+		
+ ë 	
+ˇˇˇ·P5ë 	
+ˇˇˇ·PˇˇˇQPÄ  Âë !
+				
+ ë 	
+ˇˇˇ·P5ë 	
+ˇˇˇ·PˇˇˇOPÄ  Áë !
+		
+ ë 	
+ˇˇˇ·P5ë 	
+ˇˇˇ·PˇˇˇQPÄ  Âë !
+			
+ ë 	
+ˇˇˇ·P5ë 	
+ˇˇˇ·PˇˇˇPPÄ  Êë !
+			
+ ë 	
+ˇˇˇ·P5ë 	
+ˇˇˇ·PˇˇˇQPÄ  Âë !
+
+	
+ ë 	
+ˇˇˇ·P5ë 	
+ˇˇˇ·PˇˇˇPPÄ  Êë !
+			
+ ë 	
+ˇˇˇ·P5ë 	
+ˇˇˇ·PˇˇˇPPÄ  Êë !
+
+			
+ ë 	
+ˇˇˇ·P5ë 	
+ˇˇˇ·PˇˇˇNPÄ  Ëë !
+		
+ˇˇˇ©Pˇˇ˜πPÄ æ° 
+
+ë 
+
+
+ë 
+Ä ñ
+ˇˇ˝TPÄ Àë 
+Ä 
+ˇˇ¯ËPÄ &ë 
+4
+ˇˇˇ∂Phë 
+A
+ˇˇˇ©Puë 
+Ä ”
+ˇˇ˛PÄ ë 
+Ä  Ê
+ˇˇˇPÄ ë 
+Ä  —
+ˇˇˇPÄ ë 
+(
+ˇˇˇ¬P\ë 
+Ä  ”
+ˇˇˇPÄ ë 
+~
+ˇˇˇlPÄ  ≤ë 
+a
+ˇˇˇâPˇˇÓïPˇˇˇ«Pˇˇˆ®PÄ ñQÄ`   xùû`   +                         m   Õ   ﬁª  	ﬁs Õ   ﬁª m   M   ﬁ•`P	Ä  Ì`Ä 7UPÄÄê   ªœm‰ê   X                	        €Ã   ﬁ∫   J   ö#   ó   ∫   J   ‡J   „s  ô   ó   m   ó   Õ   ‡J   „Ω   s ¢•`• ,P§ Ä  öˇˇˇıPQÄ4  %≤·5  ∑         
+             €Ã  ﬁÃ   ﬁò    Ω   Ω  J   öç   ó   Ω  Ω   KÃ  ﬁΩ  ^ò   _`õR   ó   Ã  9   J   ‡J   „Ω  Ω  s ú   ó   ﬁª  Ω  Ω  Ω  KOó   ﬁﬁô´ˇˇˇó   aΩ   0(Ã   ﬁôdˇˇˇó   ª  ¢• `fî ``ó ˇˇˇ˜`ë ˇˇˇ˘P• ˇˇˇ›ˇˇˇË`ï R`Q4        =   Z             °   §  m≈Ø§  	          .             ¿   ‡J   „   ¿    9      <      <      <	   
+   <   ª  s ¿   ù”  ó   ﬁ¿   ‡J   „   ¿   ‡J   „   9      <   ¿   ‡J   „   9      <      <   s s ¿   ‡J   „   9      <   ¿   ‡J   „   9      <      <   s s ¿   ‡J   „   9      <   ¿   ‡J   „   9      <      <   s s ¿   ‡J   „   9      <   ¿   ‡J   „   9       <   !   <   s s ¿   ‡J   „   9"   #   <   ¿   ‡J   „   9$      <   %   <   s s ¿   ‡J   „   9&   '   <   ¿   ‡J   „   9(      <   )   <   s s ¿   ‡J   „   9*   +   <   ¿   ‡J   „   9,      <   -   <   s s ¿   ‡J   „   9.   /   <   ¿   ‡J   „   90      <   1   <   s s ¿   ‡J   „   92   3   <   ¿   ‡J   „   94      <   5   <   s s ¿   ‡J   „   96   7   <   ¿   ‡J   „   98      <   9   <   s s ¿   ‡J   „   9:   ;   <   ¿   ‡J   „   9<      <   =   <   s s ¿   ‡J   „   9>   ?   <   ¿   ‡J   „   9@      <   A   <   s s ¿   ‡J   „   9B   C   <   ¿   ‡J   „   9D      <   E   <   s s ¿   ‡J   „   9F   G   <   ¿   ‡J   „   9H      <   I   <   s s ¿   ‡J   „   9J   K   <   ¿   ‡J   „   9L      <   M   <   s s ¿   ‡J   „   9N   O   <   ¿   ‡J   „   9P      <   Q   <   s s ¿   ‡J   „   9R   S   <   ¿   ‡J   „   9T      <   U   <   s s ¿   ‡J   „V   9W   X   <   Y   <Z   
+333333„ø<[   
+§p=
+◊£Ëø<\   
+·zÆG· ?<]   
+§p=
+◊£Ëø<^   _   <`   a   <b   ¿   ‡J   „c   9d   <e   f   <g   s ¿   ‡J   „c   9h   
+öôôôôô…?<e   f   <g   s ¿   ‡J   „c   9i   
+öôôôôôÈ?<e   j   <g   s ¿   ‡J   „c   9k   <e   j   <g   s s ¿   ‡J   „V   9l   m   <   Y   <Z   
+333333„ø<[   
+è¬ı(\èÍø<\   
+·zÆG· ?<]   
+è¬ı(\èÍø<^   n   <`   o   <p   s ¿   ‡J   „V   9q   r   <   Y   <Z   
+333333„ø<[   
+·zÆG·Íø<\   
+·zÆG· ?<]   
+·zÆG·Íø<^   s   <`   o   <p   s ¿   ‡J   „V   9t   u   <   Y   <Z   
+333333„ø<[   
+öôôôôôÈø<\   
+·zÆG· ?<]   
+öôôôôôÈø<^   v   <`   o   <p   s ¿   ‡J   „V   9w   x   <   Y   <Z   
+333333„ø<[   
+      Ëø<\   
+·zÆG· ?<]   
+      Ëø<^   y   <`   o   <p   s ¿   ‡J   „V   9z   {   <   Y   <Z   
+333333„ø<[   
+öôôôôôÈø<\   
+·zÆG· ?<]   
+öôôôôôÈø<^   |   <`   o   <p   s ¿   ‡J   „V   9}   ~   <   Y   <Z   
+333333„ø<[   
+333333Îø<\   
+·zÆG· ?<]   
+333333Îø<^      <`   o   <p   s ¿   ‡J   „V   9Ä   Å   <   Y   <Z   
+333333„ø<[   
+ÏQ∏ÖÎÈø<\   
+·zÆG· ?<]   
+ÏQ∏ÖÎÈø<^   Ç   <`   o   <p   s ¿   ‡J   „V   9É   Ñ   <   Y   <Z   
+333333„ø<[   
+öôôôôôÈø<\   
+·zÆG· ?<]   
+öôôôôôÈø<^   Ö   <`   o   <p   s ¿   ‡J   „V   9Ü   á   <   Y   <Z   
+333333„ø<[   
+R∏ÖÎQËø<\   
+·zÆG· ?<]   
+R∏ÖÎQËø<^   à   <`   o   <p   s ¿   ‡J   „V   9â   ä   <   Y   <Z   
+333333„ø<[   
+H·zÆGÈø<\   
+·zÆG· ?<]   
+H·zÆGÈø<^   ã   <`   o   <p   s ¿   ‡J   „V   9å   ç   <   Y   <Z   
+ˆ(\è¬ıË?<[   
+ÖÎQ∏ÖÎø<\   
+q=
+◊£p˘?<]   
+ÖÎQ∏ÖÎø<^   é   <`   o   <p   s ¿   ‡J   „V   9è   ê   <   Y   <Z   
+ˆ(\è¬ıË?<[   
+q=
+◊£pÌø<\   
+q=
+◊£p˘?<]   
+q=
+◊£pÌø<^   ë   <`   o   <p   s ¿   ‡J   „V   9í   ì   <   Y   <Z   
+ˆ(\è¬ıË?<[   
+√ı(\è¬Ìø<\   
+q=
+◊£p˘?<]   
+√ı(\è¬Ìø<^   î   <`   o   <p   s ¿   ‡J   „V   9ï   ñ   <   Y   <Z   
+ˆ(\è¬ıË?<[   
+ÆG·zÆÔø<\   
+q=
+◊£p˘?<]   
+ÆG·zÆÔø<^   ó   <`   o   <p   s ¿   ‡J   „V   9ò   ô   <   Y   <Z   
+ˆ(\è¬ıË?<[   
+333333Îø<\   
+q=
+◊£p˘?<]   
+333333Îø<^   ö   <`   o   <p   s ¿   ‡J   „õ   ú   s s$ Õ   ói  ¿   ù”  ój  ﬁ¿   ‡J   „ù   9û   ü   <   ¿   ‡J   „ù   9†   °   <   ¿   ‡J   „   9¢   £   <§   •   <¶   ß   <   s s ¿   ‡J   „ù   9®   ©   <   ¿   ‡J   „   9™   ´   <§   ¨   <¶   ≠   <   s s ¿   ‡J   „ù   9Æ   Ø   <   ¿   ‡J   „   9∞   ±   <§   ≤   <¶   ≥   <   s s ¿   ‡J   „ù   9¥   µ   <   ¿   ‡J   „   9∂   ∑   <§   ∏   <¶   π   <   s s ¿   ‡J   „ù   9∫   ª   <   ¿   ‡J   „   9º   Ω   <§   æ   <¶   ø   <   s s ¿   ‡J   „ù   9¿   ¡   <   ¿   ‡J   „   9¬   √   <§   ƒ   <¶   ≈   <   s s ¿   ‡J   „ù   9∆   «   <   ¿   ‡J   „   9»   …   <§       <¶   À   <   s s ¿   ‡J   „ù   9Ã   Õ   <   ¿   ‡J   „   9Œ   œ   <§   –   <¶   —   <   s s ¿   ‡J   „ù   9“   ”   <   ¿   ‡J   „   9‘   ’   <§   ÷   <¶   ◊   <   s s ¿   ‡J   „ù   9ÿ   Ÿ   <   ¿   ‡J   „   9⁄   €   <§   ‹   <¶   ›   <   s s ¿   ‡J   „ù   9ﬁ   ﬂ   <   ¿   ‡J   „   9‡   ·   <§   ‚   <¶   „   <   s s ¿   ‡J   „ù   9‰   Â   <   ¿   ‡J   „   9Ê   Á   <§   Ë   <¶   È   <   s s ¿   ‡J   „ù   9Í   Î   <   ¿   ‡J   „   9Ï   Ì   <§   Ó   <¶   Ô   <   s s ¿   ‡J   „ù   9   Ò   <   ¿   ‡J   „   9Ú   Û   <§   Ù   <¶   ı   <   s s ¿   ‡J   „ù   9ˆ   ˜   <   ¿   ‡J   „   9¯   ˘   <§   ˙   <¶   ˚   <   s s ¿   ‡J   „ù   9¸   ˝   <   ¿   ‡J   „   9˛   ˇ   <§      <¶     <   s s s Õ   ó  s ¢• `ë 	
+
+#
+*
+ˇˇˇÉPÄ  Ä¢ "ë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ’Psë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ”PÄ ´ë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ”PÄ áë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ”PÄ ºë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ”PÄ xë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ”PÄ ë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ”PÄ ãë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ”PÄ ˇë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ”PÄ <ë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ”PÄ äë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ“PÄ 
+ë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ“PÄ \ë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ“PÄ fë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ“P{ë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ“PÄ  ˛ë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ“PÄ 1ë 
+ë 
+
+ˇˇˇ⁄Pˇˇˇ“PÄ  —ë !
+
+&
+=
+ ë 	
+ˇˇˇ·P5ë 
+
+ˇˇˇ‡P6ë 
+
+ˇˇˇ‡P6ë 	
+ˇˇˇ·Pˇˇ˛yPÄ Ωë !
+
+&
+>
+ˇˇˇ@PÄ  Áë !
+
+&
+=
+ˇˇˇAPÄ  Êë !
+
+&
+>
+ˇˇˇBPÄ  Âë !
+
+&
+=
+ˇˇˇAPÄ  Êë !
+
+&
+=
+ˇˇˇCPÄ  ‰ë !
+
+&
+>
+ˇˇˇ@PÄ  Áë !
+
+&
+=
+ˇˇˇAPÄ  Êë !
+
+&
+=
+ˇˇˇCPÄ  ‰ë !
+
+&
+=
+ˇˇˇAPÄ  Êë !
+
+&
+>
+ˇˇˇ?PÄ  Ëë !
+
+&
+:
+ˇˇˇBPÄ  Âë !
+
+&
+<
+ˇˇˇ@PÄ  Áë !
+
+&
+<
+ˇˇˇ@PÄ  Áë !
+
+&
+=
+ˇˇˇ?PÄ  Ëë !
+
+&
+:
+ˇˇˇBPÄ  Âó Pˇˇ’ÊPÄ *J° 
+ë 
+ë 
+'
+%
+ˇˇˇûPˇˇˇŒPÄ  ªë 
+ë 
+(
+&
+ˇˇˇúPˇˇˇŒPÄ  ºë 
+ë 
+)
+&
+ˇˇˇõPˇˇˇŒPÄ  Ωë 
+ë 
+(
+&
+ˇˇˇúPˇˇˇŒPÄ  Ωë 
+ë 
+)
+&
+ˇˇˇõPˇˇˇŒPÄ  ¡ë 
+ë 
+(
+&
+ˇˇˇúPˇˇˇŒPÄ  æë 
+ë 
+)
+&
+ˇˇˇõPˇˇˇŒPÄ  øë 
+ë 
+)
+&
+ˇˇˇõPˇˇˇŒPÄ  æë 
+ë 
+*
+&
+ˇˇˇöPˇˇˇŒPÄ  ¡ë 
+ë 
+(
+&
+ˇˇˇúPˇˇˇÕPÄ  ¡ë 
+ë 
+)
+'
+ˇˇˇöPˇˇˇÕPÄ  ¬ë 
+ë 
+)
+'
+ˇˇˇöPˇˇˇÕPÄ  ¿ë 
+ë 
+*
+'
+ˇˇˇôPˇˇˇÕPÄ  ¬ë 
+ë 
++
+'
+ˇˇˇòPˇˇˇÕPÄ  ≈ë 
+ë 
++
+'
+ˇˇˇòPˇˇˇÕPÄ  √ë 
+ë 
+*
+'
+ˇˇˇôPˇˇˇÕPˇˇÙwPˇˇ’PÄ 7;QÄÄ3ıÿ  `;    @Î   4     `e        p
+     `      @
+  	                @  ç A Å B Ç         @ñ        @    @    @  	  @  
+  @    @    @    @    @  @    @     @!    @"    @#    @$    @%    @&    @'    @(    @)    @*    @+    @,    @-    @.    @/  1  0  g     @2  4  3  !  @5  6  8  7  9  "  @:  d  ;  ¶   #  @<  =  $  @>  ?  %  @@  A  &  @B  C  '  @D  E  (  @F  G  )  @H  I  *  @J  K  +  @L  M  ,  @N  O    `  p  pZ    `;  -  @Î   4     `e        p
+     `    .  @Q  ç 
+  	      R      S  /  @T  9  0  @V  U  W  d  1  @X  2  @Y  3  @Z  4  @[  5  @\  6  @]  7  @^  8  @_  9  @`  :  @a  ;  @b  <  @c  =  @d  >  @e  ?  @f  @  @g  A  @h  B  @i  C  @j  D  @k  E  @l  F  @m  G  @n  H  @o  I  @p  J  @q  K  @r  L  @s  M  @t  N  @u  O  @v  P  @w    Q  @x  y  3  A Å B Ç {  z        R  @ñ  |    S  @T  @}  U  @V  @~    Ä  0  W  @Å  Ç  X  @É  Ñ  Y  @Ö  Ü  Z  @á  à  [  @â  ä  \  @ã  å  ]  @ç  é  ^  @è  ê  _  @ë  í  `  @ì  î  a  @ï  ñ  b  @ó  ò  c  @ô  ö  d  @õ  ú  ˜  ù  g  e  @û  f  @ü  g  @°  †  ¢  ¶   £  h  @§  i  @•  ¶  ß  j  @®  k  @©  ™  ´  l  @¨  m  @≠  Æ  Ø  n  @∞  o  @±  ≤  ≥  p  @¥  q  @µ  ∂  ∑  r  @∏  s  @π  ∫  ª  t  @º  u  @Ω  æ  ø  v  @¿  w  @¡  ¬  √  x  @ƒ  y  @≈  ∆  «  z  @»  {  @…     À  |  @Ã  }  @Õ  Œ  œ  ~  @–    @—  “  ”  Ä  @‘  Å  @’  ÷  ◊  Ç  @ÿ  É  @Ÿ  ⁄  €  Ñ  @‹  Ö  @›  ﬁ  ﬂ    `  p  pZ     `          @  @  p  pˇXÑù                à                                   ·           }   ‚        ô     P        ë              å      ‰        ó     Â        ùH©¿      tU      tU                Ä Z     R        [           Ü   Z  u   Z     á            ƒ   B  º   B     ≈            f  
+  ^  
+     g         Ä   pU    pU               F    5       G           Ñ    |       Ö           &  oU    oU     '         5°›îw'év—gŒ6!      gﬁ^ﬂgﬁ^·H ‹?gﬂsè   í    O^firstPartyDomain=parrotsec.org&partitionKey=%28https%2Cparrotsec.org%29,:https://start.parrotsec.org/_next/static/chunks/431-a24ffc8fec2bc8b2.js strongly-framed 1 security-info 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 request-method GET response-head HTTP/2 200 
+date: Sat, 22 Mar 2025 06:18:52 GMT
+content-type: application/javascript
+content-length: 21876
+last-modified: Thu, 13 Mar 2025 19:23:45 GMT
+etag: "67d330c1-5574"
+accept-ranges: bytes
+strict-transport-security: max-age=31536000; includeSubDomains
+X-Firefox-Spdy: h2
+ original-response-headers date: Sat, 22 Mar 2025 06:18:52 GMT
+content-type: application/javascript
+content-length: 21876
+last-modified: Thu, 13 Mar 2025 19:23:45 GMT
+etag: "67d330c1-5574"
+accept-ranges: bytes
+strict-transport-security: max-age=31536000; includeSubDomains
+X-Firefox-Spdy: h2
+ ctid 2 uncompressed-len 0 net-response-time-onstart 1542 net-response-time-onstop 1548 alt-data 1;21876,javascript/moz-script-bytecode-20250224130137-8l alt-data-from-child 1  2/
