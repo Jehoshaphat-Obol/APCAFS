@@ -9,10 +9,32 @@ class RankEndpointTest(APITestCase):
     def setUp(self):
         self.url = reverse("api:rank")
         self.valid_payload = {
-            "job_post": "We are looking for a Python developer with Django experience.",
+            "job_post": (
+                "We are seeking a Senior Python Developer with expertise in Django to join our fast-growing team. "
+                "The ideal candidate should have at least 5 years of experience in backend development, with a deep "
+                "understanding of Django, PostgreSQL, RESTful API design, and cloud platforms like AWS or Azure. "
+                "Experience with Docker, Kubernetes, and CI/CD pipelines is highly desirable. Candidates should also "
+                "be comfortable working with JavaScript frameworks like React or Vue.js for frontend integration. "
+                "Additional experience in machine learning, data engineering, or fintech applications will be a plus. "
+                "Responsibilities include designing and maintaining scalable web applications, optimizing database queries, "
+                "ensuring application security, and collaborating with frontend developers and DevOps engineers in an Agile environment."
+            ),
             "applications": [
-                {"user_id": "123", "application": "I have 3 years of Django experience."},
-                {"user_id": "456", "application": "I am a JavaScript developer."}
+                # Highly Relevant
+                {"user_id": "101", "application": "I have 6 years of Python and Django experience, built REST APIs, optimized PostgreSQL, and deployed on AWS."},
+                {"user_id": "102", "application": "Django expert with 5+ years of experience. Strong background in PostgreSQL, CI/CD, and cloud deployments."},
+                {"user_id": "103", "application": "Backend developer specializing in Django and Flask, experienced with Docker, Kubernetes, and AWS."},
+                {"user_id": "104", "application": "Python engineer with extensive experience in Django, RESTful APIs, and Vue.js integration."},
+
+                # Slightly Relevant
+                {"user_id": "105", "application": "Full-stack developer with Node.js and React experience. Some experience working with Django."},
+                {"user_id": "106", "application": "Backend engineer with Flask expertise, PostgreSQL experience, and some knowledge of Django."},
+                {"user_id": "107", "application": "Worked with cloud services like AWS and Azure. Limited Django experience but strong Python skills."},
+
+                # Irrelevant
+                {"user_id": "108", "application": "Graphic designer with UI/UX expertise, no backend development experience."},
+                {"user_id": "109", "application": "Marketing specialist with SEO and digital advertising experience, no programming knowledge."},
+                {"user_id": "110", "application": "Customer service representative with experience in software inquiries but no coding background."}
             ]
         }
 
