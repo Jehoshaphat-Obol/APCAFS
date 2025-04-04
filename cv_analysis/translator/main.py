@@ -51,7 +51,7 @@ async def translate_text_chunks(text, target_language='en'):
         chunk = text[start:end]
         tasks.append(translate_chunk(translator, chunk, target_language))
         start = end + 1  # Move to the next chunk
-        await asyncio.sleep(1)  # Pause to avoid rate limiting
+        await asyncio.sleep(1.5)  # Pause to avoid rate limiting
 
     results = await asyncio.gather(*tasks)
     return ''.join(results)

@@ -1,0 +1,13 @@
+# Ignore __pycache__ directories
+__pycache__
+*.pyc
+*.pyo
+
+# Other files or directories to ignore
+.git
+*.log
+
+models/
+dataset/
+
+env/

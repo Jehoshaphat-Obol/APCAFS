@@ -2,13 +2,13 @@
 
 ### todo
 
-- [ ] deploy  
 
 ### in progress
 
 
 ### done
 
+- [ ] deploy  
 - [ ] run tests  
 - [ ] implement api  
 - [ ] write api tests  
