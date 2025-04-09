@@ -4,3 +4,6 @@
 **/x_api/*.ini
 **/x_api/cookies.json
 **/x_api/*.csv
+*/**/wheels/
+*/**/model/
+*/**/nltk_data/

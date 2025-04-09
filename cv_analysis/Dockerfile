@@ -1,35 +1,40 @@
-FROM debian:12.10-slim
+FROM python:3.11-slim
 
-# update
-RUN apt update
+ENV DEBIAN_FRONTEND=noninteractive
 
-# install python
-RUN apt install python3.11 -y
+# System deps
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    postgresql \
+    postgresql-contrib \
+    postgresql-server-dev-all \
+    git \
+    curl && \
+    rm -rf /var/lib/apt/lists/*
 
-# install python venv module
-RUN apt install python3.11-venv -y
+# Install pgvector
+RUN git clone https://github.com/pgvector/pgvector.git && \
+    cd pgvector && \
+    make && make install && \
+    cd .. && rm -rf pgvector
 
-# install pip
-RUN apt install python3-pip -y
+# Create db user & data folder
+RUN service postgresql start && \
+    su - postgres -c "psql -c \"CREATE USER jehoshaphat WITH PASSWORD 'strongpassword';\"" && \
+    su - postgres -c "psql -c \"CREATE DATABASE resume_db OWNER jehoshaphat;\"" && \
+    su - postgres -c "psql -d resume_db -c 'CREATE EXTENSION vector;'"
 
-# create app directory
-RUN mkdir -p /home/app
+# App setup
+WORKDIR /app
+COPY . /app
+RUN python -m venv env
+RUN . ./env/bin/activate && pip install --upgrade pip
+RUN . ./env/bin/activate && pip install --no-index --find-links=./wheels -r requirements.txt
+RUN . ./env/bin/activate && python -m nltk.downloader punkt  punkt_tab -d /app/api/nltk_data
+RUN . ./env/bin/activate && pip install pgvector
+CMD bash -c "service postgresql start && \
+    ./env/bin/python manage.py makemigrations && \
+    ./env/bin/python manage.py migrate && \
+    ./env/bin/python manage.py runserver 0.0.0.0:8000"
 
-# change the working directory to app
-WORKDIR /home/app
-
-# create a virtual environmen for python
-RUN python3.11 -m venv env
-
-
-# migrage source codes
-COPY . .
-
-# activate the python virtual environment and install dependencies
-RUN . ./env/bin/activate && pip install -r requirements.txt
-
-# run the app
-CMD ["sh", "-c", ". ./env/bin/activate && python3 manage.py runserver"]
-
-# expose the port number
-EXPOSE 8000

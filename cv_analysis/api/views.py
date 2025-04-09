@@ -1,92 +1,91 @@
-from django.shortcuts import render
+from django.db import connection
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from sentence_transformers import CrossEncoder
-import numpy as np
+from .serializers import RankRequestSerializer
+from .models import ProcessingRequest, JobPostChunk, ApplicationChunk
+from .utils import chunk_text, embed_chunks
 from collections import defaultdict
-from .serializers import RankRequestSerializer, RankResponseSerializer, ApplicationSerializer
-import pprint
-from translator.main import translate_text_chunks
-import asyncio
+import numpy as np
+import uuid
 
 
-# Load the reranking model
-model = CrossEncoder("tomaarsen/reranker-ModernBERT-base-gooaq-bce")
-
-# Chunking function with overlapping
-def chunk_text(text, max_tokens=500, overlap=20):
-    """
-    Chunk the text to ensure no chunk exceeds max_tokens, and each chunk overlaps by overlap tokens.
-    Returns a list of chunks, each with an id (for later tracking).
-    """
-    words = text.split()
-    chunks = []
-    current_chunk = []
-    current_length = 0
-    chunk_id = 0
-
-    for word in words:
-        current_chunk.append(word)
-        current_length += len(word) + 1  # account for space
-        
-        if current_length > max_tokens:
-            # Add the chunk with its ID and reset for the next chunk
-            text = " ".join(current_chunk)
-            # text = asyncio.run(translate_text_chunks(text))      
-            chunks.append({"chunk_id": chunk_id, "text": text})
-            chunk_id += 1
-            current_chunk = current_chunk[int(len(current_chunk) * (1 - overlap / current_length)):]
-            current_length = sum(len(word) + 1 for word in current_chunk)
-    
-    # Append the last chunk if it has any remaining content
-    if current_chunk:
-        text = " ".join(current_chunk)
-        # text = asyncio.run(translate_text_chunks(text))
-        chunks.append({"chunk_id": chunk_id, "text": text})
-    
-    return chunks
-
-
-# Create your views here.
 class RankView(APIView):
     def post(self, request):
         serializer = RankRequestSerializer(data=request.data)
-        if serializer.is_valid():
-            job_post = serializer.validated_data["job_post"]
-            applications = serializer.validated_data["applications"]
-            
-            # Chunk the job post and applications (job descriptions)
-            job_post_chunks = chunk_text(job_post)
-            application_chunks = []
-            user_mapping = {}
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-            for application in applications:
-                user_id = application["user_id"]
-                chunks = chunk_text(application["application"])
-                for chunk in chunks:
-                    application_chunks.append((user_id, chunk["text"]))
-                    user_mapping[chunk["text"]] = user_id
-            
-            # Perform ranking on all application chunks as a set
-            all_chunks_texts = [chunk_texts for _, chunk_texts in application_chunks]
-            rankings = []
-            for job_chunk in job_post_chunks:
-                rankings.extend(model.rank(job_chunk["text"], all_chunks_texts))
-            
-            # Associate scores to user_ids
-            user_scores = defaultdict(list)
-            for rank in rankings:
-                corpus_index = rank["corpus_id"]
-                chunk_texts = application_chunks[corpus_index][1]
-                user_id = user_mapping[chunk_texts]
-                user_scores[user_id].append(rank["score"])
+        job_post = serializer.validated_data["job_post"]
+        applications = serializer.validated_data["applications"]
 
-            
-            # Compute the average score for each user
-            results = [{"user_id": user_id, "score": float(np.mean(scores))} for user_id, scores in user_scores.items()]
-            pprint.pprint(results)
-            
-            return Response({"results": results}, status=status.HTTP_200_OK)
+        # 1. Create a processing request instance
+        processing_request = ProcessingRequest.objects.create()
+        processing_id = processing_request.id
 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        # 2. Chunk and embed the job post
+        job_chunks = chunk_text(job_post)
+        job_embeddings = embed_chunks(job_chunks)
+
+        for text, embedding in zip(job_chunks, job_embeddings):
+            JobPostChunk.objects.create(
+                processing=processing_request,
+                text=text,
+                embedding=embedding
+            )
+
+        # 3. Chunk and embed each application
+        for application in applications:
+            user_id = application["user_id"]
+            chunks = chunk_text(application["application"])
+            embeddings = embed_chunks(chunks)
+
+            for text, embedding in zip(chunks, embeddings):
+                ApplicationChunk.objects.create(
+                    processing=processing_request,
+                    user_id=user_id,
+                    text=text,
+                    embedding=embedding
+                )
+
+        # 4. Ranking logic using pgvector approximate nearest neighbor with union strategy
+        raw_scores = []
+
+        for job_embedding in job_embeddings:
+            with connection.cursor() as cursor:
+                cursor.execute("""
+                    SELECT user_id, embedding <#> %s::vector AS distance
+                    FROM api_applicationchunk
+                    WHERE processing_id = %s
+                """, [job_embedding, processing_id])
+
+                rows = cursor.fetchall()
+                # Save all results for union logic
+                raw_scores.extend([
+                    {"user_id": row[0], "distance": row[1]}
+                    for row in rows
+                ])
+
+        # 5. Group scores by user_id and average them
+        user_score_map = defaultdict(list)
+
+        for entry in raw_scores:
+            user_id = entry["user_id"]
+            distance = entry["distance"]
+            score = 1.0 - distance  # Invert distance for similarity
+            user_score_map[user_id].append(score)
+
+        # Final averaged result per user
+        results = [
+            {"user_id": user_id, "score": round(float(np.mean(scores)), 4)}
+            for user_id, scores in user_score_map.items()
+        ]
+
+        # Sort by descending score
+        results.sort(key=lambda x: x["score"], reverse=True)
+        
+        # 6. Cleanup
+        JobPostChunk.objects.filter(processing=processing_request).delete()
+        ApplicationChunk.objects.filter(processing=processing_request).delete()
+
+        return Response({"results": results}, status=status.HTTP_200_OK)

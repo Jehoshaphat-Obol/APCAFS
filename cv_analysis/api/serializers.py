@@ -7,11 +7,3 @@ class ApplicationSerializer(serializers.Serializer):
 class RankRequestSerializer(serializers.Serializer):
     job_post = serializers.CharField()
     applications = ApplicationSerializer(many=True)
-
-
-class ResultSerializer(serializers.Serializer):
-    user_id = serializers.CharField()
-    score = serializers.FloatField()
-    
-class RankResponseSerializer(serializers.Serializer):
-    results = ResultSerializer(many=True)
