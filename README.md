@@ -15,7 +15,7 @@ This repository utilizes Git Large File Storage (LFS) to manage large files. To 
     * Use the standard `git clone` command to clone the repository:
 
         ```bash
-        git clone [https://github.com/Jehoshaphat-Obol/APCAFS.git](https://github.com/Jehoshaphat-Obol/APCAFS.git)
+        git clone https://github.com/Jehoshaphat-Obol/APCAFS.git
         ```
 
 3.  **Install Git LFS in the Cloned Repository (if needed):**
