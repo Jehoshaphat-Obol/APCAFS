@@ -86,5 +86,5 @@ npm run dev
 - `frontend/src/routes/` - In this folder all routes shall be registered.
 - `frontend/src/layouts/` - a folder containing various layouts to be used by pages
 - `frontend/src/pages/` - a folder containing all pages for the project.
--  `frontend/src/components/ - a folder containing all ui components
-- `frontend/src/assets/ - a folder containing media assets for the project.
+-  `frontend/src/components/` - a folder containing all ui components
+- `frontend/src/assets/` - a folder containing media assets for the project.
