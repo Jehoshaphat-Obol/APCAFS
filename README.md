@@ -2,7 +2,7 @@
 
 ## Set up
 
-### Cloning this Repository with Large Files (Using Git LFS) {#cloning-instructions}
+### Cloning this Repository with Large Files Using Git LFS
 
 This repository utilizes Git Large File Storage (LFS) to manage large files. To clone the repository and retrieve these files correctly, follow these steps:
 
@@ -64,7 +64,8 @@ Check out the supplementary YouTube tutorial: https://youtu.be/6D6fVyFQD5A
 
 # Frontend
 
-please read through [the cloning process](#cloning-instructions) before proceeding
+please read through [the cloning process](#cloning-this-repository-with-large-files-using-git-lfs) before proceeding
+
 
 ## Set up
 In the directory '/frontend/' run the following commands
