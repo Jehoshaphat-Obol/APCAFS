@@ -2,7 +2,7 @@
 
 ## Set up
 
-### Cloning this Repository with Large Files (Using Git LFS)
+### Cloning this Repository with Large Files (Using Git LFS) {#cloning-instructions}
 
 This repository utilizes Git Large File Storage (LFS) to manage large files. To clone the repository and retrieve these files correctly, follow these steps:
 
@@ -62,3 +62,28 @@ Check out the supplementary YouTube tutorial: https://youtu.be/6D6fVyFQD5A
 ### Dataset
 [MBTI (Myers–Briggs Type Indicator) dataset](https://www.kaggle.com/datasets/datasnaek/mbti-type)
 
+# Frontend
+
+please read through [the cloning process](#cloning-instructions) before proceeding
+
+## Set up
+In the directory '/frontend/' run the following commands
+
+**Install dependencies**
+```shell
+npm install
+````
+
+**Run development Server**
+```shell
+npm run dev
+```
+
+## Project Structure
+
+- `frontend/src/services/` - This is where services that are used in many componenets are stored e.g Networking, Authentication, Authorization etc.
+- `frontend/src/routes/` - In this folder all routes shall be registered.
+- `frontend/src/layouts/` - a folder containing various layouts to be used by pages
+- `frontend/src/pages/` - a folder containing all pages for the project.
+-  `frontend/src/components/ - a folder containing all ui components
+- `frontend/src/assets/ - a folder containing media assets for the project.
