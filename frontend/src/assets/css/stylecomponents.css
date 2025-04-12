@@ -1,56 +1,67 @@
-   ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .nav-item {
-    margin-bottom: 20px;
-  }
-  
-  .nav-link {
-    display: flex;
-    align-items: center;
-    color: rgb(8, 14, 68);
-    text-decoration: none;
-    font-size: 17px;
-    padding: 10px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-  }
-  
-  .nav-link:hover {
-    background-color: #0d4174;
-    color: white; 
-    
-  }
-.collapse .nav-link:hover {
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  margin-bottom: 0.10rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  color: rgb(8, 14, 68);
+  text-decoration: none;
+  font-size: 17px;
+  padding: 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+/* .nav-link:hover {
   background-color: #0d4174;
   color: white; 
-  cursor: pointer;
+  
+}
+.collapse .nav-link:hover {
+background-color: #0d4174;
+color: white; 
+cursor: pointer;
 
-}#setting .nav-link {
-  cursor: pointer;
+} */
+#setting .nav-link {
+cursor: pointer;
+}
+
+/* .nav-link {
+cursor: pointer;
+} */
+
+
+
+.nav-link i {
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.link-text {
+  display: inline-block;
+}
+
+.link-text.large {
+  font-size: 20px;
+  font-weight: bold;
+}
+.nav-link .bi-chevron-down {
+transition: transform 0.3s ease;
+}
+
+.nav-link[aria-expanded="true"] .bi-chevron-down {
+transform: rotate(180deg);
 }
 
 
- 
-  
-  .nav-link i {
-    font-size: 20px;
-    margin-right: 12px;
-  }
-  
-  .link-text {
-    display: inline-block;
-  }
-  
-  .link-text.large {
-    font-size: 20px;
-    font-weight: bold;
-  }
 
 
 
-
-  
