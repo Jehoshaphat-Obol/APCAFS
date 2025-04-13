@@ -23,20 +23,13 @@
 
  
 </script>
+
 <template>
-    
-    <div class="row mb-3">
+ <div class="row mb-3">
                   
                   <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Submit Form</button>
+                    <textarea class="form-control" style="height: 100px"></textarea>
                   </div>
                 </div>
-    </template>
-    
-    <script>
-    export default {
-      name: 'Button'
-    }
-    </script>
-    
-  
+
+</template>
