@@ -1,18 +1,25 @@
 import net from './NetworkService'
+import endpoints from '../constants/endpoints';
 
 const session = null;
 
 export const login = (username, password) => {
     // TODO: implement login logic
+    response = net.get(`${endpoints.LOGIN}/?username=${username}&password=${password}`);
 
-    //on success, to be scheduled as per expiration
-    session = setInterval(isAuthenticated, 300000)
+    if(response.data.length == 0){
+        localStorage.removeItem("token");
+    }else{
+        localStorage.setItem("token", Math.random())
+        //on success, to be scheduled as per expiration
+        session = setInterval(()=>{isAuthenticated()}, 300000)
+    }
 }
 
 
 export const logout = () => {
     // TODO: implement logout logic
-
+    localStorage.removeItem("token");
     //on success
     clearInterval(session)
 
@@ -20,14 +27,19 @@ export const logout = () => {
 }
 
 
-export const signup = (username, password) => {
+export const signup = (username, email,password) => {
     // TODO: implement user registration logic
+    try {
+        response = net.post(`${endpoints.LOGIN}/`, {username, email, password});
+    }catch(e){
 
+    }
 }
 
 
 export const isAuthenticated = () => {
     // TODO: get token and ping the server to validate, if invalid clear session
+    user = localStorage.getItem("token")
     // if expired refresh else logout
     logout()
 
