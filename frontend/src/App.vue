@@ -1,16 +1,13 @@
 <script>
-    import HelloWorld from './components/HelloWorld.vue'
+  import "./assets/vendors/bootstrap/css/bootstrap.min.css"
+  import "./assets/vendors/bootstrap-icons/bootstrap-icons.css"
+  import "./assets/vendors/boxicons/css/boxicons.min.css"
+  import "./assets/vendors/quill/quill.snow.css"
+  import "./assets/vendors/quill/quill.bubble.css"
+  import "./assets/vendors/remixicon/remixicon.css"
+  import "./assets/vendors/simple-datatables/style.css"
 
-    import "./assets/vendors/bootstrap/css/bootstrap.min.css"
-    import "./assets/vendors/bootstrap-icons/bootstrap-icons.css"
-    import "./assets/vendors/boxicons/css/boxicons.min.css"
-    import "./assets/vendors/quill/quill.snow.css"
-    import "./assets/vendors/quill/quill.bubble.css"
-    import "./assets/vendors/remixicon/remixicon.css"
-    import "./assets/vendors/simple-datatables/style.css"
-  
-    import "./assets/css/style.css"
-
+  import "./assets/css/style.css"
 
   import "./assets/vendors/apexcharts/apexcharts.min.js"
   import "./assets/vendors/bootstrap/js/bootstrap.bundle.min.js"
@@ -23,23 +20,21 @@
 
   import "./assets/js/main.js"
 
-import ErrorLayout from './Layouts/ErrorLayout.vue'  
+  import LoginPage from "./pages/LoginPage.vue"
 
-
-  export default {
-    name: 'Dashboard',
-    components: {
-      ErrorLayout
-    }
+export default {
+  name: 'App',
+  components: {
+    LoginPage
   }
+}
 </script>
 
+
 <template>
- <ErrorLayout
-  code="500"
-  message="Internal server error"
- />
+  <router-view></router-view>
 </template>
 
-<style scoped>
-</style>
+<script>
+
+</script>

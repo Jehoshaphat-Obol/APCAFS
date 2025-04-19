@@ -1,7 +1,11 @@
-import { currentUser } from "./AuthenticationService";
+import AuthenticationService from "./AuthenticationService";
 
-export default getUserRole = () => {
+const getUserRole = () => {
     // TODO: check if the user is authenticated
 
     // TODO: get the current user and return the role
+
+    return "SuperAdmin";
 }
+
+export default getUserRole
