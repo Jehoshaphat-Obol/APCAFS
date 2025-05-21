@@ -5,6 +5,7 @@ personality_assessment/dataset/wikipedia.txt filter=lfs diff=lfs merge=lfs -text
 
 # Exception for specific .txt files
 \!personality_assessment/requirements.txt
+\!personality_assessment/notebooks/report.csv
 \!cv_analysis/requirements.txt
 \!twitter/firefox_profile/pkcs11.txt
 \!twitter/requirements.txt

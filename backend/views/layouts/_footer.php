@@ -1,0 +1,1 @@
+<p class="mb-0">&copy; <?= date('Y') ?> My Company. All rights reserved.</p>
