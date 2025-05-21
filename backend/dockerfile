@@ -4,17 +4,17 @@ FROM php:8.1-cli
 WORKDIR /app
 
 # Install system packages
-RUN apt-get update && apt-get install -y \
-    default-mysql-server \
-    unzip \
-    git \
-    curl \
-    nano \
-    libzip-dev \
-    libonig-dev \
-    libxml2-dev \
-    libpng-dev \
-    supervisor
+RUN apt-get update
+RUN apt-get install -y default-mysql-server 
+RUN apt-get install -y unzip 
+RUN apt-get install -y git 
+RUN apt-get install -y curl 
+RUN apt-get install -y nano 
+RUN apt-get install -y libzip-dev 
+RUN apt-get install -y libonig-dev 
+RUN apt-get install -y libxml2-dev 
+RUN apt-get install -y libpng-dev 
+RUN apt-get install -y superviso
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql mysqli
