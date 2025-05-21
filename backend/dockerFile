@@ -1,0 +1,32 @@
+FROM php:8.1-cli
+
+# Set working directory
+WORKDIR /app
+
+# Install system packages
+RUN apt-get update && apt-get install -y \
+    default-mysql-server \
+    unzip \
+    git \
+    curl \
+    nano \
+    libzip-dev \
+    libonig-dev \
+    libxml2-dev \
+    libpng-dev \
+    supervisor
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo pdo_mysql mysqli
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Add supervisor config
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Expose port
+EXPOSE 8080
+
+# Start supervisor (which starts MySQL + PHP dev server)
+CMD ["/usr/bin/supervisord"]
