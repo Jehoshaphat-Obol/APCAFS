@@ -22,6 +22,10 @@ RUN docker-php-ext-install pdo pdo_mysql mysqli
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# ensure data persistance/
+VOLUME /var/lib/mysql
+
+
 # Add supervisor config
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
