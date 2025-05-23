@@ -1,36 +1,80 @@
-FROM php:8.1-cli
+FROM debian:bullseye
 
-# Set working directory
+ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /app
 
-# Install system packages
+# Update package index
 RUN apt-get update
-RUN apt-get install -y default-mysql-server 
-RUN apt-get install -y unzip 
-RUN apt-get install -y git 
-RUN apt-get install -y curl 
-RUN apt-get install -y nano 
-RUN apt-get install -y libzip-dev 
-RUN apt-get install -y libonig-dev 
-RUN apt-get install -y libxml2-dev 
-RUN apt-get install -y libpng-dev 
-RUN apt-get install -y superviso
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo pdo_mysql mysqli
+# Install system tools one-by-one
+RUN apt-get install -y curl
+RUN apt-get install -y nano
+RUN apt-get install -y unzip
+RUN apt-get install -y git
+RUN apt-get install -y gnupg2
+RUN apt-get install -y lsb-release
+RUN apt-get install -y apt-transport-https
+RUN apt-get install -y ca-certificates
+RUN apt-get install -y libzip-dev
+RUN apt-get install -y libonig-dev
+RUN apt-get install -y libxml2-dev
+RUN apt-get install -y libpng-dev
+RUN apt-get install -y libcurl4-openssl-dev
+RUN apt-get install -y libaio1
+RUN apt-get install -y libncurses5
+RUN apt-get install -y libncursesw5
+RUN apt-get install -y supervisor
+
+RUN apt-get update --fix-missing
+# Install MySQL server (Debian default is MySQL 8.0)
+RUN apt-get install -y gnupg wget lsb-release
+
+# Add MySQL APT repo for 8.0
+RUN wget https://dev.mysql.com/get/mysql-apt-config_0.8.29-1_all.deb
+RUN DEBIAN_FRONTEND=noninteractive dpkg -i mysql-apt-config_0.8.29-1_all.deb
+RUN apt-get update
+
+# Now install MySQL 8.0
+RUN apt-get install -y mysql-server
+
+# Add SURY PHP repository to get PHP 8.2+
+RUN apt-get install -y lsb-release apt-transport-https ca-certificates wget gnupg2
+RUN wget -qO /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
+RUN apt-get update
+
+# Install PHP 8.2 and common extensions
+RUN apt-get install -y php8.2-cli
+RUN apt-get install -y php8.2-mysql
+RUN apt-get install -y php8.2-mbstring
+RUN apt-get install -y php8.2-xml
+RUN apt-get install -y php8.2-zip
+RUN apt-get install -y php8.2-gd
+RUN apt-get install -y php8.2-curl
+
+
+# Clean up after all installations
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Set MySQL root password (runtime)
+ENV MYSQL_ROOT_PASSWORD=""
+
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# ensure data persistance/
-VOLUME /var/lib/mysql
+RUN mkdir -p /var/run/mysqld
+RUN chown -R mysql:root /var/run/mysqld
 
 
-# Add supervisor config
+# Supervisor configuration
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Expose port
-EXPOSE 8080
+# Expose ports for app and MySQL
+EXPOSE 8080 3306
 
-# Start supervisor (which starts MySQL + PHP dev server)
-CMD ["/usr/bin/supervisord"]
+# Data persistence
+VOLUME /var/lib/mysql
+
+# Launch supervisor to run both MySQL and PHP built-in server
+CMD ["/usr/bin/supervisord", "-n"]
