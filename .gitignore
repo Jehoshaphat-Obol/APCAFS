@@ -8,6 +8,8 @@
 */**/model/
 */**/nltk_data/
 
+*/**/dataset/
+
 # Logs
 */**/logs
 */**/*.log

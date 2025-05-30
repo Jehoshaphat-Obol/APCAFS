@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2025 at 06:00 PM
+-- Generation Time: May 24, 2025 at 12:21 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -26,6 +26,10 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `auth_assignment`
 --
+
+CREATE DATABASE IF NOT EXISTS apcafs;
+USE apcafs;
+
 
 CREATE TABLE `auth_assignment` (
   `item_name` varchar(64) NOT NULL,
@@ -928,7 +932,7 @@ ALTER TABLE `subscription_plan`
 --
 ALTER TABLE `test_question`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `idx-unique-question_company-test-question` (`question_company_id`,`question_test_id`,`question`) USING HASH,
+  ADD UNIQUE KEY `idx-unique-question_company-test-question` (`question_company_id`,`question_test_id`,`question`(255)) USING HASH,
   ADD KEY `idx-test_question-question_company_id` (`question_company_id`),
   ADD KEY `idx-test_question-question_test_id` (`question_test_id`),
   ADD KEY `idx-test_question-question_status_id` (`question_status_id`),
