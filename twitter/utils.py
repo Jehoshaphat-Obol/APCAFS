@@ -181,8 +181,7 @@ def check_account_existence(driver, profile_url):
         # Use JavaScript to get the entire body text of the page
         time.sleep(2)
         body_text = driver.execute_script("return document.body.innerText").lower()
-        
-        # print(f"body text: {body_text}")
+        print(f"body text: {body_text}")
 
         # Check if the target text exists in the body text
         if target_text.lower() in body_text:

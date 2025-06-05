@@ -1,41 +1,44 @@
-FROM debian:12.10-slim
+FROM python:3.11-slim
 
-# update
-RUN apt update
+# Install system dependencies
+RUN apt update && apt install -y \
+    firefox-esr \
+    libgtk-3-0 \
+    libx11-xcb1 \
+    libdbus-glib-1-2 \
+    libxt6 \
+    libxcomposite1 \
+    libxrandr2 \
+    libasound2 \
+    libxdamage1 \
+    libpango-1.0-0 \
+    libcups2 \
+    wget \
+    firefox-esr \
+    ca-certificates \
+    && apt clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# install firefox
-RUN apt install firefox-esr -y
-
-# install python
-RUN apt install python3.11 -y
-
-# install python venv module
-RUN apt install python3.11-venv -y
-
-# install pip
-RUN apt install python3-pip -y
-
-# create app directory
-RUN mkdir -p /home/app
-
-# change the working directory to app
+# Set working directory
 WORKDIR /home/app
 
-# create a virtual environmen for python
-RUN python3.11 -m venv env
+# Copy requirements and install Python packages
+COPY requirements.txt .
+RUN python -m venv env && \
+    ./env/bin/pip install --upgrade pip && \
+    ./env/bin/pip install -r requirements.txt
 
-
-# migrage source codes
+# Copy the rest of your source code
 COPY . .
 
-# activate the python virtual environment and install dependencies
-RUN . ./env/bin/activate && pip install -r requirements.txt
-
-# make the firefox_profile persistent
+# Make the Firefox profile persistent
 VOLUME ["/home/app/firefox_profile"]
 
-# run the app
-CMD ["sh", "-c", ". ./env/bin/activate && python3 ./api.py"]
+RUN apt install -y libgtk-3-0 libx11-xcb1 libdbus-glib-1-2 libxt6 libxcomposite1 libxrandr2 libasound2 libxdamage1 libpango-1.0-0 libcups2
 
-# expose the port number
+
+# Expose the port your app runs on
 EXPOSE 5000
+
+# Start the app using the venv Python interpreter
+CMD ["./env/bin/python", "api.py"]

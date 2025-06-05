@@ -59,6 +59,8 @@ def get_article():
     
     link = data.get("link")
     articles = get_articles(driver, link)
+
+    print(articles)
     
     return jsonify(
         {
