@@ -29,19 +29,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]) ?>
         <?php endif; ?>
-    </p>
 
-<div class="container mt-4">
-    <div class="d-flex justify-content-end mb-3">
         <?= Html::button('🖨️ Print', ['class' => 'btn btn-outline-primary me-2', 'onclick' => 'window.print()']) ?>
         <?= Html::a('👁️ Preview PDF', ['cv-preview', 'id' => $model->id], ['class' => 'btn btn-outline-success', 'target' => '_blank']) ?>
         <?= Html::a('⬇️ Download PDF', ['profile/pdf', 'id' => $model->id], ['class' => 'btn btn-outline-success']) ?>
-    </div>
+    </p>
 
+<div class="container mt-4">
+    
     <div class="row">
         <!-- Account Information -->
-        <div class="col-md-6">
-            <div class="bg-white shadow rounded p-4 mb-4 h-100">
+        <div class="col-md-6 mb-4">
+            <div class="bg-white shadow rounded p-4 mb-4 mt-4 h-100">
                 <h4 class="border-bottom pb-2 mb-3 text-primary">👤 Account Information</h4>
                 <?= DetailView::widget([
                     'model' => $model,
@@ -55,8 +54,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <!-- Personal Details -->
-        <div class="col-md-6">
-            <div class="bg-white shadow rounded p-4 mb-4 h-100">
+        <div class="col-md-6 mb-4">
+            <div class="bg-white shadow rounded p-4 mb-4 mt-4 h-100">
                 <h4 class="border-bottom pb-2 mb-3 text-success">🧍 Personal Details</h4>
                 <?= DetailView::widget([
                     'model' => $model,
@@ -72,8 +71,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <!-- Location Info -->
-        <div class="col-md-6">
-            <div class="bg-white shadow rounded p-4 mb-4 h-100">
+        <div class="col-md-6 mb-4">
+            <div class="bg-white shadow rounded p-4 mb-4 mt-4 h-100">
                 <h4 class="border-bottom pb-2 mb-3 text-info">📍 Address & Location</h4>
                 <?= DetailView::widget([
                     'model' => $model,
@@ -87,9 +86,24 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
 
+        <!-- Phones -->
+        <div class="col-md-6 mb-4">
+            <div class="bg-white shadow rounded p-4 mb-4 mt-4 h-100">
+                <h4 class="border-bottom pb-2 mb-3 text-primary">📞 Phone Numbers</h4>
+                <ul class="list-group list-group-flush">
+                    <?php foreach ($model->phoneNumbers as $phone): ?>
+                        <li class="list-group-item">
+                            <?= Html::encode($phone->phone_number) ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+
+
         <!-- Social Media -->
-        <div class="col-md-6">
-            <div class="bg-white shadow rounded p-4 mb-4 h-100">
+        <div class="col-md-6 mb-4">
+            <div class="bg-white shadow rounded p-4 mb-4 mt-4 h-100">
                 <h4 class="border-bottom pb-2 mb-3 text-warning">💬 Biography & Media</h4>
                 <?= DetailView::widget([
                     'model' => $model,
@@ -103,34 +117,148 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <!-- Education -->
-        <div class="col-md-6">
-            <div class="bg-white shadow rounded p-4 mb-4 h-100">
-                <h4 class="border-bottom pb-2 mb-3 text-secondary">🎓 Education</h4>
-                <!-- You can use GridView or loop data here -->
-                <p>Education data placeholder...</p>
-            </div>
+        <div class="col-md-6 mb-4">
+        <div class="bg-white shadow rounded p-4 mb-4 mt-4 h-100">
+            <h4 class="border-bottom pb-2 mb-3 text-secondary">🎓 Education</h4>
+
+            <?php if (!empty($model->educations)): ?>
+                <ul class="list-group list-group-flush">
+                    <?php foreach ($model->educations as $edu): ?>
+                        <li class="list-group-item">
+                            <p><strong>Degree:</strong> <?= Html::encode($edu->education_degree_name) ?></p>
+                            <p><strong>Programme:</strong> <?= Html::encode($edu->education_programme_name) ?></p>
+                            <p><strong>University:</strong> <?= Html::encode($edu->education_university_name) ?></p>
+                            <p><strong>Graduation Date:</strong> <?= Html::encode($edu->education_graduation_date) ?></p>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php else: ?>
+                <p class="text-muted">No education records found.</p>
+            <?php endif; ?>
+        </div>
         </div>
 
         <!-- Experience -->
-        <div class="col-md-6">
-            <div class="bg-white shadow rounded p-4 mb-4 h-100">
+        <div class="col-md-6 mb-4">
+            <div class="bg-white shadow rounded p-4 mb-4 mt-4 h-100">
                 <h4 class="border-bottom pb-2 mb-3 text-dark">💼 Experience</h4>
-                <p>Experience data placeholder...</p>
+                
+                <?php if (!empty($model->workExperiences)): ?>
+                    <ul class="list-group list-group-flush">
+                    <?php foreach ($model->workExperiences as $exp): ?>
+                        <li class="list-group-item">
+                            <p><strong>Job Title:</strong> <?= Html::encode($exp->experience_job_title) ?></p>
+                            <p><strong>Company:</strong> <?= Html::encode($exp->experience_company_name) ?></p>
+                            <p><strong>From:</strong> <?= Html::encode($exp->experience_from) ?> 
+                                <strong>To:</strong> <?= Html::encode($exp->experience_to ?: 'Present') ?></p>
+                        </li>
+                    <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p class="text-muted">No experience records found.</p>
+                <?php endif; ?>
             </div>
         </div>
 
+        <!-- Skill -->
+        <div class="col-md-6 mb-4">
+            <div class="bg-white shadow rounded p-4 mb-4 mt-4 h-100">
+                <h4 class="border-bottom pb-2 mb-3 text-info">🛠️ Skills</h4>
+
+                <?php if (!empty($model->skills)): ?>
+                    <ul class="list-group list-group-flush">
+                        <?php foreach ($model->skills as $skill): ?>
+                            <li class="list-group-item">
+                                <p><strong>Type:</strong> <?= Html::encode($skill->skill_type) ?></p>
+                                <p><strong>Name:</strong> <?= Html::encode($skill->skill_name) ?></p>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p class="text-muted">No skills found.</p>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <!-- awards -->
+        <div class="col-md-6 mb-4">
+            <div class="bg-white shadow rounded p-4 mb-4 mt-4 h-100">
+                <h4 class="border-bottom pb-2 mb-3 text-warning">🏆 Awards</h4>
+
+                <?php if (!empty($model->awards)): ?>
+                    <ul class="list-group list-group-flush">
+                        <?php foreach ($model->awards as $award): ?>
+                            <li class="list-group-item">
+                                <p><strong>Title:</strong> <?= Html::encode($award->award_title) ?></p>
+                                <p><strong>Organization:</strong> <?= Html::encode($award->award_organization_name) ?></p>
+                                <p><strong>Issue Number:</strong> <?= Html::encode($award->award_issue_number) ?></p>
+                                <small class="text-muted">
+                                    <strong>Date of Issue:</strong> <?= Html::encode($award->award_date_of_issue) ?>
+                                </small>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p class="text-muted">No award records found.</p>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <!-- languages -->
+        <div class="col-md-6 mb-4">
+            <div class="bg-white shadow rounded p-4 mb-4 mt-4 h-100">
+                <h4 class="border-bottom pb-2 mb-3 text-info">🌐 Languages</h4>
+
+                <?php if (!empty($model->languages)): ?>
+                    <ul class="list-group list-group-flush">
+                        <?php foreach ($model->languages as $language): ?>
+                            <li class="list-group-item">
+                                <?= Html::encode($language->language_name) ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p class="text-muted">No language records found.</p>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <!-- publications -->
+        <div class="col-md-6 mb-4">
+            <div class="bg-white shadow rounded p-4 mb-4 mt-4 h-100">
+                <h4 class="border-bottom pb-2 mb-3 text-primary">📚 Publications</h4>
+
+                <?php if (!empty($model->publications)): ?>
+                    <ul class="list-group list-group-flush">
+                        <?php foreach ($model->publications as $publication): ?>
+                            <li class="list-group-item">
+                                <strong><?= Html::encode($publication->publication_title) ?></strong><br>
+                                <?= Html::encode($publication->publication_publisher_name) ?><br>
+                                <small class="text-muted">
+                                    Published on: <?= Html::encode($publication->publication_date_of_publication) ?>
+                                </small>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p class="text-muted">No publication records found.</p>
+                <?php endif; ?>
+            </div>
+        </div>
+
+
         <!-- Referees -->
-        <div class="col-md-12">
-            <div class="bg-white shadow rounded p-4 mb-4">
+        <!-- <div class="col-md-12">
+            <div class="bg-white shadow rounded p-4 mb-4 mt-4">
                 <h4 class="border-bottom pb-2 mb-3 text-danger">📇 Referees</h4>
                 <p>Referee information placeholder...</p>
             </div>
-        </div>
+        </div> -->
 
         <!-- System Info -->
         <?php if (Yii::$app->user->can('super-admin') || Yii::$app->user->can('applicant')): ?>
         <div class="col-md-12">
-            <div class="bg-light shadow-sm rounded p-4 mb-4">
+            <div class="bg-light shadow-sm rounded p-4 mb-4 mt-4">
                 <h4 class="border-bottom pb-2 mb-3 text-muted">⚙️ System Information</h4>
                 <?= DetailView::widget([
                     'model' => $model,
