@@ -139,6 +139,15 @@ class JobPostController extends Controller
     }
 
     /**
+     * Trigger button
+     * 
+     */
+    public function actionTrigger()
+    {
+        
+    }
+
+    /**
      * Displays a single JobPost model.
      * @param int $id ID
      * @return string

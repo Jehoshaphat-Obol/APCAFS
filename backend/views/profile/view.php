@@ -29,15 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]) ?>
         <?php endif; ?>
-    </p>
 
-<div class="container mt-4">
-    <div class="d-flex justify-content-end mb-3">
         <?= Html::button('🖨️ Print', ['class' => 'btn btn-outline-primary me-2', 'onclick' => 'window.print()']) ?>
         <?= Html::a('👁️ Preview PDF', ['cv-preview', 'id' => $model->id], ['class' => 'btn btn-outline-success', 'target' => '_blank']) ?>
         <?= Html::a('⬇️ Download PDF', ['profile/pdf', 'id' => $model->id], ['class' => 'btn btn-outline-success']) ?>
-    </div>
+    </p>
 
+<div class="container mt-4">
+    
     <div class="row">
         <!-- Account Information -->
         <div class="col-md-6 mb-4">
