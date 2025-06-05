@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\AddJobPost;
 use app\models\JobPost;
+use app\models\ApplyJob;
 use app\models\JobPostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -139,20 +140,46 @@ class JobPostController extends Controller
     }
 
     /**
-     * Trigger button
-     * 
+     * Apply button
      */
-    public function actionTrigger()
+    public function actionApply($id)
     {
+        try
+        {
+            if(Yii::$app->user->can('applicant'))
+            {
+                $model = $this->findModel($id);
 
+                if($model != null)
+                {
+                    $application = new ApplyJob([
+                        'post_company_id' => $model->post_company_id,
+                        'post_job_id' => $model->id,
+                    ]);
+
+                    if ($application->apply()) {
+                        Yii::$app->session->setFlash('success', 'Maombi ya kazi yamewasilishwa kwa mafanikio.');
+                        return $this->redirect(['job-post/view', 'id' => $model->id]);
+                    } else {
+                        Yii::$app->session->setFlash('error', 'Imeshindikana kutuma maombi. Tafadhali jaribu tena.');
+                        return $this->redirect(['job-post/view', 'id' => $model->id]);
+                    }
+                }
+            throw new NotFoundHttpException('The requested page does not exist.');
+            }
+            throw new ForbiddenHttpException();
+        } catch(ForbiddenHttpException $e)
+        {
+            return $this->redirect(['error']);
+        }
     }
 
     /**
-     * Apply button
+     * cancel jop apply button
      */
-    public function actionApply()
+    public function actionCancel($id)
     {
-        
+        return 'Cancel Button'; 
     }
 
     /**
