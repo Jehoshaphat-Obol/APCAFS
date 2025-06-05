@@ -52,7 +52,7 @@
 
             try
             {
-                if(Yii::$app->user->can('company-admin') || Yii::$app->user->can('hr'))
+                if(Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr'))
                 {
                     $profile = new StaffProfile();
                     $profile->staff_company_id = Yii::$app->user->identity->company_id;
@@ -66,7 +66,7 @@
 
                     if(!$profile->save())
                     {
-                        throw new \Exception('Failed to register New company'. Html::errorSummary($company));
+                        throw new \Exception('Failed to save your profile'. Html::errorSummary($profile));
                     }
 
                     $transaction->commit();

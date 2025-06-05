@@ -38,7 +38,7 @@ class UserController extends Controller
                     [
                         'actions' => ['index', 'view', 'create', 'update', 'delete', 'restore', 'deleted-users', 'change-password'],
                         'allow' => true,
-                        'roles' => ['super-admin', 'company-admin'],
+                        'roles' => ['super-admin', 'company-admin', 'manager', 'hr'],
                     ],
                     [
                         'actions' => ['change-password'],
@@ -81,7 +81,7 @@ class UserController extends Controller
     {
         try
         {
-            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('hr'))
             {
                 $searchModel = new UserSearch();
                 if($searchModel !== null)
@@ -274,7 +274,24 @@ class UserController extends Controller
                         'company_name' => SORT_ASC,
                         ])->all();
 
+                        // Get all roles assigned to the user
+                        $auth = Yii::$app->authManager;
+                        $roles = $auth->getRolesByUser($model->id);
+                        $model->roles = array_keys($roles); 
+
+
                     if ($this->request->isPost && $model->load($this->request->post())) {
+
+                        // Futa role zote alizokuwa nazo awali
+                        $auth->revokeAll($model->id);
+
+                        // Kuchagua role mpya
+                        if (!empty($model->roles)) {
+                            $roleObj = $auth->getRole($model->roles); // Pata role iliyo chaguliwa
+                            if ($roleObj) {
+                                $auth->assign($roleObj, $model->id); // Teua role mpya
+                            }
+                        }
 
                         $model->user_updated_by = Yii::$app->user->id;
                         if(!$model->save())
@@ -395,7 +412,7 @@ class UserController extends Controller
 
         try
         {
-            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))
             {
                 if($model !== null)
                 {

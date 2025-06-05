@@ -6,10 +6,13 @@ use yii\helpers\Html;
 /** @var app\models\Profile $model */
 
 $this->title = Yii::t('app', 'Update Profile: {name}', [
-    'name' => $model->id,
+    'name' => $model->profile_last_name,
 ]);
+if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr'))
+{
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Profiles'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+}
+$this->params['breadcrumbs'][] = ['label' => $model->profile_last_name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="profile-update">
@@ -18,6 +21,8 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
+        'regions' => $regions,
+        'districts' => $districts
     ]) ?>
 
 </div>

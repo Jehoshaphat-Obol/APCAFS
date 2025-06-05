@@ -31,7 +31,7 @@ class DashboardController extends Controller
                     [
                         'actions' => ['dashboard'],
                         'allow' => true,
-                        'roles' => ['super-admin', 'company-admin', 'hr', 'applicant'],
+                        'roles' => ['super-admin', 'company-admin', 'manager', 'hr', 'applicant'],
                     ],
                 ],
             ],
@@ -64,7 +64,7 @@ class DashboardController extends Controller
     {
         try
         {
-            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))
             {
                 return $this->render('index');
             }

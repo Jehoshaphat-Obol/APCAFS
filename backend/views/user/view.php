@@ -32,18 +32,48 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'company_id',
             'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
+            [
+            'attribute' => 'auth_key',
+            'visible' => Yii::$app->user->can('super-admin'),
+            ],
+            [
+            'attribute' => 'password_hash',
+            'visible' => Yii::$app->user->can('super-admin'),
+            ],
+            [
+                'attribute' => 'password_reset_token',
+                'visible' => Yii::$app->user->can('super-admin'),
+            ],
             'email:email',
-            'verification_token',
+            [
+                'attribute' => 'verification_token',
+                'visible' => Yii::$app->user->can('super-admin'),
+            ],
             'user_status_id',
-            'created_at',
-            'user_created_by',
-            'updated_at',
-            'user_updated_by',
-            'user_deleted_at',
-            'user_deleted_by',
+            [
+            'attribute' => 'created_at',
+            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+            ],
+            [
+                'attribute' => 'user_created_by',
+                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+            ],
+            [
+            'attribute' => 'updated_at',
+            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+            ],
+            [
+                'attribute' => 'user_updated_by',
+                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+            ],
+            [
+            'attribute' => 'user_deleted_at',
+            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+            ],
+            [
+                'attribute' => 'user_deleted_by',
+                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+            ],
         ],
     ]) ?>
 

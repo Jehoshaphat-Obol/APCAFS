@@ -36,7 +36,7 @@ class WorkExperience extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'work_experience';
+        return '{{%work_experience}}';
     }
 
     /**

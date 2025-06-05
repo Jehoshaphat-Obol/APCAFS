@@ -28,8 +28,12 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
 <main class="container">
     <div class="row justify-content-center">
-        <h2 class="text-center" style=""><?= Yii::$app->name ?></h2>
-        <div class="outer-cover col-lg-6 col-md-8 col-sm-10 px-4 py-3 shadow rounded bg-white">
+        
+        <h2 class="text-center">
+            <img src="<?= Yii::getAlias('@web') ?>/images/logo/logo_blue.png" alt="Logo" style="height: 350px; margin-top: -100px;">
+        </h2>
+
+        <div class="outer-cover col-lg-6 col-md-8 col-sm-10 px-4 py-3 shadow rounded bg-white" style="margin-top: -150px;">
             <?= Alert::widget() ?>
             <?= $content ?>
             <?php if (!empty($this->blocks['register'])): ?>
