@@ -8,6 +8,7 @@ use yii\helpers\Html;
 use app\models\Company;
 use app\models\User;
 use app\models\StatusLookup;
+use yii\helpers\ArrayHelper;
 
 class AddUser extends Model
 {
@@ -15,6 +16,7 @@ class AddUser extends Model
     public $username;
     public $email;
     public $password;
+    public $roles;
 
     /**
      * {@inheritdoc}
@@ -30,6 +32,7 @@ class AddUser extends Model
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This email address has already been taken.'],
+            ['roles', 'safe'], // Hapa tunaruhusu roles
         ];
     }
 
@@ -88,18 +91,28 @@ class AddUser extends Model
                     throw new \Exception('Failed to save user: ' . implode(', ', $user->getErrorSummary(true)));
                 }
 
-                // Assign Role
                 $auth = Yii::$app->authManager;
-                $role = Yii::$app->user->can('super-admin') ? 'company-admin' : 'hr';
-                $roleAssignment = $auth->getRole($role);
-
-                if (!$roleAssignment) {
-                    throw new \Exception("Role '{$role}' not found in authManager");
+            
+                // Assign role from the drop-down
+                if ($this->roles) {
+                    $roleObj = $auth->getRole($this->roles); // Get the selected role
+                    if ($roleObj) {
+                        $auth->assign($roleObj, $user->id); // Assign the role
+                    }
                 }
 
-                if (!$auth->assign($roleAssignment, $user->id)) {
-                    throw new \Exception("Unable to assign role");
-                }
+                // // Assign Role
+                // $auth = Yii::$app->authManager;
+                // $role = Yii::$app->user->can('super-admin') ? 'company-admin' : 'hr';
+                // $roleAssignment = $auth->getRole($role);
+
+                // if (!$roleAssignment) {
+                //     throw new \Exception("Role '{$role}' not found in authManager");
+                // }
+
+                // if (!$auth->assign($roleAssignment, $user->id)) {
+                //     throw new \Exception("Unable to assign role");
+                // }
 
                 // Commit transaction if all goes well
                 $transaction->commit();
@@ -142,17 +155,26 @@ class AddUser extends Model
                     throw new \Exception('Failed to save user: ' . implode(', ', $user->getErrorSummary(true)));
                 }
 
-                // Assign Role
                 $auth = Yii::$app->authManager;
-                $roleAssignment = $auth->getRole('hr');
-
-                if (!$roleAssignment) {
-                    throw new \Exception("Role '{$role}' not found in authManager");
+            
+                // Assign role from the drop-down
+                if ($this->roles) {
+                    $roleObj = $auth->getRole($this->roles); // Get the selected role
+                    if ($roleObj) {
+                        $auth->assign($roleObj, $user->id); // Assign the role
+                    }
                 }
+                // Assign Role
+                // $auth = Yii::$app->authManager;
+                // $roleAssignment = $auth->getRole('hr');
 
-                if (!$auth->assign($roleAssignment, $user->id)) {
-                    throw new \Exception("Unable to assign role");
-                }
+                // if (!$roleAssignment) {
+                //     throw new \Exception("Role '{$role}' not found in authManager");
+                // }
+
+                // if (!$auth->assign($roleAssignment, $user->id)) {
+                //     throw new \Exception("Unable to assign role");
+                // }
 
                 // Commit transaction if all goes well
                 $transaction->commit();
@@ -256,6 +278,12 @@ class AddUser extends Model
             ->setSubject('Akaunti Yako Imekamilika - ' . Yii::$app->name)
             ->setHtmlBody($emailBody)
             ->send();
+    }
+
+    // Method ya kupata roles zote
+    public function getRolesList()
+    {
+        return ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'name');
     }
 
 }

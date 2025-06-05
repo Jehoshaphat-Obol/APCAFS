@@ -45,6 +45,38 @@ use Yii;
 class Profile extends \yii\db\ActiveRecord
 {
 
+    // phone number details
+        public $phone_number;
+
+        // work experience details
+        public $experience_job_title;
+        public $experience_company_name;
+        public $experience_from;
+        public $experience_to;
+
+        // education details
+        public $education_degree_name;
+        public $education_programme_name;
+        public $education_university_name;
+        public $education_graduation_date;
+
+        // skill details
+        public $skill_type;
+        public $skill_name;
+
+        // award details
+        public $award_title;
+        public $award_organization_name;
+        public $award_issue_number;
+        public $award_date_of_issue;
+
+        // language details
+        public $language_name;
+
+        // publication details
+        public $publication_title;
+        public $publication_publisher_name;
+        public $publication_date_of_publication;
 
     /**
      * {@inheritdoc}

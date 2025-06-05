@@ -44,6 +44,11 @@ class JobPostController extends Controller
                         'roles' => ['hr'],
                     ],
                     [
+                        'actions' => ['index', 'view', 'deleted-posts'],
+                        'allow' => true,
+                        'roles' => ['manager'],
+                    ],
+                    [
                         'actions' => ['index', 'view'],
                         'allow' => true,
                         'roles' => ['applicant'],
@@ -84,7 +89,7 @@ class JobPostController extends Controller
     {
         try
         {
-            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))
             {
                 $searchModel = new JobPostSearch();
                 
@@ -114,7 +119,7 @@ class JobPostController extends Controller
     {
         try
         {
-            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('hr'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr'))
             {
                 $deletedPosts = JobPost::onlyDeleted()->all();
                 if($deletedPosts !== null)
@@ -143,7 +148,7 @@ class JobPostController extends Controller
     {
         try
         {
-            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))
             {
                 $model = $this->findModel($id);
                 

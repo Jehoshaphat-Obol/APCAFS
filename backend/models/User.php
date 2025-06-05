@@ -5,6 +5,8 @@ namespace app\models;
 use Yii;
 use app\models\StatusLookup;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\ArrayHelper;
+
 
 /**
  * This is the model class for table "user".
@@ -96,7 +98,7 @@ use yii\behaviors\TimestampBehavior;
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
-
+public $roles;
 
     /**
      * {@inheritdoc}
@@ -125,7 +127,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['company_id', 'password_reset_token', 'verification_token', 'user_created_by', 'user_updated_by', 'user_deleted_at', 'user_deleted_by'], 'default', 'value' => null],
             [['company_id', 'user_status_id', 'created_at', 'user_created_by', 'updated_at', 'user_updated_by', 'user_deleted_by'], 'integer'],
             [['username', 'auth_key', 'password_hash', 'email', 'user_status_id', 'created_at', 'updated_at'], 'required'],
-            [['user_deleted_at'], 'safe'],
+            [['user_deleted_at', 'roles'], 'safe'],
             [['username', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['username'], 'unique'],
@@ -148,6 +150,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'id' => Yii::t('app', 'ID'),
             'company_id' => Yii::t('app', 'Company Name'),
             'username' => Yii::t('app', 'Username'),
+            'roles' => Yii::t('app', 'Roles'),
             'auth_key' => Yii::t('app', 'Auth Key'),
             'password_hash' => Yii::t('app', 'Password Hash'),
             'password_reset_token' => Yii::t('app', 'Password Reset Token'),
@@ -1068,4 +1071,39 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return parent::find();
     }
+
+    public function getRoles()
+    {
+        return Yii::$app->authManager->getRolesByUser($this->id);
+    }
+
+    public function hasRole($roleName)
+    {
+        return Yii::$app->authManager->checkAccess($this->id, $roleName);
+    }
+
+    public function getUserRoles()
+    {
+        $auth = Yii::$app->authManager;
+        $roles = $auth->getRolesByUser($this->id);
+        return array_keys($roles);
+    }
+
+    public function getRolesList()
+    {
+        $roles = Yii::$app->authManager->getRoles();
+        $currentUser = Yii::$app->user->identity;
+
+        // Hakikisha kuna mtumiaji aliyelogin
+        if ($currentUser && !$currentUser->hasRole('super-admin')) {
+            // Kama si super-admin, zuia baadhi ya roles
+            $blockedRoles = ['super-admin', 'company-admin', 'applicant'];
+            foreach ($blockedRoles as $blocked) {
+                unset($roles[$blocked]);
+            }
+        }
+
+        return ArrayHelper::map($roles, 'name', 'name');
+    }
+
 }

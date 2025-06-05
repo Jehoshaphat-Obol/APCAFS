@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use kartik\date\DatePicker;
 
 /** @var yii\web\View $this */
 /** @var app\models\Profile $model */
@@ -12,8 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'profile_user_id')->textInput() ?>
-
     <?= $form->field($model, 'profile_first_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'profile_middle_name')->textInput(['maxlength' => true]) ?>
@@ -22,23 +22,452 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'profile_social_media_username')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'profile_date_of_birth')->textInput() ?>
+    <?= $form->field($model, 'profile_date_of_birth')->textInput([
+        'class' => 'form-control flatpickr',
+        'placeholder' => 'Choose Date...'
+    ]) ?>
 
     <?= $form->field($model, 'profile_bios')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'profile_region_id')->textInput() ?>
+    <?= $form->field($model, 'profile_region_id')->dropDownList(
+        ArrayHelper::map($regions, 'id', 'region_name'
+        ),
+        [
+            'prompt' => 'Choose Region',
+            'id' => 'region-id',
+            'onchange' => 'loadDistricts(this.value);'
+        ]
+    ) ?>
 
-    <?= $form->field($model, 'profile_district_id')->textInput() ?>
+    <?= $form->field($model, 'profile_district_id')->dropDownList(
+        [],
+        [
+            'prompt' => 'Choose District',
+            'id' => 'district-id'
+        ]
+    ) ?>
 
     <?= $form->field($model, 'profile_local_address')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'profile_status_id')->textInput() ?>
+    <hr>
+    <h4>Phone Numbers</h4>
+    <div id="phones-container">
+        <!-- Phone numbers will be added here by JS -->
+    </div>
+    <button type="button" class="btn btn-secondary" onclick="addPhoneNumber()">Add Phone Number</button>
 
+    <hr>
+    <h4>Working Experience</h4>
+
+    <div id="experience-container">
+    <!-- Experience items zitawekwa hapa kwa JS -->
+    </div>
+
+    <button type="button" class="btn btn-secondary" onclick="addExperience()">Add Working Experience</button>
+
+    <hr>
+    <h4>Education</h4>
+
+    <div id="education-container">
+    <!-- Education items zitaongezwa hapa na JS -->
+    </div>
+
+    <button type="button" class="btn btn-secondary mt-2" onclick="addEducation()">Add Education</button>
+
+    <hr>
+    <h4>Skills</h4>
+
+    <div id="skill-container">
+        <!-- Skill items zitaongezwa hapa kwa JS -->
+    </div>
+
+    <button type="button" class="btn btn-secondary mt-2" onclick="addSkill()">Add Skill</button>
+
+    <hr>
+    <h4>Awards</h4>
+
+    <div id="award-container">
+        <!-- Award items zitaongezwa hapa na JS -->
+    </div>
+
+    <button type="button" class="btn btn-secondary mt-2" onclick="addAward()">Add Award</button>
+
+    <hr>
+    <h4>Languages</h4>
+
+    <div id="language-container">
+        <!-- Language items zitaongezwa hapa kwa JS -->
+    </div>
+
+    <button type="button" class="btn btn-secondary mt-2" onclick="addLanguage()">Add Language</button>
+
+    <hr>
+    <h4>Publications</h4>
+
+    <div id="publication-container">
+        <!-- Publication items zitaongezwa hapa kwa JS -->
+    </div>
+
+    <button type="button" class="btn btn-secondary mt-2" onclick="addPublication()">Add Publication</button>
+
+    
+
+    <!-- Template ya namba ya simu -->
+    <template id="phone-template">
+        <div class="phone-item card mb-3 p-3 border rounded shadow-sm">
+            <button type="button" class="btn-close float-end" onclick="removePhone(this)"></button>
+
+            <div class="form-group">
+                <?= $form->field($model, "phone_number[__index__][phone_number]")
+                    ->textInput([
+                        'class' => 'form-control',
+                        'required' => true,
+                        'maxlength' => true
+                    ]) ?>
+            </div>
+        </div>
+    </template>
+
+    <!-- Template ya experience -->
+    <template id="experience-template">
+        <div class="experience-item card mb-3 p-3 border rounded shadow-sm">
+            <button type="button" class="btn-close float-end" onclick="removeExperience(this)"></button>
+
+            <?= $form->field($model, "experiences[__index__][experience_job_title]")
+                ->textInput(['class' => 'form-control', 'required' => true])
+                ->label('Job Title') ?>
+
+            <?= $form->field($model, "experiences[__index__][experience_company_name]")
+                ->textInput(['class' => 'form-control', 'required' => true])
+                ->label('Company Name') ?>
+
+            <?= $form->field($model, "experiences[__index__][experience_from]")
+                ->textInput([
+                    'class' => 'form-control flatpickr',
+                    'placeholder' => 'Choose Date...',
+                    'required' => true
+                ])
+                ->label('From') ?>
+
+            <?= $form->field($model, "experiences[__index__][experience_to]")
+                ->textInput([
+                    'class' => 'form-control flatpickr',
+                    'placeholder' => 'Choose Date...',
+                    'required' => true
+                ])
+                ->label('To') ?>
+
+        </div>
+    </template>
+
+    <!-- Template ya Education -->
+    <template id="education-template">
+        <div class="education-item card mb-3 p-3 border rounded shadow-sm">
+            <button type="button" class="btn-close float-end" onclick="removeEducation(this)"></button>
+
+            <?= $form->field($model, "educations[__index__][education_degree_name]")
+                ->textInput(['class' => 'form-control', 'required' => true])
+                ->label('Degree Name') ?>
+
+            <?= $form->field($model, "educations[__index__][education_programme_name]")
+                ->textInput(['class' => 'form-control', 'required' => true])
+                ->label('Programme Name') ?>
+
+            <?= $form->field($model, "educations[__index__][education_university_name]")
+                ->textInput(['class' => 'form-control', 'required' => true])
+                ->label('University Name') ?>
+
+            <?= $form->field($model, "educations[__index__][education_graduation_date]")
+                ->textInput([
+                    'class' => 'form-control flatpickr',
+                    'placeholder' => 'Choose Date...',
+                    'required' => true
+                ])
+                ->label('Graduation Date') ?>
+
+        </div>
+    </template>
+
+    <!-- Template ya Skill -->
+    <template id="skill-template">
+        <div class="skill-item card mb-3 p-3 border rounded shadow-sm">
+            <button type="button" class="btn-close float-end" onclick="removeSkill(this)"></button>
+
+                <?= $form->field($model, "skills[__index__][skill_type]")
+                    ->textInput(['class' => 'form-control', 'required' => true])
+                    ->label('Skill Type') ?>
+
+                <?= $form->field($model, "skills[__index__][skill_name]")
+                    ->textInput(['class' => 'form-control', 'required' => true])
+                    ->label('Skill Name') ?>
+
+        </div>
+    </template>
+
+    <!-- Template ya Award -->
+    <template id="award-template">
+        <div class="award-item card mb-3 p-3 border rounded shadow-sm">
+            <button type="button" class="btn-close float-end" onclick="removeAward(this)"></button>
+
+            <?= $form->field($model, "awards[__index__][award_title]")
+                ->textInput(['class' => 'form-control', 'maxlength' => true, 'required' => true])
+                ->label('Award Title') ?>
+
+            <?= $form->field($model, "awards[__index__][award_organization_name]")
+                ->textInput(['class' => 'form-control', 'maxlength' => true, 'required' => true])
+                ->label('Organization Name') ?>
+
+            <?= $form->field($model, "awards[__index__][award_issue_number]")
+                ->textInput(['class' => 'form-control', 'maxlength' => true])
+                ->label('Issue Number') ?>
+
+            <?= $form->field($model, "awards[__index__][award_date_of_issue]")
+                ->textInput([
+                    'class' => 'form-control flatpickr',
+                    'placeholder' => 'Choose Date...',
+                    'autocomplete' => 'off',
+                ])
+                ->label('Date of Issue') ?>
+
+        </div>
+    </template>
+
+    <!-- Template ya Language -->
+    <template id="language-template">
+        <div class="language-item card mb-3 p-3 border rounded shadow-sm">
+            <button type="button" class="btn-close float-end" onclick="removeLanguage(this)"></button>
+
+            <?= $form->field($model, "languages[__index__][language_name]")
+            ->textInput([
+                'class' => 'form-control',
+                'maxlength' => true,
+                'required' => true
+            ])
+            ->label('Language Name') ?>
+
+        </div>
+    </template>
+
+    <!-- Template ya Publication -->
+    <template id="publication-template">
+        <div class="publication-item card mb-3 p-3 border rounded shadow-sm">
+            <button type="button" class="btn-close float-end" onclick="removePublication(this)"></button>
+
+            <?= $form->field($model, "publications[__index__][publication_title]")
+                ->textInput([
+                    'class' => 'form-control',
+                    'maxlength' => true,
+                    'required' => true,
+                ])
+                ->label('Publication Title') ?>
+
+            <?= $form->field($model, "publications[__index__][publication_publisher_name]")
+                ->textInput([
+                    'class' => 'form-control',
+                    'maxlength' => true,
+                    'required' => true,
+                ])
+                ->label('Publisher Name') ?>
+
+            <?= $form->field($model, "publications[__index__][publication_date_of_publication]")
+                ->textInput([
+                    'class' => 'form-control flatpickr',
+                    'placeholder' => 'Choose Date...',
+                    'required' => true,
+                ])
+                ->label('Date of Publication') ?>
+
+        </div>
+    </template>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success mt-3']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<script>
+let debounceTimer;
+const cache = {
+    districts: {},
+};
+let phoneIndex = 0;
+let experienceIndex = 0;
+let educationIndex = 0;
+let skillIndex = 0;
+let awardIndex = 0;
+let languageIndex = 0;
+let publicationIndex = 0;
+
+document.querySelector('form').addEventListener('submit', function (e) {
+    const requiredFields = document.querySelectorAll('input[required]');
+    let valid = true;
+
+    requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+            field.classList.add('is-invalid');
+            valid = false;
+        } else {
+            field.classList.remove('is-invalid');
+        }
+    });
+
+    if (!valid) {
+        e.preventDefault();
+        alert('Please fill in all required fields.');
+    }
+});
+
+
+// hii ni kwa ajili ya kuload district
+function loadDistricts(regionId) {
+    if (!regionId || isNaN(regionId)) {
+        $('#district-id').html('<option value="">Choose Districts</option>');
+        return;
+    }
+
+    // Cheki kama tayari data ipo kwenye cache
+    if (cache.districts[regionId]) {
+        $('#district-id').html(cache.districts[regionId]);
+        return;
+    }
+
+    clearTimeout(debounceTimer);
+    $('#district-id').html('<option>Loading...</option>');
+
+    // Debounce kwa sekunde 300ms kabla ya kufanya maombi
+    debounceTimer = setTimeout(function() {
+        $.ajax({
+            url: '/profile/get-districts', // URL sahihi ya controller action
+            data: {region_id: regionId},
+            dataType: 'json', // Rudisha data kama JSON
+            success: function(data) {
+                var options = '<option value="">Choose District</option>';
+                
+                if (data.length > 0) {
+                    // Jenga <option> tags kwa kila district
+                    data.forEach(function(district) {
+                        options += '<option value="' + district.id + '">' + district.district_name + '</option>';
+                    });
+                } else {
+                    options = '<option value="">No districts available</option>';
+                }
+
+                // Cache response ili lisirudie tena maombi kwa software hiyo hiyo
+                cache.districts[regionId] = options;
+
+                // Onyesha options kwenye select field
+                $('#district-id').html(options);
+            },
+            complete: function() {
+                $('#district-loading-spinner').hide();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error("Error fetching districts:", textStatus, errorThrown);
+                $('#district-id').html('<option value="">Error loading districts</option>');
+                $('#district-loading-spinner').hide();
+            }
+        });
+    }, 300); // Debounce kwa 300ms
+}
+
+
+// hii ni kwa ajili ya namba ya simu
+function addPhoneNumber() {
+    const template = document.querySelector('#phone-template').innerHTML;
+    const rendered = template.replace(/__index__/g, phoneIndex++);
+    const container = document.querySelector('#phones-container');
+    container.insertAdjacentHTML('beforeend', rendered);
+}
+
+function removePhone(button) {
+    button.closest('.phone-item').remove();
+}
+
+// hii ni kwa ajili ya working experience
+function addExperience() {
+    const template = document.querySelector('#experience-template').innerHTML;
+    const rendered = template.replace(/__index__/g, experienceIndex++);
+    const container = document.querySelector('#experience-container');
+    container.insertAdjacentHTML('beforeend', rendered);
+
+    // Initialize flatpickr on new inputs
+    flatpickr(".flatpickr");
+}
+
+function removeExperience(button) {
+    button.closest('.experience-item').remove();
+}
+
+// hii ni kwa ajili ya education
+function addEducation() {
+    const template = document.getElementById('education-template').innerHTML;
+    const container = document.getElementById('education-container');
+    const html = template.replace(/__index__/g, educationIndex++);
+    container.insertAdjacentHTML('beforeend', html);
+
+    // Initialize Flatpickr again after adding new date inputs
+    flatpickr('.flatpickr', {});
+}
+
+function removeEducation(button) {
+    button.closest('.education-item').remove();
+}
+
+// hii ni kwa ajili ya skill
+function addSkill() {
+    const container = document.getElementById('skill-container');
+    const template = document.getElementById('skill-template').innerHTML;
+    const newItemHtml = template.replace(/__index__/g, skillIndex);
+    container.insertAdjacentHTML('beforeend', newItemHtml);
+    skillIndex++;
+}
+
+function removeSkill(button) {
+    const item = button.closest('.skill-item');
+    if (item) {
+        item.remove();
+    }
+}
+
+// hii ni kwa ajili ya award
+function addAward() {
+    const template = document.getElementById('award-template').innerHTML;
+    const rendered = template.replace(/__index__/g, awardIndex++);
+    document.getElementById('award-container').insertAdjacentHTML('beforeend', rendered);
+
+    // Reinitialize Flatpickr for new date inputs
+    flatpickr('.flatpickr');
+}
+
+function removeAward(button) {
+    button.closest('.award-item').remove();
+}
+
+// hii ni kwa ajili ya language
+function addLanguage() {
+    const template = document.getElementById('language-template').innerHTML;
+    const rendered = template.replace(/__index__/g, languageIndex++);
+    document.getElementById('language-container').insertAdjacentHTML('beforeend', rendered);
+}
+
+function removeLanguage(button) {
+    button.closest('.language-item').remove();
+}
+
+// hii ni kwa ajili ya publication
+function addPublication() {
+    const template = document.getElementById('publication-template').innerHTML;
+    const rendered = template.replace(/__index__/g, publicationIndex++);
+    document.getElementById('publication-container').insertAdjacentHTML('beforeend', rendered);
+
+    // Initialize flatpickr for new element
+    flatpickr('.flatpickr', {});
+}
+
+function removePublication(button) {
+    button.closest('.publication-item').remove();
+}
+</script>

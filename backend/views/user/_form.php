@@ -22,6 +22,8 @@ use yii\helpers\ArrayHelper;
 
         <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
+        <?= $form->field($model, 'roles')->dropDownList($model->getRolesList(), ['prompt' => 'Select Role']) ?> <!-- Hapa tunaongeza dropDownList -->
+
         <div class="form-group">
             <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
         </div>
@@ -35,6 +37,12 @@ use yii\helpers\ArrayHelper;
         <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+
+        <?= $form->field($model, 'roles')->dropDownList(
+            Yii::$app->user->identity->getRolesList(), 
+            ['prompt' => 'Select Role']
+        ) ?>
+
 
         <div class="form-group">
             <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

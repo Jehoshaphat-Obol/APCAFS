@@ -30,7 +30,7 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'post_deadline')->textInput([
         'class' => 'form-control flatpickr',
-        'placeholder' => 'Chagua tarehe...'
+        'placeholder' => 'Choose Date...'
     ]) ?>
 
     <?= $form->field($model, 'post_profession')->textInput(['maxlength' => true]) ?>

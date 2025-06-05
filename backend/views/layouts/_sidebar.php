@@ -7,6 +7,8 @@ use app\models\StaffProfile;
 
 $navItems = []; // Initialize as an empty array to avoid undefined errors
 
+$profile = Yii::$app->user->identity->getProfiles2()->one();
+
 if (!Yii::$app->user->isGuest) {
 
     // Super Admin Role
@@ -93,7 +95,43 @@ if (!Yii::$app->user->isGuest) {
             ];
         }
 
-        // Manager Role
+        // manager Role
+        if (Yii::$app->user->can('manager')) {
+            $navItems = [
+                [
+                    'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> Dashboard',
+                    'encode' => false,
+                    'url' => ['/dashboard/dashboard']
+                ],
+                [
+                    'label' => '<i class="bi bi-people sidebar-icons fs-5"></i> Users',
+                    'encode' => false,
+                    'url' => ['/user/index'],
+                ],
+                [
+                    'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> Job Posts',
+                    'encode' => false,
+                    'url' => ['/job-post/index'],
+                ],
+                [
+                    'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> Tests',
+                    'encode' => false,
+                    'url' => ['/job-test/index'],
+                ],
+                [
+                    'label' => '<i class="bi bi-key sidebar-icons fs-5"></i> Change Password',
+                    'encode' => false,
+                    'url' => ['/user/change-password'],
+                ],
+                [
+                    'label' => '<i class="bi bi-gear sidebar-icons fs-5"></i> Settings',
+                    'encode' => false,
+                    'url' => ['/settings/settings'],
+                ],
+            ];
+        }
+
+        // hr Role
         if (Yii::$app->user->can('hr')) {
             $navItems = [
                 [
@@ -104,7 +142,7 @@ if (!Yii::$app->user->isGuest) {
                 [
                     'label' => '<i class="bi bi-people sidebar-icons fs-5"></i> Users',
                     'encode' => false,
-                    'url' => ['/users/index'],
+                    'url' => ['/user/index'],
                 ],
                 [
                     'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> Job Posts',
@@ -143,7 +181,7 @@ if (!Yii::$app->user->isGuest) {
             ];
         }
     // } 
-        // Seller Role
+        // applicant Role
         if (Yii::$app->user->can('applicant')) {
             $navItems = [
                 [
@@ -163,16 +201,18 @@ if (!Yii::$app->user->isGuest) {
                     'items' => [
                         [
                             'label' => 'View Profile',
-                            'url' => ['/profile/view', 'id' => Yii::$app->user->identity->profiles2->id ?? null],
+                            'url' => $profile ? ['/profile/view', 'id' => $profile->id] : '#',
+                            'visible' => $profile !== null,
                         ],
                         [
                             'label' => 'Edit Profile',
-                            'url' => ['/profile/update', 'id' => Yii::$app->user->identity->profiles2->id ?? null],
+                            'url' => $profile ? ['/profile/update', 'id' => $profile->id] : '#',
+                            'visible' => $profile !== null,
                         ],
                         [
                             'label' => 'Complete Profile',
-                            'visible' => Yii::$app->user->identity->getProfiles2()->one() === null,
                             'url' => ['/profile/create'],
+                            'visible' => $profile === null,
                         ],
                     ],
                 ],                                                                       

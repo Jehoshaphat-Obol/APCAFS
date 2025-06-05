@@ -4,12 +4,27 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Profile;
+use app\models\AddProfile;
+use app\models\PhoneNumber;
+use app\models\WorkExperience;
+use app\models\Education;
+use app\models\Skill;
+use app\models\Award;
+use app\models\Language;
+use app\models\Publication;
+use app\models\Region;
+use app\models\District;
 use app\models\ProfileSearch;
+use app\models\StatusLookup;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
+use Mpdf\Mpdf;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
+
 
 /**
  * ProfileController implements the CRUD actions for Profile model.
@@ -47,6 +62,8 @@ class ProfileController extends Controller
                 'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
+                    'create' => ['GET', 'POST'],
+                    'save-step' => ['POST'],
                 ],
             ],
         ];
@@ -136,7 +153,7 @@ class ProfileController extends Controller
     {
         try
         {
-            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('hr'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))
             {
                 $model = $this->findModel($id);
                 
@@ -167,9 +184,13 @@ class ProfileController extends Controller
         {
             if(Yii::$app->user->can('applicant'))
             {
-                $model = new Profile();
+                $model = new AddProfile();
                 if($model !== null)
                 {
+                    $regions = Region::find()
+                                ->where(['region_status_id' => StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar()])
+                                ->all();
+
                     
                     if ($this->request->isPost) {
                         if ($model->load($this->request->post()) && $model->save()) {
@@ -180,6 +201,7 @@ class ProfileController extends Controller
                     Yii::$app->session->setFlash('info', 'Welcome, You must setting up your profile to be able to continue with your account.');
                     return $this->render('create', [
                         'model' => $model,
+                        'regions' => $regions,
                     ]);
                 }   
                 throw new NotFoundHttpException('The requested page does not exist.');
@@ -189,6 +211,27 @@ class ProfileController extends Controller
         {
             return $this->redirect(['error']);
         }
+    }
+    
+    public function actionGetDistricts()
+    {
+        $regionId = Yii::$app->request->get('region_id');
+        $activeStatusId = StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar();
+
+        $districts = District::find()
+            ->where(['district_region_id' => $regionId])
+            ->andWhere(['district_status_id' => $activeStatusId])
+            ->all();
+
+        $data = [];
+        foreach ($districts as $district) {
+            $data[] = [
+                'id' => $district->id,
+                'district_name' => $district->district_name,
+            ];
+        }
+
+        return $this->asJson($data);
     }
 
     /**
@@ -208,23 +251,81 @@ class ProfileController extends Controller
             {
                 if($model !== null)
                 {
+                    $regions = Region::find()
+                                ->where(['region_status_id' => StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar()])
+                                ->all();
+
+                    // Load existing phone numbers related to $model (assuming relation 'phones')
+                    $existingPhones = $model->phoneNumbers; 
                     if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-                        Yii::$app->session->setFlash('success', 'Congratulation!, The existing Staff profile updated successfully.');
-                        return $this->redirect(['view', 'id' => $model->id]);
+                        
+                        $transaction = Yii::$app->db->beginTransaction();
+
+                        try {
+                            if (!$model->save()) {
+                                throw new \Exception('Failed to save model: ' . Html::errorSummary($model));
+                            }
+
+                            // Phones posted as array: ['phone_number' => [...]]
+                            $phonesData = Yii::$app->request->post('PhoneNumber', []);
+
+                            // Collect existing phone IDs to track deletions
+                            $existingPhoneIds = array_map(fn($phone) => $phone->id, $existingPhones);
+                            $postedPhoneIds = array_filter(array_column($phonesData, 'id')); // IDs submitted in form, if any
+
+                            // Delete phones that were removed in the form
+                            $phonesToDelete = array_diff($existingPhoneIds, $postedPhoneIds);
+                            if (!empty($phonesToDelete)) {
+                                PhoneNumber::deleteAll(['id' => $phonesToDelete]);
+                            }
+
+                            // Loop through submitted phone numbers and save/update
+                            foreach ($phonesData as $phoneData) {
+                                if (!empty($phoneData['id'])) {
+                                    // Update existing phone
+                                    $phone = PhoneNumber::findOne($phoneData['id']);
+                                    if ($phone === null) {
+                                        throw new \Exception("Phone not found with ID: {$phoneData['id']}");
+                                    }
+                                } else {
+                                    // New phone number
+                                    $phone = new PhoneNumber();
+                                    $phone->phone_profile_id = $model->id;
+                                    $phone->phone_status_id = StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar();
+                                    $phone->phone_created_by = Yii::$app->user->id;
+                                }
+
+                                $phone->phone_number = $phoneData['phone_number'];
+
+                                if (!$phone->save()) {
+                                    throw new \Exception('Failed to save phone: ' . Html::errorSummary($phone));
+                                }
+                            }
+
+                            $transaction->commit();
+
+                            Yii::$app->session->setFlash('success', 'Congratulation!, The existing Staff profile updated successfully.');
+                            return $this->redirect(['view', 'id' => $model->id]);
+                        } catch (\Exception $ex) {
+                            $transaction->rollBack();
+                            Yii::$app->session->setFlash('error', $ex->getMessage());
+                        }
                     }
-            
+                        
                     return $this->render('update', [
-                        'model' => $model,
-                    ]);
-                }
-                throw new NotFoundHttpException('The requested page does not exist.');
+                    'model' => $model,
+                    'regions' => $regions,
+                    'phones' => $existingPhones,
+                ]);
             }
-            throw new ForbiddenHttpException();
-        } catch (ForbiddenHttpException $e)
-        {
-            return $this->redirect(['error']);
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
+        throw new ForbiddenHttpException();
+    } catch (ForbiddenHttpException $e)
+    {
+        return $this->redirect(['error']);
     }
+}
 
     /**
      * Deletes an existing Profile model.
@@ -280,6 +381,33 @@ class ProfileController extends Controller
         } catch (ForbiddenHttpException $e)
         {
             return $this->redirect(['error']);
+        }
+    }
+
+    public function actionPdf($id)
+    {
+        try {
+            $model = $this->findModel($id);
+
+            // $content = $this->renderPartial('cv-preview', [
+            //     'model' => $model,
+            // ]);
+
+            // $mpdf = new Mpdf([
+            //     'mode' => 'utf-8',
+            //     'format' => 'A4',
+            // ]);
+
+            $content = "<h1>Hello, World</h1><p>This is test PDF</p>";
+            $mpdf = new \Mpdf\Mpdf();
+            $mpdf->WriteHTML($content);
+            return $mpdf->Output('test.pdf', \Mpdf\Output\Destination::DOWNLOAD);
+
+            // $mpdf->WriteHTML($content);
+            // return $mpdf->Output('CV-' . $model->user2->username . '.pdf', \Mpdf\Output\Destination::DOWNLOAD);
+        } catch (\Throwable $e) {
+            Yii::error("PDF Error: " . $e->getMessage(), __METHOD__);
+            return $this->renderContent('<h3>PDF Generation Error</h3><pre>' . $e->getMessage() . '</pre>');
         }
     }
 
