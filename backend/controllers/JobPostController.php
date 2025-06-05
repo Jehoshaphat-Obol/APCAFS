@@ -144,6 +144,14 @@ class JobPostController extends Controller
      */
     public function actionTrigger()
     {
+
+    }
+
+    /**
+     * Apply button
+     */
+    public function actionApply()
+    {
         
     }
 
