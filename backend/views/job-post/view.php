@@ -1,8 +1,13 @@
 <?php
 
+use app\models\JobApplication;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\models\StatusLookup;
+use yii\helpers\Url;
+use yii\grid\ActionColumn;
+use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /** @var yii\web\View $this */
 /** @var app\models\JobPost $model */
@@ -79,6 +84,55 @@ $this->params['breadcrumbs'][] = $this->title;
             'user0.username',
         ],
     ]) ?>
+
+    <div class="job-application-index">
+
+    <h1><?= Html::encode("Job Applications") ?></h1>
+
+    <p>
+        <?= Html::a('Analyze', ['analyze', 'id' => $model->id], [
+            'class' => 'btn btn-primary',
+            'data' => [
+                'confirm' => 'Are you sure you want to Analyze job applications?',
+                'method' => 'post',
+            ],
+        ])?>
+    </p>
+
+    <?php Pjax::begin(); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'applicant_company_id',
+            'applicant_job_post_id',
+            'applicant_user_id',
+            'applicant_score',
+            //'applicant_status_id',
+            //'applicant_created_at',
+            //'applicant_created_by',
+            //'applicant_updated_at',
+            //'applicant_updated_by',
+            //'applicant_deleted_at',
+            //'applicant_deleted_by',
+            [
+                'class' => ActionColumn::className(),
+                'urlCreator' => function ($action, JobApplication $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                 }
+            ],
+        ],
+    ]); ?>
+
+    <?php Pjax::end(); ?>
+
+</div>
+
 <?php endif; ?>
 
 <?php if(Yii::$app->user->can('applicant')): ?>

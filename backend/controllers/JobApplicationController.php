@@ -7,6 +7,8 @@ use app\models\JobApplicationSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 
 /**
  * JobApplicationController implements the CRUD actions for JobApplication model.
@@ -46,7 +48,7 @@ class JobApplicationController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
+    
     /**
      * Displays a single JobApplication model.
      * @param int $id ID

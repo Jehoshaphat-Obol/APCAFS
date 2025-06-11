@@ -166,8 +166,20 @@ use kartik\date\DatePicker;
             <button type="button" class="btn-close float-end" onclick="removeEducation(this)"></button>
 
             <?= $form->field($model, "educations[__index__][education_degree_name]")
-                ->textInput(['class' => 'form-control', 'required' => true])
+                ->dropDownList([
+                    'Certificate' => 'Certificate',
+                    'Diploma' => 'Diploma',
+                    'Bachelor' => 'Bachelor',
+                    'Master' => 'Master',
+                    'PhD' => 'PhD',
+                    'Postdoc' => 'Postdoc',
+                ], [
+                    'prompt' => 'Select Degree Level',
+                    'class' => 'form-control',
+                    'required' => true,
+                ])
                 ->label('Degree Name') ?>
+
 
             <?= $form->field($model, "educations[__index__][education_programme_name]")
                 ->textInput(['class' => 'form-control', 'required' => true])
@@ -194,7 +206,14 @@ use kartik\date\DatePicker;
             <button type="button" class="btn-close float-end" onclick="removeSkill(this)"></button>
 
                 <?= $form->field($model, "skills[__index__][skill_type]")
-                    ->textInput(['class' => 'form-control', 'required' => true])
+                    ->dropDownList(
+                        [
+                            'Technical' => 'Technical',
+                            'Soft' => 'Soft',
+                            'Language' => 'Language',
+                        ],
+                        ['prompt' => 'Select Skill Type', 'class' => 'form-control', 'required' => true]
+                    )
                     ->label('Skill Type') ?>
 
                 <?= $form->field($model, "skills[__index__][skill_name]")
@@ -238,12 +257,17 @@ use kartik\date\DatePicker;
             <button type="button" class="btn-close float-end" onclick="removeLanguage(this)"></button>
 
             <?= $form->field($model, "languages[__index__][language_name]")
-            ->textInput([
-                'class' => 'form-control',
-                'maxlength' => true,
-                'required' => true
-            ])
-            ->label('Language Name') ?>
+                ->dropDownList(
+                    [
+                        'English' => 'English',
+                        'Swahili' => 'Swahili',
+                        'French' => 'French',
+                        'Spanish' => 'Spanish',
+                        'Arabic' => 'Arabic',
+                    ],
+                    ['prompt' => 'Select Language', 'class' => 'form-control', 'required' => true]
+                )
+                ->label('Language Name') ?>
 
         </div>
     </template>

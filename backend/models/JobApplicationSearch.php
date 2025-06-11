@@ -48,6 +48,9 @@ class JobApplicationSearch extends JobApplication
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 10, // Number of records per page
+            ],
         ]);
 
         $this->load($params, $formName);
