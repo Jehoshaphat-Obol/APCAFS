@@ -104,17 +104,31 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        // 'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+        
+            [
+                'attribute' => 'applicant_company_id',
+                'value' => 'company.company_name',
+            ],
+            [
+                'attribute' => 'applicant_job_post_id',
+                'value' => 'jobPost.post_job_title',
+            ],
+            [
+                'attribute' => 'applicant_user_id',
+                'value' => 'user2.username',
+            ],
 
-            'id',
-            'applicant_company_id',
-            'applicant_job_post_id',
-            'applicant_user_id',
             'applicant_score',
-            //'applicant_status_id',
-            //'applicant_created_at',
+            
+            [
+                'attribute' => 'applicant_status_id',
+                'value' => 'statusLookup.status_name',
+            ],
+            
+            'applicant_created_at',
             //'applicant_created_by',
             //'applicant_updated_at',
             //'applicant_updated_by',
