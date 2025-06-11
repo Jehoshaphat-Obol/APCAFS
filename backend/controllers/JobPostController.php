@@ -5,7 +5,10 @@ namespace app\controllers;
 use Yii;
 use app\models\AddJobPost;
 use app\models\JobPost;
+use app\models\ApplyJob;
+use app\models\AnalyzeCv;
 use app\models\JobPostSearch;
+use app\models\JobApplicationSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -139,20 +142,83 @@ class JobPostController extends Controller
     }
 
     /**
-     * Trigger button
-     * 
+     * Apply button
      */
-    public function actionTrigger()
+    public function actionApply($id)
     {
+        try
+        {
+            if(Yii::$app->user->can('applicant'))
+            {
+                $model = $this->findModel($id);
 
+                if($model != null)
+                {
+                    $application = new ApplyJob([
+                        'post_company_id' => $model->post_company_id,
+                        'post_job_id' => $model->id,
+                    ]);
+
+                    if ($application->apply()) {
+                        Yii::$app->session->setFlash('success', 'Maombi ya kazi yamewasilishwa kwa mafanikio.');
+                        return $this->redirect(['job-post/view', 'id' => $model->id]);
+                    } else {
+                        Yii::$app->session->setFlash('error', 'Imeshindikana kutuma maombi. Tafadhali jaribu tena.');
+                        return $this->redirect(['job-post/view', 'id' => $model->id]);
+                    }
+                }
+            throw new NotFoundHttpException('The requested page does not exist.');
+            }
+            throw new ForbiddenHttpException();
+        } catch(ForbiddenHttpException $e)
+        {
+            return $this->redirect(['error']);
+        }
+    }
+
+    /**
+     * cancel jop apply button
+     */
+    public function actionCancel($id)
+    {
+        return 'Cancel Button'; 
     }
 
     /**
      * Apply button
      */
-    public function actionApply()
+    public function actionAnalyze($id)
     {
-        
+        try
+        {
+            if(Yii::$app->user->can('hr'))
+            {
+                $model = $this->findModel($id);
+
+                if($model != null)
+                {
+                    $analyze = new AnalyzeCv();
+
+                    // echo "<pre>";
+                    // print_r($analyze->analyze($id));
+                    // echo "</pre>";
+                    // return false;
+
+                    if ($analyze->analyze($id)) {
+                        Yii::$app->session->setFlash('success', 'Maombi ya Mchakato wa maombi ya kazi yamewasilishwa kwa mafanikio.');
+                        return $this->redirect(['job-post/view', 'id' => $model->id]);
+                    } else {
+                        Yii::$app->session->setFlash('error', 'Imeshindikana Kuchakata maombi ya Kazi. Tafadhali jaribu tena.');
+                        return $this->redirect(['job-post/view', 'id' => $model->id]);
+                    }
+                }
+            throw new NotFoundHttpException('The requested page does not exist.');
+            }
+            throw new ForbiddenHttpException();
+        } catch(ForbiddenHttpException $e)
+        {
+            return $this->redirect(['error']);
+        }
     }
 
     /**
@@ -166,14 +232,25 @@ class JobPostController extends Controller
         try
         {
             if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))
-            {
+            {                
                 $model = $this->findModel($id);
                 
                 if($model !== null)
                 {
+                    $searchModel = new JobApplicationSearch();
+
+                    // Ensure job applications only for this job post
+                    $queryParams = $this->request->queryParams;
+                    $queryParams['JobApplicationSearch']['applicant_job_post_id'] = $id;
+
+                    // Search using filtered params
+                    $dataProvider = $searchModel->search($queryParams);
+
                     Yii::$app->session->setFlash('info', 'Welcome, Here you will be able to see detailed information about this Job Post');
                     return $this->render('view', [
                         'model' => $model,
+                        'searchModel' => $searchModel,
+                        'dataProvider' => $dataProvider,
                     ]);
                 }
                 throw new NotFoundHttpException('The requested page does not exist.');
