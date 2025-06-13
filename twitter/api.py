@@ -7,7 +7,7 @@ from utils import *
 import pickle
 import time
 
-service = Service(executable_path=GECKO_DRIVER_PATH)
+# service = Service(executable_path=GECKO_DRIVER_PATH)
 
 print("Loading Firefox Profile")
 # Step 1: Create and Save Profile (This step runs once to create the profile)
@@ -72,4 +72,4 @@ def get_article():
         }
     )
     
-app.run()
+app.run(host="0.0.0.0", port=5000)

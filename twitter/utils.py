@@ -252,10 +252,11 @@ def use_existing_profile(profile_dir):
     # Now use the saved profile in future sessions
     options = Options()
     print(profile_dir)
-    options.add_argument(f"-profile")
+    options.add_argument("-profile")
     options.add_argument(profile_dir)
     options.add_argument("--headless")
-    
+    options.add_argument("--no-sandbox") # Recommended for Docker
+    options.add_argument("--disable-dev-shm-usage")
     # Start Firefox with the custom profile
     driver = webdriver.Firefox(options=options)
 

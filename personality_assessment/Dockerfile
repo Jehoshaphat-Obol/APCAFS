@@ -26,7 +26,8 @@ RUN python3.11 -m venv env
 COPY . .
 
 # activate the python virtual environment and install dependencies
-RUN . ./env/bin/activate && pip install -r requirements.txt
+RUN . ./env/bin/activate && pip install --default-timeout=100 --retries=10 -r requirements.txt
+RUN . ./env/bin/activate && pip install --default-timeout=100 --retries=10 -r requirement2.txt
 
 # run the app
 CMD ["sh", "-c", ". ./env/bin/activate && python3 manage.py runserver"]

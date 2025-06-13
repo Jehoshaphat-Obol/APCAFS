@@ -33,8 +33,11 @@ RUN . ./env/bin/activate && pip install --upgrade pip
 RUN . ./env/bin/activate && pip install --no-index --find-links=./wheels -r requirements.txt
 RUN . ./env/bin/activate && python -m nltk.downloader punkt  punkt_tab -d /app/api/nltk_data
 RUN . ./env/bin/activate && pip install pgvector
+
+EXPOSE 3000
+
 CMD bash -c "service postgresql start && \
     ./env/bin/python manage.py makemigrations && \
     ./env/bin/python manage.py migrate && \
-    ./env/bin/python manage.py runserver 0.0.0.0:8000"
+    ./env/bin/python manage.py runserver 0.0.0.0:3000"
 
