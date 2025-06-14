@@ -4,5 +4,7 @@ return [
     'adminEmail' => 'admin@example.com',
     'senderEmail' => 'noreply@example.com',
     'senderName' => 'Example.com mailer',
-    'twitter' => "http://apcafs-twitter/api",
+    'pAssessment' => "http://apcafs-personality:8000/api/v1",
+    'cvAnalysis' => "http://localhost:3000",
 ];
+

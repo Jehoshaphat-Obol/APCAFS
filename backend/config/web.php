@@ -43,7 +43,7 @@ $config = [
                 'dsn' => 'smtps://hassanjemadari@gmail.com:poettelbcfshjarg@smtp.gmail.com:465', // Badilisha na nenosiri la programu kama unatumia 2FA
             ],
             'viewPath' => '@app/mail',
-            'useFileTransport' => true, // Badilisha kuwa true kwa majaribio ya ndani bila kutuma barua pepe halisi
+            'useFileTransport' => false, // Badilisha kuwa true kwa majaribio ya ndani bila kutuma barua pepe halisi
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

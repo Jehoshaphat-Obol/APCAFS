@@ -199,10 +199,10 @@ class JobPostController extends Controller
                 {
                     $analyze = new AnalyzeCv();
 
-                    // echo "<pre>";
-                    // print_r($analyze->analyze($id));
-                    // echo "</pre>";
-                    // return false;
+                    echo "<pre>";
+                    print_r($analyze->analyze($id));
+                    echo "</pre>";
+                    return false;
 
                     if ($analyze->analyze($id)) {
                         Yii::$app->session->setFlash('success', 'Maombi ya Mchakato wa maombi ya kazi yamewasilishwa kwa mafanikio.');

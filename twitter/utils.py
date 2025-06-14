@@ -236,6 +236,7 @@ def get_articles(driver, profile_url, target_count=10+random.uniform(1,5)):
             print(f"Error during scrolling: {e}")
             break
 
+    print(articles)
     return list(articles)  # Convert to list before returning
 
 

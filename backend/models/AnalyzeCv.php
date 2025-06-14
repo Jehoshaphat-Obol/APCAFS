@@ -57,6 +57,8 @@ class AnalyzeCv extends Model
         {
             if(Yii::$app->user->can('hr'))
             {
+		$twitterEndpoint = Yii::$app->params['pAssessment'];
+
                 $post = JobPost::find()
                         ->where(['id' => $id])
                         ->andWhere(['post_status_id' => StatusLookup::find()->where(['status_code' => 'published'])->select('id')->scalar()])
@@ -181,13 +183,36 @@ class AnalyzeCv extends Model
                                         'Skills: ' . $skillText. '<br>' .
                                         'Languages: ' . $languageText. '<br>' .
                                         'Publications: ' . $publicationText;
-
+		    $pAssessmentData[] = [
+			'profile_id' => $profile->profile_user_id,
+		        'social_media_username' => $profile->profile_social_media_username,
+		    ];
                     $profileData[] = [
                         'user_id' => $profile->profile_user_id, // bado tunarudisha user_id kama reference
                         'application' => $applicationString,
                     ];
                 }
-                return $profileData;
+
+ // Prepare the payload
+    $payload = json_encode(['personality_assessment' => $pAssessmentData]);
+
+    // Make the POST request using cURL
+    $ch = curl_init($twitterEndpoint);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/json',
+        'Content-Length: ' . strlen($payload)
+    ]);
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    // Echo the response (in real use, you may want to return JSON or render it)
+    echo "<pre>";
+    print_r(json_decode($response, true));
+    echo "</pre>";
+                return json_decode($response, true);
 
                 
             }

@@ -47,7 +47,7 @@ pid_personality=$!
 # Start cv_analysis service
 sudo docker run --rm -i \
   --name apcafs-cv_analysis \
-  -p 3000:3000
+  -p 3000:3000 \
   --network appnet \
   -v ./cv_analysis:/app \
   apcafs-cv_analysis &

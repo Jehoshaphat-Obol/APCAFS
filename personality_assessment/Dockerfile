@@ -30,7 +30,7 @@ RUN . ./env/bin/activate && pip install --default-timeout=100 --retries=10 -r re
 RUN . ./env/bin/activate && pip install --default-timeout=100 --retries=10 -r requirement2.txt
 
 # run the app
-CMD ["sh", "-c", ". ./env/bin/activate && python3 manage.py runserver"]
+CMD ["sh", "-c", ". ./env/bin/activate && python3 manage.py runserver 0.0.0.0:8000"]
 
 # expose the port number
 EXPOSE 8000

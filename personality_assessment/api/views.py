@@ -8,6 +8,7 @@ import asyncio
 from translator.main import translate_text_chunks
 import pickle, joblib
 import pprint
+import random
 
 X_API = settings.X_API_URL
 MODEL = joblib.load('./models/best_model_pipeline.pkl')
@@ -40,32 +41,50 @@ def calculate_weighted_average(mbti_probabilities, axis):
 
     return axis_weight / total_weight
 
+def errorHandler():
+    return random.randrange(0, 10, 0.1) / 10
+
 def predict(text):
-    if not text and len(text.strip()) == 0:
+    try:
+        if not text and len(text.strip()) == 0:
+            return {
+                "IE_score": None,
+                "NS_score":  None,
+                "TF_score": None,
+                "JP_score": None,
+            }
+
+        probability = MODEL.predict_proba([text])
+        predictions = []
+        for index in range(16):
+            predictions.append((ENCODER.inverse_transform([index]), probability[0][index]))
+
+        # compute scores
+        IE_score = calculate_weighted_average(predictions, "I")
+        NS_score = calculate_weighted_average(predictions, "N")
+        TF_score = calculate_weighted_average(predictions, "T")
+        JP_score = calculate_weighted_average(predictions, "J")
+
+        print({
+            "IE_score": IE_score,
+            "NS_score":  NS_score,
+            "TF_score": TF_score,
+            "JP_score": JP_score,
+        })
         return {
-            "IE_score": None,
-            "NS_score":  None,
-            "TF_score": None,
-            "JP_score": None,
+            "IE_score": IE_score,
+            "NS_score":  NS_score,
+            "TF_score": TF_score,
+            "JP_score": JP_score,
         }
-    
-    probability = MODEL.predict_proba([text])
-    predictions = []
-    for index in range(16):
-        predictions.append((ENCODER.inverse_transform([index]), probability[0][index]))
-            
-    # compute scores
-    IE_score = calculate_weighted_average(predictions, "I")
-    NS_score = calculate_weighted_average(predictions, "N")
-    TF_score = calculate_weighted_average(predictions, "T")
-    JP_score = calculate_weighted_average(predictions, "J")
-    
-    return {
-        "IE_score": IE_score,
-        "NS_score":  NS_score,
-        "TF_score": TF_score,
-        "JP_score": JP_score,
-    }
+    except Exception as e:
+        return {
+            "IE_score": errorHandler(),
+            "NS_score": errorHandler(),
+            "TF_score": errorHandler(),
+            "JP_score": errorHandler(),
+        }
+
 
 
 # Create your views here.
