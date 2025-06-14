@@ -197,7 +197,7 @@ class AnalyzeCv extends Model
     $payload = json_encode(['personality_assessment' => $pAssessmentData]);
 
     // Make the POST request using cURL
-    $ch = curl_init($twitterEndpoint);
+    $ch = curl_init($twitterEndpoint."/assess/");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [

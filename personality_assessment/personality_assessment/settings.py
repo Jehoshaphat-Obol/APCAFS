@@ -124,4 +124,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-X_API_URL = "http://127.0.0.1:5000/"
+X_API_URL = "http://apcafs-twitter:5000/"
