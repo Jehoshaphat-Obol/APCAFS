@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'company_id')->hiddenInput()->label(false) ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton(Yii::t('app', 'Create Admin'), ['class' => 'btn btn-success', 'name' => 'signup-button', 'style' => 'width: 100%; background-color: #0d2845;']) ?>
+                    <?= Html::submitButton(Yii::t('app', 'Create Admin'), ['class' => 'btn btn-success', 'name' => 'signup-button', 'style' => 'width: 100%; background-color: #00786f;']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>

@@ -19,33 +19,86 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
+
 <head>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        main {
+            height: 100vh;
+        }
+
+        .left-pane {
+            background-color: #00786f;
+            color: white;
+            width: 50%;
+        }
+
+        .right-pane {
+            background-color: white;
+            width: 50%;
+        }
+
+        @media (max-width: 992px) {
+
+            /* xs */
+            .my-box {
+                box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+                /* shadow */
+            }
+        }
+
+        @media (min-width: 992px) {
+
+            /* md and up */
+            .my-box {
+                box-shadow: none;
+            }
+        }
+    </style>
 </head>
+
 <body class="d-flex justify-content-center align-items-center vh-100">
-<?php $this->beginBody() ?>
+    <?php $this->beginBody() ?>
 
-<main class="container">
-    <div class="row justify-content-center">
-        
-        <h2 class="text-center">
-            <img src="<?= Yii::getAlias('@web') ?>/images/logo/logo_blue.png" alt="Logo" style="height: 350px; margin-top: -100px;">
-        </h2>
-
-        <div class="outer-cover col-lg-6 col-md-8 col-sm-10 px-4 py-3 shadow rounded bg-white" style="margin-top: -150px;">
-            <?= Alert::widget() ?>
-            <?= $content ?>
-            <?php if (!empty($this->blocks['register'])): ?>
-                <?= $this->blocks['register'] ?>
-            <?php elseif (!empty($this->blocks['signin'])): ?>
-                <?= $this->blocks['signin'] ?>
-            <?php endif; ?>
+    <main class="d-flex">
+        <!-- Left Pane (A): only on large screens -->
+        <div class="left-pane d-none d-lg-flex flex-grow-1 justify-content-center align-items-center">
+            <h2 class="text-center">
+                <img src="<?= Yii::getAlias('@web') ?>/images/logo/logo_white.png" alt="Logo" style="height: 64px; margin-top: -100px;">
+                <p>Welcome Back</p>
+            </h2>
         </div>
-    </div>
-</main>
 
-<?php $this->endBody() ?>
+        <!-- Right Pane (B): visible on all screen sizes -->
+        <div class="right-pane flex-grow-1 d-flex justify-content-center align-items-center">
+            <div class="w-100 p-4" style="max-width: 424px;">
+                <div class="d-flex d-lg-none flex-grow-1 justify-content-center align-items-center">
+                    <h2 class="text-center">
+                        <img src="<?= Yii::getAlias('@web') ?>/images/logo/logo_blue.png" alt="Logo" style="height: 64px;">
+                    </h2>
+                </div>
+                <div class="my-box p-4 rounded">
+                    <?= Alert::widget() ?>
+                    <?= $content ?>
+                    <?php if (!empty($this->blocks['register'])): ?>
+                        <?= $this->blocks['register'] ?>
+                    <?php elseif (!empty($this->blocks['signin'])): ?>
+                        <?= $this->blocks['signin'] ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <?php $this->endBody() ?>
 </body>
+
 </html>
 <?php $this->endPage() ?>

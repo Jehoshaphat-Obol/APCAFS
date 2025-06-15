@@ -27,7 +27,7 @@ $this->title = Yii::t('app', 'Company Setup');
     <?= $form->field($model, 'company_website_url')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Create Company'), ['class' => 'btn btn-success', 'style' => "width: 100%; background-color: #0d2845;"]) ?>
+        <?= Html::submitButton(Yii::t('app', 'Create Company'), ['class' => 'btn btn-success', 'style' => "width: 100%; background-color: #00786f;"]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
