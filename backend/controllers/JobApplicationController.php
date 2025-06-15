@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use Yii;
 use app\models\JobApplication;
 use app\models\JobApplicationSearch;
 use yii\web\Controller;

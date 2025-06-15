@@ -75,6 +75,9 @@ if (!Yii::$app->user->isGuest) {
                     'encode' => false,
                     'items' => [
                         ['label' => '<i class="bi bi-people sidebar-icons-inside fs-5"></i> Users', 'encode' => false, 'url' => ['/user/deleted-users']],
+                        ['label' => '<i class="bi bi-briefcase sidebar-icons-inside fs-5"></i> Job Posts', 'encode' => false, 'url' => ['/job-post/deleted-posts']],
+                        ['label' => '<i class="bi bi-clipboard-check sidebar-icons-inside fs-5"></i> Job Tests', 'encode' => false, 'url' => ['/job-test/deleted-tests']],
+                        ['label' => '<i class="bi bi-folder2-open sidebar-icons-inside"></i> Job Applications', 'encode' => false, 'url' => ['/job-application/deleted-applications']],
                     ],
                 ],
                 [
@@ -92,11 +95,6 @@ if (!Yii::$app->user->isGuest) {
                     'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> Dashboard',
                     'encode' => false,
                     'url' => ['/dashboard/dashboard']
-                ],
-                [
-                    'label' => '<i class="bi bi-people sidebar-icons fs-5"></i> Users',
-                    'encode' => false,
-                    'url' => ['/user/index'],
                 ],
                 [
                     'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> Job Posts',
@@ -123,11 +121,6 @@ if (!Yii::$app->user->isGuest) {
                     'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> Dashboard',
                     'encode' => false,
                     'url' => ['/dashboard/dashboard']
-                ],
-                [
-                    'label' => '<i class="bi bi-people sidebar-icons fs-5"></i> Users',
-                    'encode' => false,
-                    'url' => ['/user/index'],
                 ],
                 [
                     'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> Job Posts',

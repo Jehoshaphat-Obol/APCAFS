@@ -148,21 +148,21 @@ public $roles;
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'company_id' => Yii::t('app', 'Company Name'),
+            'company_id' => Yii::t('app', 'Company'),
             'username' => Yii::t('app', 'Username'),
             'roles' => Yii::t('app', 'Roles'),
             'auth_key' => Yii::t('app', 'Auth Key'),
-            'password_hash' => Yii::t('app', 'Password Hash'),
+            'password_hash' => Yii::t('app', 'Password'),
             'password_reset_token' => Yii::t('app', 'Password Reset Token'),
             'email' => Yii::t('app', 'Email'),
             'verification_token' => Yii::t('app', 'Verification Token'),
-            'user_status_id' => Yii::t('app', 'User Status Name'),
+            'user_status_id' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
-            'userCreatedBy.username' => Yii::t('app', 'User Created By'),
+            'userCreatedBy.username' => Yii::t('app', 'Created By'),
             'updated_at' => Yii::t('app', 'Updated At'),
-            'userUpdatedBy.username' => Yii::t('app', 'User Updated By'),
-            'user_deleted_at' => Yii::t('app', 'User Deleted At'),
-            'userDeletedBy.username' => Yii::t('app', 'User Deleted By'),
+            'userUpdatedBy.username' => Yii::t('app', 'Updated By'),
+            'user_deleted_at' => Yii::t('app', 'Deleted At'),
+            'userDeletedBy.username' => Yii::t('app', 'Deleted By'),
         ];
     }
 

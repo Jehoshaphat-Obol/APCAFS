@@ -71,19 +71,19 @@ class Company extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'company_name' => Yii::t('app', 'Company Name'),
-            'company_phone_number' => Yii::t('app', 'Company Phone Number'),
-            'company_email' => Yii::t('app', 'Company Email'),
-            'company_address' => Yii::t('app', 'Company Address'),
-            'company_website_url' => Yii::t('app', 'Company Website Url'),
-            'company_user_size' => Yii::t('app', 'Company User Size'),
-            'company_activation_code' => Yii::t('app', 'Company Activation Code'),
-            'company_activation_code_date' => Yii::t('app', 'Company Activation Code Date'),
-            'companyStatus.status_name' => Yii::t('app', 'Status Name'),
-            'company_status_id' => Yii::t('app', 'Status Name'),
-            'company_created_at' => Yii::t('app', 'Company Created At'),
-            'company_updated_at' => Yii::t('app', 'Company Updated At'),
-            'company_deleted_at' => Yii::t('app', 'Company Deleted At'),
+            'company_name' => Yii::t('app', 'Name'),
+            'company_phone_number' => Yii::t('app', 'Phone Number'),
+            'company_email' => Yii::t('app', 'Email'),
+            'company_address' => Yii::t('app', 'Address'),
+            'company_website_url' => Yii::t('app', 'Website Url'),
+            'company_user_size' => Yii::t('app', 'User Size'),
+            'company_activation_code' => Yii::t('app', 'Activation Code'),
+            'company_activation_code_date' => Yii::t('app', 'Activation Code Date'),
+            'companyStatus.status_name' => Yii::t('app', 'Status'),
+            'company_status_id' => Yii::t('app', 'Status'),
+            'company_created_at' => Yii::t('app', 'Created At'),
+            'company_updated_at' => Yii::t('app', 'Updated At'),
+            'company_deleted_at' => Yii::t('app', 'Deleted At'),
         ];
     }
 

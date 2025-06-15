@@ -58,33 +58,76 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php endif; ?>
     </p>
 
-<?php if(Yii::$app->user->can('hr')): ?>
+<?php if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr')): ?>
     <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'company.company_name',
-            'user2.username',
-            'post_job_title',
-            'post_job_type',
-            'post_job_description:ntext',
-            'post_publication_date',
-            'post_deadline',
-            'post_profession',
-            'post_location',
-            'post_is_remote',
-            'post_salary_range_min',
-            'post_salary_range_max',
-            'post_status_id',
-            'post_created_at',
-            'user.username',
-            'post_updated_at',
-            'user1.username',
-            'post_deleted_at',
-            'user0.username',
+    'model' => $model,
+    'attributes' => [
+        'id',
+        'company.company_name',
+        [
+            'attribute' => 'user2.username', // User aliyehusika awali
+            'label' => 'Posted By',
         ],
-    ]) ?>
+        'post_job_title',
+        'post_job_type',
+        'post_job_description:ntext',
+        'post_publication_date:datetime',
+        'post_deadline:date',
+        'post_profession',
+        'post_location',
+        [
+            'attribute' => 'post_is_remote',
+            'value' => $model->post_is_remote ? 'Yes' : 'No',
+        ],
+        'post_salary_range_min',
+        'post_salary_range_max',
+        'statusLookup.status_name',
+        
+        // Tarehe ya kuundwa (formatted + conditional display)
+        [
+            'attribute' => 'post_created_at',
+            'format' => ['date', 'php:d M Y H:i'],
+            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+        ],
 
+        // Aliyeunda
+        [
+            'attribute' => 'user.username',
+            'label' => 'Created By',
+            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+        ],
+
+        // Tarehe ya kusasishwa
+        [
+            'attribute' => 'post_updated_at',
+            'format' => ['date', 'php:d M Y H:i'],
+            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+        ],
+
+        // Aliyesasisha
+        [
+            'attribute' => 'user1.username',
+            'label' => 'Updated By',
+            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+        ],
+
+        // Tarehe ya kufutwa (soft delete)
+        [
+            'attribute' => 'post_deleted_at',
+            'format' => ['date', 'php:d M Y H:i'],
+            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+        ],
+
+        // Aliyefuta
+        [
+            'attribute' => 'user0.username',
+            'label' => 'Deleted By',
+            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+        ],
+    ],
+    ]) ?>
+<?php endif; ?>
+<?php if(Yii::$app->user->can('manager') || Yii::$app->user->can('hr')): ?>
     <div class="job-application-index">
 
     <h1><?= Html::encode("Job Applications") ?></h1>
@@ -136,9 +179,11 @@ $this->params['breadcrumbs'][] = $this->title;
             //'applicant_deleted_by',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, JobApplication $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                'template' => '{view}', // View tu itaonekana
+                'controller' => 'job-application', // Muhimu! Elekeza kwa controller sahihi
+                'urlCreator' => function ($action, $jobApp, $key, $index, $column) {
+                    return Url::toRoute(["job-application/$action", 'id' => $jobApp->id]);
+                },
             ],
         ],
     ]); ?>
