@@ -26,6 +26,7 @@ $this->registerCssFile('@web/css/fontawesome.min.css');
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
+
 <head>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -34,72 +35,109 @@ $this->registerCssFile('@web/css/fontawesome.min.css');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        ul.d-flex.flex-column.bg-light.nav-pills.nav {
+            background-color: transparent !important;
+            color: white;
+            gap: 4px;
+        }
 
+        .sidebar-nav .shadow {
+            box-shadow: none !important;
+        }
+
+        aside .nav-pills .nav-link.active {
+            color: black;
+            font-weight: 500;
+            background-color: #ecfdf5;
+            border-left: 4px solid #002c22;
+        }
+
+        aside .nav-pills .nav-link {
+            color: white;
+            font-weight: 500;
+            border-radius: 8px;
+        }
+        aside .nav-pills .nav-link:hover {
+            color: black;
+            background-color: #a4f4cf;
+        }
+
+        .sidebar-icons {
+            color: inherit;
+        }
+
+        .sidebar-header{
+            margin-top: 28px;
+        }
+    </style>
 </head>
+
 <body>
-<?php $this->beginBody() ?>
+    <?php $this->beginBody() ?>
 
-<!-- Sidebar -->
-<aside class="sidebar">
-    <!-- Sehemu ya Juu ya Sidebar: Logo na Jina la Mtumiaji -->
-    <div class="sidebar-header">
-        <div class="logo-container">
-            <img src="https://images.unsplash.com/photo-1551740740-dc0788032166" alt="Technology Logo" class="logo">
-        </div>
-        <div class="user-info">
-            <span class="user-name"><?= Yii::$app->user->identity->username ?></span>
-        </div>
-    </div>
-
-    <hr>
-    
-    <!-- Sehemu ya Chini ya Sidebar: Navigation Items -->
-    <div class="sidebar-nav">
-        <?= $this->render('_sidebar') ?>
-    </div>
-</aside>
-
-<!-- Main Container -->
-<div class="main-container">
-    <!-- Header -->
-    <header class="header">
-        <div>
-            <?= $this->render('_header') ?>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="content">
-        <?php if (!empty($this->params['breadcrumbs'])): ?>
-            <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
-        <?php endif ?>
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <!-- <div class="outer-cover col-lg-8 col-md-10 col-sm-12 px-4 py-3 shadow rounded bg-white"> -->
-                    <?= Alert::widget() ?>
-                    <?= $content ?>
-                <!-- </div> -->
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <!-- Sehemu ya Juu ya Sidebar: Logo na Jina la Mtumiaji -->
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <img src="<?= Yii::getAlias('@web') ?>/images/logo/logo_white.png" alt="Technology Logo" style="width: 100%; height: 32px; object-fit: contain;">
+            </div>
+            <div class="user-info">
+                <h4 class="user-name"><?= Yii::$app->user->identity->username ?></h4>
             </div>
         </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <?= $this->render('_footer') ?>
-    </footer>
-</div>
+        <hr>
 
-<!-- Flatpickr JS -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <!-- Sehemu ya Chini ya Sidebar: Navigation Items -->
+        <div class="sidebar-nav">
+            <?= $this->render('_sidebar') ?>
+        </div>
+    </aside>
 
-<script>
-    flatpickr(".flatpickr", {
-        dateFormat: "Y-m-d",
-        allowInput: true
-    });
-</script>
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Header -->
+        <header class="header">
+            <div>
+                <?= $this->render('_header') ?>
+            </div>
+        </header>
 
-<?php $this->endBody() ?>
+        <!-- Main Content -->
+        <main class="content">
+            <?php if (!empty($this->params['breadcrumbs'])): ?>
+                <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
+            <?php endif ?>
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <!-- <div class="outer-cover col-lg-8 col-md-10 col-sm-12 px-4 py-3 shadow rounded bg-white"> -->
+                    <?= Alert::widget() ?>
+                    <?= $content ?>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <?= $this->render('_footer') ?>
+        </footer>
+    </div>
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        flatpickr(".flatpickr", {
+            dateFormat: "Y-m-d",
+            allowInput: true
+        });
+    </script>
+
+    <?php $this->endBody() ?>
 </body>
+
 </html>
 <?php $this->endPage() ?>
