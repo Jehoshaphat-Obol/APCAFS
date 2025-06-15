@@ -17,8 +17,8 @@ class CompanySearch extends Company
     public function rules()
     {
         return [
-            [['id', 'company_user_size', 'company_status_id'], 'integer'],
-            [['company_name', 'company_phone_number', 'company_email', 'company_address', 'company_website_url', 'company_activation_code', 'company_activation_code_date', 'company_created_at', 'company_updated_at', 'company_deleted_at'], 'safe'],
+            [['id', 'company_user_size'], 'integer'],
+            [['company_name', 'company_phone_number', 'company_email', 'company_address', 'company_website_url', 'company_activation_code', 'company_activation_code_date', 'company_created_at', 'company_updated_at', 'company_deleted_at', 'company_status_id'], 'safe'],
         ];
     }
 
@@ -57,12 +57,13 @@ class CompanySearch extends Company
             return $dataProvider;
         }
 
+        $query->joinWith(['companyStatus AS status']);
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'company_user_size' => $this->company_user_size,
             'company_activation_code_date' => $this->company_activation_code_date,
-            'company_status_id' => $this->company_status_id,
             'company_created_at' => $this->company_created_at,
             'company_updated_at' => $this->company_updated_at,
             'company_deleted_at' => $this->company_deleted_at,
@@ -73,7 +74,8 @@ class CompanySearch extends Company
             ->andFilterWhere(['like', 'company_email', $this->company_email])
             ->andFilterWhere(['like', 'company_address', $this->company_address])
             ->andFilterWhere(['like', 'company_website_url', $this->company_website_url])
-            ->andFilterWhere(['like', 'company_activation_code', $this->company_activation_code]);
+            ->andFilterWhere(['like', 'company_activation_code', $this->company_activation_code])
+            ->andFilterWhere(['like', 'status.status_name', $this->company_status_id]);
 
         return $dataProvider;
     }
