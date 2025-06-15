@@ -5,6 +5,7 @@ use Yii;
 use yii\base\Model;
 use app\models\Profile;
 use app\models\JobPost;
+use app\models\PersonalityAssessment;
 use app\models\JobApplication;
 use app\models\WorkExperience;
 use app\models\Education;
@@ -46,8 +47,13 @@ class AnalyzeCv extends Model
     // languages details
     public $publication_title;
 
-
-
+    // Personality Assessment details
+    public $personality_profile_id;
+    public $personality_IE_score;
+    public $personality_NS_score;
+    public $personality_TF_score;
+    public $personality_JB_score;
+    public $personality_last_analysis_date;
 
     public function analyze($id = null)
     {
@@ -193,28 +199,89 @@ class AnalyzeCv extends Model
                     ];
                 }
 
- // Prepare the payload
-    $payload = json_encode(['personality_assessment' => $pAssessmentData]);
+                // Prepare the payload
+                $payload = json_encode(['personality_assessment' => $pAssessmentData]);
 
-    // Make the POST request using cURL
-    $ch = curl_init($twitterEndpoint."/assess/");
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Content-Type: application/json',
-        'Content-Length: ' . strlen($payload)
-    ]);
+                // Make the POST request using cURL
+                $ch = curl_init($twitterEndpoint."/assess/");
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                    'Content-Type: application/json',
+                    'Content-Length: ' . strlen($payload)
+                ]);
 
-    $response = curl_exec($ch);
-    curl_close($ch);
+                $response = curl_exec($ch);
+                curl_close($ch);
 
-    // Echo the response (in real use, you may want to return JSON or render it)
-    echo "<pre>";
-    print_r(json_decode($response, true));
-    echo "</pre>";
-                return json_decode($response, true);
+                // Echo the response (in real use, you may want to return JSON or render it)
+                // echo "<pre>";
+                // print_r(json_decode($response, true));
+                // echo "</pre>";
+                //             return json_decode($response, true);
 
-                
+                // saving personality Assessment data
+                if (isset($response['results']) && is_array($response['results'])) {
+                    $rows = [];
+                    $requiredKeys = ['profile_id', 'IE_score', 'NS_score', 'TF_score', 'JB_score'];
+
+                    foreach ($response['results'] as $record) {
+
+                        // Check kama key zote muhimu zipo kabla ya ku-save
+                        $allKeysExist = true;
+                        foreach ($requiredKeys as $key) {
+                            if (!isset($record[$key])) {
+                                $allKeysExist = false;
+                                break;  // Ikiwa hata key moja haipo, tunaacha
+                            }
+                        }
+
+                        if (!$allKeysExist) {
+                            Yii::error("Missing required keys in record: " . json_encode($record));
+                            continue;
+                        }
+
+                        // Kuandaa row ya ku-save
+                        $rows[] = [
+                            $record['profile_id'],
+                            $record['personality_IE_score'],
+                            $record['personality_NS_score'],
+                            $record['personality_TF_score'],
+                            $record['personality_JB_score'],
+                            StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar(), // personality_status_id
+                            date('Y-m-d'), // personality_last_analysis_date
+                            Yii::$app->user->id ?? null, // personality_created_by
+                        ];
+                    }
+
+                    if (!empty($rows)) {
+                        $columns = [
+                            'personality_profile_id',
+                            'personality_IE_score',
+                            'personality_NS_score',
+                            'personality_TF_score',
+                            'personality_JB_score',
+                            'personality_status_id',
+                            'personality_last_analysis_date',
+                            'personality_created_by',
+                        ];
+
+                        try {
+                            Yii::$app->db->createCommand()
+                                ->batchInsert('personality_assessment', $columns, $rows)
+                                ->execute();
+                            Yii::$app->session->setFlash('success', 'All valid assessments saved successfully.');
+                        } catch (\Exception $e) {
+                            Yii::error("Batch insert failed: " . $e->getMessage());
+                            Yii::$app->session->setFlash('error', 'Failed to save assessments.');
+                        }
+                    } else {
+                        Yii::$app->session->setFlash('error', 'No valid results to save.');
+                    }
+
+                } else {
+                    Yii::$app->session->setFlash('error', 'No results to save.');
+                }    
             }
             throw new \Exception("Forbidden to perform this action");
             return false;
