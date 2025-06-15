@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace app\models;
 
 use Yii;
@@ -59,33 +60,30 @@ class AnalyzeCv extends Model
     {
         $transaction = Yii::$app->db->beginTransaction();
 
-        try
-        {
-            if(Yii::$app->user->can('hr'))
-            {
-		        $twitterEndpoint = Yii::$app->params['pAssessment'];
+        try {
+            if (Yii::$app->user->can('hr')) {
+                $twitterEndpoint = Yii::$app->params['pAssessment'];
 
                 $post = JobPost::find()
-                        ->where(['id' => $id])
-                        ->andWhere(['post_status_id' => StatusLookup::find()->where(['status_code' => 'published'])->select('id')->scalar()])
-                        ->one();
+                    ->where(['id' => $id])
+                    ->andWhere(['post_status_id' => StatusLookup::find()->where(['status_code' => 'published'])->select('id')->scalar()])
+                    ->one();
 
-                    if ($post !== null) {
-                        $jobSummary = implode(' <br> ', [
-                            'Job Title: ' . $post->post_job_title,
-                            'Job Type: ' . $post->post_job_type,
-                            'Description: ' . $post->post_job_description,
-                            'With Profession in: ' . $post->post_profession,
-                        ]);
-                        
-                    } else {
-                        echo "Hakuna job post iliyopatikana.";
-                    }
+                if ($post !== null) {
+                    $jobSummary = implode(' <br> ', [
+                        'Job Title: ' . $post->post_job_title,
+                        'Job Type: ' . $post->post_job_type,
+                        'Description: ' . $post->post_job_description,
+                        'With Profession in: ' . $post->post_profession,
+                    ]);
+                } else {
+                    echo "Hakuna job post iliyopatikana.";
+                }
 
                 $applications = JobApplication::find()
-                        ->where(['applicant_status_id' => StatusLookup::find()->where(['status_code' => 'apply'])->select('id')->scalar()])
-                        ->all();
-                
+                    ->where(['applicant_status_id' => StatusLookup::find()->where(['status_code' => 'apply'])->select('id')->scalar()])
+                    ->all();
+
                 $userIds = [];
 
                 foreach ($applications as $application) {
@@ -93,9 +91,9 @@ class AnalyzeCv extends Model
                 }
 
                 $profiles = Profile::find()
-                        ->where(['profile_status_id' => StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar()])
-                        ->andWhere(['profile_user_id' => $userIds])
-                        ->all();
+                    ->where(['profile_status_id' => StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar()])
+                    ->andWhere(['profile_user_id' => $userIds])
+                    ->all();
 
                 $experiences = WorkExperience::find()
                     ->where(['experience_status_id' => StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar()])
@@ -183,15 +181,15 @@ class AnalyzeCv extends Model
                     $publicationText = isset($publicationMap[$profileId]) ? implode(', ', $publicationMap[$profileId]) : 'No publications';
 
                     $applicationString = 'Bios: ' . $profile->profile_bios . '<br>' .
-                                        'Social media username: ' . $profile->profile_social_media_username . '<br>' .
-                                        'Experience: ' . $experienceText. '<br>' .
-                                        'Education: ' . $educationText. '<br>' .
-                                        'Skills: ' . $skillText. '<br>' .
-                                        'Languages: ' . $languageText. '<br>' .
-                                        'Publications: ' . $publicationText;
-                    
-                                        $pAssessmentData[] = [
-                    'profile_id' => $profile->profile_user_id,
+                        'Social media username: ' . $profile->profile_social_media_username . '<br>' .
+                        'Experience: ' . $experienceText . '<br>' .
+                        'Education: ' . $educationText . '<br>' .
+                        'Skills: ' . $skillText . '<br>' .
+                        'Languages: ' . $languageText . '<br>' .
+                        'Publications: ' . $publicationText;
+
+                    $pAssessmentData[] = [
+                        'profile_id' => $profile->profile_user_id,
                         'social_media_username' => $profile->profile_social_media_username,
                     ];
 
@@ -201,11 +199,70 @@ class AnalyzeCv extends Model
                     ];
                 }
 
+                /**CV ANALYSIS inaanzia hapa*/
+                $cvEndpoint = Yii::$app->params['cvAnalysis'];
+                // ✅ Final Payload Format (no nesting under "cv_analysis")
+                $cvPayload = json_encode([
+                    'job_post' => $jobSummary,
+                    'applications' => $profileData
+                ]);
+
+                // ✅ cURL to send POST request
+                $ch = curl_init($cvEndpoint . "/rank/");
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $cvPayload);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                    'Host: localhost',
+                    'Content-Type: application/json',
+                    'Content-Length: ' . strlen($cvPayload)
+                ]);
+
+                $cvResponse = curl_exec($ch);
+                curl_close($ch);
+
+                $cvResponseData = json_decode($cvResponse, true);
+
+                //JobApplication
+                if (isset($cvResponseData['results']) && is_array($cvResponseData['results'])) {
+                    $successCount = 0;
+
+                    foreach ($cvResponseData['results'] as $record) {
+                        if (isset($record['user_id'], $record['score'])) {
+                            $userId = $record['user_id'];
+                            $score = round($record['score'], 2);
+
+                            $updateCount = Yii::$app->db->createCommand()->update(
+                                'job_application',
+                                ['applicant_score' => $score],
+                                ['applicant_user_id' => $userId]
+                            )->execute();
+
+                            if ($updateCount > 0) {
+                                $successCount++;
+                            }
+                        } else {
+                            Yii::error("Missing required keys in record: " . json_encode($record));
+                        }
+                    }
+
+                    if ($successCount > 0) {
+                        Yii::$app->session->setFlash('success', "$successCount application scores updated successfully.");
+                    } else {
+                        Yii::$app->session->setFlash('error', 'No scores were updated.');
+                    }
+                } else {
+                    Yii::$app->session->setFlash('error', 'No results returned from CV ranking API.');
+                }
+
+
+                /******PERSONALITY ASSEMENT INAANZIA HAPA
+                 * katika mistari ifuatayo
+                 */
                 // Prepare the payload
                 $payload = json_encode(['personality_assessment' => $pAssessmentData]);
 
                 // Make the POST request using cURL
-                $ch = curl_init($twitterEndpoint."/assess/");
+                $ch = curl_init($twitterEndpoint . "/assess/");
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
                 curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -216,7 +273,7 @@ class AnalyzeCv extends Model
                 $response = curl_exec($ch);
                 curl_close($ch);
 
-                $responseData = json_decode($rawResponse, true);
+                $responseData = json_decode($response, true);
                 // saving personality Assessment data
                 if (isset($responseData['results']) && is_array($responseData['results'])) {
                     $rows = [];
@@ -226,10 +283,10 @@ class AnalyzeCv extends Model
                         if (!empty(array_intersect($requiredKeys, array_keys($record)))) {
                             $rows[] = [
                                 $record['profile_id'],
-                                $record['IE_score'],
-                                $record['NS_score'],
-                                $record['TF_score'],
-                                $record['JB_score'],
+                                $record['IE_score'] * 100,
+                                $record['NS_score'] * 100,
+                                $record['TF_score'] * 100,
+                                $record['JP_score'] * 100,
                                 StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar(),
                                 date('Y-m-d'),
                                 Yii::$app->user->id ?? null,
@@ -260,13 +317,12 @@ class AnalyzeCv extends Model
                     Yii::$app->session->setFlash('error', 'No results returned from assessment API.');
                 }
 
+
                 $transaction->commit();
                 return true;
-
             } else {
                 throw new \Exception("Forbidden to perform this action");
             }
-
         } catch (\Exception $e) {
             $transaction->rollBack();
             Yii::error($e->getMessage(), __METHOD__);
@@ -274,4 +330,3 @@ class AnalyzeCv extends Model
         }
     }
 }
-?>

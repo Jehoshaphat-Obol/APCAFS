@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="chrome://browser/content/contentSearchUI.css" />
     <link rel="stylesheet" href="chrome://newtab/content/css/activity-stream.css" />
   </head>
-  <!-- Cached: Sat, 14 Jun 2025 16:51:53 GMT -->
+  <!-- Cached: Sun, 15 Jun 2025 12:53:09 GMT -->
   <body class="activity-stream">
     <div id="header-asrouter-container" role="presentation"></div>
     <div id="root">
@@ -225,8 +225,8 @@ window.__STARTUP_STATE__ = {
 			"discoverystream.sections.interestPicker.enabled": false,
 			"discoverystream.sections.interestPicker.visibleSections": "",
 			"discoverystream.spoc-positions": "2,4,8,13,17,20",
-			"discoverystream.placements.spocs": "newtab_spocs",
-			"discoverystream.placements.spocs.counts": "6",
+			"discoverystream.placements.spocs": "newtab_stories_1, newtab_stories_2, newtab_stories_3, newtab_stories_4, newtab_stories_5, newtab_stories_6",
+			"discoverystream.placements.spocs.counts": "1,1,1,1,1,1",
 			"discoverystream.placements.tiles": "newtab_tile_1, newtab_tile_2, newtab_tile_3",
 			"discoverystream.placements.tiles.counts": "1, 1, 1",
 			"newtabWallpapers.highlightEnabled": false,
@@ -665,7 +665,7 @@ window.__STARTUP_STATE__ = {
 		"blocks": {},
 		"spocs": {
 			"spocs_endpoint": "https://spocs.getpocket.com/spocs",
-			"lastUpdated": 1749711485502,
+			"lastUpdated": 1749991963810,
 			"data": {},
 			"loaded": true,
 			"frequency_caps": [],
@@ -1780,4 +1780,4 @@ window.__STARTUP_STATE__ = {
 	}
 };
 
-ébEž¾~           hM¨©HL-õÿÿÿÿ       :about:home alt-data 1;27593,script version 20250529122813  –F
+½ †•ãR           hNÂ5HLñÿÿÿÿ       :about:home alt-data 1;27593,script version 20250529122813  –®

@@ -30,12 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'personality_profile_id',
             'personality_IE_score',
             'personality_NS_score',
             'personality_TF_score',
-            //'personality_JB_score',
+            'personality_JB_score',
             //'personality_last_analysis_date',
             //'personality_status_id',
             //'personality_created_at',

@@ -1,1 +1,2 @@
 {"timestamp":21520990,"category":"bounce.tracking.protection","name":"purge_action","extra":{"glean_timestamp":"1749904334321","require_stateful_bounces":"true","site_host":"nectsideaments.com","success":"true","is_dry_run":"true","bounce_time":"1749900481"}}
+{"timestamp":49348024,"category":"glean","name":"restarted","extra":{"glean_timestamp":"1749991963963","glean.startup.date":"2025-06-15T15:52+03:00"},"execution_counter":1}

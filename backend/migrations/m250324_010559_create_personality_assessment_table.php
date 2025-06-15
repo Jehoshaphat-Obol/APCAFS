@@ -30,13 +30,6 @@ class m250324_010559_create_personality_assessment_table extends Migration
         ]);
 
         $this->createIndex(
-            '{{%idx-unique-personality_profile-IE-NS-TF-JB}}',
-            '{{%personality_assessment}}',
-            ['personality_profile_id', 'personality_IE_score', 'personality_NS_score', 'personality_TF_score', 'personality_JB_score'],
-            true // Hii inaweka unique index
-        );
-
-        $this->createIndex(
             '{{%idx-personality_assessment-personality_profile_id}}',
             '{{%personality_assessment}}',
             'personality_profile_id'
@@ -169,11 +162,6 @@ class m250324_010559_create_personality_assessment_table extends Migration
 
         $this->dropIndex(
             '{{%idx-personality_assessment-personality_profile_id}}',
-            '{{%personality_assessment}}'
-        );
-
-        $this->dropIndex(
-            '{{%idx-unique-personality_profile-IE-NS-TF-JB}}',
             '{{%personality_assessment}}'
         );
 
