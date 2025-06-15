@@ -20,17 +20,51 @@ class JobApplicationController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'view', 'create', 'update', 'delete', 'error', 'restore', 'deleted-applications'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'restore', 'deleted-applications'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['index', 'view', 'delete', 'restore', 'deleted-applications'],
+                        'allow' => true,
+                        'roles' => ['super-admin', 'company-admin'],
+                    ],
+                    [
+                        'actions' => ['index', 'view', 'delete', 'restore', 'deleted-applications'],
+                        'allow' => true,
+                        'roles' => ['hr'],
                     ],
                 ],
-            ]
-        );
+            ],
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ],
+        ];
     }
 
     /**
@@ -40,13 +74,55 @@ class JobApplicationController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new JobApplicationSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        try
+        {
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager')|| Yii::$app->user->can('hr'))
+            {
+                $searchModel = new JobApplicationSearch();
+                
+                if($searchModel !== null)
+                {
+                    $dataProvider = $searchModel->search($this->request->queryParams);
+                    Yii::$app->session->setFlash('info', 'Welcome, The following are list of Job Applications');
+                    return $this->render('index', [
+                        'searchModel' => $searchModel,
+                        'dataProvider' => $dataProvider,
+                    ]);
+                }
+            }
+            throw new ForbiddenHttpException();
+        } catch(ForbiddenHttpException $e)
+        {
+            return $this->redirect(['error']);
+        }
+    }
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+    /**
+     * Lists all Deleted Applications models.
+     *
+     * @return string
+     */
+    public function actionDeletedApplications()
+    {
+        try
+        {
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr'))
+            {
+                $deletedApplications = JobApplication::onlyDeleted()->all();
+                if($deletedApplications !== null)
+                {
+                    Yii::$app->session->setFlash('info', 'Welcome, The following are list of Job Applications inside Bin');
+                    return $this->render('deleted-applications', [
+                        'deletedApplications' => $deletedApplications,
+                    ]);
+                }
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+            throw new ForbiddenHttpException();
+        } catch(ForbiddenHttpException $e)
+        {
+            return $this->redirect(['error']);
+        }
     }
     
     /**
@@ -57,9 +133,26 @@ class JobApplicationController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        try
+        {
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr'))
+            {
+                $model = $this->findModel($id);
+                
+                if($model !== null)
+                {
+                    Yii::$app->session->setFlash('info', 'Welcome, Here you will be able to see detailed information about this Job Application');
+                    return $this->render('view', [
+                        'model' => $model,
+                    ]);
+                }
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+            throw new ForbiddenHttpException();
+        } catch(ForbiddenHttpException $e)
+        {
+            return $this->redirect(['error']);
+        }
     }
 
     /**
@@ -69,19 +162,31 @@ class JobApplicationController extends Controller
      */
     public function actionCreate()
     {
-        $model = new JobApplication();
-
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+        try {
+            $model = new JobApplication();
+            
+            if(Yii::$app->user->can('applicant'))
+            {
+                if($model !== null)
+                {
+                    if ($this->request->isPost) {
+                        if ($model->load($this->request->post()) && $model->save()) {
+                            Yii::$app->session->setFlash('success', 'Congratulation!, Job Applicant created successfully.');
+                            return $this->redirect(['view', 'id' => $model->id]);
+                        }
+                    }
+                    Yii::$app->session->setFlash('info', 'Welcome, Apply Now for this job.');
+                    return $this->render('create', [
+                        'model' => $model,
+                    ]);
+                }
+                throw new NotFoundHttpException('The requested page does not exist.');
             }
-        } else {
-            $model->loadDefaultValues();
+            throw new ForbiddenHttpException();
+        } catch (ForbiddenHttpException $e)
+        {
+            return $this->redirect(['error']);
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -93,15 +198,28 @@ class JobApplicationController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        try {
+            $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if(!(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant')))
+            {
+                if($model !== null)
+                {
+                    if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+                        return $this->redirect(['view', 'id' => $model->id]);
+                    }
+
+                    return $this->render('update', [
+                        'model' => $model,
+                    ]);
+                }
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+            throw new ForbiddenHttpException();
+        } catch (ForbiddenHttpException $e)
+        {
+            return $this->redirect(['error']);
         }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -113,9 +231,52 @@ class JobApplicationController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        try
+        {
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('hr'))
+            {
+                $model = $this->findModel($id);
 
-        return $this->redirect(['index']);
+                if ($model !== null) {
+                    $model->softDelete();
+                    Yii::$app->session->setFlash('success', 'Congratulation!, Job Application deleted successfully. You may restore them back from Bin');
+                    return $this->redirect(['index']);
+                }
+                throw new NotFoundHttpException('The requested page does not exist.');
+            } 
+            throw new ForbiddenHttpException();
+        } catch (ForbiddenHttpException $e)
+        {
+            return $this->redirect(['error']);
+        }
+    }
+
+    /**
+     * Restore an existing Products model.
+     * If Restore is successful, the browser will be redirected to the 'index' page.
+     * @param int $id ID
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionRestore($id)
+    {
+        try
+        {
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('hr'))
+            {
+                $model = JobApplication::findWithDeleted()->where(['id' => $id])->one();
+                if ($model !== null) {
+                    $model->restore();
+                    Yii::$app->session->setFlash('success', 'Congratulation!, job applicantion has been restored successfully.');
+                    return $this->redirect(['index']);
+                }
+                throw new NotFoundHttpException('The requested page does not exist.');
+            } 
+            throw new ForbiddenHttpException();
+        } catch (ForbiddenHttpException $e)
+        {
+            return $this->redirect(['error']);
+        }
     }
 
     /**

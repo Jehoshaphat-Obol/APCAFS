@@ -3,6 +3,10 @@
 namespace app\models;
 
 use Yii;
+use app\models\Company;
+use app\models\JobPost;
+use app\models\StatusLookup;
+use app\models\User;
 
 /**
  * This is the model class for table "job_application".
@@ -37,7 +41,7 @@ class JobApplication extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'job_application';
+        return '{{%job_application}}';
     }
 
     /**
@@ -156,9 +160,55 @@ class JobApplication extends \yii\db\ActiveRecord
      * {@inheritdoc}
      * @return JobApplicationQuery the active query used by this AR class.
      */
+    // public static function find()
+    // {
+    //     return new JobApplicationQuery(get_called_class());
+    // }
+
+    /**
+     * Soft delete: Inaweka `deleted_at` kwa sasa.
+     */
+    public function softDelete()
+    {
+        $this->applicant_deleted_at = date('Y-m-d H:i:s');
+        $this->applicant_status_id = StatusLookup::find()->where(['status_code' => 'deleted'])->select('id')->scalar();
+        $this->applicant_deleted_by = Yii::$app->user->id;
+        return $this->save(false, ['applicant_deleted_at', 'applicant_status_id', 'applicant_deleted_by']);
+    }
+
+    /**
+     * Restore: Inaondoa thamani ya `deleted_at`.
+     */
+    public function restore()
+    {
+        $this->applicant_deleted_at = null;
+        $this->applicant_status_id = StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar();
+        $this->applicant_updated_by = Yii::$app->user->id;
+        return $this->save(false, ['applicant_deleted_at', 'applicant_status_id', 'applicant_updated_by']);
+    }
+
+    /**
+     * Override `find()` ili kuchuja rekodi zilizofutwa kwa default.
+     */
     public static function find()
     {
-        return new JobApplicationQuery(get_called_class());
+        return parent::find()->where(['applicant_deleted_at' => null]);
+    }
+
+    /**
+     * Methodi maalum ya kuchuja na kurudisha rekodi ambazo zimefutwa pekee.
+     */
+    public static function onlyDeleted()
+    {
+        return parent::find()->where(['not', ['applicant_deleted_at' => null]]);
+    }
+
+    /**
+     * Methodi maalum ya kupata rekodi pamoja na zilizofutwa.
+     */
+    public static function findWithDeleted()
+    {
+        return parent::find();
     }
 
 }
