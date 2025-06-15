@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\AddJobPost;
 use app\models\JobPost;
+use app\models\JobApplication;
 use app\models\ApplyJob;
 use app\models\AnalyzeCv;
 use app\models\JobPostSearch;
@@ -15,6 +16,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
 use app\models\StatusLookup;
+use yii\helpers\ArrayHelper;
 
 /**
  * JobPostController implements the CRUD actions for JobPost model.
@@ -95,6 +97,16 @@ class JobPostController extends Controller
             if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))
             {
                 $searchModel = new JobPostSearch();
+
+                $applicationCounts = JobApplication::find()
+                ->select(['applicant_job_post_id', 'COUNT(*) as total_applications'])
+                ->where(['applicant_status_id' => StatusLookup::find()->where(['status_code' => 'apply'])->select('id')->scalar()])
+                ->groupBy('applicant_job_post_id')
+                ->asArray()
+                ->all();
+
+                // Convert kuwa key-value: [job_post_id => total]
+                $applicationCountMap = ArrayHelper::map($applicationCounts, 'applicant_job_post_id', 'total_applications');
                 
                 if($searchModel !== null)
                 {
@@ -103,6 +115,7 @@ class JobPostController extends Controller
                     return $this->render('index', [
                         'searchModel' => $searchModel,
                         'dataProvider' => $dataProvider,
+                        'applicationCountMap' => $applicationCountMap,
                     ]);
                 }
             }
