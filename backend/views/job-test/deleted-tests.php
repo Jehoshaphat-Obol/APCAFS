@@ -2,41 +2,41 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $deletedCompanies app\models\Companies[] */
+/* @var $deletedTests app\models\Companies[] */
 
-$this->title = 'Deleted Companies';
+$this->title = 'Deleted Job Tests';
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Bin'), 'url' => ['#']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Companies'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="Company-deleted">
+<div class="test-deleted">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (!empty($deletedCompanies)): ?>
+    <?php if (!empty($deletedTests)): ?>
         <table class="table table-hover table-responsive table-striped table-bordered">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Company Name</th>
-                    <th>Company Email</th>
-                    <th>Company Phone</th>
-                    <th>Company Address</th>
+                    <th>Job Name</th>
+                    <th>Posted By</th>
+                    <th>Test Address</th>
                     <th>Status</th>
                     <th>Deleted At</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <?php $key = 0; foreach ($deletedCompanies as $company): ?>
+                <?php $key = 0; foreach ($deletedTests as $test): ?>
                     <tr>
                         <td><?= Html::encode(++$key) ?></td>
-                        <td><?= Html::encode($company->company_name) ?></td>
-                        <td><?= Html::encode($company->company_email) ?></td>
-                        <td><?= Html::encode($company->company_phone_number) ?></td>
-                        <td><?= Html::encode($company->company_address) ?></td>
+                        <td><?= Html::encode($test->test_name) ?></td>
+                        <td><?= Html::encode($test->test_email) ?></td>
+                        <td><?= Html::encode($test->test_phone_number) ?></td>
+                        <td><?= Html::encode($test->test_address) ?></td>
                         <td><?php 
-                                switch ($company->company_status) {
+                                switch ($test->test_status) {
                                     case 10:
                                         // $class = 'badge badge-success';
                                         $label = 'active';
@@ -56,12 +56,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                 echo Html::tag('span', Html::encode($label));
                             ?>
                         </td>
-                        <td><?= Html::encode($company->company_deleted_at) ?></td>
+                        <td><?= Html::encode($test->test_deleted_at) ?></td>
                         <td>
-                            <?= Html::a('<i class="bi bi-arrow-counterclockwise"></i> Restore', ['restore', 'id' => $company->id], [
+                            <?= Html::a('<i class="bi bi-arrow-counterclockwise"></i> Restore', ['restore', 'id' => $test->id], [
                                 'class' => 'btn btn-success',
                                 'data' => [
-                                    'confirm' => 'Are you sure you want to restore this Company?',
+                                    'confirm' => 'Are you sure you want to restore this test?',
                                     'method' => 'post',
                                 ],
                             ]) ?>
@@ -71,6 +71,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </tbody>
         </table>
     <?php else: ?>
-        <p class="lead text-center alert alert-warning">No Deleted Company(s) found.</p>
+        <p class="lead text-center alert alert-warning">No Deleted test(s) found.</p>
     <?php endif ?>
 </div>

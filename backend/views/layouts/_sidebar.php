@@ -61,7 +61,7 @@ if (!Yii::$app->user->isGuest) {
                     'url' => ['/user/index'],
                 ],
                 [
-                    'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> Job Posts',
+                    'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> Posts',
                     'encode' => false,
                     'url' => ['/job-post/index'],
                 ],
@@ -69,6 +69,11 @@ if (!Yii::$app->user->isGuest) {
                     'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> Tests',
                     'encode' => false,
                     'url' => ['/job-test/index'],
+                ],
+                [
+                    'label' => '<i class="bi bi-folder2-open sidebar-icons fs-5"></i> Applications',
+                    'encode' => false,
+                    'url' => ['/job-application/index'],
                 ],
                 [
                     'label' => '<i class="bi bi-trash sidebar-icons fs-5"></i> Bin',

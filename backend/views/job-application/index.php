@@ -17,38 +17,69 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Job Application'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php if (Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('hr')): ?>
+        <p>
+            <?= Html::a(Yii::t('app', 'Create Job Application'), ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+    <?php endif; ?>
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?php
+    $columns = [
+        ['class' => 'yii\grid\SerialColumn'],
+    ];
+
+    if (Yii::$app->user->can('super-admin')) {
+        $columns[] = [
+            'attribute' => 'applicant_company_id',
+            'value' => 'company.company_name',
+        ];
+    }
+
+    $columns[] = [
+        'attribute' => 'applicant_job_post_id',
+        'format' => 'raw',
+        'value' => function ($model) {
+            $full = $model->jobPost->post_job_title ?? '';
+            $short = \yii\helpers\StringHelper::truncate($full, 30);
+            return "<span title='" . Html::encode($full) . "'>$short</span>";
+        },
+        'headerOptions' => [
+            'style' => 'color: #007bff; font-weight: bold; text-decoration: underline;',
+        ],
+    ];
+
+    $columns[] = [
+        'attribute' => 'applicant_user_id',
+        'value' => 'user2.username',
+    ];
+
+    $columns[] = 'applicant_score';
+
+    $columns[] = [
+        'attribute' => 'applicant_status_id',
+        'value' => 'statusLookup.status_name',
+    ];
+
+    $columns[] = [
+        'class' => ActionColumn::className(),
+        'urlCreator' => function ($action, \app\models\JobApplication $model, $key, $index, $column) {
+            return Url::toRoute([$action, 'id' => $model->id]);
+        },
+        'template' => '{view}', // Hii inazuia update/delete zisionekane
+        'visibleButtons' => [
+            'view' => true,
+            'update' => false,
+            'delete' => false,
+        ],
+    ];
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'applicant_company_id',
-            'applicant_job_post_id',
-            'applicant_user_id',
-            'applicant_score',
-            //'applicant_status_id',
-            //'applicant_created_at',
-            //'applicant_created_by',
-            //'applicant_updated_at',
-            //'applicant_updated_by',
-            //'applicant_deleted_at',
-            //'applicant_deleted_by',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, JobApplication $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
-            ],
-        ],
+        'columns' => $columns,
     ]); ?>
 
     <?php Pjax::end(); ?>
