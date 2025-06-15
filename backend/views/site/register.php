@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <h1><?= Html::encode($this->title) ?></h1>
     <p>Please fill out the following fields to register:</p>
     <div class="row">
-        <div class="col-lg-5">
+        <div>
             <?php $form = ActiveForm::begin([
                 'id' => 'form-signup',
                 'fieldConfig' => [
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton(Yii::t('app', 'Register'), ['class' => 'btn btn-success', 'name' => 'signup-button', 'style' => 'width: 100%; background-color: #0d2845;']) ?>
+                    <?= Html::submitButton(Yii::t('app', 'Register'), ['class' => 'btn btn-success', 'name' => 'signup-button', 'style' => 'width: 100%; background-color: #00786f;']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>

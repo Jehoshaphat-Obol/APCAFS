@@ -26,7 +26,7 @@ body {
 .sidebar {
     width: 250px;
     height: 100vh;
-    background: #0d2845; /* Badilisha hii kwa rangi yoyote unayotaka */
+    background: #00786f; /* Badilisha hii kwa rangi yoyote unayotaka */
     color: white;
     position: fixed;
     top: 0;
@@ -112,7 +112,7 @@ aside .nav-pills .nav-link:hover {
 aside .nav-pills .nav-link.active {
     background: rgba(0, 0, 0, 0.05);
     color: #444444;
-    border-left: 4px solid #0d2845;
+    border-left: 4px solid #00786f;
 }
 
 
@@ -246,7 +246,7 @@ button.logout {
 }
 
 .sidebar-icons {
-    color: #0d2845;
+    color: #00786f;
 }
 
 .sidebar-icons-inside {
@@ -361,7 +361,7 @@ h3 {
 }
 
 /* .btn-success, .btn-success:hover {
-    background-color: #0d2845;
+    background-color: #00786f;
 } */
 
 /* Media Query kwa Screen Ndogo */
@@ -376,7 +376,7 @@ h3 {
 }
 
 /* #accordionSettingInfo .accordion-item:nth-child(1) .accordion-button {
-    background-color: #0d2845;
+    background-color: #00786f;
     color: #fff;
 } */
 

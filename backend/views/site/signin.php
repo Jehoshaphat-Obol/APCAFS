@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>Please fill out the following fields to login:</p>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div>
 
             <?php $form = ActiveForm::begin([
                 'id' => 'login-form',
@@ -40,16 +40,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="form-group">
                 <div>
-                    <?= Html::submitButton('Sign In', ['class' => 'btn btn-primary', 'name' => 'login-button', 'style' => 'width: 100%; background-color: #0d2845;']) ?>
+                    <?= Html::submitButton('Sign In', ['class' => 'btn btn-primary', 'name' => 'login-button', 'style' => 'width: 100%; background-color: #00786f;']) ?>
                 </div>
             </div>
 
             <?php ActiveForm::end(); ?>
 
             <?php $this->beginBlock('signin'); ?>
-                <div style="color:#999;">
-                    Don't have an account yet? <?= Html::a('REGISTER', Url::to(['site/register'])) ?> Now!!!
-                </div>
+            <div style="color:#999;">
+                Don't have an account yet? <?= Html::a('REGISTER', Url::to(['site/register'])) ?> Now!!!
+            </div>
             <?php $this->endBlock(); ?>
 
         </div>
