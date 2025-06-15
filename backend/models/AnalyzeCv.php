@@ -243,7 +243,7 @@ class AnalyzeCv extends Model
 
                         // Kuandaa row ya ku-save
                         $rows[] = [
-                            $record['profile_id'],
+                            $record['personality_profile_id'],
                             $record['personality_IE_score'],
                             $record['personality_NS_score'],
                             $record['personality_TF_score'],
