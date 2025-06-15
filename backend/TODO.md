@@ -4,3 +4,4 @@
 # Jehoshaphat
 [ ] sketch dashboard
 Table responsiveness, and adjusting table columns
+[ ] design profile creation workflow
