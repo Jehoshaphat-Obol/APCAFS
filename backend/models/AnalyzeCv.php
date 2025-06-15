@@ -63,7 +63,7 @@ class AnalyzeCv extends Model
         {
             if(Yii::$app->user->can('hr'))
             {
-		$twitterEndpoint = Yii::$app->params['pAssessment'];
+		        $twitterEndpoint = Yii::$app->params['pAssessment'];
 
                 $post = JobPost::find()
                         ->where(['id' => $id])
@@ -77,7 +77,7 @@ class AnalyzeCv extends Model
                             'Description: ' . $post->post_job_description,
                             'With Profession in: ' . $post->post_profession,
                         ]);
-                        // echo $jobSummary;
+                        
                     } else {
                         echo "Hakuna job post iliyopatikana.";
                     }
@@ -189,10 +189,12 @@ class AnalyzeCv extends Model
                                         'Skills: ' . $skillText. '<br>' .
                                         'Languages: ' . $languageText. '<br>' .
                                         'Publications: ' . $publicationText;
-		    $pAssessmentData[] = [
-			'profile_id' => $profile->profile_user_id,
-		        'social_media_username' => $profile->profile_social_media_username,
-		    ];
+                    
+                                        $pAssessmentData[] = [
+                    'profile_id' => $profile->profile_user_id,
+                        'social_media_username' => $profile->profile_social_media_username,
+                    ];
+
                     $profileData[] = [
                         'user_id' => $profile->profile_user_id, // bado tunarudisha user_id kama reference
                         'application' => $applicationString,
@@ -214,80 +216,60 @@ class AnalyzeCv extends Model
                 $response = curl_exec($ch);
                 curl_close($ch);
 
-                // Echo the response (in real use, you may want to return JSON or render it)
-                // echo "<pre>";
-                // print_r(json_decode($response, true));
-                // echo "</pre>";
-                //             return json_decode($response, true);
-
+                $responseData = json_decode($rawResponse, true);
                 // saving personality Assessment data
-                if (isset($response['results']) && is_array($response['results'])) {
+                if (isset($responseData['results']) && is_array($responseData['results'])) {
                     $rows = [];
                     $requiredKeys = ['profile_id', 'IE_score', 'NS_score', 'TF_score', 'JB_score'];
 
-                    foreach ($response['results'] as $record) {
-
-                        // Check kama key zote muhimu zipo kabla ya ku-save
-                        $allKeysExist = true;
-                        foreach ($requiredKeys as $key) {
-                            if (!isset($record[$key])) {
-                                $allKeysExist = false;
-                                break;  // Ikiwa hata key moja haipo, tunaacha
-                            }
-                        }
-
-                        if (!$allKeysExist) {
+                    foreach ($responseData['results'] as $record) {
+                        if (!empty(array_intersect($requiredKeys, array_keys($record)))) {
+                            $rows[] = [
+                                $record['profile_id'],
+                                $record['IE_score'],
+                                $record['NS_score'],
+                                $record['TF_score'],
+                                $record['JB_score'],
+                                StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar(),
+                                date('Y-m-d'),
+                                Yii::$app->user->id ?? null,
+                            ];
+                        } else {
                             Yii::error("Missing required keys in record: " . json_encode($record));
-                            continue;
                         }
-
-                        // Kuandaa row ya ku-save
-                        $rows[] = [
-                            $record['personality_profile_id'],
-                            $record['personality_IE_score'],
-                            $record['personality_NS_score'],
-                            $record['personality_TF_score'],
-                            $record['personality_JB_score'],
-                            StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar(), // personality_status_id
-                            date('Y-m-d'), // personality_last_analysis_date
-                            Yii::$app->user->id ?? null, // personality_created_by
-                        ];
                     }
 
                     if (!empty($rows)) {
-                        $columns = [
-                            'personality_profile_id',
-                            'personality_IE_score',
-                            'personality_NS_score',
-                            'personality_TF_score',
-                            'personality_JB_score',
-                            'personality_status_id',
-                            'personality_last_analysis_date',
-                            'personality_created_by',
-                        ];
+                        Yii::$app->db->createCommand()
+                            ->batchInsert('personality_assessment', [
+                                'personality_profile_id',
+                                'personality_IE_score',
+                                'personality_NS_score',
+                                'personality_TF_score',
+                                'personality_JB_score',
+                                'personality_status_id',
+                                'personality_last_analysis_date',
+                                'personality_created_by',
+                            ], $rows)->execute();
 
-                        try {
-                            Yii::$app->db->createCommand()
-                                ->batchInsert('personality_assessment', $columns, $rows)
-                                ->execute();
-                            Yii::$app->session->setFlash('success', 'All valid assessments saved successfully.');
-                        } catch (\Exception $e) {
-                            Yii::error("Batch insert failed: " . $e->getMessage());
-                            Yii::$app->session->setFlash('error', 'Failed to save assessments.');
-                        }
+                        Yii::$app->session->setFlash('success', 'All valid assessments saved successfully.');
                     } else {
                         Yii::$app->session->setFlash('error', 'No valid results to save.');
                     }
-
                 } else {
-                    Yii::$app->session->setFlash('error', 'No results to save.');
-                }    
+                    Yii::$app->session->setFlash('error', 'No results returned from assessment API.');
+                }
+
+                $transaction->commit();
+                return true;
+
+            } else {
+                throw new \Exception("Forbidden to perform this action");
             }
-            throw new \Exception("Forbidden to perform this action");
-            return false;
-        } catch(\Exception $e)
-        {
-            $transaction->rollback();
+
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            Yii::error($e->getMessage(), __METHOD__);
             throw $e;
         }
     }
