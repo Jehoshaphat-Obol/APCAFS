@@ -102,7 +102,7 @@ class JobTestController extends Controller
     }
 
     /**
-     * Lists all Deleted Companies models.
+     * Lists all Deleted Tests models.
      *
      * @return string
      */
