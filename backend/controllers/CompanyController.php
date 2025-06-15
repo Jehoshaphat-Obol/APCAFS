@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\AddCompany;
 use app\models\SubscriptionPlan;
+use app\models\CompanySubscription;
 use app\models\Company;
 use app\models\CompanySearch;
 use yii\web\Controller;
@@ -200,30 +201,74 @@ class CompanyController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        try {
+            // Ruhusa ya super-admin tu
+            if (!Yii::$app->user->can('super-admin')) {
+                throw new ForbiddenHttpException("You are not authorized to perform this action.");
+            }
 
-        try
-        {
-            if(Yii::$app->user->can('super-admin'))
-            {
-                if($model !== null)
-                {
-                    if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-                        Yii::$app->session->setFlash('success', 'Congratulation!, The existing company updated successfully.');
-                        return $this->redirect(['view', 'id' => $model->id]);
-                    }
-                    return $this->render('update', [
-                        'model' => $model,
-                    ]);
-                }
+            // Pata kampuni
+            $company = Company::findOne($id);
+            if (!$company) {
                 throw new NotFoundHttpException('The requested page does not exist.');
             }
-            throw new ForbiddenHttpException();
-        } catch (ForbiddenHttpException $e)
-        {
+
+            // Tumia AddCompany model kwa ajili ya form handling
+            $model = new AddCompany();
+
+            // Set ID muhimu kwa ajili ya validation ya unique (update mode)
+            $model->id = $company->id;
+
+            // Tumia attribute assignment moja moja kwa usahihi zaidi
+            $model->company_name = $company->company_name;
+            $model->company_phone_number = $company->company_phone_number;
+            $model->company_email = $company->company_email;
+            $model->company_address = $company->company_address;
+            $model->company_user_size = $company->company_user_size;
+            $model->company_website_url = $company->company_website_url;
+
+            // Tafuta subscription ya zamani (kama ipo) na weka kwenye model
+            $subscription = CompanySubscription::find()
+                ->where(['subscription_company_id' => $company->id])
+                ->orderBy(['id' => SORT_DESC])
+                ->one();
+
+            if ($subscription) {
+                $model->subscription_plan_id = $subscription->subscription_plan_id;
+            }
+
+            // Pata mipango yote ya subscription
+            $plans = SubscriptionPlan::find()->all();
+
+            // Ikiwa form imepostiwa (POST request)
+            if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post())) {
+                // Hakikisha id iko sawa kwa update
+                $model->id = $id;
+
+                if ($model->validate()) {
+                    try {
+                        if ($model->update($id)) {
+                            Yii::$app->session->setFlash('success', 'Congratulation!, The existing company updated successfully.');
+                            return $this->redirect(['view', 'id' => $id]);
+                        }
+                    } catch (\Exception $e) {
+                        Yii::$app->session->setFlash('error', 'Error: ' . $e->getMessage());
+                    }
+                } else {
+                    Yii::$app->session->setFlash('error', 'Please fix the validation errors.');
+                }
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+                'plans' => $plans,
+            ]);
+        } catch (ForbiddenHttpException $e) {
+            // Redirect au onyesha error page
             return $this->redirect(['error']);
         }
     }
+
 
     /**
      * Deletes an existing Company model.
