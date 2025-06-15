@@ -72,17 +72,17 @@ class JobApplication extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'applicant_company_id' => Yii::t('app', 'Applicant Company ID'),
-            'applicant_job_post_id' => Yii::t('app', 'Applicant Job Post ID'),
-            'applicant_user_id' => Yii::t('app', 'Applicant User ID'),
-            'applicant_score' => Yii::t('app', 'Applicant Score'),
-            'applicant_status_id' => Yii::t('app', 'Applicant Status ID'),
-            'applicant_created_at' => Yii::t('app', 'Applicant Created At'),
-            'applicant_created_by' => Yii::t('app', 'Applicant Created By'),
-            'applicant_updated_at' => Yii::t('app', 'Applicant Updated At'),
-            'applicant_updated_by' => Yii::t('app', 'Applicant Updated By'),
-            'applicant_deleted_at' => Yii::t('app', 'Applicant Deleted At'),
-            'applicant_deleted_by' => Yii::t('app', 'Applicant Deleted By'),
+            'applicant_company_id' => Yii::t('app', 'Company'),
+            'applicant_job_post_id' => Yii::t('app', 'Job Post'),
+            'applicant_user_id' => Yii::t('app', 'Applied By '),
+            'applicant_score' => Yii::t('app', 'Score'),
+            'applicant_status_id' => Yii::t('app', 'Status'),
+            'applicant_created_at' => Yii::t('app', 'Created At'),
+            'applicant_created_by' => Yii::t('app', 'Created By'),
+            'applicant_updated_at' => Yii::t('app', 'Updated At'),
+            'applicant_updated_by' => Yii::t('app', 'Updated By'),
+            'applicant_deleted_at' => Yii::t('app', 'Deleted At'),
+            'applicant_deleted_by' => Yii::t('app', 'Deleted By'),
         ];
     }
 

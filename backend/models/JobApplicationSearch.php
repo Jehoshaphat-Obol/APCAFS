@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\JobApplication;
@@ -17,9 +18,9 @@ class JobApplicationSearch extends JobApplication
     public function rules()
     {
         return [
-            [['id', 'applicant_company_id', 'applicant_job_post_id', 'applicant_user_id', 'applicant_status_id', 'applicant_created_by', 'applicant_updated_by', 'applicant_deleted_by'], 'integer'],
+            [['id', 'applicant_job_post_id', 'applicant_user_id', 'applicant_status_id', 'applicant_created_by', 'applicant_updated_by', 'applicant_deleted_by'], 'integer'],
             [['applicant_score'], 'number'],
-            [['applicant_created_at', 'applicant_updated_at', 'applicant_deleted_at'], 'safe'],
+            [['applicant_created_at', 'applicant_updated_at', 'applicant_deleted_at', 'applicant_company_id'], 'safe'],
         ];
     }
 
@@ -42,7 +43,23 @@ class JobApplicationSearch extends JobApplication
      */
     public function search($params, $formName = null)
     {
-        $query = JobApplication::find();
+        $company_id = Yii::$app->user->identity->company_id;
+        
+        if(Yii::$app->user->can('super-admin'))
+        {
+            $query = JobApplication::find();
+        } elseif (Yii::$app->user->can('company-admin'))
+        {
+            $query = JobApplication::find()
+            ->where(['applicant_company_id' => $company_id]);
+        } elseif(Yii::$app->user->can('hr'))
+        {
+            $query = JobApplication::find()
+            ->where(['applicant_company_id' => $company_id]);
+        } else
+        {
+            throw new \yii\web\ForbiddenHttpException();
+        }
 
         // add conditions that should always apply here
 
