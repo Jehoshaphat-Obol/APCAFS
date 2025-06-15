@@ -49,7 +49,7 @@ sudo docker run --rm -i \
   --name apcafs-cv_analysis \
   -p 3000:3000 \
   --network appnet \
-  -v ./cv_analysis:/app \
+  -v ./cv_analysis/model/:/app/model/ \
   apcafs-cv_analysis &
 pid_cv=$!
 

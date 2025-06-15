@@ -5,6 +5,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 # System deps
 RUN apt-get update && apt-get install -y \
     build-essential \
+    python3-venv \
+    python3-dev \
     libpq-dev \
     postgresql \
     postgresql-contrib \
@@ -29,10 +31,10 @@ RUN service postgresql start && \
 WORKDIR /app
 COPY . /app
 RUN python -m venv env
-RUN . ./env/bin/activate && pip install --upgrade pip
-RUN . ./env/bin/activate && pip install --no-index --find-links=./wheels -r requirements.txt
-RUN . ./env/bin/activate && python -m nltk.downloader punkt  punkt_tab -d /app/api/nltk_data
-RUN . ./env/bin/activate && pip install pgvector
+RUN ./env/bin/pip install --upgrade pip
+RUN ./env/bin/pip install --no-index --find-links=./wheels -r requirements.txt
+RUN ./env/bin/python -m nltk.downloader punkt punkt_tab -d /app/api/nltk_data
+RUN ./env/bin/pip install pgvector
 
 EXPOSE 3000
 
@@ -40,4 +42,5 @@ CMD bash -c "service postgresql start && \
     ./env/bin/python manage.py makemigrations && \
     ./env/bin/python manage.py migrate && \
     ./env/bin/python manage.py runserver 0.0.0.0:3000"
+
 
