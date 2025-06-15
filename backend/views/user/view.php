@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'company_id',
+            'company.company_name',
             'username',
             [
             'attribute' => 'auth_key',
@@ -49,29 +49,32 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'verification_token',
                 'visible' => Yii::$app->user->can('super-admin'),
             ],
-            'user_status_id',
+            'userStatus.status_name',
             [
             'attribute' => 'created_at',
+            'format' => ['date', 'php:d M Y'], // mfano: 15 Jun 2025
             'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
-            ],
-            [
-                'attribute' => 'user_created_by',
-                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
             ],
             [
             'attribute' => 'updated_at',
+            'format' => ['date', 'php:d M Y'], 
             'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
-            ],
-            [
-                'attribute' => 'user_updated_by',
-                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
             ],
             [
             'attribute' => 'user_deleted_at',
+            'format' => ['date', 'php:d M Y'], 
             'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
             ],
             [
-                'attribute' => 'user_deleted_by',
+                'attribute' => 'userCreatedBy.username',
+                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+            ],
+            [
+                'attribute' => 'userUpdatedBy.username',
+                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+            ],
+            [
+                'attribute' => 'userDeletedBy.username',
                 'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
             ],
         ],

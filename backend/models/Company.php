@@ -79,7 +79,7 @@ class Company extends \yii\db\ActiveRecord
             'company_user_size' => Yii::t('app', 'Company User Size'),
             'company_activation_code' => Yii::t('app', 'Company Activation Code'),
             'company_activation_code_date' => Yii::t('app', 'Company Activation Code Date'),
-            'company_status_id' => Yii::t('app', 'Company Status Name'),
+            'companyStatus.status_name' => Yii::t('app', 'Company Status Name'),
             'company_created_at' => Yii::t('app', 'Company Created At'),
             'company_updated_at' => Yii::t('app', 'Company Updated At'),
             'company_deleted_at' => Yii::t('app', 'Company Deleted At'),

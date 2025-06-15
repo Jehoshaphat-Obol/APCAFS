@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var app\models\Company $model */
 
-$this->title = $model->id;
+$this->title = $model->company_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Companies'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -36,11 +36,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'company_website_url:url',
             'company_user_size',
             'company_activation_code',
-            'company_activation_code_date',
-            'company_status_id',
-            'company_created_at',
-            'company_updated_at',
-            'company_deleted_at',
+            'company_activation_code_date:datetime',
+            'companyStatus.status_name',
+            'company_created_at:datetime',
+            'company_updated_at:datetime',
+            'company_deleted_at:datetime',
             // Subscription details
             [
                 'label' => 'Subscription Start Date',

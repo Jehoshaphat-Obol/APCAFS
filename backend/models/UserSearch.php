@@ -19,8 +19,8 @@ class UserSearch extends User
     public function rules()
     {
         return [
-            [['id', 'company_id', 'user_status_id', 'created_at', 'user_created_by', 'updated_at', 'user_updated_by', 'user_deleted_by'], 'integer'],
-            [['username', 'roles', 'auth_key', 'password_hash', 'password_reset_token', 'email', 'verification_token', 'user_deleted_at'], 'safe'],
+            [['id', 'user_status_id', 'created_at', 'user_created_by', 'updated_at', 'user_updated_by', 'user_deleted_by'], 'integer'],
+            [['username', 'company_id', 'roles', 'auth_key', 'password_hash', 'password_reset_token', 'email', 'verification_token', 'user_deleted_at'], 'safe'],
         ];
     }
 
@@ -74,10 +74,11 @@ class UserSearch extends User
             return $dataProvider;
         }
 
+        $query->joinWith('company');
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'company_id' => $this->company_id,
             'user_status_id' => $this->user_status_id,
             'created_at' => $this->created_at,
             'user_created_by' => $this->user_created_by,
@@ -92,7 +93,8 @@ class UserSearch extends User
             ->andFilterWhere(['like', 'password_hash', $this->password_hash])
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
             ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'verification_token', $this->verification_token]);
+            ->andFilterWhere(['like', 'verification_token', $this->verification_token])
+            ->andFilterWhere(['like', 'company.company_name', $this->company_id]);
 
         // Ongeza vigezo vya kutafuta kwa roles
         if (!empty($this->roles)) {

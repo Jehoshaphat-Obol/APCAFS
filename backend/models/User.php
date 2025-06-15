@@ -158,11 +158,11 @@ public $roles;
             'verification_token' => Yii::t('app', 'Verification Token'),
             'user_status_id' => Yii::t('app', 'User Status Name'),
             'created_at' => Yii::t('app', 'Created At'),
-            'user_created_by' => Yii::t('app', 'User Created By'),
+            'userCreatedBy.username' => Yii::t('app', 'User Created By'),
             'updated_at' => Yii::t('app', 'Updated At'),
-            'user_updated_by' => Yii::t('app', 'User Updated By'),
+            'userUpdatedBy.username' => Yii::t('app', 'User Updated By'),
             'user_deleted_at' => Yii::t('app', 'User Deleted At'),
-            'user_deleted_by' => Yii::t('app', 'User Deleted By'),
+            'userDeletedBy.username' => Yii::t('app', 'User Deleted By'),
         ];
     }
 
