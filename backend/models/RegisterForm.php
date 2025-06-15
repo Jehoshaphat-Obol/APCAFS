@@ -19,6 +19,8 @@ class RegisterForm extends Model
     public $username;
     public $email;
     public $password;
+    public $agreeToTerms;
+
 
     public function rules()
     {
@@ -36,6 +38,7 @@ class RegisterForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 3],
+            ['agreeToTerms', 'required', 'requiredValue' => 1, 'message' => 'You must agree to the terms and policies.'],
         ];
     }
 
