@@ -42,11 +42,6 @@ if (!Yii::$app->user->isGuest) {
                 'encode' => false,
                 'url' => ['/user/change-password'],
             ],
-            [
-                'label' => '<i class="bi bi-gear sidebar-icons fs-5"></i> Settings',
-                'encode' => false,
-                'url' => ['/settings/settings'],
-            ],
         ];
     }
     
@@ -87,11 +82,6 @@ if (!Yii::$app->user->isGuest) {
                     'encode' => false,
                     'url' => ['/user/change-password'],
                 ],
-                [
-                    'label' => '<i class="bi bi-gear sidebar-icons fs-5"></i> Settings',
-                    'encode' => false,
-                    'url' => ['/settings/settings'],
-                ],
             ];
         }
 
@@ -122,11 +112,6 @@ if (!Yii::$app->user->isGuest) {
                     'label' => '<i class="bi bi-key sidebar-icons fs-5"></i> Change Password',
                     'encode' => false,
                     'url' => ['/user/change-password'],
-                ],
-                [
-                    'label' => '<i class="bi bi-gear sidebar-icons fs-5"></i> Settings',
-                    'encode' => false,
-                    'url' => ['/settings/settings'],
                 ],
             ];
         }
@@ -172,12 +157,7 @@ if (!Yii::$app->user->isGuest) {
                     'label' => '<i class="bi bi-key sidebar-icons fs-5"></i> Change Password',
                     'encode' => false,
                     'url' => ['/user/change-password'],
-                ],
-                [
-                    'label' => '<i class="bi bi-gear sidebar-icons fs-5"></i> Settings',
-                    'encode' => false,
-                    'url' => ['/settings/settings'],
-                ],
+                ]
             ];
         }
     // } 
@@ -220,12 +200,7 @@ if (!Yii::$app->user->isGuest) {
                     'label' => '<i class="bi bi-key sidebar-icons fs-5"></i> Change Password',
                     'encode' => false,
                     'url' => ['/user/change-password'],
-                ],
-                [
-                    'label' => '<i class="bi bi-gear sidebar-icons fs-5"></i> Settings',
-                    'encode' => false,
-                    'url' => ['/settings/settings'],
-                ],
+                ]
             ];
         }
     
