@@ -35,14 +35,13 @@ use app\models\StatusLookup;
  */
 class Company extends \yii\db\ActiveRecord
 {
-
-
+    public $subscription_plan_id;
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'company';
+        return '{{%company}}';
     }
 
     /**
@@ -55,7 +54,7 @@ class Company extends \yii\db\ActiveRecord
             [['company_user_size'], 'default', 'value' => 2],
             [['company_name', 'company_phone_number', 'company_email', 'company_address', 'company_activation_code', 'company_status_id'], 'required'],
             [['company_user_size', 'company_status_id'], 'integer'],
-            [['company_activation_code_date', 'company_created_at', 'company_updated_at', 'company_deleted_at'], 'safe'],
+            [['company_activation_code_date', 'company_created_at', 'company_updated_at', 'company_deleted_at', 'subscriptionPlanId'], 'safe'],
             [['company_name', 'company_email', 'company_address', 'company_website_url'], 'string', 'max' => 255],
             [['company_phone_number'], 'string', 'max' => 10],
             [['company_activation_code'], 'string', 'max' => 50],
@@ -96,6 +95,16 @@ class Company extends \yii\db\ActiveRecord
     {
         return $this->hasOne(StatusLookup::class, ['id' => 'company_status_id']);
     }
+
+    // public function getSubscriptionPlanId()
+    // {
+    //     return $this->_subscription_plan_id ?? ($this->activeSubscription ? $this->activeSubscription->subscription_plan_id : null);
+    // }
+
+    // public function setSubscriptionPlanId($value)
+    // {
+    //     $this->_subscription_plan_id = $value;
+    // }
 
     /**
      * Gets query for [[CompanySubscriptions]].
@@ -278,6 +287,9 @@ class Company extends \yii\db\ActiveRecord
     public function getActiveSubscription()
     {
         return $this->hasOne(CompanySubscription::class, ['subscription_company_id' => 'id'])
+            ->andWhere(['IS', 'subscription_deleted_at', null])
+            ->andWhere(['>=', 'subscription_end_date', date('Y-m-d')])
+            ->andWhere(['subscription_status_id' => StatusLookup::find()->where(['status_code' => 'paid'])->select('id')])
             ->orderBy(['subscription_start_date' => SORT_DESC]);
     }
 }
