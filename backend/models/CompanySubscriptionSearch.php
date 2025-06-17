@@ -80,12 +80,10 @@ class CompanySubscriptionSearch extends CompanySubscription
             'subscription_deleted_at' => $this->subscription_deleted_at,
             'subscription_deleted_by' => $this->subscription_deleted_by,
         ]);
-
+                
         $query->andFilterWhere(['like', 'status.status_name', $this->subscription_status_id])
-                ->andFilterWhere(['like', 'plan.value' => function ($model) {
-                            return $model->subscriptionPlan ? $model->subscriptionPlan->subscription_plan_duration. ' ' . $model->subscriptionPlan->subscription_plan_duration_type : '(not set)';
-                        },', $this->subscription_plan_id])
-                ->andFilterWhere(['like', 'company.company_name', $this->subscription_company_id]);
+            ->andFilterWhere(['like', "CONCAT(plan.subscription_plan_duration, ' ', plan.subscription_plan_duration_type)", $this->subscription_plan_id])
+            ->andFilterWhere(['like', 'company.company_name', $this->subscription_company_id]);
 
         return $dataProvider;
     }
