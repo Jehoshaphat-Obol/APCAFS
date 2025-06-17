@@ -247,7 +247,8 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             
             // return $this->handlePostLoginRedirect();
-            return $this->redirect(['dashboard/dashboard']);
+            // return $this->redirect(['dashboard/dashboard']);
+            return;
 
         }
 
@@ -272,7 +273,8 @@ class SiteController extends Controller
         $model = new ApplicantLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             
-            return $this->redirect(['dashboard/dashboard']);
+            return;
+            // return $this->redirect(['dashboard/dashboard']);
 
         }
 
@@ -289,9 +291,16 @@ class SiteController extends Controller
      */
     public function actionLogout()
     {
+        // Hifadhi role kabla ya ku-logout
+        $isApplicant = Yii::$app->user->can('applicant');
+
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        if ($isApplicant) {
+            return $this->redirect(['site/signin']);
+        }
+
+        return $this->redirect(['site/login']);
     }
 
     /**

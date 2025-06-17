@@ -527,7 +527,9 @@ $this->title = Yii::t('app', 'Dashboard');
         <div class="card shadow-sm border-0 rounded-4">
           <div class="card-body">
             <h6 class="text-muted">Total Companies</h6>
-            <h3 class="fw-bold">24</h3>
+            <h3 class="fw-bold">
+              <?= $companies - 1 ?>
+            </h3>
             <small class="text-muted">Across all industries</small>
           </div>
         </div>
@@ -536,17 +538,21 @@ $this->title = Yii::t('app', 'Dashboard');
         <div class="card shadow-sm border-0 rounded-4">
           <div class="card-body">
             <h6 class="text-muted">Active Subscriptions</h6>
-            <h3 class="fw-bold">21</h3>
-            <small class="text-muted">3 companies unsubscribed</small>
+            <h3 class="fw-bold">
+              <?= $subscribedCompany ?>
+            </h3>
+            <small class="text-muted"><?= $unSubscribedCompany ?> companies unsubscribed</small>
           </div>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card shadow-sm border-0 rounded-4">
           <div class="card-body">
-            <h6 class="text-muted">Monthly Revenue</h6>
-            <h3 class="fw-bold">$3,850</h3>
-            <small class="text-muted">USD — auto-collected</small>
+            <h6 class="text-muted">Total Users</h6>
+            <h3 class="fw-bold">
+              <?= $users ?>
+            </h3>
+            <small class="text-muted">Across all companies</small>
           </div>
         </div>
       </div>

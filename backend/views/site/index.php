@@ -5,7 +5,7 @@
         <div class="col-lg-6">
           <h1 class="display-5 fw-bold">AI Powered CV Analysis & Filtering System</h1>
           <p class="lead mt-3">Let APCAFS streamline your hiring process by automatically analyzing and ranking candidates for you.</p>
-          <a href="/register" class="btn btn-lg btn-light mt-4">Register as Applicant</a>
+          <?= \yii\helpers\Html::a('Register as Applicant', ['/site/register'], ['class' => 'btn btn-lg btn-light mt-4']) ?>
         </div>
         <div class="col-lg-6 mt-4 mt-lg-0">
           <div class="placeholder-img w-100 h-100"></div>

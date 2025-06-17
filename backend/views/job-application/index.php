@@ -67,11 +67,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'urlCreator' => function ($action, \app\models\JobApplication $model, $key, $index, $column) {
             return Url::toRoute([$action, 'id' => $model->id]);
         },
-        'template' => '{view}', // Hii inazuia update/delete zisionekane
+        'template' => Yii::$app->user->can('super-admin') ? '{view} {update} {delete}' : '{view}',
         'visibleButtons' => [
             'view' => true,
-            'update' => false,
-            'delete' => false,
+            'update' => true,
+            'delete' => true,
         ],
     ];
     ?>

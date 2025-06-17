@@ -30,11 +30,33 @@ if (!Yii::$app->user->isGuest) {
                 'url' => ['/user/index'],
             ],
             [
+                'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> Posts',
+                'encode' => false,
+                'url' => ['/job-post/index'],
+            ],
+            [
+                'label' => '<i class="bi bi-folder2-open sidebar-icons fs-5"></i> Applications',
+                'encode' => false,
+                'url' => ['/job-application/index'],
+            ],
+            [
+                'label' => '<i class="bi bi-bar-chart-line sidebar-icons fs-5"></i> Assessment (PS)',
+                'encode' => false,
+                'url' => ['/personality-assessment/index'],
+            ],
+            [
+                'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> Tests',
+                'encode' => false,
+                'url' => ['/job-test/index'],
+            ],
+            [
                 'label' => '<i class="bi bi-trash sidebar-icons fs-5"></i> Bin',
                 'encode' => false,
                 'items' => [
                     ['label' => '<i class="bi bi-people sidebar-icons-inside fs-5"></i> Users', 'encode' => false, 'url' => ['/user/deleted-users']],
-                    ['label' => '<i class="bi bi-buildings sidebar-icons-inside fs-5"></i> Companies', 'encode' => false, 'url' => ['/company/deleted-companies']],
+                    ['label' => '<i class="bi bi-briefcase sidebar-icons-inside fs-5"></i> Job Posts', 'encode' => false, 'url' => ['/job-post/deleted-posts']],
+                    ['label' => '<i class="bi bi-clipboard-check sidebar-icons-inside fs-5"></i> Job Tests', 'encode' => false, 'url' => ['/job-test/deleted-tests']],
+                    ['label' => '<i class="bi bi-folder2-open sidebar-icons-inside"></i> Job Applications', 'encode' => false, 'url' => ['/job-application/deleted-applications']],
                 ],
             ],
             [

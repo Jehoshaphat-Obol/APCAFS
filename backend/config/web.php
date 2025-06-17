@@ -8,8 +8,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'name' => 'APCAFS',
-    'defaultRoute' => 'site/signin',
-    'homeUrl' => ['dashboard/dashboard'],
+    // 'defaultRoute' => 'site/signin',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -23,6 +22,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
+            'class' => 'app\components\UserComponent',
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => false,
             'authTimeout' => 15 * 60,
@@ -65,7 +65,7 @@ $config = [
                  */
                 'company-setup' => 'site/setup-company',
                 'site/verify-activation' => 'site/verify-activation',
-                'dashboard' => 'dashboard/dashboard',
+                // 'dashboard' => 'dashboard/dashboard',
             ],
         ],
         'authManager' => [

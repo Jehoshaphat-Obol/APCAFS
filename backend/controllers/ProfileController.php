@@ -69,6 +69,19 @@ class ProfileController extends Controller
         ];
     }
 
+    public function beforeAction($action)
+    {
+        $loginUrl = ['site/login']; // default ni management
+
+        if (Yii::$app->user->isGuest || Yii::$app->user->can('applicant')) {
+            $loginUrl = ['site/signin']; // kwa applicants
+        }
+
+        Yii::$app->user->loginUrl = $loginUrl;
+
+        return parent::beforeAction($action);
+    }
+
     /**
      * {@inheritdoc}
      */
