@@ -64,14 +64,50 @@ $this->params['breadcrumbs'][] = $this->title;
             'style' => 'color: #007bff; font-weight: bold; text-decoration: underline;',
         ],
     ];
+    $canApplicant = Yii::$app->user->can('applicant'); 
+
+    $template = '{view} {update} {delete}';
+
+    if ($canApplicant) {
+        $template = ' {applicant-view}'; 
+    }
+
     $columns[] = [
         'class' => ActionColumn::className(),
-        'urlCreator' => function ($action, \app\models\JobPost $model, $key, $index, $column) {
+        'template' => $template,
+        'urlCreator' => function ($action, $model, $key, $index, $column) {
+            if ($action === 'applicant-view') {
+                return Url::toRoute(['applicant-view', 'id' => $model->id]);
+            }
             return Url::toRoute([$action, 'id' => $model->id]);
-        }
+        },
+        'buttons' => [
+            'applicant-view' => function ($url, $model, $key) use ($canApplicant) {
+                if (!$canApplicant) {
+                    return ''; // Wala haionekani kama si applicant
+                }
+                return Html::a('View', $url, [
+                    'title' => 'Applicant View',
+                    'aria-label' => 'Applicant View',
+                    'data-pjax' => '0',
+                    'style' => '
+                        background-color: #28a745;
+                        color: white;
+                        padding: 5px 10px;
+                        border-radius: 4px;
+                        font-weight: bold;
+                        text-decoration: none;
+                        display: inline-block;
+                        cursor: pointer;
+                        transition: background-color 0.3s ease;
+                    ',
+                    'onmouseover' => "this.style.backgroundColor='#218838';",
+                    'onmouseout' => "this.style.backgroundColor='#28a745';",
+                ]);
+            },
+        ],
     ];
     ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

@@ -31,10 +31,10 @@ class JobPostController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index', 'view', 'create', 'update', 'delete', 'error', 'restore', 'deleted-posts'],
+                'only' => ['index', 'view', 'applicant-view', 'create', 'update', 'delete', 'error', 'restore', 'deleted-posts'],
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'restore', 'deleted-posts'],
+                        'actions' => ['index', 'view', 'applicant-view', 'create', 'update', 'delete', 'restore', 'deleted-posts'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -54,7 +54,7 @@ class JobPostController extends Controller
                         'roles' => ['manager'],
                     ],
                     [
-                        'actions' => ['index', 'view'],
+                        'actions' => ['index', 'applicant-view'],
                         'allow' => true,
                         'roles' => ['applicant'],
                     ],
@@ -264,6 +264,36 @@ class JobPostController extends Controller
                         'model' => $model,
                         'searchModel' => $searchModel,
                         'dataProvider' => $dataProvider,
+                    ]);
+                }
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+            throw new ForbiddenHttpException();
+        } catch(ForbiddenHttpException $e)
+        {
+            return $this->redirect(['error']);
+        }
+    }
+
+    /**
+     * Displays a single JobPost model.
+     * @param int $id ID
+     * @return string
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionApplicantView($id)
+    {
+        try
+        {
+            if(Yii::$app->user->can('applicant'))
+            {                
+                $model = $this->findModel($id);
+                
+                if($model !== null)
+                {
+                    Yii::$app->session->setFlash('info', 'Welcome, Here you will be able to see detailed information about this Job Post');
+                    return $this->render('view', [
+                        'model' => $model,
                     ]);
                 }
                 throw new NotFoundHttpException('The requested page does not exist.');
