@@ -7,6 +7,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
+use app\models\CompanySubscriptionSearch;
 
 /**
  * DashboardController implements the CRUD actions for Dashboard model.
@@ -24,14 +25,19 @@ class DashboardController extends Controller
                 'only' => ['dashboard'],
                 'rules' => [
                     [
-                        'actions' => ['dashboard'],
+                        'actions' => ['super-admin-dashboard' , 'dashboard'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                     [
+                        'actions' => ['super-admin-dashboard'],
+                        'allow' => true,
+                        'roles' => ['super-admin'],
+                    ],
+                    [
                         'actions' => ['dashboard'],
                         'allow' => true,
-                        'roles' => ['super-admin', 'company-admin', 'manager', 'hr', 'applicant'],
+                        'roles' => ['company-admin', 'manager', 'hr', 'applicant'],
                     ],
                 ],
             ],
@@ -60,11 +66,31 @@ class DashboardController extends Controller
         ];
     }
 
-    public function actionDashboard()
+    public function actionSuperAdminDashboard()
     {
         try
         {
             if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))
+            {
+                $searchModel = new CompanySubscriptionSearch();
+                $dataProvider = $searchModel->search($this->request->queryParams);
+                return $this->render('index', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider
+                ]);
+            }
+            throw new ForbiddenHttpException();
+        } catch (ForbiddenHttpException $e)
+        {
+            return $this->redirect(['error']);
+        }
+    }
+
+    public function actionDashboard()
+    {
+        try
+        {
+            if(Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))
             {
                 return $this->render('index');
             }

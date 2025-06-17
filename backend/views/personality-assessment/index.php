@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="personality-assessment-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Personality Assessment'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
+    <?php if (Yii::$app->user->isGuest || !(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('hr') || Yii::$app->user->can('manager') || Yii::$app->user->can('applicant'))): ?>
+        <p>
+            <?= Html::a(Yii::t('app', 'Create Personality Assessment'), ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+    <?php endif; ?>
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -30,7 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'personality_profile_id',
+            [
+                'label' => 'Full Name',
+                'attribute' => 'personality_profile_id', // au chochote kinachoendana
+                'value' => function ($model) {
+                    return $model->profile->profile_first_name . ' ' . $model->profile->profile_last_name;
+                },
+            ],
             'personality_IE_score',
             'personality_NS_score',
             'personality_TF_score',

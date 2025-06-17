@@ -17,7 +17,7 @@ if (!Yii::$app->user->isGuest) {
             [
                 'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> Dashboard',
                 'encode' => false,
-                'url' => ['/dashboard/dashboard']
+                'url' => ['/dashboard/super-admin-dashboard']
             ], 
             [
                 'label' => '<i class="bi bi-buildings sidebar-icons fs-5"></i> Companies',
@@ -66,14 +66,19 @@ if (!Yii::$app->user->isGuest) {
                     'url' => ['/job-post/index'],
                 ],
                 [
-                    'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> Tests',
-                    'encode' => false,
-                    'url' => ['/job-test/index'],
-                ],
-                [
                     'label' => '<i class="bi bi-folder2-open sidebar-icons fs-5"></i> Applications',
                     'encode' => false,
                     'url' => ['/job-application/index'],
+                ],
+                [
+                    'label' => '<i class="bi bi-bar-chart-line sidebar-icons fs-5"></i> Assessment (PS)',
+                    'encode' => false,
+                    'url' => ['/personality-assessment/index'],
+                ],
+                [
+                    'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> Tests',
+                    'encode' => false,
+                    'url' => ['/job-test/index'],
                 ],
                 [
                     'label' => '<i class="bi bi-trash sidebar-icons fs-5"></i> Bin',

@@ -65,17 +65,17 @@ class CompanySubscription extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'subscription_company_id' => Yii::t('app', 'Subscription Company ID'),
+            'subscription_company_id' => Yii::t('app', 'Company'),
             'subscription_plan_id' => Yii::t('app', 'Subscription Plan'),
-            'subscription_start_date' => Yii::t('app', 'Subscription Start Date'),
-            'subscription_end_date' => Yii::t('app', 'Subscription End Date'),
-            'subscription_status_id' => Yii::t('app', 'Subscription Status ID'),
-            'subscription_created_at' => Yii::t('app', 'Subscription Created At'),
-            'subscription_created_by' => Yii::t('app', 'Subscription Created By'),
-            'subscription_updated_at' => Yii::t('app', 'Subscription Updated At'),
-            'subscription_updated_by' => Yii::t('app', 'Subscription Updated By'),
-            'subscription_deleted_at' => Yii::t('app', 'Subscription Deleted At'),
-            'subscription_deleted_by' => Yii::t('app', 'Subscription Deleted By'),
+            'subscription_start_date' => Yii::t('app', 'Start Date'),
+            'subscription_end_date' => Yii::t('app', 'End Date'),
+            'subscription_status_id' => Yii::t('app', 'Status'),
+            'subscription_created_at' => Yii::t('app', 'Created At'),
+            'subscription_created_by' => Yii::t('app', 'Created By'),
+            'subscription_updated_at' => Yii::t('app', 'Updated At'),
+            'subscription_updated_by' => Yii::t('app', 'Updated By'),
+            'subscription_deleted_at' => Yii::t('app', 'Deleted At'),
+            'subscription_deleted_by' => Yii::t('app', 'Deleted By'),
         ];
     }
 

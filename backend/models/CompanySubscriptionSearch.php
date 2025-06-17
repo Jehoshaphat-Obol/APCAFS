@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\CompanySubscription;
@@ -17,8 +18,8 @@ class CompanySubscriptionSearch extends CompanySubscription
     public function rules()
     {
         return [
-            [['id', 'subscription_company_id', 'subscription_plan_id', 'subscription_status_id', 'subscription_created_by', 'subscription_updated_by', 'subscription_deleted_by'], 'integer'],
-            [['subscription_start_date', 'subscription_end_date', 'subscription_created_at', 'subscription_updated_at', 'subscription_deleted_at'], 'safe'],
+            [['id', 'subscription_created_by', 'subscription_updated_by', 'subscription_deleted_by'], 'integer'],
+            [['subscription_start_date', 'subscription_company_id', 'subscription_plan_id', 'subscription_status_id', 'subscription_end_date', 'subscription_created_at', 'subscription_updated_at', 'subscription_deleted_at'], 'safe'],
         ];
     }
 
@@ -41,7 +42,13 @@ class CompanySubscriptionSearch extends CompanySubscription
      */
     public function search($params, $formName = null)
     {
-        $query = CompanySubscription::find();
+        if(Yii::$app->user->can('super-admin'))
+        {
+            $query = CompanySubscription::find()
+                    ->orderBy([
+                        'subscription_end_date' => SORT_ASC
+                    ]);
+        }
 
         // add conditions that should always apply here
 
@@ -57,14 +64,15 @@ class CompanySubscriptionSearch extends CompanySubscription
             return $dataProvider;
         }
 
+        $query->joinWith('statusLookup AS status')
+            ->joinWith('subscriptionPlan AS plan')
+            ->joinWith('company');
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'subscription_company_id' => $this->subscription_company_id,
-            'subscription_plan_id' => $this->subscription_plan_id,
             'subscription_start_date' => $this->subscription_start_date,
             'subscription_end_date' => $this->subscription_end_date,
-            'subscription_status_id' => $this->subscription_status_id,
             'subscription_created_at' => $this->subscription_created_at,
             'subscription_created_by' => $this->subscription_created_by,
             'subscription_updated_at' => $this->subscription_updated_at,
@@ -72,6 +80,12 @@ class CompanySubscriptionSearch extends CompanySubscription
             'subscription_deleted_at' => $this->subscription_deleted_at,
             'subscription_deleted_by' => $this->subscription_deleted_by,
         ]);
+
+        $query->andFilterWhere(['like', 'status.status_name', $this->subscription_status_id])
+                ->andFilterWhere(['like', 'plan.value' => function ($model) {
+                            return $model->subscriptionPlan ? $model->subscriptionPlan->subscription_plan_duration. ' ' . $model->subscriptionPlan->subscription_plan_duration_type : '(not set)';
+                        },', $this->subscription_plan_id])
+                ->andFilterWhere(['like', 'company.company_name', $this->subscription_company_id]);
 
         return $dataProvider;
     }

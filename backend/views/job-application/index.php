@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('hr')): ?>
+    <?php if (Yii::$app->user->isGuest || !(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('hr') || Yii::$app->user->can('manager') || Yii::$app->user->can('applicant'))): ?>
         <p>
             <?= Html::a(Yii::t('app', 'Create Job Application'), ['create'], ['class' => 'btn btn-success']) ?>
         </p>
