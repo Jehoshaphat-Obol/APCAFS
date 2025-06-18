@@ -120,20 +120,23 @@ $this->params['breadcrumbs'][] = $this->title;
     }
     ?>
 
-    <div class="card shadow-sm pt-4 p-2 pb-0 mb-4">
+    <div class="card shadow-sm p-2 pb-0 mb-3">
         <div class="card-body">
-            <h5 class="card-title mb-4">Personality Traits</h5>
+            <h5 class="card-title">Personality Traits</h5>
 
             <div class="row">
                 <!-- Trigger Sections -->
                 <div class="list-group mb-4 col-md-6" id="traitTabs" role="tablist">
-                    <?php foreach ($traits as $axis => $trait):
+                    <?php
+                    $i = 0;
+                    foreach ($traits as $axis => $trait):
                         $dominant = $trait['value'] > 50 ? $trait['left'] : $trait['right'];
                         $inverse = 100 - $trait['value'];
                         $tabId = strtolower($axis);
+                        $isActive = $i === 0 ? 'active' : '';
                     ?>
                         <div
-                            class="list-group-item list-group-item-action"
+                            class="list-group-item list-group-item-action <?= $isActive ?>"
                             data-bs-toggle="list"
                             data-bs-target="#tab-<?= $tabId ?>"
                             role="tab">
@@ -158,16 +161,22 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <strong><?= $axis ?>:</strong> Dominant trait is <strong><?= $dominant ?></strong>
                             </div>
                         </div>
-                    <?php endforeach; ?>
+                    <?php
+                        $i++;
+                    endforeach; ?>
                 </div>
+
 
                 <!-- Tab Content -->
                 <div class="tab-content col-md-6">
-                    <?php foreach ($traits as $axis => $trait):
+                    <?php
+                    $i = 0;
+                    foreach ($traits as $axis => $trait):
                         $dominant = $trait['value'] > 50 ? $trait['left'] : $trait['right'];
                         $tabId = strtolower($axis);
+                        $isActive = $i === 0 ? 'show active' : '';
                     ?>
-                        <div class="tab-pane fade" id="tab-<?= $tabId ?>" role="tabpanel">
+                        <div class="tab-pane fade <?= $isActive ?>" id="tab-<?= $tabId ?>" role="tabpanel">
                             <h5 class="fw-bold"><?= $dominant ?> (<?= $axis ?>)</h5>
                             <p><?= $traitDescriptions[$dominant] ?? 'Description not found.' ?></p>
 
@@ -175,97 +184,99 @@ $this->params['breadcrumbs'][] = $this->title;
                             <h6 class="text-muted">Personality Type: <strong><?= $personalityCode ?></strong></h6>
                             <p><?= $personalityDesc[$personalityCode] ?? 'No description available for this type.' ?></p>
                         </div>
-                    <?php endforeach; ?>
+                    <?php
+                        $i++;
+                    endforeach;
+                    ?>
+
                 </div>
             </div>
 
         </div>
     </div>
-    <!-- PERSONALITY ASSESSMENT WIDGET ENDS HERE -->
-
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-
-            // Kampuni
-            [
-                'attribute' => 'applicant_company_id',
-                'value' => $model->company->company_name ?? null,
-                'label' => 'Company',
-            ],
-
-            // Job Post
-            [
-                'attribute' => 'applicant_job_post_id',
-                'value' => $model->jobPost->post_job_title ?? null,
-                'label' => 'Job Title',
-            ],
-
-            // Muombaji
-            [
-                'attribute' => 'applicant_user_id',
-                'value' => $model->user2->username ?? null,
-                'label' => 'Applicant Username',
-            ],
-
-            // Alama
-            'applicant_score',
-
-            // Status
-            [
-                'attribute' => 'applicant_status_id',
-                'value' => $model->statusLookup->status_name ?? null,
-                'label' => 'Status',
-            ],
-
-            // Tarehe ya kuundwa
-            [
-                'attribute' => 'applicant_created_at',
-                'format' => ['date', 'php:d M Y H:i'],
-                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
-            ],
-
-            // Aliyeunda
-            [
-                'attribute' => 'applicant_created_by',
-                'value' => $model->user->username ?? null,
-                'label' => 'Created By',
-                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
-            ],
-
-            // Tarehe ya kusasishwa
-            [
-                'attribute' => 'applicant_updated_at',
-                'format' => ['date', 'php:d M Y H:i'],
-                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
-            ],
-
-            // Aliyesasisha
-            [
-                'attribute' => 'applicant_updated_by',
-                'value' => $model->user1->username ?? null,
-                'label' => 'Updated By',
-                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
-            ],
-
-            // Tarehe ya kufutwa
-            [
-                'attribute' => 'applicant_deleted_at',
-                'format' => ['date', 'php:d M Y H:i'],
-                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
-            ],
-
-            // Aliyefuta
-            [
-                'attribute' => 'applicant_deleted_by',
-                'value' => $model->user0->username ?? null,
-                'label' => 'Deleted By',
-                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
-            ],
-        ],
-    ]) ?>
-
-
 </div>
+<!-- PERSONALITY ASSESSMENT WIDGET ENDS HERE -->
+
+
+<?= DetailView::widget([
+    'model' => $model,
+    'attributes' => [
+        'id',
+
+        // Kampuni
+        [
+            'attribute' => 'applicant_company_id',
+            'value' => $model->company->company_name ?? null,
+            'label' => 'Company',
+        ],
+
+        // Job Post
+        [
+            'attribute' => 'applicant_job_post_id',
+            'value' => $model->jobPost->post_job_title ?? null,
+            'label' => 'Job Title',
+        ],
+
+        // Muombaji
+        [
+            'attribute' => 'applicant_user_id',
+            'value' => $model->user2->username ?? null,
+            'label' => 'Applicant Username',
+        ],
+
+        // Alama
+        'applicant_score',
+
+        // Status
+        [
+            'attribute' => 'applicant_status_id',
+            'value' => $model->statusLookup->status_name ?? null,
+            'label' => 'Status',
+        ],
+
+        // Tarehe ya kuundwa
+        [
+            'attribute' => 'applicant_created_at',
+            'format' => ['date', 'php:d M Y H:i'],
+            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+        ],
+
+        // Aliyeunda
+        [
+            'attribute' => 'applicant_created_by',
+            'value' => $model->user->username ?? null,
+            'label' => 'Created By',
+            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+        ],
+
+        // Tarehe ya kusasishwa
+        [
+            'attribute' => 'applicant_updated_at',
+            'format' => ['date', 'php:d M Y H:i'],
+            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+        ],
+
+        // Aliyesasisha
+        [
+            'attribute' => 'applicant_updated_by',
+            'value' => $model->user1->username ?? null,
+            'label' => 'Updated By',
+            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+        ],
+
+        // Tarehe ya kufutwa
+        [
+            'attribute' => 'applicant_deleted_at',
+            'format' => ['date', 'php:d M Y H:i'],
+            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+        ],
+
+        // Aliyefuta
+        [
+            'attribute' => 'applicant_deleted_by',
+            'value' => $model->user0->username ?? null,
+            'label' => 'Deleted By',
+            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+        ],
+    ],
+]) ?>
