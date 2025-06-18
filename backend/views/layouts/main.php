@@ -58,6 +58,7 @@ $this->registerCssFile('@web/css/fontawesome.min.css');
             font-weight: 500;
             border-radius: 8px;
         }
+
         aside .nav-pills .nav-link:hover {
             color: black;
             background-color: #a4f4cf;
@@ -67,19 +68,28 @@ $this->registerCssFile('@web/css/fontawesome.min.css');
             color: inherit;
         }
 
-        .sidebar-header{
+        .sidebar-header {
             margin-top: 28px;
         }
 
-        .list-group-item-action.active{
+        .list-group-item-action.active {
             background-color: #002c22;
             border-color: #002c22;
             color: white;
             z-index: 0;
         }
-        .list-group-item-action.active .text-muted{
+
+        .list-group-item-action.active .text-muted {
             color: inherit !important;
         }
+        .profile-view, .profile-view .row{
+            margin-right: unset;
+            margin-left: unset;
+            padding-right:unset ;
+            padding-left:unset ;
+        }
+
+
     </style>
 </head>
 
@@ -115,11 +125,7 @@ $this->registerCssFile('@web/css/fontawesome.min.css');
     <!-- Main Container -->
     <div class="main-container">
         <!-- Header -->
-        <header class="header">
-            <div>
-                <?= $this->render('_header') ?>
-            </div>
-        </header>
+        <?= $this->render('_header') ?>
 
         <!-- Main Content -->
         <main class="content">
