@@ -25,36 +25,38 @@ $this->params['breadcrumbs'][] = $this->title;
             ]) ?>
         <?php endif; ?>
     </p>
-
     <!-- PERSONALITY ASSESSMENT WIDGET STARTS HERE -->
     <?php
-    $traits = [
-        'Mind' => [
-            'left' => 'Extraverted',
-            'right' => 'Introverted',
-            'value' => 70,
-            'color' => 'primary'
-        ],
-        'Energy' => [
-            'left' => 'Observant',
-            'right' => 'Intuitive',
-            'value' => 68,
-            'color' => 'warning'
-        ],
-        'Nature' => [
-            'left' => 'Thinking',
-            'right' => 'Feeling',
-            'value' => 52,
-            'color' => 'success'
-        ],
-        'Tactics' => [
-            'left' => 'Prospecting',
-            'right' => 'Judging',
-            'value' => 56,
-            'color' => 'danger'
-        ],
+    $traits = [];
+    if (!empty($profile->personalityAssessments) && is_array($profile->personalityAssessments)) {
+        $personality_assessment = $profile->personalityAssessments[0];
+        $traits = [
+            'Mind' => [
+                'left' => 'Extraverted',
+                'right' => 'Introverted',
+                'value' => $personality_assessment->personality_IE_score,
+                'color' => 'primary'
+            ],
+            'Energy' => [
+                'left' => 'Observant',
+                'right' => 'Intuitive',
+                'value' => $personality_assessment->personality_NS_score,
+                'color' => 'warning'
+            ],
+            'Nature' => [
+                'left' => 'Thinking',
+                'right' => 'Feeling',
+                'value' => $personality_assessment->personality_TF_score,
+                'color' => 'success'
+            ],
+            'Tactics' => [
+                'left' => 'Prospecting',
+                'right' => 'Judging',
+                'value' => $personality_assessment->personality_JB_score,
+                'color' => 'danger'
+            ],
     ];
-
+    }
 
     // Map trait descriptions
     $traitDescriptions = [
@@ -105,16 +107,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'ESFP' => 'The Entertainer: Spontaneous, energetic, and enthusiastic people – life is never boring around them. Thrive in performing arts, event management, or hospitality.',
     ];
 
-
-    foreach ($traits as $axis => $trait) {
-        $dominantTrait = $trait['value'] > 50 ? $trait['left'] : $trait['right'];
-        $initialsMap = [
-            'Mind' => ['Introverted' => 'I', 'Extraverted' => 'E'],
-            'Energy' => ['Intuitive' => 'N', 'Observant' => 'S'],
-            'Nature' => ['Feeling' => 'F', 'Thinking' => 'T'],
-            'Tactics' => ['Judging' => 'J', 'Prospecting' => 'P'],
-        ];
-        $personalityCode .= $initialsMap[$axis][$dominantTrait];
+    if (!empty($traits)) {
+        $personalityCode = '';
+        foreach ($traits as $axis => $trait) {
+            $dominantTrait = $trait['value'] > 50 ? $trait['left'] : $trait['right'];
+            $initialsMap = [
+                'Mind' => ['Introverted' => 'I', 'Extraverted' => 'E'],
+                'Energy' => ['Intuitive' => 'N', 'Observant' => 'S'],
+                'Nature' => ['Feeling' => 'F', 'Thinking' => 'T'],
+                'Tactics' => ['Judging' => 'J', 'Prospecting' => 'P'],
+            ];
+            $personalityCode .= $initialsMap[$axis][$dominantTrait];
+        }
     }
     ?>
 

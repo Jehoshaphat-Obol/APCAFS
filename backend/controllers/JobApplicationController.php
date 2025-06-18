@@ -7,6 +7,7 @@ use app\models\Profile;
 use app\models\StatusLookup;
 use app\models\JobApplication;
 use app\models\JobApplicationSearch;
+use app\models\PersonalityAssessment;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -146,6 +147,7 @@ class JobApplicationController extends Controller
                     ->where(['profile_user_id' => $model->applicant_user_id])
                     ->andWhere(['profile_status_id' => StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar()])
                     ->one();
+
                 if($model !== null)
                 {
                     Yii::$app->session->setFlash('info', 'Welcome, Here you will be able to see detailed information about this Job Application');
