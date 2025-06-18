@@ -12,7 +12,7 @@ if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') 
 {
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Profiles'), 'url' => ['index']];
 }
-$this->params['breadcrumbs'][] = ['label' => $model->profile_last_name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->profile_last_name, 'url' => ['view', 'id' => $profile->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="profile-update">

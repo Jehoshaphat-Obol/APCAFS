@@ -319,5 +319,156 @@
                 throw $e;
             }
         }
+
+        public function update($profileId)
+        {
+            $transaction = Yii::$app->db->beginTransaction();
+
+            try {
+                if (!Yii::$app->user->can('applicant')) {
+                    throw new \Exception("Forbidden to perform this action");
+                }
+
+                $profile = Profile::findOne([
+                    'id' => $profileId,
+                    'profile_user_id' => Yii::$app->user->id
+                ]);
+
+                if (!$profile) {
+                    throw new \Exception("Profile not found or access denied.");
+                }
+
+                // Update profile fields
+                $profile->profile_first_name = $this->profile_first_name;
+                $profile->profile_middle_name = $this->profile_middle_name;
+                $profile->profile_last_name = $this->profile_last_name;
+                $profile->profile_social_media_username = $this->profile_social_media_username;
+                $profile->profile_date_of_birth = $this->profile_date_of_birth;
+                $profile->profile_bios = $this->profile_bios;
+                $profile->profile_region_id = $this->profile_region_id;
+                $profile->profile_district_id = $this->profile_district_id;
+                $profile->profile_local_address = $this->profile_local_address;
+                $profile->profile_updated_by = Yii::$app->user->id;
+                $profile->profile_updated_at = date('Y-m-d H:i:s');
+
+                if (!$profile->save()) {
+                    throw new \Exception('Failed to update your profile: ' . Html::errorSummary($profile));
+                }
+
+                // ==== DELETE OLD DATA FIRST ====
+                PhoneNumber::deleteAll(['phone_profile_id' => $profile->id]);
+                WorkExperience::deleteAll(['experience_profile_id' => $profile->id]);
+                Education::deleteAll(['education_profile_id' => $profile->id]);
+                Skill::deleteAll(['skill_profile_id' => $profile->id]);
+                Award::deleteAll(['award_profile_id' => $profile->id]);
+                Language::deleteAll(['language_profile_id' => $profile->id]);
+                Publication::deleteAll(['publication_profile_id' => $profile->id]);
+
+                // ==== INSERT NEW DATA ====
+
+                foreach ($this->phone_number as $number) {
+                    $phone = new PhoneNumber();
+                    $phone->phone_profile_id = $profile->id;
+                    $phone->phone_number = $number['phone_number'];
+                    $phone->phone_status_id = StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar();
+                    $phone->phone_created_by = Yii::$app->user->id;
+
+                    if (!$phone->save()) {
+                        throw new \Exception('Failed to save phone number: ' . Html::errorSummary($phone));
+                    }
+                }
+
+                foreach ($this->experiences as $exp) {
+                    $experience = new WorkExperience();
+                    $experience->experience_profile_id = $profile->id;
+                    $experience->experience_job_title = $exp['experience_job_title'];
+                    $experience->experience_company_name = $exp['experience_company_name'];
+                    $experience->experience_from = $exp['experience_from'];
+                    $experience->experience_to = $exp['experience_to'];
+                    $experience->experience_status_id = StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar();
+                    $experience->experience_created_by = Yii::$app->user->id;
+
+                    if (!$experience->save()) {
+                        throw new \Exception('Failed to save work experience: ' . Html::errorSummary($experience));
+                    }
+                }
+
+                foreach ($this->educations as $edu) {
+                    $education = new Education();
+                    $education->education_profile_id = $profile->id;
+                    $education->education_degree_name = $edu['education_degree_name'] ?? null;
+                    $education->education_programme_name = $edu['education_programme_name'] ?? null;
+                    $education->education_university_name = $edu['education_university_name'] ?? null;
+                    $education->education_graduation_date = $edu['education_graduation_date'] ?? null;
+                    $education->education_status_id = StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar();
+                    $education->education_created_by = Yii::$app->user->id;
+
+                    if (!$education->save()) {
+                        throw new \Exception('Failed to save education entry: ' . Html::errorSummary($education));
+                    }
+                }
+
+                foreach ($this->skills as $skillItem) {
+                    $skill = new Skill();
+                    $skill->skill_profile_id = $profile->id;
+                    $skill->skill_type = $skillItem['skill_type'] ?? null;
+                    $skill->skill_name = $skillItem['skill_name'] ?? null;
+                    $skill->skill_status_id = StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar();
+                    $skill->skill_created_by = Yii::$app->user->id;
+
+                    if (!$skill->save()) {
+                        throw new \Exception('Failed to save skill: ' . Html::errorSummary($skill));
+                    }
+                }
+
+                foreach ($this->awards as $awardItem) {
+                    $award = new Award();
+                    $award->award_profile_id = $profile->id;
+                    $award->award_title = $awardItem['award_title'] ?? null;
+                    $award->award_organization_name = $awardItem['award_organization_name'] ?? null;
+                    $award->award_issue_number = $awardItem['award_issue_number'] ?? null;
+                    $award->award_date_of_issue = $awardItem['award_date_of_issue'] ?? null;
+                    $award->award_status_id = StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar();
+                    $award->award_created_by = Yii::$app->user->id;
+
+                    if (!$award->save()) {
+                        throw new \Exception('Failed to save award: ' . Html::errorSummary($award));
+                    }
+                }
+
+                foreach ($this->languages as $languageItem) {
+                    $language = new Language();
+                    $language->language_profile_id = $profile->id;
+                    $language->language_name = $languageItem['language_name'] ?? null;
+                    $language->language_status_id = StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar();
+                    $language->language_created_by = Yii::$app->user->id;
+
+                    if (!$language->save()) {
+                        throw new \Exception('Failed to save language: ' . Html::errorSummary($language));
+                    }
+                }
+
+                foreach ($this->publications as $publicationItem) {
+                    $publication = new Publication();
+                    $publication->publication_profile_id = $profile->id;
+                    $publication->publication_title = $publicationItem['publication_title'] ?? null;
+                    $publication->publication_publisher_name = $publicationItem['publication_publisher_name'] ?? null;
+                    $publication->publication_date_of_publication = $publicationItem['publication_date_of_publication'] ?? null;
+                    $publication->publication_status_id = StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar();
+                    $publication->publication_created_by = Yii::$app->user->id;
+
+                    if (!$publication->save()) {
+                        throw new \Exception('Failed to save publication: ' . Html::errorSummary($publication));
+                    }
+                }
+
+                $transaction->commit();
+                return true;
+
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                throw $e;
+            }
+        }
     }
 ?>

@@ -56,13 +56,27 @@ use kartik\date\DatePicker;
                         ]
                     ) ?>
 
-                    <?= $form->field($model, 'profile_district_id')->dropDownList(
-                        [],
-                        [
-                            'prompt' => 'Choose District',
-                            'id' => 'district-id'
-                        ]
-                    ) ?>
+                    <?php 
+                        $districtItems = [];
+
+                        if (!empty($model->profile_region_id)) {
+                            $districtItems = ArrayHelper::map(
+                                \app\models\District::find()->where(['district_region_id' => $model->profile_region_id])->all(),
+                                'id',
+                                'district_name'
+                            );
+                        }
+
+                        echo $form->field($model, 'profile_district_id')->dropDownList(
+                            $districtItems,
+                            [
+                                'prompt' => 'Choose District',
+                                'id' => 'district-id'
+                            ]
+                            );
+                    ?>
+
+                    
 
                     <?= $form->field($model, 'profile_local_address')->textInput(['maxlength' => true]) ?>
                 </div>
@@ -80,7 +94,21 @@ use kartik\date\DatePicker;
                 data-bs-parent="#basicAccordion">
                 <div class="accordion-body">
                     <div id="phones-container">
-                        <!-- Phone numbers will be added here by JS -->
+                        <?php if (!empty($model->phone_number)): ?>
+                            <?php foreach ($model->phone_number as $index => $phone): ?>
+                                <div class="phone-item card mb-3 p-3 border rounded shadow-sm">
+                                    <button type="button" class="btn-close float-end" onclick="removePhone(this)"></button>
+                                    <div class="form-group">
+                                        <?= $form->field($model, "phone_number[$index][phone_number]")
+                                            ->textInput([
+                                                'class' => 'form-control',
+                                                'required' => true,
+                                                'value' => $phone['phone_number']
+                                            ]) ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                     <button type="button" class="btn btn-secondary" onclick="addPhoneNumber()">Add Phone Number</button>
                 </div>
@@ -98,6 +126,25 @@ use kartik\date\DatePicker;
                 <div class="accordion-body">
                     <div id="experience-container">
                         <!-- Experience items zitawekwa hapa kwa JS -->
+                        <?php if (!empty($model->experiences)): ?>
+                            <?php foreach ($model->experiences as $index => $exp): ?>
+                                <div class="experience-item card mb-3 p-3 border rounded shadow-sm">
+                                    <button type="button" class="btn-close float-end" onclick="removeExperience(this)"></button>
+
+                                    <?= $form->field($model, "experiences[$index][experience_job_title]")
+                                        ->textInput(['class' => 'form-control', 'required' => true, 'value' => $exp['experience_job_title']]) ?>
+
+                                    <?= $form->field($model, "experiences[$index][experience_company_name]")
+                                        ->textInput(['class' => 'form-control', 'required' => true, 'value' => $exp['experience_company_name']]) ?>
+
+                                    <?= $form->field($model, "experiences[$index][experience_from]")
+                                        ->textInput(['class' => 'form-control flatpickr', 'required' => true, 'value' => $exp['experience_from']]) ?>
+
+                                    <?= $form->field($model, "experiences[$index][experience_to]")
+                                        ->textInput(['class' => 'form-control flatpickr', 'required' => true, 'value' => $exp['experience_to']]) ?>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                     <button type="button" class="btn btn-secondary" onclick="addExperience()">Add Working Experience</button>
                 </div>
@@ -116,6 +163,37 @@ use kartik\date\DatePicker;
                 <div class="accordion-body">
                     <div id="education-container">
                         <!-- Education items zitaongezwa hapa na JS -->
+                        <?php if (!empty($model->educations)): ?>
+                            <?php foreach ($model->educations as $index => $edu): ?>
+                                <div class="education-item card mb-3 p-3 border rounded shadow-sm">
+                                    <button type="button" class="btn-close float-end" onclick="removeEducation(this)"></button>
+
+                                    <?= $form->field($model, "educations[$index][education_degree_name]")
+                                        ->dropDownList([
+                                            'Certificate' => 'Certificate',
+                                            'Diploma' => 'Diploma',
+                                            'Bachelor' => 'Bachelor',
+                                            'Master' => 'Master',
+                                            'PhD' => 'PhD',
+                                            'Postdoc' => 'Postdoc',
+                                        ], [
+                                            'prompt' => 'Select Degree Level',
+                                            'class' => 'form-control',
+                                            'required' => true,
+                                            'value' => $edu['education_degree_name']
+                                        ]) ?>
+
+                                    <?= $form->field($model, "educations[$index][education_programme_name]")
+                                        ->textInput(['class' => 'form-control', 'required' => true, 'value' => $edu['education_programme_name']]) ?>
+
+                                    <?= $form->field($model, "educations[$index][education_university_name]")
+                                        ->textInput(['class' => 'form-control', 'required' => true, 'value' => $edu['education_university_name']]) ?>
+
+                                    <?= $form->field($model, "educations[$index][education_graduation_date]")
+                                        ->textInput(['class' => 'form-control flatpickr', 'required' => true, 'value' => $edu['education_graduation_date']]) ?>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                     <button type="button" class="btn btn-secondary mt-2" onclick="addEducation()">Add Education</button>
                 </div>
@@ -134,6 +212,28 @@ use kartik\date\DatePicker;
                 <div class="accordion-body">
                     <div id="skill-container">
                         <!-- Skill items zitaongezwa hapa kwa JS -->
+                        <?php if (!empty($model->skills)): ?>
+                            <?php foreach ($model->skills as $index => $skill): ?>
+                                <div class="skill-item card mb-3 p-3 border rounded shadow-sm">
+                                    <button type="button" class="btn-close float-end" onclick="removeSkill(this)"></button>
+
+                                    <?= $form->field($model, "skills[$index][skill_type]")
+                                        ->dropDownList([
+                                            'Technical' => 'Technical',
+                                            'Soft' => 'Soft',
+                                            'Language' => 'Language',
+                                        ], [
+                                            'prompt' => 'Select Skill Type',
+                                            'class' => 'form-control',
+                                            'required' => true,
+                                            'value' => $skill['skill_type']
+                                        ]) ?>
+
+                                    <?= $form->field($model, "skills[$index][skill_name]")
+                                        ->textInput(['class' => 'form-control', 'required' => true, 'value' => $skill['skill_name']]) ?>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                     <button type="button" class="btn btn-secondary mt-2" onclick="addSkill()">Add Skill</button>
                 </div>
@@ -152,6 +252,25 @@ use kartik\date\DatePicker;
                 <div class="accordion-body">
                     <div id="award-container">
                         <!-- Award items zitaongezwa hapa na JS -->
+                        <?php if (!empty($model->awards)): ?>
+                            <?php foreach ($model->awards as $index => $award): ?>
+                                <div class="award-item card mb-3 p-3 border rounded shadow-sm">
+                                    <button type="button" class="btn-close float-end" onclick="removeAward(this)"></button>
+
+                                    <?= $form->field($model, "awards[$index][award_title]")
+                                        ->textInput(['class' => 'form-control', 'required' => true, 'value' => $award['award_title']]) ?>
+
+                                    <?= $form->field($model, "awards[$index][award_organization_name]")
+                                        ->textInput(['class' => 'form-control', 'required' => true, 'value' => $award['award_organization_name']]) ?>
+
+                                    <?= $form->field($model, "awards[$index][award_issue_number]")
+                                        ->textInput(['class' => 'form-control', 'value' => $award['award_issue_number']]) ?>
+
+                                    <?= $form->field($model, "awards[$index][award_date_of_issue]")
+                                        ->textInput(['class' => 'form-control flatpickr', 'value' => $award['award_date_of_issue']]) ?>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                     <button type="button" class="btn btn-secondary mt-2" onclick="addAward()">Add Award</button>
                 </div>
@@ -170,6 +289,27 @@ use kartik\date\DatePicker;
                 <div class="accordion-body">
                     <div id="language-container">
                         <!-- Language items zitaongezwa hapa kwa JS -->
+                        <?php if (!empty($model->languages)): ?>
+                            <?php foreach ($model->languages as $index => $lang): ?>
+                                <div class="language-item card mb-3 p-3 border rounded shadow-sm">
+                                    <button type="button" class="btn-close float-end" onclick="removeLanguage(this)"></button>
+
+                                    <?= $form->field($model, "languages[$index][language_name]")
+                                        ->dropDownList([
+                                            'English' => 'English',
+                                            'Swahili' => 'Swahili',
+                                            'French' => 'French',
+                                            'Spanish' => 'Spanish',
+                                            'Arabic' => 'Arabic',
+                                        ], [
+                                            'prompt' => 'Select Language',
+                                            'class' => 'form-control',
+                                            'required' => true,
+                                            'value' => $lang['language_name']
+                                        ]) ?>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                     <button type="button" class="btn btn-secondary mt-2" onclick="addLanguage()">Add Language</button>
                 </div>
@@ -188,6 +328,22 @@ use kartik\date\DatePicker;
                 <div class="accordion-body">
                     <div id="publication-container">
                         <!-- Publication items zitaongezwa hapa kwa JS -->
+                        <?php if (!empty($model->publications)): ?>
+                            <?php foreach ($model->publications as $index => $pub): ?>
+                                <div class="publication-item card mb-3 p-3 border rounded shadow-sm">
+                                    <button type="button" class="btn-close float-end" onclick="removePublication(this)"></button>
+
+                                    <?= $form->field($model, "publications[$index][publication_title]")
+                                        ->textInput(['class' => 'form-control', 'required' => true, 'value' => $pub['publication_title']]) ?>
+
+                                    <?= $form->field($model, "publications[$index][publication_publisher_name]")
+                                        ->textInput(['class' => 'form-control', 'required' => true, 'value' => $pub['publication_publisher_name']]) ?>
+
+                                    <?= $form->field($model, "publications[$index][publication_date_of_publication]")
+                                        ->textInput(['class' => 'form-control flatpickr', 'required' => true, 'value' => $pub['publication_date_of_publication']]) ?>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                     <button type="button" class="btn btn-secondary mt-2" onclick="addPublication()">Add Publication</button>
                 </div>
@@ -581,4 +737,8 @@ use kartik\date\DatePicker;
     function removePublication(button) {
         button.closest('.publication-item').remove();
     }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        flatpickr('.flatpickr');
+    });
 </script>

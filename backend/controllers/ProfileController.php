@@ -31,6 +31,7 @@ use yii\helpers\Json;
  */
 class ProfileController extends Controller
 {
+    public $id;
     /**
      * @inheritDoc
      */
@@ -256,45 +257,64 @@ class ProfileController extends Controller
      */
     public function actionUpdate($id)
     {
-        try
-        {
-            $model = $this->findModel($id);
-
-            if(Yii::$app->user->can('applicant'))
-            {
-                if($model !== null)
-                {
-                    $regions = Region::find()
-                                ->where(['region_status_id' => StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar()])
-                                ->all();
-
-                    if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-
-                        try {
-                            if (!$model->save()) {
-                                throw new \Exception('Failed to save model: ' . Html::errorSummary($model));
-                            }
-                            Yii::$app->session->setFlash('success', 'Congratulation!, The existing Staff profile updated successfully.');
-                            return $this->redirect(['view', 'id' => $model->id]);
-                        } catch (\Exception $ex) {
-                            $transaction->rollBack();
-                            Yii::$app->session->setFlash('error', $ex->getMessage());
-                        }
-                    }
-                        
-                    return $this->render('update', [
-                    'model' => $model,
-                    'regions' => $regions,
-                ]);
+        try {
+            if (!Yii::$app->user->can('applicant')) {
+                throw new ForbiddenHttpException();
             }
-            throw new NotFoundHttpException('The requested page does not exist.');
+
+            $model = new AddProfile();
+
+            $profile = Profile::findOne([
+                'id' => $id,
+                'profile_user_id' => Yii::$app->user->id
+            ]);
+
+            if (!$profile) {
+                throw new NotFoundHttpException('The requested profile does not exist or access denied.');
+            }
+
+            // Pre-fill model with existing profile data
+            $model->profile_first_name = $profile->profile_first_name;
+            $model->profile_middle_name = $profile->profile_middle_name;
+            $model->profile_last_name = $profile->profile_last_name;
+            $model->profile_social_media_username = $profile->profile_social_media_username;
+            $model->profile_date_of_birth = $profile->profile_date_of_birth;
+            $model->profile_bios = $profile->profile_bios;
+            $model->profile_region_id = $profile->profile_region_id;
+            $model->profile_district_id = $profile->profile_district_id;
+            $model->profile_local_address = $profile->profile_local_address;
+
+            // Load associated data (phones, experience, etc.)
+            $model->phone_number = PhoneNumber::find()->where(['phone_profile_id' => $profile->id])->asArray()->all();
+            $model->experiences = WorkExperience::find()->where(['experience_profile_id' => $profile->id])->asArray()->all();
+            $model->educations = Education::find()->where(['education_profile_id' => $profile->id])->asArray()->all();
+            $model->skills = Skill::find()->where(['skill_profile_id' => $profile->id])->asArray()->all();
+            $model->awards = Award::find()->where(['award_profile_id' => $profile->id])->asArray()->all();
+            $model->languages = Language::find()->where(['language_profile_id' => $profile->id])->asArray()->all();
+            $model->publications = Publication::find()->where(['publication_profile_id' => $profile->id])->asArray()->all();
+
+            $regions = Region::find()
+                ->where(['region_status_id' => StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar()])
+                ->all();
+
+            if ($this->request->isPost) {
+                if ($model->load($this->request->post()) && $model->update($id)) {
+                    Yii::$app->session->setFlash('success', 'Profile updated successfully.');
+                    return $this->redirect(['dashboard/dashboard']);
+                } else {
+                    Yii::$app->session->setFlash('error', 'Failed to update profile. Please check your input.');
+                }
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+                'regions' => $regions,
+                'profile' => $profile,
+            ]);
+        } catch (ForbiddenHttpException $e) {
+            return $this->redirect(['error']);
         }
-        throw new ForbiddenHttpException();
-    } catch (ForbiddenHttpException $e)
-    {
-        return $this->redirect(['error']);
     }
-}
 
     /**
      * Deletes an existing Profile model.
