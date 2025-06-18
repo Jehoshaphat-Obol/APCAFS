@@ -19,7 +19,7 @@ $logoutIcon = Html::tag('i', '', ['class' => 'bi bi-box-arrow-right']);
 
 // Login/Logout buttons
 $navItems[] = Yii::$app->user->isGuest
-    ? ['label' => 'Login', 'url' => ['/site/login']]
+    ? ['label' => 'Signin', 'url' => ['/site/signin']]
     : Html::beginForm(['/site/logout'], 'post')
         . Html::submitButton(
             $logoutIcon . ' Logout',
