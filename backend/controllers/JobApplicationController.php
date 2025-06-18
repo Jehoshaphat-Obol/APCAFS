@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\Profile;
+use app\models\StatusLookup;
 use app\models\JobApplication;
 use app\models\JobApplicationSearch;
 use yii\web\Controller;
@@ -139,12 +141,17 @@ class JobApplicationController extends Controller
             if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr'))
             {
                 $model = $this->findModel($id);
-                
+
+                $profile = Profile::find()
+                    ->where(['profile_user_id' => $model->applicant_user_id])
+                    ->andWhere(['profile_status_id' => StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar()])
+                    ->one();
                 if($model !== null)
                 {
                     Yii::$app->session->setFlash('info', 'Welcome, Here you will be able to see detailed information about this Job Application');
                     return $this->render('view', [
                         'model' => $model,
+                        'profile' => $profile,
                     ]);
                 }
                 throw new NotFoundHttpException('The requested page does not exist.');

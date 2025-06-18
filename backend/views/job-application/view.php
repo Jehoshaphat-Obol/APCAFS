@@ -13,8 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="job-application-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?php if (!(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))): ?>
             <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -280,3 +278,41 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ],
 ]) ?>
+
+<?php 
+    echo "<pre>";
+    print_r($profile);
+    echo "</pre>";
+
+    echo "<pre>";
+    print_r($profile->educations);
+    echo "</pre>";
+
+    echo "<pre>";
+    print_r($profile->awards);
+    echo "</pre>";
+
+    echo "<pre>";
+    print_r($profile->awards);
+    echo "</pre>";
+
+    echo "<pre>";
+    print_r($profile->languages);
+    echo "</pre>";
+
+    echo "<pre>";
+    print_r($profile->phoneNumbers);
+    echo "</pre>";
+
+    echo "<pre>";
+    print_r($profile->publications);
+    echo "</pre>";
+
+    echo "<pre>";
+    print_r($profile->skills);
+    echo "</pre>";
+
+    echo "<pre>";
+    print_r($profile->workExperiences);
+    echo "</pre>";
+?>
