@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var app\models\JobApplication $model */
 
-$this->title = $model->user2->username . ' apply for '. $model->jobPost->post_job_title;
+$this->title = $model->user2->username . ' apply for ' . $model->jobPost->post_job_title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Job Applications'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?php if(!(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))): ?>
+        <?php if (!(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))): ?>
             <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
             <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
                 'class' => 'btn btn-danger',
@@ -28,88 +28,244 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php endif; ?>
     </p>
 
+    <!-- PERSONALITY ASSESSMENT WIDGET STARTS HERE -->
+    <?php
+    $traits = [
+        'Mind' => [
+            'left' => 'Extraverted',
+            'right' => 'Introverted',
+            'value' => 70,
+            'color' => 'primary'
+        ],
+        'Energy' => [
+            'left' => 'Observant',
+            'right' => 'Intuitive',
+            'value' => 68,
+            'color' => 'warning'
+        ],
+        'Nature' => [
+            'left' => 'Thinking',
+            'right' => 'Feeling',
+            'value' => 52,
+            'color' => 'success'
+        ],
+        'Tactics' => [
+            'left' => 'Prospecting',
+            'right' => 'Judging',
+            'value' => 56,
+            'color' => 'danger'
+        ],
+    ];
+
+
+    // Map trait descriptions
+    $traitDescriptions = [
+        // Mind
+        'Introverted' => 'Prefers solitary activities and often excels in focused, independent tasks. In team settings, tends to favor deep collaboration with smaller groups over large social interactions.',
+        'Extraverted' => 'Is energized by social interaction and thrives in collaborative environments. Often excels in roles that involve frequent communication, public speaking, or team leadership.',
+
+        // Energy
+        'Intuitive' => 'Is visionary and driven by ideas, often thinking in abstract or conceptual ways. Suited for roles that demand innovation, strategic thinking, or long-term planning.',
+        'Observant' => 'Pays close attention to concrete details and current realities. Excels in practical roles requiring accuracy, organization, or hands-on experience such as operations or administration.',
+
+        // Nature
+        'Feeling' => 'Prioritizes empathy and human values when making decisions. May be especially effective in roles involving customer service, human resources, or caregiving.',
+        'Thinking' => 'Approaches problems with logic and objectivity. Analytical roles such as engineering, data science, or finance often suit this trait.',
+
+        // Tactics
+        'Judging' => 'Prefers order, structure, and planning. Tends to be dependable and punctual, making this individual ideal for project management or roles requiring consistency.',
+        'Prospecting' => 'Values flexibility and adaptability, thriving in dynamic or fast-paced environments such as startups or creative fields.',
+
+        // Identity (optional extension)
+        'Assertive' => 'Is self-assured and stress-resistant. Likely to take initiative and perform steadily under pressure.',
+        'Turbulent' => 'Is self-aware and perfectionistic, often striving for improvement and sensitive to feedback. This can drive high achievement but may also lead to stress sensitivity.',
+    ];
+
+
+
+    // Determine full personality
+    $personalityCode = '';
+    $personalityDesc = [
+        'INTJ' => 'The Architect: Imaginative and strategic thinkers with a plan for everything. Often seen in leadership, R&D, and high-level strategic roles.',
+        'INTP' => 'The Logician: Innovative inventors with an unquenchable thirst for knowledge. Thrive in data analysis, research, and system design.',
+        'ENTJ' => 'The Commander: Bold, imaginative, and strong-willed leaders, always finding a way—or making one. Natural CEOs and team leads.',
+        'ENTP' => 'The Debater: Smart and curious thinkers who cannot resist an intellectual challenge. Excel in innovation, consulting, and entrepreneurship.',
+
+        'INFJ' => 'The Advocate: Quiet and mystical, yet very inspiring and tireless idealists. Thrive in mentoring, counseling, or cause-driven work.',
+        'INFP' => 'The Mediator: Poetic, kind, and altruistic individuals, always eager to help a good cause. Great in writing, design, or nonprofit roles.',
+        'ENFJ' => 'The Protagonist: Charismatic and inspiring leaders, able to mesmerize their listeners. Excel in HR, education, or public-facing leadership.',
+        'ENFP' => 'The Campaigner: Enthusiastic, creative, and sociable free spirits, who always find a reason to smile. Often thrive in marketing, branding, or creative strategy.',
+
+        'ISTJ' => 'The Logistician: Practical and fact-minded individuals, whose reliability cannot be doubted. Suited for auditing, administration, or military roles.',
+        'ISFJ' => 'The Defender: Very dedicated and warm protectors, always ready to defend their loved ones. Excel in supportive, structured environments like healthcare or education.',
+        'ESTJ' => 'The Executive: Excellent administrators, unsurpassed at managing things or people. Ideal for operations, logistics, or public service.',
+        'ESFJ' => 'The Consul: Extraordinarily caring, social, and popular people, always eager to help. Strong fits for customer success or community engagement roles.',
+
+        'ISTP' => 'The Virtuoso: Bold and practical experimenters, masters of all kinds of tools. Thrive in engineering, mechanics, and technical trades.',
+        'ISFP' => 'The Adventurer: Flexible and charming artists, always ready to explore and experience something new. Creative fields like fashion, design, or culinary arts are ideal.',
+        'ESTP' => 'The Entrepreneur: Smart, energetic, and very perceptive people, who truly enjoy living on the edge. Do well in sales, crisis management, and high-energy roles.',
+        'ESFP' => 'The Entertainer: Spontaneous, energetic, and enthusiastic people – life is never boring around them. Thrive in performing arts, event management, or hospitality.',
+    ];
+
+
+    foreach ($traits as $axis => $trait) {
+        $dominantTrait = $trait['value'] > 50 ? $trait['left'] : $trait['right'];
+        $initialsMap = [
+            'Mind' => ['Introverted' => 'I', 'Extraverted' => 'E'],
+            'Energy' => ['Intuitive' => 'N', 'Observant' => 'S'],
+            'Nature' => ['Feeling' => 'F', 'Thinking' => 'T'],
+            'Tactics' => ['Judging' => 'J', 'Prospecting' => 'P'],
+        ];
+        $personalityCode .= $initialsMap[$axis][$dominantTrait];
+    }
+    ?>
+
+    <div class="card shadow-sm pt-4 p-2 pb-0 mb-4">
+        <div class="card-body">
+            <h5 class="card-title mb-4">Personality Traits</h5>
+
+            <div class="row">
+                <!-- Trigger Sections -->
+                <div class="list-group mb-4 col-md-6" id="traitTabs" role="tablist">
+                    <?php foreach ($traits as $axis => $trait):
+                        $dominant = $trait['value'] > 50 ? $trait['left'] : $trait['right'];
+                        $inverse = 100 - $trait['value'];
+                        $tabId = strtolower($axis);
+                    ?>
+                        <div
+                            class="list-group-item list-group-item-action"
+                            data-bs-toggle="list"
+                            data-bs-target="#tab-<?= $tabId ?>"
+                            role="tab">
+                            <div class="d-flex justify-content-between small fw-bold mb-1">
+                                <span><?= $trait['left'] ?></span>
+                                <span><?= $trait['right'] ?></span>
+                            </div>
+                            <div class="position-relative" style="height: 24px;">
+                                <div class="progress" style="height: 8px;">
+                                    <div
+                                        class="progress-bar bg-<?= $trait['color'] ?>"
+                                        style="width: <?= $trait['value'] ?>%;"></div>
+                                </div>
+                                <div class="position-absolute top-0 translate-middle-y text-nowrap"
+                                    style="left: calc(<?= $trait['value'] ?>%); top: 12px;">
+                                    <span class="badge rounded-pill bg-<?= $trait['color'] ?>">
+                                        <?= $trait['value'] ?>%
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="text-start small text-muted mt-1">
+                                <strong><?= $axis ?>:</strong> Dominant trait is <strong><?= $dominant ?></strong>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content col-md-6">
+                    <?php foreach ($traits as $axis => $trait):
+                        $dominant = $trait['value'] > 50 ? $trait['left'] : $trait['right'];
+                        $tabId = strtolower($axis);
+                    ?>
+                        <div class="tab-pane fade" id="tab-<?= $tabId ?>" role="tabpanel">
+                            <h5 class="fw-bold"><?= $dominant ?> (<?= $axis ?>)</h5>
+                            <p><?= $traitDescriptions[$dominant] ?? 'Description not found.' ?></p>
+
+                            <hr>
+                            <h6 class="text-muted">Personality Type: <strong><?= $personalityCode ?></strong></h6>
+                            <p><?= $personalityDesc[$personalityCode] ?? 'No description available for this type.' ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- PERSONALITY ASSESSMENT WIDGET ENDS HERE -->
+
+
     <?= DetailView::widget([
-    'model' => $model,
-    'attributes' => [
-        'id',
+        'model' => $model,
+        'attributes' => [
+            'id',
 
-        // Kampuni
-        [
-            'attribute' => 'applicant_company_id',
-            'value' => $model->company->company_name ?? null,
-            'label' => 'Company',
+            // Kampuni
+            [
+                'attribute' => 'applicant_company_id',
+                'value' => $model->company->company_name ?? null,
+                'label' => 'Company',
+            ],
+
+            // Job Post
+            [
+                'attribute' => 'applicant_job_post_id',
+                'value' => $model->jobPost->post_job_title ?? null,
+                'label' => 'Job Title',
+            ],
+
+            // Muombaji
+            [
+                'attribute' => 'applicant_user_id',
+                'value' => $model->user2->username ?? null,
+                'label' => 'Applicant Username',
+            ],
+
+            // Alama
+            'applicant_score',
+
+            // Status
+            [
+                'attribute' => 'applicant_status_id',
+                'value' => $model->statusLookup->status_name ?? null,
+                'label' => 'Status',
+            ],
+
+            // Tarehe ya kuundwa
+            [
+                'attribute' => 'applicant_created_at',
+                'format' => ['date', 'php:d M Y H:i'],
+                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+            ],
+
+            // Aliyeunda
+            [
+                'attribute' => 'applicant_created_by',
+                'value' => $model->user->username ?? null,
+                'label' => 'Created By',
+                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+            ],
+
+            // Tarehe ya kusasishwa
+            [
+                'attribute' => 'applicant_updated_at',
+                'format' => ['date', 'php:d M Y H:i'],
+                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+            ],
+
+            // Aliyesasisha
+            [
+                'attribute' => 'applicant_updated_by',
+                'value' => $model->user1->username ?? null,
+                'label' => 'Updated By',
+                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+            ],
+
+            // Tarehe ya kufutwa
+            [
+                'attribute' => 'applicant_deleted_at',
+                'format' => ['date', 'php:d M Y H:i'],
+                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+            ],
+
+            // Aliyefuta
+            [
+                'attribute' => 'applicant_deleted_by',
+                'value' => $model->user0->username ?? null,
+                'label' => 'Deleted By',
+                'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
+            ],
         ],
-
-        // Job Post
-        [
-            'attribute' => 'applicant_job_post_id',
-            'value' => $model->jobPost->post_job_title ?? null,
-            'label' => 'Job Title',
-        ],
-
-        // Muombaji
-        [
-            'attribute' => 'applicant_user_id',
-            'value' => $model->user2->username ?? null,
-            'label' => 'Applicant Username',
-        ],
-
-        // Alama
-        'applicant_score',
-
-        // Status
-        [
-            'attribute' => 'applicant_status_id',
-            'value' => $model->statusLookup->status_name ?? null,
-            'label' => 'Status',
-        ],
-
-        // Tarehe ya kuundwa
-        [
-            'attribute' => 'applicant_created_at',
-            'format' => ['date', 'php:d M Y H:i'],
-            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
-        ],
-
-        // Aliyeunda
-        [
-            'attribute' => 'applicant_created_by',
-            'value' => $model->user->username ?? null,
-            'label' => 'Created By',
-            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
-        ],
-
-        // Tarehe ya kusasishwa
-        [
-            'attribute' => 'applicant_updated_at',
-            'format' => ['date', 'php:d M Y H:i'],
-            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
-        ],
-
-        // Aliyesasisha
-        [
-            'attribute' => 'applicant_updated_by',
-            'value' => $model->user1->username ?? null,
-            'label' => 'Updated By',
-            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
-        ],
-
-        // Tarehe ya kufutwa
-        [
-            'attribute' => 'applicant_deleted_at',
-            'format' => ['date', 'php:d M Y H:i'],
-            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
-        ],
-
-        // Aliyefuta
-        [
-            'attribute' => 'applicant_deleted_by',
-            'value' => $model->user0->username ?? null,
-            'label' => 'Deleted By',
-            'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
-        ],
-    ],
-]) ?>
+    ]) ?>
 
 
 </div>

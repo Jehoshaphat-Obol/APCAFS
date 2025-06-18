@@ -70,6 +70,16 @@ $this->registerCssFile('@web/css/fontawesome.min.css');
         .sidebar-header{
             margin-top: 28px;
         }
+
+        .list-group-item-action.active{
+            background-color: #002c22;
+            border-color: #002c22;
+            color: white;
+            z-index: 0;
+        }
+        .list-group-item-action.active .text-muted{
+            color: inherit !important;
+        }
     </style>
 </head>
 
