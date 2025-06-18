@@ -287,8 +287,27 @@ h3 {
     }
     
     aside {
-        display: none; /* Sidebar ijifiche kwenye screen ndogo */
-        width: 200px; /* upana mdogo kwa vifaa vya simu */
+        width: fit-content; /* upana mdogo kwa vifaa vya simu */
+    }
+
+    .nav-link span{
+        display: none;
+    }
+
+     ul.nav-pills{
+        width: 56px;
+     }
+
+     hr{
+        display: none;
+     }
+
+    .nav-link, .nav-item{
+        width: fit-content;
+
+    }
+    aside{
+        min-width: fit-content;
     }
 
     .outer-cover {
@@ -299,12 +318,15 @@ h3 {
 
     .sidebar {
         width: 0;
-        display: none; /* Sidebar disappears on small screens */
         overflow: hidden;
+        padding: 8px;
     }
 
+    .sidebar-header{
+        display: none;
+    }
     .main-container {
-        margin-left: 0;
+        margin-left: 72px;
     }
 
     .sidebar-toggle {
@@ -348,7 +370,6 @@ h3 {
         position: relative;
         display: inline-block;
         float: inline-end;
-        left: 75px;
     }
 
     button.navbar-toggler
@@ -356,7 +377,6 @@ h3 {
         position: relative;
         display: inline-block;
         float: inline-end;
-        left: 175px;
     }
 }
 

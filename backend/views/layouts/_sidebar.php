@@ -15,52 +15,52 @@ if (!Yii::$app->user->isGuest) {
     if (Yii::$app->user->can('super-admin')) {
         $navItems = [
             [
-                'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> Dashboard',
+                'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> <span>Dashboard</span>',
                 'encode' => false,
                 'url' => ['/dashboard/super-admin-dashboard']
             ], 
             [
-                'label' => '<i class="bi bi-buildings sidebar-icons fs-5"></i> Companies',
+                'label' => '<i class="bi bi-buildings sidebar-icons fs-5"></i> <span>Companies</span>',
                 'encode' => false,
                 'url' => ['/company/index'],
             ],
             [
-                'label' => '<i class="bi bi-people sidebar-icons fs-5"></i> Users',
+                'label' => '<i class="bi bi-people sidebar-icons fs-5"></i> <span>Users</span>',
                 'encode' => false,
                 'url' => ['/user/index'],
             ],
             [
-                'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> Posts',
+                'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> <span>Posts</span>',
                 'encode' => false,
                 'url' => ['/job-post/index'],
             ],
             [
-                'label' => '<i class="bi bi-folder2-open sidebar-icons fs-5"></i> Applications',
+                'label' => '<i class="bi bi-folder2-open sidebar-icons fs-5"></i> <span>Applications</span>',
                 'encode' => false,
                 'url' => ['/job-application/index'],
             ],
             [
-                'label' => '<i class="bi bi-bar-chart-line sidebar-icons fs-5"></i> Assessment (PS)',
+                'label' => '<i class="bi bi-bar-chart-line sidebar-icons fs-5"></i> <span>Assessment (PS)</span>',
                 'encode' => false,
                 'url' => ['/personality-assessment/index'],
             ],
             [
-                'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> Tests',
+                'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> <span>Tests</span>',
                 'encode' => false,
                 'url' => ['/job-test/index'],
             ],
             [
-                'label' => '<i class="bi bi-trash sidebar-icons fs-5"></i> Bin',
+                'label' => '<i class="bi bi-trash sidebar-icons fs-5"></i> <span>Bin</span>',
                 'encode' => false,
                 'items' => [
-                    ['label' => '<i class="bi bi-people sidebar-icons-inside fs-5"></i> Users', 'encode' => false, 'url' => ['/user/deleted-users']],
-                    ['label' => '<i class="bi bi-briefcase sidebar-icons-inside fs-5"></i> Job Posts', 'encode' => false, 'url' => ['/job-post/deleted-posts']],
-                    ['label' => '<i class="bi bi-clipboard-check sidebar-icons-inside fs-5"></i> Job Tests', 'encode' => false, 'url' => ['/job-test/deleted-tests']],
-                    ['label' => '<i class="bi bi-folder2-open sidebar-icons-inside"></i> Job Applications', 'encode' => false, 'url' => ['/job-application/deleted-applications']],
+                    ['label' => '<i class="bi bi-people sidebar-icons-inside fs-5"></i> <span>Users</span>', 'encode' => false, 'url' => ['/user/deleted-users']],
+                    ['label' => '<i class="bi bi-briefcase sidebar-icons-inside fs-5"></i> <span>Job Posts</span>', 'encode' => false, 'url' => ['/job-post/deleted-posts']],
+                    ['label' => '<i class="bi bi-clipboard-check sidebar-icons-inside fs-5"></i> <span>Job Tests</span>', 'encode' => false, 'url' => ['/job-test/deleted-tests']],
+                    ['label' => '<i class="bi bi-folder2-open sidebar-icons-inside"></i><span> Job Applications</span>', 'encode' => false, 'url' => ['/job-application/deleted-applications']],
                 ],
             ],
             [
-                'label' => '<i class="bi bi-key sidebar-icons fs-5"></i> Change Password',
+                'label' => '<i class="bi bi-key sidebar-icons fs-5"></i> <span>Change Password</span>',
                 'encode' => false,
                 'url' => ['/user/change-password'],
             ],
@@ -73,47 +73,47 @@ if (!Yii::$app->user->isGuest) {
         if (Yii::$app->user->can('company-admin')) {
             $navItems = [
                 [
-                    'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> Dashboard',
+                    'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> <span>Dashboard</span>',
                     'encode' => false,
                     'url' => ['/dashboard/company-admin-dashboard']
                 ], 
                 [
-                    'label' => '<i class="bi bi-people sidebar-icons fs-5"></i> Users',
+                    'label' => '<i class="bi bi-people sidebar-icons fs-5"></i> <span>Users</span>',
                     'encode' => false,
                     'url' => ['/user/index'],
                 ],
                 [
-                    'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> Posts',
+                    'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> <span>Posts</span>',
                     'encode' => false,
                     'url' => ['/job-post/index'],
                 ],
                 [
-                    'label' => '<i class="bi bi-folder2-open sidebar-icons fs-5"></i> Applications',
+                    'label' => '<i class="bi bi-folder2-open sidebar-icons fs-5"></i> <span>Applications</span>',
                     'encode' => false,
                     'url' => ['/job-application/index'],
                 ],
                 [
-                    'label' => '<i class="bi bi-bar-chart-line sidebar-icons fs-5"></i> Assessment (PS)',
+                    'label' => '<i class="bi bi-bar-chart-line sidebar-icons fs-5"></i> <span>Assessment (PS)</span>',
                     'encode' => false,
                     'url' => ['/personality-assessment/index'],
                 ],
                 [
-                    'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> Tests',
+                    'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> <span>Tests</span>',
                     'encode' => false,
                     'url' => ['/job-test/index'],
                 ],
                 [
-                    'label' => '<i class="bi bi-trash sidebar-icons fs-5"></i> Bin',
+                    'label' => '<i class="bi bi-trash sidebar-icons fs-5"></i> <span>Bin</span>',
                     'encode' => false,
                     'items' => [
-                        ['label' => '<i class="bi bi-people sidebar-icons-inside fs-5"></i> Users', 'encode' => false, 'url' => ['/user/deleted-users']],
-                        ['label' => '<i class="bi bi-briefcase sidebar-icons-inside fs-5"></i> Job Posts', 'encode' => false, 'url' => ['/job-post/deleted-posts']],
-                        ['label' => '<i class="bi bi-clipboard-check sidebar-icons-inside fs-5"></i> Job Tests', 'encode' => false, 'url' => ['/job-test/deleted-tests']],
-                        ['label' => '<i class="bi bi-folder2-open sidebar-icons-inside"></i> Job Applications', 'encode' => false, 'url' => ['/job-application/deleted-applications']],
+                        ['label' => '<i class="bi bi-people sidebar-icons-inside fs-5"></i> <span>Users</span>', 'encode' => false, 'url' => ['/user/deleted-users']],
+                        ['label' => '<i class="bi bi-briefcase sidebar-icons-inside fs-5"></i> <span>Job Posts</span>', 'encode' => false, 'url' => ['/job-post/deleted-posts']],
+                        ['label' => '<i class="bi bi-clipboard-check sidebar-icons-inside fs-5"></i> <span>Job Tests</span>', 'encode' => false, 'url' => ['/job-test/deleted-tests']],
+                        ['label' => '<i class="bi bi-folder2-open sidebar-icons-inside"></i><span> Job Applications</span>', 'encode' => false, 'url' => ['/job-application/deleted-applications']],
                     ],
                 ],
                 [
-                    'label' => '<i class="bi bi-key sidebar-icons fs-5"></i> Change Password',
+                    'label' => '<i class="bi bi-key sidebar-icons fs-5"></i> <span>Change Password</span>',
                     'encode' => false,
                     'url' => ['/user/change-password'],
                 ],
@@ -124,22 +124,22 @@ if (!Yii::$app->user->isGuest) {
         if (Yii::$app->user->can('manager')) {
             $navItems = [
                 [
-                    'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> Dashboard',
+                    'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> <span>Dashboard</span>',
                     'encode' => false,
                     'url' => ['/dashboard/dashboard']
                 ],
                 [
-                    'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> Job Posts',
+                    'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> <span>Job Posts</span>',
                     'encode' => false,
                     'url' => ['/job-post/index'],
                 ],
                 [
-                    'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> Tests',
+                    'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> <span>Tests</span>',
                     'encode' => false,
                     'url' => ['/job-test/index'],
                 ],
                 [
-                    'label' => '<i class="bi bi-key sidebar-icons fs-5"></i> Change Password',
+                    'label' => '<i class="bi bi-key sidebar-icons fs-5"></i> <span>Change Password</span>',
                     'encode' => false,
                     'url' => ['/user/change-password'],
                 ],
@@ -150,30 +150,30 @@ if (!Yii::$app->user->isGuest) {
         if (Yii::$app->user->can('hr')) {
             $navItems = [
                 [
-                    'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> Dashboard',
+                    'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> <span>Dashboard</span>',
                     'encode' => false,
                     'url' => ['/dashboard/hr-dashboard']
                 ],
                 [
-                    'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> Job Posts',
+                    'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> <span>Job Posts</span>',
                     'encode' => false,
                     'url' => ['/job-post/index'],
                 ],
                 [
-                    'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> Tests',
+                    'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> <span>Tests</span>',
                     'encode' => false,
                     'url' => ['/job-test/index'],
                 ],
                 [
-                    'label' => '<i class="bi bi-trash sidebar-icons fs-5"></i> Bin',
+                    'label' => '<i class="bi bi-trash sidebar-icons fs-5"></i> <span>Bin</span>',
                     'encode' => false,
                     'items' => [
-                        ['label' => '<i class="bi bi-briefcase sidebar-icons-inside fs-5"></i> Job Posts', 'encode' => false, 'url' => ['/job-post/deleted-posts']],
-                        ['label' => '<i class="bi bi-clipboard-check sidebar-icons-inside fs-5"></i> Job Tests', 'encode' => false, 'url' => ['/job-test/deleted-tests']],
+                        ['label' => '<i class="bi bi-briefcase sidebar-icons-inside fs-5"></i> <span>Job Posts</span>', 'encode' => false, 'url' => ['/job-post/deleted-posts']],
+                        ['label' => '<i class="bi bi-clipboard-check sidebar-icons-inside fs-5"></i> <span>Job Tests</span>', 'encode' => false, 'url' => ['/job-test/deleted-tests']],
                     ],
                 ],
                 [
-                    'label' => '<i class="bi bi-key sidebar-icons fs-5"></i> Change Password',
+                    'label' => '<i class="bi bi-key sidebar-icons fs-5"></i> <span>Change Password</span>',
                     'encode' => false,
                     'url' => ['/user/change-password'],
                 ]
@@ -184,17 +184,17 @@ if (!Yii::$app->user->isGuest) {
         if (Yii::$app->user->can('applicant')) {
             $navItems = [
                 [
-                    'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> Dashboard',
+                    'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> <span>Dashboard</span>',
                     'encode' => false,
                     'url' => ['/dashboard/dashboard']
                 ],
                 [
-                    'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> Job Posts',
+                    'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> <span>Job Posts</span>',
                     'encode' => false,
                     'url' => ['/job-post/index'],
                 ],
                 [
-                    'label' => '<i class="bi bi-person sidebar-icons fs-5"></i> My Profile',
+                    'label' => '<i class="bi bi-person sidebar-icons fs-5"></i> <span>My Profile</span>',
                     'encode' => false,
                     'url' => '#',
                     'items' => [
@@ -216,7 +216,7 @@ if (!Yii::$app->user->isGuest) {
                     ],
                 ],                                                                       
                 [
-                    'label' => '<i class="bi bi-key sidebar-icons fs-5"></i> Change Password',
+                    'label' => '<i class="bi bi-key sidebar-icons fs-5"></i> <span>Change Password</span>',
                     'encode' => false,
                     'url' => ['/user/change-password'],
                 ]
