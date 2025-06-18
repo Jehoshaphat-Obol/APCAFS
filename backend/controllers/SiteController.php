@@ -17,6 +17,8 @@ use app\models\Company;
 use app\models\SetupCompany;
 use app\models\CompanyActivationCodeForm;
 use app\models\StaffProfile;
+use app\models\PasswordResetRequestForm;
+use app\models\ResetPasswordForm;
 
 class SiteController extends Controller
 {
@@ -331,24 +333,39 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    /**
-     * Handle post-login redirection based on user role and profile status.
-     *
-     * @return Response
-     */
-    private function handlePostLoginRedirect()
+    public function actionRequestPasswordReset()
     {
-        $user = Yii::$app->user;
+        $this->layout = "auth";
 
-        if ($user->can('company-admin') || $user->can('hr')) {
-            $userId = $user->identity->id;
-            $profile = StaffProfile::findOne(['staff_user_id' => $userId]);
+        $model = new PasswordResetRequestForm();
 
-            if (!$profile) {
-                return $this->redirect(['staff-profile/create']);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail()) {
+                Yii::$app->session->setFlash('success', 'Please check your email for instructions.');
+                return $this->goHome();
+            } else {
+                Yii::$app->session->setFlash('error', 'Failed to send the email.');
             }
         }
 
-        return $this->redirect(['dashboard/dashboard']);
+        return $this->render('requestPasswordResetToken', ['model' => $model]);
     }
+
+    public function actionResetPassword($token)
+    {
+        $this->layout = "auth";
+        try {
+            $model = new ResetPasswordForm($token);
+        } catch (\yii\base\InvalidParamException $e) {
+            throw new BadRequestHttpException($e->getMessage());
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
+            Yii::$app->session->setFlash('success', 'You have successfully reset your password.');
+            return $this->goHome();
+        }
+
+        return $this->render('resetPassword', ['model' => $model]);
+    }
+
 }

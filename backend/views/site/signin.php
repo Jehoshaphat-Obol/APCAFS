@@ -44,6 +44,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
 
+            <p>
+                <?= Html::a('Forgot Password?', ['site/request-password-reset']) ?>
+            </p>
+
             <?php ActiveForm::end(); ?>
 
             <?php $this->beginBlock('signin'); ?>

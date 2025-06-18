@@ -207,7 +207,7 @@ public $roles;
 
         return static::findOne([
             'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
+            'user_status_id' => StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar(),
         ]);
     }
 

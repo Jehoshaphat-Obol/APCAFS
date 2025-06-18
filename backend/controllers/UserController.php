@@ -419,7 +419,16 @@ class UserController extends Controller
                     if ($model->load(Yii::$app->request->post()) && $model->save()) {
                         // Password changed successfully
                         Yii::$app->session->setFlash('success', 'Password changed successfully');
-                        return $this->goHome();
+                        
+                        $isApplicant = Yii::$app->user->can('applicant');
+
+                        Yii::$app->user->logout();
+
+                        if ($isApplicant) {
+                            return $this->redirect(['site/signin']);
+                        }
+
+                        return $this->redirect(['site/login']);
                     } else {
                         return $this->render('change-password', ['model' => $model]);
                     }
