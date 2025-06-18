@@ -10,108 +10,193 @@ use kartik\date\DatePicker;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
+<?php $form = ActiveForm::begin(); ?>
+
+<div class="container py-5">
+    <div class="accordion" id="basicAccordion">
+
+        <!-- Item 1 (open by default) -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Personal Information
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#basicAccordion">
+                <div class="accordion-body">
+
+
+                    <?= $form->field($model, 'profile_first_name')->textInput(['maxlength' => true]) ?>
+
+                    <?= $form->field($model, 'profile_middle_name')->textInput(['maxlength' => true]) ?>
+
+                    <?= $form->field($model, 'profile_last_name')->textInput(['maxlength' => true]) ?>
+
+                    <?= $form->field($model, 'profile_social_media_username')->textInput(['maxlength' => true]) ?>
+
+                    <?= $form->field($model, 'profile_date_of_birth')->textInput([
+                        'class' => 'form-control flatpickr',
+                        'placeholder' => 'Choose Date...'
+                    ]) ?>
+
+                    <?= $form->field($model, 'profile_bios')->textarea(['rows' => 6]) ?>
+
+                    <?= $form->field($model, 'profile_region_id')->dropDownList(
+                        ArrayHelper::map(
+                            $regions,
+                            'id',
+                            'region_name'
+                        ),
+                        [
+                            'prompt' => 'Choose Region',
+                            'id' => 'region-id',
+                            'onchange' => 'loadDistricts(this.value);'
+                        ]
+                    ) ?>
+
+                    <?= $form->field($model, 'profile_district_id')->dropDownList(
+                        [],
+                        [
+                            'prompt' => 'Choose District',
+                            'id' => 'district-id'
+                        ]
+                    ) ?>
+
+                    <?= $form->field($model, 'profile_local_address')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Phone Numbers
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#basicAccordion">
+                <div class="accordion-body">
+                    <div id="phones-container">
+                        <!-- Phone numbers will be added here by JS -->
+                    </div>
+                    <button type="button" class="btn btn-secondary" onclick="addPhoneNumber()">Add Phone Number</button>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Experience
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                data-bs-parent="#basicAccordion">
+                <div class="accordion-body">
+                    <div id="experience-container">
+                        <!-- Experience items zitawekwa hapa kwa JS -->
+                    </div>
+                    <button type="button" class="btn btn-secondary" onclick="addExperience()">Add Working Experience</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Education
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                data-bs-parent="#basicAccordion">
+                <div class="accordion-body">
+                    <div id="education-container">
+                        <!-- Education items zitaongezwa hapa na JS -->
+                    </div>
+                    <button type="button" class="btn btn-secondary mt-2" onclick="addEducation()">Add Education</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    Skill
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                data-bs-parent="#basicAccordion">
+                <div class="accordion-body">
+                    <div id="skill-container">
+                        <!-- Skill items zitaongezwa hapa kwa JS -->
+                    </div>
+                    <button type="button" class="btn btn-secondary mt-2" onclick="addSkill()">Add Skill</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    Awards
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                data-bs-parent="#basicAccordion">
+                <div class="accordion-body">
+                    <div id="award-container">
+                        <!-- Award items zitaongezwa hapa na JS -->
+                    </div>
+                    <button type="button" class="btn btn-secondary mt-2" onclick="addAward()">Add Award</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSeven">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                    Languages
+                </button>
+            </h2>
+            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                data-bs-parent="#basicAccordion">
+                <div class="accordion-body">
+                    <div id="language-container">
+                        <!-- Language items zitaongezwa hapa kwa JS -->
+                    </div>
+                    <button type="button" class="btn btn-secondary mt-2" onclick="addLanguage()">Add Language</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEight">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                    Publication
+                </button>
+            </h2>
+            <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
+                data-bs-parent="#basicAccordion">
+                <div class="accordion-body">
+                    <div id="publication-container">
+                        <!-- Publication items zitaongezwa hapa kwa JS -->
+                    </div>
+                    <button type="button" class="btn btn-secondary mt-2" onclick="addPublication()">Add Publication</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="profile-form">
-
-    <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'profile_first_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'profile_middle_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'profile_last_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'profile_social_media_username')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'profile_date_of_birth')->textInput([
-        'class' => 'form-control flatpickr',
-        'placeholder' => 'Choose Date...'
-    ]) ?>
-
-    <?= $form->field($model, 'profile_bios')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'profile_region_id')->dropDownList(
-        ArrayHelper::map($regions, 'id', 'region_name'
-        ),
-        [
-            'prompt' => 'Choose Region',
-            'id' => 'region-id',
-            'onchange' => 'loadDistricts(this.value);'
-        ]
-    ) ?>
-
-    <?= $form->field($model, 'profile_district_id')->dropDownList(
-        [],
-        [
-            'prompt' => 'Choose District',
-            'id' => 'district-id'
-        ]
-    ) ?>
-
-    <?= $form->field($model, 'profile_local_address')->textInput(['maxlength' => true]) ?>
-
-    <hr>
-    <h4>Phone Numbers</h4>
-    <div id="phones-container">
-        <!-- Phone numbers will be added here by JS -->
-    </div>
-    <button type="button" class="btn btn-secondary" onclick="addPhoneNumber()">Add Phone Number</button>
-
-    <hr>
-    <h4>Working Experience</h4>
-
-    <div id="experience-container">
-    <!-- Experience items zitawekwa hapa kwa JS -->
-    </div>
-
-    <button type="button" class="btn btn-secondary" onclick="addExperience()">Add Working Experience</button>
-
-    <hr>
-    <h4>Education</h4>
-
-    <div id="education-container">
-    <!-- Education items zitaongezwa hapa na JS -->
-    </div>
-
-    <button type="button" class="btn btn-secondary mt-2" onclick="addEducation()">Add Education</button>
-
-    <hr>
-    <h4>Skills</h4>
-
-    <div id="skill-container">
-        <!-- Skill items zitaongezwa hapa kwa JS -->
-    </div>
-
-    <button type="button" class="btn btn-secondary mt-2" onclick="addSkill()">Add Skill</button>
-
-    <hr>
-    <h4>Awards</h4>
-
-    <div id="award-container">
-        <!-- Award items zitaongezwa hapa na JS -->
-    </div>
-
-    <button type="button" class="btn btn-secondary mt-2" onclick="addAward()">Add Award</button>
-
-    <hr>
-    <h4>Languages</h4>
-
-    <div id="language-container">
-        <!-- Language items zitaongezwa hapa kwa JS -->
-    </div>
-
-    <button type="button" class="btn btn-secondary mt-2" onclick="addLanguage()">Add Language</button>
-
-    <hr>
-    <h4>Publications</h4>
-
-    <div id="publication-container">
-        <!-- Publication items zitaongezwa hapa kwa JS -->
-    </div>
-
-    <button type="button" class="btn btn-secondary mt-2" onclick="addPublication()">Add Publication</button>
-
-    
-
     <!-- Template ya namba ya simu -->
     <template id="phone-template">
         <div class="phone-item card mb-3 p-3 border rounded shadow-sm">
@@ -205,20 +290,20 @@ use kartik\date\DatePicker;
         <div class="skill-item card mb-3 p-3 border rounded shadow-sm">
             <button type="button" class="btn-close float-end" onclick="removeSkill(this)"></button>
 
-                <?= $form->field($model, "skills[__index__][skill_type]")
-                    ->dropDownList(
-                        [
-                            'Technical' => 'Technical',
-                            'Soft' => 'Soft',
-                            'Language' => 'Language',
-                        ],
-                        ['prompt' => 'Select Skill Type', 'class' => 'form-control', 'required' => true]
-                    )
-                    ->label('Skill Type') ?>
+            <?= $form->field($model, "skills[__index__][skill_type]")
+                ->dropDownList(
+                    [
+                        'Technical' => 'Technical',
+                        'Soft' => 'Soft',
+                        'Language' => 'Language',
+                    ],
+                    ['prompt' => 'Select Skill Type', 'class' => 'form-control', 'required' => true]
+                )
+                ->label('Skill Type') ?>
 
-                <?= $form->field($model, "skills[__index__][skill_name]")
-                    ->textInput(['class' => 'form-control', 'required' => true])
-                    ->label('Skill Name') ?>
+            <?= $form->field($model, "skills[__index__][skill_name]")
+                ->textInput(['class' => 'form-control', 'required' => true])
+                ->label('Skill Name') ?>
 
         </div>
     </template>
@@ -308,190 +393,192 @@ use kartik\date\DatePicker;
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success mt-3']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
 
 </div>
+<?php ActiveForm::end(); ?>
 
 <script>
-let debounceTimer;
-const cache = {
-    districts: {},
-};
-let phoneIndex = 0;
-let experienceIndex = 0;
-let educationIndex = 0;
-let skillIndex = 0;
-let awardIndex = 0;
-let languageIndex = 0;
-let publicationIndex = 0;
+    let debounceTimer;
+    const cache = {
+        districts: {},
+    };
+    let phoneIndex = 0;
+    let experienceIndex = 0;
+    let educationIndex = 0;
+    let skillIndex = 0;
+    let awardIndex = 0;
+    let languageIndex = 0;
+    let publicationIndex = 0;
 
-document.querySelector('form').addEventListener('submit', function (e) {
-    const requiredFields = document.querySelectorAll('input[required]');
-    let valid = true;
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const requiredFields = document.querySelectorAll('input[required]');
+        let valid = true;
 
-    requiredFields.forEach(field => {
-        if (!field.value.trim()) {
-            field.classList.add('is-invalid');
-            valid = false;
-        } else {
-            field.classList.remove('is-invalid');
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                field.classList.add('is-invalid');
+                valid = false;
+            } else {
+                field.classList.remove('is-invalid');
+            }
+        });
+
+        if (!valid) {
+            e.preventDefault();
+            alert('Please fill in all required fields.');
         }
     });
 
-    if (!valid) {
-        e.preventDefault();
-        alert('Please fill in all required fields.');
-    }
-});
 
+    // hii ni kwa ajili ya kuload district
+    function loadDistricts(regionId) {
+        if (!regionId || isNaN(regionId)) {
+            $('#district-id').html('<option value="">Choose Districts</option>');
+            return;
+        }
 
-// hii ni kwa ajili ya kuload district
-function loadDistricts(regionId) {
-    if (!regionId || isNaN(regionId)) {
-        $('#district-id').html('<option value="">Choose Districts</option>');
-        return;
-    }
+        // Cheki kama tayari data ipo kwenye cache
+        if (cache.districts[regionId]) {
+            $('#district-id').html(cache.districts[regionId]);
+            return;
+        }
 
-    // Cheki kama tayari data ipo kwenye cache
-    if (cache.districts[regionId]) {
-        $('#district-id').html(cache.districts[regionId]);
-        return;
-    }
+        clearTimeout(debounceTimer);
+        $('#district-id').html('<option>Loading...</option>');
 
-    clearTimeout(debounceTimer);
-    $('#district-id').html('<option>Loading...</option>');
+        // Debounce kwa sekunde 300ms kabla ya kufanya maombi
+        debounceTimer = setTimeout(function() {
+            $.ajax({
+                url: '/profile/get-districts', // URL sahihi ya controller action
+                data: {
+                    region_id: regionId
+                },
+                dataType: 'json', // Rudisha data kama JSON
+                success: function(data) {
+                    var options = '<option value="">Choose District</option>';
 
-    // Debounce kwa sekunde 300ms kabla ya kufanya maombi
-    debounceTimer = setTimeout(function() {
-        $.ajax({
-            url: '/profile/get-districts', // URL sahihi ya controller action
-            data: {region_id: regionId},
-            dataType: 'json', // Rudisha data kama JSON
-            success: function(data) {
-                var options = '<option value="">Choose District</option>';
-                
-                if (data.length > 0) {
-                    // Jenga <option> tags kwa kila district
-                    data.forEach(function(district) {
-                        options += '<option value="' + district.id + '">' + district.district_name + '</option>';
-                    });
-                } else {
-                    options = '<option value="">No districts available</option>';
+                    if (data.length > 0) {
+                        // Jenga <option> tags kwa kila district
+                        data.forEach(function(district) {
+                            options += '<option value="' + district.id + '">' + district.district_name + '</option>';
+                        });
+                    } else {
+                        options = '<option value="">No districts available</option>';
+                    }
+
+                    // Cache response ili lisirudie tena maombi kwa software hiyo hiyo
+                    cache.districts[regionId] = options;
+
+                    // Onyesha options kwenye select field
+                    $('#district-id').html(options);
+                },
+                complete: function() {
+                    $('#district-loading-spinner').hide();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error("Error fetching districts:", textStatus, errorThrown);
+                    $('#district-id').html('<option value="">Error loading districts</option>');
+                    $('#district-loading-spinner').hide();
                 }
-
-                // Cache response ili lisirudie tena maombi kwa software hiyo hiyo
-                cache.districts[regionId] = options;
-
-                // Onyesha options kwenye select field
-                $('#district-id').html(options);
-            },
-            complete: function() {
-                $('#district-loading-spinner').hide();
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.error("Error fetching districts:", textStatus, errorThrown);
-                $('#district-id').html('<option value="">Error loading districts</option>');
-                $('#district-loading-spinner').hide();
-            }
-        });
-    }, 300); // Debounce kwa 300ms
-}
-
-
-// hii ni kwa ajili ya namba ya simu
-function addPhoneNumber() {
-    const template = document.querySelector('#phone-template').innerHTML;
-    const rendered = template.replace(/__index__/g, phoneIndex++);
-    const container = document.querySelector('#phones-container');
-    container.insertAdjacentHTML('beforeend', rendered);
-}
-
-function removePhone(button) {
-    button.closest('.phone-item').remove();
-}
-
-// hii ni kwa ajili ya working experience
-function addExperience() {
-    const template = document.querySelector('#experience-template').innerHTML;
-    const rendered = template.replace(/__index__/g, experienceIndex++);
-    const container = document.querySelector('#experience-container');
-    container.insertAdjacentHTML('beforeend', rendered);
-
-    // Initialize flatpickr on new inputs
-    flatpickr(".flatpickr");
-}
-
-function removeExperience(button) {
-    button.closest('.experience-item').remove();
-}
-
-// hii ni kwa ajili ya education
-function addEducation() {
-    const template = document.getElementById('education-template').innerHTML;
-    const container = document.getElementById('education-container');
-    const html = template.replace(/__index__/g, educationIndex++);
-    container.insertAdjacentHTML('beforeend', html);
-
-    // Initialize Flatpickr again after adding new date inputs
-    flatpickr('.flatpickr', {});
-}
-
-function removeEducation(button) {
-    button.closest('.education-item').remove();
-}
-
-// hii ni kwa ajili ya skill
-function addSkill() {
-    const container = document.getElementById('skill-container');
-    const template = document.getElementById('skill-template').innerHTML;
-    const newItemHtml = template.replace(/__index__/g, skillIndex);
-    container.insertAdjacentHTML('beforeend', newItemHtml);
-    skillIndex++;
-}
-
-function removeSkill(button) {
-    const item = button.closest('.skill-item');
-    if (item) {
-        item.remove();
+            });
+        }, 300); // Debounce kwa 300ms
     }
-}
 
-// hii ni kwa ajili ya award
-function addAward() {
-    const template = document.getElementById('award-template').innerHTML;
-    const rendered = template.replace(/__index__/g, awardIndex++);
-    document.getElementById('award-container').insertAdjacentHTML('beforeend', rendered);
 
-    // Reinitialize Flatpickr for new date inputs
-    flatpickr('.flatpickr');
-}
+    // hii ni kwa ajili ya namba ya simu
+    function addPhoneNumber() {
+        const template = document.querySelector('#phone-template').innerHTML;
+        const rendered = template.replace(/__index__/g, phoneIndex++);
+        const container = document.querySelector('#phones-container');
+        container.insertAdjacentHTML('beforeend', rendered);
+    }
 
-function removeAward(button) {
-    button.closest('.award-item').remove();
-}
+    function removePhone(button) {
+        button.closest('.phone-item').remove();
+    }
 
-// hii ni kwa ajili ya language
-function addLanguage() {
-    const template = document.getElementById('language-template').innerHTML;
-    const rendered = template.replace(/__index__/g, languageIndex++);
-    document.getElementById('language-container').insertAdjacentHTML('beforeend', rendered);
-}
+    // hii ni kwa ajili ya working experience
+    function addExperience() {
+        const template = document.querySelector('#experience-template').innerHTML;
+        const rendered = template.replace(/__index__/g, experienceIndex++);
+        const container = document.querySelector('#experience-container');
+        container.insertAdjacentHTML('beforeend', rendered);
 
-function removeLanguage(button) {
-    button.closest('.language-item').remove();
-}
+        // Initialize flatpickr on new inputs
+        flatpickr(".flatpickr");
+    }
 
-// hii ni kwa ajili ya publication
-function addPublication() {
-    const template = document.getElementById('publication-template').innerHTML;
-    const rendered = template.replace(/__index__/g, publicationIndex++);
-    document.getElementById('publication-container').insertAdjacentHTML('beforeend', rendered);
+    function removeExperience(button) {
+        button.closest('.experience-item').remove();
+    }
 
-    // Initialize flatpickr for new element
-    flatpickr('.flatpickr', {});
-}
+    // hii ni kwa ajili ya education
+    function addEducation() {
+        const template = document.getElementById('education-template').innerHTML;
+        const container = document.getElementById('education-container');
+        const html = template.replace(/__index__/g, educationIndex++);
+        container.insertAdjacentHTML('beforeend', html);
 
-function removePublication(button) {
-    button.closest('.publication-item').remove();
-}
+        // Initialize Flatpickr again after adding new date inputs
+        flatpickr('.flatpickr', {});
+    }
+
+    function removeEducation(button) {
+        button.closest('.education-item').remove();
+    }
+
+    // hii ni kwa ajili ya skill
+    function addSkill() {
+        const container = document.getElementById('skill-container');
+        const template = document.getElementById('skill-template').innerHTML;
+        const newItemHtml = template.replace(/__index__/g, skillIndex);
+        container.insertAdjacentHTML('beforeend', newItemHtml);
+        skillIndex++;
+    }
+
+    function removeSkill(button) {
+        const item = button.closest('.skill-item');
+        if (item) {
+            item.remove();
+        }
+    }
+
+    // hii ni kwa ajili ya award
+    function addAward() {
+        const template = document.getElementById('award-template').innerHTML;
+        const rendered = template.replace(/__index__/g, awardIndex++);
+        document.getElementById('award-container').insertAdjacentHTML('beforeend', rendered);
+
+        // Reinitialize Flatpickr for new date inputs
+        flatpickr('.flatpickr');
+    }
+
+    function removeAward(button) {
+        button.closest('.award-item').remove();
+    }
+
+    // hii ni kwa ajili ya language
+    function addLanguage() {
+        const template = document.getElementById('language-template').innerHTML;
+        const rendered = template.replace(/__index__/g, languageIndex++);
+        document.getElementById('language-container').insertAdjacentHTML('beforeend', rendered);
+    }
+
+    function removeLanguage(button) {
+        button.closest('.language-item').remove();
+    }
+
+    // hii ni kwa ajili ya publication
+    function addPublication() {
+        const template = document.getElementById('publication-template').innerHTML;
+        const rendered = template.replace(/__index__/g, publicationIndex++);
+        document.getElementById('publication-container').insertAdjacentHTML('beforeend', rendered);
+
+        // Initialize flatpickr for new element
+        flatpickr('.flatpickr', {});
+    }
+
+    function removePublication(button) {
+        button.closest('.publication-item').remove();
+    }
 </script>
