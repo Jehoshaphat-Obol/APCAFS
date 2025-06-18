@@ -12,6 +12,9 @@ use app\models\Company;
 use app\models\CompanySubscription;
 use app\models\CompanySubscriptionSearch;
 use app\models\StatusLookup;
+use app\models\JobPost;
+use app\models\JobTest;
+use app\models\JobApplication;
 
 /**
  * DashboardController implements the CRUD actions for Dashboard model.
@@ -133,7 +136,32 @@ class DashboardController extends Controller
         {
             if(Yii::$app->user->can('company-admin'))
             {
-                return $this->render('index');
+                $statuses = ['paid', 'active', 'published', 'unpublish', 'apply', 'not-paid', 'inactive', 'pending']; // Badilisha hizi status_codes kulingana na unazohitaji
+                $users = User::find()
+                    ->where(['company_id' => Yii::$app->user->identity->company_id])
+                    ->andWhere(['user_status_id' => StatusLookup::find()
+                        ->where(['in', 'status_code', $statuses])
+                        ->select('id')])
+                    ->count();
+
+                $jobs = JobPost::find()
+                    ->where(['post_company_id' => Yii::$app->user->identity->company_id])
+                    ->andWhere(['post_status_id' => StatusLookup::find()
+                        ->where(['in', 'status_code', $statuses])
+                        ->select('id')])
+                    ->count();
+
+                $tests = JobTest::find()
+                    ->where(['test_company_id' => Yii::$app->user->identity->company_id])
+                    ->andWhere(['test_status_id' => StatusLookup::find()
+                        ->where(['in', 'status_code', $statuses])
+                        ->select('id')])
+                    ->count();
+                return $this->render('index', [
+                    'users' => $users,
+                    'jobs' => $jobs,
+                    'tests' => $tests
+                ]);
             }
             throw new ForbiddenHttpException();
         } catch (ForbiddenHttpException $e)
@@ -163,7 +191,31 @@ class DashboardController extends Controller
         {
             if(Yii::$app->user->can('hr'))
             {
-                return $this->render('index');
+                $statuses = ['paid', 'active', 'published', 'unpublish', 'apply', 'not-paid', 'inactive', 'pending']; // Badilisha hizi status_codes kulingana na unazohitaji
+                $tests = JobTest::find()
+                    ->where(['test_company_id' => Yii::$app->user->identity->company_id])
+                    ->andWhere(['test_status_id' => StatusLookup::find()
+                        ->where(['in', 'status_code', $statuses])
+                        ->select('id')])
+                    ->count();
+                    
+                $applications = JobApplication::find()
+                    ->where(['applicant_company_id' => Yii::$app->user->identity->company_id])
+                    ->andWhere(['applicant_status_id' => StatusLookup::find()
+                        ->where(['in', 'status_code', $statuses])
+                        ->select('id')])
+                    ->count();
+                $jobs = JobPost::find()
+                    ->where(['post_company_id' => Yii::$app->user->identity->company_id])
+                    ->andWhere(['post_status_id' => StatusLookup::find()
+                        ->where(['in', 'status_code', $statuses])
+                        ->select('id')])
+                    ->count();
+                return $this->render('index', [
+                    'tests' => $tests,
+                    'applications' => $applications,
+                    'jobs' => $jobs,
+                ]);
             }
             throw new ForbiddenHttpException();
         } catch (ForbiddenHttpException $e)

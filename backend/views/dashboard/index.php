@@ -18,7 +18,9 @@ $this->title = Yii::t('app', 'Dashboard');
         <div class="card shadow-sm border-0 rounded-4">
           <div class="card-body">
             <h6 class="text-muted">Open Job Posts</h6>
-            <h3 class="fw-bold">4</h3>
+            <h3 class="fw-bold">
+              <?= $jobs ?>
+            </h3>
           </div>
         </div>
       </div>
@@ -26,7 +28,9 @@ $this->title = Yii::t('app', 'Dashboard');
         <div class="card shadow-sm border-0 rounded-4">
           <div class="card-body">
             <h6 class="text-muted">Applications Received</h6>
-            <h3 class="fw-bold">187</h3>
+            <h3 class="fw-bold">
+              <?= $applications ?>
+            </h3>
           </div>
         </div>
       </div>
@@ -34,7 +38,9 @@ $this->title = Yii::t('app', 'Dashboard');
         <div class="card shadow-sm border-0 rounded-4">
           <div class="card-body">
             <h6 class="text-muted">Tests Created</h6>
-            <h3 class="fw-bold">3</h3>
+            <h3 class="fw-bold">
+              <?= $tests ?>
+            </h3>
           </div>
         </div>
       </div>
@@ -246,8 +252,10 @@ $this->title = Yii::t('app', 'Dashboard');
         <div class="card shadow-sm border-0 rounded-4">
           <div class="card-body">
             <h6 class="text-muted">Total Users</h6>
-            <h3 class="fw-bold">12</h3>
-            <small class="text-muted">Includes HRs and Managers</small>
+            <h3 class="fw-bold">
+              <?= $users ?>
+            </h3>
+            <small class="text-muted">Includes Admin, HRs and Managers</small>
           </div>
         </div>
       </div>
@@ -255,7 +263,9 @@ $this->title = Yii::t('app', 'Dashboard');
         <div class="card shadow-sm border-0 rounded-4">
           <div class="card-body">
             <h6 class="text-muted">Job Posts (Read Only)</h6>
-            <h3 class="fw-bold">6</h3>
+            <h3 class="fw-bold">
+              <?= $jobs ?>
+            </h3>
             <small class="text-muted">Visible across the company</small>
           </div>
         </div>
@@ -264,7 +274,9 @@ $this->title = Yii::t('app', 'Dashboard');
         <div class="card shadow-sm border-0 rounded-4">
           <div class="card-body">
             <h6 class="text-muted">Tests Created</h6>
-            <h3 class="fw-bold">4</h3>
+            <h3 class="fw-bold">
+              <?= $tests ?>
+            </h3>
             <small class="text-muted">Created by HRs</small>
           </div>
         </div>
@@ -275,7 +287,7 @@ $this->title = Yii::t('app', 'Dashboard');
     <div class="card shadow-sm border-0 rounded-4 mb-4">
       <div class="card-header bg-white border-0 fw-bold d-flex justify-content-between align-items-center">
         User Accounts
-        <a href="#" class="btn btn-sm btn-primary">Add New User</a>
+        <?= Html::a('Add New User', ['user/create'], ['class' => 'btn btn-sm btn-primary']) ?>
       </div>
       <div class="card-body p-0">
         <div class="table-responsive">

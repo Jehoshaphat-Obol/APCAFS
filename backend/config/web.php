@@ -61,11 +61,21 @@ $config = [
             'enableStrictParsing' => false,
             'rules' => [
                 /**
+                 * website Rules
+                 */
+                'company-setup' => 'site/setup-company',
+                'site/verify-activation' => 'site/verify-activation',
+                'apcafs' => 'site/index',
+                /**
                  * App url rules
                  */
                 'company-setup' => 'site/setup-company',
                 'site/verify-activation' => 'site/verify-activation',
-                // 'dashboard' => 'dashboard/dashboard',
+                'super-admin-dashboard' => 'dashboard/super-admin-dashboard',
+                'company-admin-dashboard' => 'dashboard/company-admin-dashboard',
+                'manager-dashboard' => 'dashboard/manager-dashboard',
+                'hr-dashboard' => 'dashboard/hr-dashboard',
+                'applicant-dashboard' => 'applicant-dashboard',
             ],
         ],
         'authManager' => [

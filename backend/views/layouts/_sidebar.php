@@ -75,7 +75,7 @@ if (!Yii::$app->user->isGuest) {
                 [
                     'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> Dashboard',
                     'encode' => false,
-                    'url' => ['/dashboard/dashboard']
+                    'url' => ['/dashboard/company-admin-dashboard']
                 ], 
                 [
                     'label' => '<i class="bi bi-people sidebar-icons fs-5"></i> Users',
@@ -152,7 +152,7 @@ if (!Yii::$app->user->isGuest) {
                 [
                     'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> Dashboard',
                     'encode' => false,
-                    'url' => ['/dashboard/dashboard']
+                    'url' => ['/dashboard/hr-dashboard']
                 ],
                 [
                     'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> Job Posts',
@@ -168,14 +168,8 @@ if (!Yii::$app->user->isGuest) {
                     'label' => '<i class="bi bi-trash sidebar-icons fs-5"></i> Bin',
                     'encode' => false,
                     'items' => [
-                        ['label' => '<i class="bi bi-people sidebar-icons-inside fs-5"></i> Users', 'encode' => false, 'url' => ['/users/deleted-users']],
-                        ['label' => '<i class="bi bi-people sidebar-icons-inside fs-5"></i> Categories', 'encode' => false, 'url' => ['/categories/deleted-categories']],
-                        ['label' => '<i class="bi bi-tags sidebar-icons-inside fs-5"></i> Brands', 'encode' => false, 'url' => ['/brands/deleted-brands']],
-                        ['label' => '<i class="bi bi-cart sidebar-icons-inside fs-5"></i> Packages', 'encode' => false, 'url' => ['/packages/deleted-packages']],
-                        ['label' => '<i class="bi bi-people sidebar-icons-inside fs-5"></i> Suppliers', 'encode' => false, 'url' => ['/suppliers/deleted-suppliers']],
-                        ['label' => '<i class="bi bi-tags sidebar-icons-inside fs-5"></i> Measurements', 'encode' => false, 'url' => ['/unit-of-measurements/deleted-measurements']],
-                        ['label' => '<i class="bi bi-tags sidebar-icons-inside fs-5"></i> Taxes', 'encode' => false, 'url' => ['/taxes/deleted-taxes']],
-                        ['label' => '<i class="bi bi-tags sidebar-icons-inside fs-5"></i> Inventory Types', 'encode' => false, 'url' => ['/inventory-types/deleted-inventory-types']],
+                        ['label' => '<i class="bi bi-briefcase sidebar-icons-inside fs-5"></i> Job Posts', 'encode' => false, 'url' => ['/job-post/deleted-posts']],
+                        ['label' => '<i class="bi bi-clipboard-check sidebar-icons-inside fs-5"></i> Job Tests', 'encode' => false, 'url' => ['/job-test/deleted-tests']],
                     ],
                 ],
                 [
