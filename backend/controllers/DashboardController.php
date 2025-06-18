@@ -205,16 +205,38 @@ class DashboardController extends Controller
                         ->where(['in', 'status_code', $statuses])
                         ->select('id')])
                     ->count();
+                // Zilizopitia AI (score si null)
+                $processedCount = JobApplication::find()
+                    ->where(['applicant_company_id' => Yii::$app->user->identity->company_id])
+                    ->andWhere(['in', 'applicant_status_id', StatusLookup::find()
+                        ->where(['in', 'status_code', $statuses])
+                        ->select('id')])
+                    ->andWhere(['not', ['applicant_score' => null]])
+                    ->count();
+                // Zisizopitia AI (score ni null)
+                $unprocessedCount = JobApplication::find()
+                    ->where(['applicant_company_id' => Yii::$app->user->identity->company_id])
+                    ->andWhere(['in', 'applicant_status_id', StatusLookup::find()
+                        ->where(['in', 'status_code', $statuses])
+                        ->select('id')])
+                    ->andWhere(['applicant_score' => null])
+                    ->count();
                 $jobs = JobPost::find()
                     ->where(['post_company_id' => Yii::$app->user->identity->company_id])
                     ->andWhere(['post_status_id' => StatusLookup::find()
                         ->where(['in', 'status_code', $statuses])
                         ->select('id')])
                     ->count();
+                $totalCount = $processedCount + $unprocessedCount;
+                $percentage = $totalCount > 0 ? ($processedCount / $totalCount) * 100 : 0;
                 return $this->render('index', [
                     'tests' => $tests,
                     'applications' => $applications,
                     'jobs' => $jobs,
+                    'processedCount' => $processedCount,
+                    'unprocessedCount' => $unprocessedCount,
+                    'totalCount' => $totalCount,
+                    'percentage' => $percentage,
                 ]);
             }
             throw new ForbiddenHttpException();

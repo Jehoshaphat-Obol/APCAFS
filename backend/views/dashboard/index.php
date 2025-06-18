@@ -47,19 +47,14 @@ $this->title = Yii::t('app', 'Dashboard');
       <div class="col-md-3">
         <div class="card shadow-sm border-0 rounded-4">
           <div class="card-body">
-            <h6 class="text-muted">AI Processed</h6>
-            <h3 class="fw-bold">2/4</h3>
+            <h6 class="text-muted">CV Processed</h6>
+            <h3 class="fw-bold"><?= $processedCount ?>/<?= $totalCount ?></h3>
             <div class="progress mt-2" style="height: 6px;">
-              <div class="progress-bar bg-success" role="progressbar" style="width: 50%"></div>
+              <div class="progress-bar bg-success" role="progressbar" style="width: <?= round($percentage) ?>%"></div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Pending action alert -->
-    <div class="alert alert-warning rounded-4 shadow-sm" role="alert">
-      ⚠️ You have 1 job post pending AI processing. <a href="#" class="alert-link">Trigger now</a>.
     </div>
 
     <!-- Job posts table -->
