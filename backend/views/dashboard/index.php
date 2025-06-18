@@ -121,7 +121,7 @@ $this->title = Yii::t('app', 'Dashboard');
   <div class="container-fluid py-4 h-100">
     <!-- Top section: Profile and quick actions -->
     <div class="row g-4 mb-4">
-      <div class="col-md-4">
+      <div class="col-md-6">
         <div class="card shadow-sm border-0 rounded-4">
           <div class="card-body">
             <h5 class="card-title mb-2">👤 Profile Completion</h5>
@@ -132,19 +132,11 @@ $this->title = Yii::t('app', 'Dashboard');
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-6">
         <div class="card shadow-sm border-0 rounded-4 bg-warning-subtle">
           <div class="card-body">
             <h5 class="card-title mb-1">🧪 1 Test Pending</h5>
             <p class="mb-0"><a href="#" class="text-decoration-underline">Attempt Software Engineer Test</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card shadow-sm border-0 rounded-4 bg-light">
-          <div class="card-body">
-            <h5 class="card-title mb-1">📄 Resume</h5>
-            <p class="mb-0">Uploaded: <strong>Yes</strong> <br><a href="#">Update Resume</a></p>
           </div>
         </div>
       </div>

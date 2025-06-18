@@ -104,16 +104,22 @@ $this->registerCssFile('@web/css/fontawesome.min.css');
                 <img src="<?= Yii::getAlias('@web') ?>/images/logo/logo_white.png" alt="Technology Logo" style="width: 100%; height: 32px; object-fit: contain;">
             </div>
             <div class="user-info">
-                <h4 class="user-name"><?= Yii::$app->user->identity->username ?></h4>
+                <?php if (!Yii::$app->user->isGuest): ?>
+                    <h4 class="user-name"><?= Yii::$app->user->identity->username ?></h4>
+                <?php else: ?>
+                    <h4 class="user-name">Guest</h4>
+                <?php endif; ?>
             </div>
         </div>
 
         <hr>
 
         <!-- Sehemu ya Chini ya Sidebar: Navigation Items -->
-        <div class="sidebar-nav">
-            <?= $this->render('_sidebar') ?>
-        </div>
+        <?php if (!Yii::$app->user->isGuest): ?>
+            <div class="sidebar-nav">
+                <?= $this->render('_sidebar') ?>
+            </div>
+        <?php endif; ?>
     </aside>
 
     <!-- Main Container -->
@@ -130,7 +136,9 @@ $this->registerCssFile('@web/css/fontawesome.min.css');
                 <div class="row justify-content-center">
                     <!-- <div class="outer-cover col-lg-8 col-md-10 col-sm-12 px-4 py-3 shadow rounded bg-white"> -->
                     <?= Alert::widget() ?>
-                    <?= $content ?>
+                    <?php if(!Yii::$app->user->isGuest): ?>
+                        <?= $content ?>
+                    <?php endif; ?>
                     <!-- </div> -->
                 </div>
             </div>
