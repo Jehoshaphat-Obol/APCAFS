@@ -14,9 +14,15 @@ use yii\bootstrap5\Html;
         <?= Html::a(Yii::$app->name, Yii::$app->homeUrl, ['class' => 'text-decoration-none text-dark']) ?>
     </div>
 
-    <!-- Logout Button (Right) -->
+    <!-- Login/Logout Button (Right) -->
     <div>
-        <?php if (!Yii::$app->user->isGuest): ?>
+        <?php if (Yii::$app->user->isGuest): ?>
+            <?= Html::a(
+                '<i class="bi bi-box-arrow-in-right"></i> signin',
+                ['/site/signin'],
+                ['class' => 'btn btn-link text-dark text-decoration-none']
+            ) ?>
+        <?php else: ?>
             <?= Html::beginForm(['/site/logout'], 'post', ['class' => 'd-inline']) ?>
                 <?= Html::submitButton(
                     '<i class="bi bi-box-arrow-right"></i> Logout',

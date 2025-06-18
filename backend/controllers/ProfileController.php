@@ -268,55 +268,12 @@ class ProfileController extends Controller
                                 ->where(['region_status_id' => StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar()])
                                 ->all();
 
-                    // Load existing phone numbers related to $model (assuming relation 'phones')
-                    $existingPhones = $model->phoneNumbers; 
                     if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-                        
-                        $transaction = Yii::$app->db->beginTransaction();
 
                         try {
                             if (!$model->save()) {
                                 throw new \Exception('Failed to save model: ' . Html::errorSummary($model));
                             }
-
-                            // Phones posted as array: ['phone_number' => [...]]
-                            $phonesData = Yii::$app->request->post('PhoneNumber', []);
-
-                            // Collect existing phone IDs to track deletions
-                            $existingPhoneIds = array_map(fn($phone) => $phone->id, $existingPhones);
-                            $postedPhoneIds = array_filter(array_column($phonesData, 'id')); // IDs submitted in form, if any
-
-                            // Delete phones that were removed in the form
-                            $phonesToDelete = array_diff($existingPhoneIds, $postedPhoneIds);
-                            if (!empty($phonesToDelete)) {
-                                PhoneNumber::deleteAll(['id' => $phonesToDelete]);
-                            }
-
-                            // Loop through submitted phone numbers and save/update
-                            foreach ($phonesData as $phoneData) {
-                                if (!empty($phoneData['id'])) {
-                                    // Update existing phone
-                                    $phone = PhoneNumber::findOne($phoneData['id']);
-                                    if ($phone === null) {
-                                        throw new \Exception("Phone not found with ID: {$phoneData['id']}");
-                                    }
-                                } else {
-                                    // New phone number
-                                    $phone = new PhoneNumber();
-                                    $phone->phone_profile_id = $model->id;
-                                    $phone->phone_status_id = StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar();
-                                    $phone->phone_created_by = Yii::$app->user->id;
-                                }
-
-                                $phone->phone_number = $phoneData['phone_number'];
-
-                                if (!$phone->save()) {
-                                    throw new \Exception('Failed to save phone: ' . Html::errorSummary($phone));
-                                }
-                            }
-
-                            $transaction->commit();
-
                             Yii::$app->session->setFlash('success', 'Congratulation!, The existing Staff profile updated successfully.');
                             return $this->redirect(['view', 'id' => $model->id]);
                         } catch (\Exception $ex) {
@@ -328,7 +285,6 @@ class ProfileController extends Controller
                     return $this->render('update', [
                     'model' => $model,
                     'regions' => $regions,
-                    'phones' => $existingPhones,
                 ]);
             }
             throw new NotFoundHttpException('The requested page does not exist.');
