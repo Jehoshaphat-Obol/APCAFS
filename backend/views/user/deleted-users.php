@@ -33,8 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td><?= Html::encode($user->username) ?></td>
                         <td><?= Html::encode($user->email) ?></td>
                         <td><?= Html::encode($user->company_id) ?></td>
-                        <td><?= Html::encode($user->user_status_id) ?></td>
-                        <td><?= Html::encode($user->user_deleted_at) ?></td>
+                        <td><?php
+                            $u_s = $user->userStatus
+                            ?>
+                            <?= Html::encode() ?></td>
+                        <td><?= Html::encode($u_s->status_name) ?></td>
                         <td>
                             <?= Html::a('<i class="bi bi-arrow-counterclockwise"></i> Restore', ['restore', 'id' => $branch->id], [
                                 'class' => 'btn btn-success',
