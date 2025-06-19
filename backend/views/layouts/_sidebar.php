@@ -45,11 +45,6 @@ if (!Yii::$app->user->isGuest) {
                 'url' => ['/personality-assessment/index'],
             ],
             [
-                'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> <span>Tests</span>',
-                'encode' => false,
-                'url' => ['/job-test/index'],
-            ],
-            [
                 'label' => '<i class="bi bi-trash sidebar-icons fs-5"></i> <span>Bin</span>',
                 'encode' => false,
                 'items' => [
@@ -98,11 +93,6 @@ if (!Yii::$app->user->isGuest) {
                     'url' => ['/personality-assessment/index'],
                 ],
                 [
-                    'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> <span>Tests</span>',
-                    'encode' => false,
-                    'url' => ['/job-test/index'],
-                ],
-                [
                     'label' => '<i class="bi bi-trash sidebar-icons fs-5"></i> <span>Bin</span>',
                     'encode' => false,
                     'items' => [
@@ -134,11 +124,6 @@ if (!Yii::$app->user->isGuest) {
                     'url' => ['/job-post/index'],
                 ],
                 [
-                    'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> <span>Tests</span>',
-                    'encode' => false,
-                    'url' => ['/job-test/index'],
-                ],
-                [
                     'label' => '<i class="bi bi-key sidebar-icons fs-5"></i> <span>Change Password</span>',
                     'encode' => false,
                     'url' => ['/user/change-password'],
@@ -158,11 +143,6 @@ if (!Yii::$app->user->isGuest) {
                     'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> <span>Job Posts</span>',
                     'encode' => false,
                     'url' => ['/job-post/index'],
-                ],
-                [
-                    'label' => '<i class="bi bi-clipboard-check sidebar-icons fs-5"></i> <span>Tests</span>',
-                    'encode' => false,
-                    'url' => ['/job-test/index'],
                 ],
                 [
                     'label' => '<i class="bi bi-trash sidebar-icons fs-5"></i> <span>Bin</span>',

@@ -428,6 +428,7 @@ class UserController extends Controller
                             return $this->redirect(['site/signin']);
                         }
 
+                        Yii::$app->session->setFlash('success', 'Password Changed successfully, Please Login With your New Password');
                         return $this->redirect(['site/login']);
                     } else {
                         return $this->render('change-password', ['model' => $model]);
