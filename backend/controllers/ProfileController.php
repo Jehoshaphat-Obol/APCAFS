@@ -21,7 +21,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
-use Mpdf\Mpdf;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 
@@ -209,7 +208,7 @@ class ProfileController extends Controller
                     if ($this->request->isPost) {
                         if ($model->load($this->request->post()) && $model->save()) {
                             Yii::$app->session->setFlash('success', 'Congratulation!, Profile created successfully.');
-                            return $this->redirect(['dashboard/dashboard']);
+                            return $this->redirect(['dashboard/applicant-dashboard']);
                         }
                     }
                     Yii::$app->session->setFlash('info', 'Welcome, You must setting up your profile to be able to continue with your account.');
@@ -300,7 +299,7 @@ class ProfileController extends Controller
             if ($this->request->isPost) {
                 if ($model->load($this->request->post()) && $model->update($id)) {
                     Yii::$app->session->setFlash('success', 'Profile updated successfully.');
-                    return $this->redirect(['dashboard/dashboard']);
+                    return $this->redirect(['dashboard/applicant-dashboard']);
                 } else {
                     Yii::$app->session->setFlash('error', 'Failed to update profile. Please check your input.');
                 }
@@ -370,33 +369,6 @@ class ProfileController extends Controller
         } catch (ForbiddenHttpException $e)
         {
             return $this->redirect(['error']);
-        }
-    }
-
-    public function actionPdf($id)
-    {
-        try {
-            $model = $this->findModel($id);
-
-            // $content = $this->renderPartial('cv-preview', [
-            //     'model' => $model,
-            // ]);
-
-            // $mpdf = new Mpdf([
-            //     'mode' => 'utf-8',
-            //     'format' => 'A4',
-            // ]);
-
-            $content = "<h1>Hello, World</h1><p>This is test PDF</p>";
-            $mpdf = new \Mpdf\Mpdf();
-            $mpdf->WriteHTML($content);
-            return $mpdf->Output('test.pdf', \Mpdf\Output\Destination::DOWNLOAD);
-
-            // $mpdf->WriteHTML($content);
-            // return $mpdf->Output('CV-' . $model->user2->username . '.pdf', \Mpdf\Output\Destination::DOWNLOAD);
-        } catch (\Throwable $e) {
-            Yii::error("PDF Error: " . $e->getMessage(), __METHOD__);
-            return $this->renderContent('<h3>PDF Generation Error</h3><pre>' . $e->getMessage() . '</pre>');
         }
     }
 
