@@ -22,7 +22,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th>Email</th>
                     <th>Company</th>
                     <th>Status</th>
-                    <th>Deleted At</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -32,14 +31,24 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td><?= Html::encode(++$key) ?></td>
                         <td><?= Html::encode($user->username) ?></td>
                         <td><?= Html::encode($user->email) ?></td>
-                        <td><?= Html::encode($user->company_id) ?></td>
-                        <td><?php
-                            $u_s = $user->userStatus
-                            ?>
-                            <?= Html::encode() ?></td>
-                        <td><?= Html::encode($u_s->status_name) ?></td>
                         <td>
-                            <?= Html::a('<i class="bi bi-arrow-counterclockwise"></i> Restore', ['restore', 'id' => $branch->id], [
+                        <?php
+                            $u_c = $user->company;
+                            if (empty($u_c->company_name))
+                            {
+                                echo 'no company found';
+                            } else {
+                                echo Html::encode($u_c->company_name);
+                            }
+                        ?>
+                        </td>
+                        <td>
+                        <?php
+                            $u_s = $user->userStatus
+                        ?>    
+                        <?= Html::encode($u_s->status_name) ?></td>
+                        <td>
+                            <?= Html::a('<i class="bi bi-arrow-counterclockwise"></i> Restore', ['restore', 'id' => $user->id], [
                                 'class' => 'btn btn-success',
                                 'data' => [
                                     'confirm' => 'Are you sure you want to restore this branch?',
