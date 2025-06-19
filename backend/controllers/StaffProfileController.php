@@ -148,7 +148,19 @@ class StaffProfileController extends Controller
                     if ($this->request->isPost) {
                         if ($model->load($this->request->post()) && $model->save()) {
                             Yii::$app->session->setFlash('success', 'Congratulation!, Staff Profile created successfully.');
-                            return $this->redirect(['dashboard/dashboard']);
+                            if(Yii::$app->user->can('super-admin'))
+                            {
+                                return $this->redirect(['dashboard/super-admin-dashboard']);
+                            } elseif(Yii::$app->user->can('company-admin'))
+                            {
+                                return $this->redirect(['dashboard/company-admin-dashboard']);
+                            } elseif(Yii::$app->user->can('manager'))
+                            {
+                                return $this->redirect(['dashboard/manager-dashboard']);
+                            } elseif(Yii::$app->user->can('hr'))
+                            {
+                                return $this->redirect(['dashboard/hr-dashboard']);
+                            }
                         }
                     }
                     Yii::$app->session->setFlash('info', 'Welcome, You must setting up your profile to be able to continue with your account.');
