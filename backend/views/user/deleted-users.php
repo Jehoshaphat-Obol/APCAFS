@@ -21,7 +21,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th>Username</th>
                     <th>Email</th>
                     <th>Company</th>
-                    <th>Branch</th>
                     <th>Status</th>
                     <th>Deleted At</th>
                     <th>Actions</th>
@@ -34,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td><?= Html::encode($user->username) ?></td>
                         <td><?= Html::encode($user->email) ?></td>
                         <td><?= Html::encode($user->company_id) ?></td>
-                        <td><?= Html::encode($user->branch_id) ?></td>
                         <td><?php 
                                 switch ($user->status) {
                                     case 10:
