@@ -33,27 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td><?= Html::encode($user->username) ?></td>
                         <td><?= Html::encode($user->email) ?></td>
                         <td><?= Html::encode($user->company_id) ?></td>
-                        <td><?php 
-                                switch ($user->status) {
-                                    case 10:
-                                        // $class = 'badge badge-success';
-                                        $label = 'active';
-                                        break;
-                                    case 11:
-                                        // $class = 'badge badge-warning';
-                                        $label = 'inactive';
-                                        break;
-                                    case 0:
-                                        // $class = 'badge badge-danger';
-                                        $label = 'deleted';
-                                        break;
-                                    default:
-                                        $class = 'badge badge-secondary';
-                                        $label = 'unknown';
-                                }
-                                echo Html::tag('span', Html::encode($label));
-                            ?>
-                        </td>
+                        <td><?= Html::encode($user->user_status_id) ?></td>
                         <td><?= Html::encode($user->user_deleted_at) ?></td>
                         <td>
                             <?= Html::a('<i class="bi bi-arrow-counterclockwise"></i> Restore', ['restore', 'id' => $branch->id], [
@@ -69,6 +49,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </tbody>
         </table>
     <?php else: ?>
-        <p class="lead text-center alert alert-warning">No Deleted branch(s) found.</p>
+        <p class="lead text-center alert alert-warning">No Deleted User(s) found.</p>
     <?php endif ?>
 </div>
