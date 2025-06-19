@@ -35,9 +35,14 @@ class JobTestController extends Controller
                         'roles' => ['@'],
                     ],
                     [
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'error', 'restore', 'deleted-tests'],
+                        'allow' => true,
+                        'roles' => ['super-admin'],
+                    ],
+                    [
                         'actions' => ['index', 'view', 'delete', 'restore', 'deleted-tests'],
                         'allow' => true,
-                        'roles' => ['super-admin', 'company-admin'],
+                        'roles' => ['company-admin'],
                     ],
                     [
                         'actions' => ['index', 'view', 'create', 'update', 'delete', 'restore', 'deleted-tests'],
@@ -184,7 +189,7 @@ class JobTestController extends Controller
                 ->orderBy(['post_job_title' => SORT_ASC])
                 ->all();            
 
-            if(Yii::$app->user->can('hr'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('hr'))
             {
                 if($model !== null)
                 {
@@ -224,7 +229,7 @@ class JobTestController extends Controller
         {
             $model = $this->findModel($id);
 
-            if(Yii::$app->user->can('hr'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('hr'))
             {
                 if($model !== null)
                 {
