@@ -47,9 +47,14 @@ class ProfileController extends Controller
                         'roles' => ['@'],
                     ],
                     [
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'error', 'restore', 'deleted-profiles'],
+                        'allow' => true,
+                        'roles' => ['super-admin'],
+                    ],
+                    [
                         'actions' => ['index', 'view', 'delete', 'restore', 'deleted-profiles'],
                         'allow' => true,
-                        'roles' => ['super-admin', 'company-admin', 'hr'],
+                        'roles' => ['company-admin', 'hr'],
                     ],
                     [
                         'actions' => ['view', 'create', 'update'],
@@ -195,7 +200,7 @@ class ProfileController extends Controller
     {
         try
         {
-            if(Yii::$app->user->can('applicant'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('applicant'))
             {
                 $model = new AddProfile();
                 if($model !== null)
@@ -257,7 +262,7 @@ class ProfileController extends Controller
     public function actionUpdate($id)
     {
         try {
-            if (!Yii::$app->user->can('applicant')) {
+            if (!(Yii::$app->user->can('super-admin') || Yii::$app->user->can('applicant'))) {
                 throw new ForbiddenHttpException();
             }
 
@@ -355,7 +360,7 @@ class ProfileController extends Controller
     {
         try
         {
-            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('hr'))
+            if(Yii::$app->user->can('super-admin'))
             {
                 $model = Profile::findWithDeleted()->where(['id' => $id])->one();
                 if ($model !== null) {

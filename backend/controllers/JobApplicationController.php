@@ -37,7 +37,12 @@ class JobApplicationController extends Controller
                     [
                         'actions' => ['index', 'view', 'delete', 'restore', 'deleted-applications'],
                         'allow' => true,
-                        'roles' => ['super-admin', 'company-admin'],
+                        'roles' => ['company-admin'],
+                    ],
+                    [
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'error', 'restore', 'deleted-applications'],
+                        'allow' => true,
+                        'roles' => ['super-admin'],
                     ],
                     [
                         'actions' => ['index', 'view', 'delete', 'restore', 'deleted-applications'],
@@ -175,7 +180,7 @@ class JobApplicationController extends Controller
         try {
             $model = new JobApplication();
             
-            if(Yii::$app->user->can('applicant'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('applicant'))
             {
                 if($model !== null)
                 {
@@ -211,7 +216,7 @@ class JobApplicationController extends Controller
         try {
             $model = $this->findModel($id);
 
-            if(!(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant')))
+            if(Yii::$app->user->can('super-admin'))
             {
                 if($model !== null)
                 {

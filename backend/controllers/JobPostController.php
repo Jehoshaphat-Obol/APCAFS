@@ -31,20 +31,25 @@ class JobPostController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index', 'view', 'applicant-view', 'create', 'update', 'delete', 'error', 'restore', 'deleted-posts'],
+                'only' => ['index', 'view', 'applicant-view', 'create', 'update', 'delete', 'error', 'restore', 'apply', 'cancel', 'analyze', 'publish', 'unpublish', 'deleted-posts'],
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'applicant-view', 'create', 'update', 'delete', 'restore', 'deleted-posts'],
+                        'actions' => ['index', 'view', 'applicant-view', 'create', 'update', 'delete', 'restore', 'apply', 'cancel', 'analyze', 'publish', 'unpublish', 'deleted-posts'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                     [
                         'actions' => ['index', 'view', 'delete', 'restore', 'deleted-posts'],
                         'allow' => true,
-                        'roles' => ['super-admin', 'company-admin'],
+                        'roles' => ['company-admin'],
                     ],
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'restore', 'deleted-posts'],
+                        'actions' => ['index', 'view', 'applicant-view', 'create', 'update', 'delete', 'error', 'restore', 'apply', 'cancel', 'analyze', 'publish', 'deleted-posts'],
+                        'allow' => true,
+                        'roles' => ['super-admin'],
+                    ],
+                    [
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'restore', 'analyze', 'publish', 'unpublish', 'deleted-posts'],
                         'allow' => true,
                         'roles' => ['hr'],
                     ],
@@ -54,7 +59,7 @@ class JobPostController extends Controller
                         'roles' => ['manager'],
                     ],
                     [
-                        'actions' => ['index', 'applicant-view'],
+                        'actions' => ['index', 'apply', 'cancel', 'applicant-view'],
                         'allow' => true,
                         'roles' => ['applicant'],
                     ],
@@ -161,7 +166,7 @@ class JobPostController extends Controller
     {
         try
         {
-            if(Yii::$app->user->can('applicant'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('applicant'))
             {
                 $model = $this->findModel($id);
 
@@ -174,7 +179,7 @@ class JobPostController extends Controller
 
                     if ($application->apply()) {
                         Yii::$app->session->setFlash('success', 'Maombi ya kazi yamewasilishwa kwa mafanikio.');
-                        return $this->redirect(['job-post/view', 'id' => $model->id]);
+                        return $this->redirect(['dashboard/applicant-dashboard']);
                     } else {
                         Yii::$app->session->setFlash('error', 'Imeshindikana kutuma maombi. Tafadhali jaribu tena.');
                         return $this->redirect(['job-post/view', 'id' => $model->id]);
@@ -204,7 +209,7 @@ class JobPostController extends Controller
     {
         try
         {
-            if(Yii::$app->user->can('hr'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('hr'))
             {
                 $model = $this->findModel($id);
 
@@ -285,7 +290,7 @@ class JobPostController extends Controller
     {
         try
         {
-            if(Yii::$app->user->can('applicant'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('applicant'))
             {                
                 $model = $this->findModel($id);
                 
@@ -320,7 +325,7 @@ class JobPostController extends Controller
                 ->orderBy([
                 'status_name' => SORT_ASC,
                 ])->all();
-            if(Yii::$app->user->can('hr'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('hr'))
             {
                 if($model !== null)
                 {
@@ -359,7 +364,7 @@ class JobPostController extends Controller
         {
             $model = $this->findModel($id);
 
-            if(Yii::$app->user->can('hr'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('hr'))
             {
                 if($model !== null)
                 {
@@ -446,7 +451,7 @@ class JobPostController extends Controller
     {
         try
         {
-            if(Yii::$app->user->can('hr'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('hr'))
             {
                 $model = $this->findModel($id);
                 if($model !== null)
@@ -474,7 +479,7 @@ class JobPostController extends Controller
     {
         try
         {
-            if(Yii::$app->user->can('hr'))
+            if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('hr'))
             {
                 $model = $this->findModel($id);
                 if($model !== null)

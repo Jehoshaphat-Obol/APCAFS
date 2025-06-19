@@ -35,7 +35,12 @@ class StaffProfileController extends Controller
                     [
                         'actions' => ['index', 'view', 'create', 'update', 'delete', 'restore'],
                         'allow' => true,
-                        'roles' => ['super-admin', 'company-admin'],
+                        'roles' => ['super-admin'],
+                    ],
+                    [
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'restore'],
+                        'allow' => true,
+                        'roles' => ['company-admin'],
                     ],
                     [
                         'actions' => ['view', 'create', 'update'],
