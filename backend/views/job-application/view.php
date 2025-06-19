@@ -28,6 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- PERSONALITY ASSESSMENT WIDGET STARTS HERE -->
     <?php
     $traits = [];
+    // echo "<pre>";
+    // print_r($profile);
+    // echo "</pre>";
+    // return false;
     if (!empty($profile->personalityAssessments) && is_array($profile->personalityAssessments)) {
         $personality_assessment = $profile->personalityAssessments[0];
         $traits = [
@@ -86,26 +90,71 @@ $this->params['breadcrumbs'][] = $this->title;
     // Determine full personality
     $personalityCode = '';
     $personalityDesc = [
-        'INTJ' => 'The Architect: Imaginative and strategic thinkers with a plan for everything. Often seen in leadership, R&D, and high-level strategic roles.',
-        'INTP' => 'The Logician: Innovative inventors with an unquenchable thirst for knowledge. Thrive in data analysis, research, and system design.',
-        'ENTJ' => 'The Commander: Bold, imaginative, and strong-willed leaders, always finding a way—or making one. Natural CEOs and team leads.',
-        'ENTP' => 'The Debater: Smart and curious thinkers who cannot resist an intellectual challenge. Excel in innovation, consulting, and entrepreneurship.',
+        'INTJ' => 'The Architect: Imaginative and strategic thinkers with a plan for everything. Often seen in leadership, R&D, and high-level strategic roles. 
+        Strengths: Rational, independent, high achievers, strategic thinkers. 
+        Weaknesses: Arrogant, overly critical, emotionally detached, can struggle with teamwork.',
 
-        'INFJ' => 'The Advocate: Quiet and mystical, yet very inspiring and tireless idealists. Thrive in mentoring, counseling, or cause-driven work.',
-        'INFP' => 'The Mediator: Poetic, kind, and altruistic individuals, always eager to help a good cause. Great in writing, design, or nonprofit roles.',
-        'ENFJ' => 'The Protagonist: Charismatic and inspiring leaders, able to mesmerize their listeners. Excel in HR, education, or public-facing leadership.',
-        'ENFP' => 'The Campaigner: Enthusiastic, creative, and sociable free spirits, who always find a reason to smile. Often thrive in marketing, branding, or creative strategy.',
+        'INTP' => 'The Logician: Innovative inventors with an unquenchable thirst for knowledge. Thrive in data analysis, research, and system design. 
+        Strengths: Analytical, objective, open-minded, inventive. 
+        Weaknesses: Prone to overthinking, socially withdrawn, struggles with follow-through, emotionally distant.',
 
-        'ISTJ' => 'The Logistician: Practical and fact-minded individuals, whose reliability cannot be doubted. Suited for auditing, administration, or military roles.',
-        'ISFJ' => 'The Defender: Very dedicated and warm protectors, always ready to defend their loved ones. Excel in supportive, structured environments like healthcare or education.',
-        'ESTJ' => 'The Executive: Excellent administrators, unsurpassed at managing things or people. Ideal for operations, logistics, or public service.',
-        'ESFJ' => 'The Consul: Extraordinarily caring, social, and popular people, always eager to help. Strong fits for customer success or community engagement roles.',
+        'ENTJ' => 'The Commander: Bold, imaginative, and strong-willed leaders, always finding a way—or making one. Natural CEOs and team leads. 
+        Strengths: Decisive, efficient, strategic, inspiring. 
+        Weaknesses: Impatient, stubborn, intolerant, can be overly controlling.',
 
-        'ISTP' => 'The Virtuoso: Bold and practical experimenters, masters of all kinds of tools. Thrive in engineering, mechanics, and technical trades.',
-        'ISFP' => 'The Adventurer: Flexible and charming artists, always ready to explore and experience something new. Creative fields like fashion, design, or culinary arts are ideal.',
-        'ESTP' => 'The Entrepreneur: Smart, energetic, and very perceptive people, who truly enjoy living on the edge. Do well in sales, crisis management, and high-energy roles.',
-        'ESFP' => 'The Entertainer: Spontaneous, energetic, and enthusiastic people – life is never boring around them. Thrive in performing arts, event management, or hospitality.',
+        'ENTP' => 'The Debater: Smart and curious thinkers who cannot resist an intellectual challenge. Excel in innovation, consulting, and entrepreneurship. 
+        Strengths: Energetic, original, charismatic, quick thinkers. 
+        Weaknesses: Argumentative, easily bored, dislikes routines, may lack focus.',
+
+        'INFJ' => 'The Advocate: Quiet and mystical, yet very inspiring and tireless idealists. Thrive in mentoring, counseling, or cause-driven work. 
+        Strengths: Insightful, principled, passionate, empathetic. 
+        Weaknesses: Sensitive to criticism, perfectionistic, can be overly reserved or idealistic.',
+
+        'INFP' => 'The Mediator: Poetic, kind, and altruistic individuals, always eager to help a good cause. Great in writing, design, or nonprofit roles. 
+        Strengths: Empathetic, idealistic, creative, loyal. 
+        Weaknesses: Overly idealistic, prone to burnout, indecisive, may avoid conflict.',
+
+        'ENFJ' => 'The Protagonist: Charismatic and inspiring leaders, able to mesmerize their listeners. Excel in HR, education, or public-facing leadership. 
+        Strengths: Persuasive, altruistic, natural leaders, emotionally intelligent. 
+        Weaknesses: Overly selfless, too sensitive, struggles with boundaries, approval-seeking.',
+
+        'ENFP' => 'The Campaigner: Enthusiastic, creative, and sociable free spirits, who always find a reason to smile. Often thrive in marketing, branding, or creative strategy. 
+        Strengths: Energetic, warm, imaginative, highly adaptable. 
+        Weaknesses: Easily distracted, disorganized, emotionally intense, may overcommit.',
+
+        'ISTJ' => 'The Logistician: Practical and fact-minded individuals, whose reliability cannot be doubted. Suited for auditing, administration, or military roles. 
+        Strengths: Responsible, detail-oriented, dependable, logical. 
+        Weaknesses: Rigid, insensitive, resistant to change, can be judgmental.',
+
+        'ISFJ' => 'The Defender: Very dedicated and warm protectors, always ready to defend their loved ones. Excel in supportive, structured environments like healthcare or education. 
+        Strengths: Loyal, practical, meticulous, caring. 
+        Weaknesses: Overly humble, avoids confrontation, dislikes change, prone to burnout.',
+
+        'ESTJ' => 'The Executive: Excellent administrators, unsurpassed at managing things or people. Ideal for operations, logistics, or public service. 
+        Strengths: Organized, reliable, strong-willed, leadership-oriented. 
+        Weaknesses: Inflexible, critical, emotionally blunt, resistant to unconventional ideas.',
+
+        'ESFJ' => 'The Consul: Extraordinarily caring, social, and popular people, always eager to help. Strong fits for customer success or community engagement roles. 
+        Strengths: Supportive, loyal, sociable, attentive to others. 
+        Weaknesses: Needs approval, avoids conflict, overly self-sacrificing, sensitive to criticism.',
+
+        'ISTP' => 'The Virtuoso: Bold and practical experimenters, masters of all kinds of tools. Thrive in engineering, mechanics, and technical trades. 
+        Strengths: Independent, resourceful, cool under pressure, practical. 
+        Weaknesses: Risk-prone, emotionally detached, dislikes commitment, can be insensitive.',
+
+        'ISFP' => 'The Adventurer: Flexible and charming artists, always ready to explore and experience something new. Creative fields like fashion, design, or culinary arts are ideal. 
+        Strengths: Artistic, gentle, spontaneous, adaptable. 
+        Weaknesses: Easily stressed, avoids conflict, unpredictable, may struggle with long-term planning.',
+
+        'ESTP' => 'The Entrepreneur: Smart, energetic, and very perceptive people, who truly enjoy living on the edge. Do well in sales, crisis management, and high-energy roles. 
+        Strengths: Bold, direct, perceptive, action-oriented. 
+        Weaknesses: Impulsive, impatient, may overlook long-term consequences, risk-prone.',
+
+        'ESFP' => 'The Entertainer: Spontaneous, energetic, and enthusiastic people – life is never boring around them. Thrive in performing arts, event management, or hospitality. 
+        Strengths: Fun-loving, outgoing, empathetic, generous. 
+        Weaknesses: Easily bored, struggles with planning, dislikes routine, may avoid deeper issues.',
     ];
+
 
     if (!empty($traits)) {
         $personalityCode = '';
@@ -199,7 +248,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <!-- PERSONALITY ASSESSMENT WIDGET ENDS HERE -->
 
-<div class="profile-view">    
+<div class="profile-view">
     <div class="row">
         <div class="col-md-4 row align-items-start align-content-start">
             <!-- Account Information -->
@@ -216,7 +265,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
                 </div>
             </div>
-    
+
             <!-- Personal Details -->
             <div>
                 <div class="bg-white shadow rounded px-1 pt-2">
@@ -233,7 +282,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
                 </div>
             </div>
-    
+
             <!-- Location Info -->
             <div>
                 <div class="bg-white shadow rounded px-1 pt-2 mb-4">
@@ -249,12 +298,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
                 </div>
             </div>
-    
+
             <!-- Phone number -->
             <div>
                 <div class="bg-white shadow rounded px-1 pt-2">
                     <h4 class="border-bottom pb-2 mb-3">Phone Numbers</h4>
-    
+
                     <?= DetailView::widget([
                         'model' => $profile,
                         'attributes' => [
@@ -278,13 +327,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
                 </div>
             </div>
-    
-    
+
+
             <!-- languages -->
             <div class="mb-3">
                 <div class="bg-white shadow rounded p-4 px-1 pt-2">
                     <h4 class="border-bottom pb-2 mb-3">Languages</h4>
-    
+
                     <?php if (!empty($profile->languages)): ?>
                         <ul class="list-group list-group-flush">
                             <?php foreach ($profile->languages as $language): ?>
@@ -304,50 +353,50 @@ $this->params['breadcrumbs'][] = $this->title;
             <div>
                 <div class="bg-white shadow rounded px-1 pt-2">
                     <h4 class="border-bottom pb-2 mb-3">Application Details</h4>
-    
+
                     <?= DetailView::widget([
                         'model' => $model,
                         'attributes' => [
                             'id',
-    
+
                             // Kampuni
                             [
                                 'attribute' => 'applicant_company_id',
                                 'value' => $model->company->company_name ?? null,
                                 'label' => 'Company',
                             ],
-    
+
                             // Job Post
                             [
                                 'attribute' => 'applicant_job_post_id',
                                 'value' => $model->jobPost->post_job_title ?? null,
                                 'label' => 'Job Title',
                             ],
-    
+
                             // Muombaji
                             [
                                 'attribute' => 'applicant_user_id',
                                 'value' => $model->user2->username ?? null,
                                 'label' => 'Applicant Username',
                             ],
-    
+
                             // Alama
                             'applicant_score',
-    
+
                             // Status
                             [
                                 'attribute' => 'applicant_status_id',
                                 'value' => $model->statusLookup->status_name ?? null,
                                 'label' => 'Status',
                             ],
-    
+
                             // Tarehe ya kuundwa
                             [
                                 'attribute' => 'applicant_created_at',
                                 'format' => ['date', 'php:d M Y H:i'],
                                 'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
                             ],
-    
+
                             // Aliyeunda
                             [
                                 'attribute' => 'applicant_created_by',
@@ -355,14 +404,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'label' => 'Created By',
                                 'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
                             ],
-    
+
                             // Tarehe ya kusasishwa
                             [
                                 'attribute' => 'applicant_updated_at',
                                 'format' => ['date', 'php:d M Y H:i'],
                                 'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
                             ],
-    
+
                             // Aliyesasisha
                             [
                                 'attribute' => 'applicant_updated_by',
@@ -370,14 +419,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'label' => 'Updated By',
                                 'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
                             ],
-    
+
                             // Tarehe ya kufutwa
                             [
                                 'attribute' => 'applicant_deleted_at',
                                 'format' => ['date', 'php:d M Y H:i'],
                                 'visible' => Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin'),
                             ],
-    
+
                             // Aliyefuta
                             [
                                 'attribute' => 'applicant_deleted_by',
@@ -389,7 +438,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
                 </div>
             </div>
-    
+
             <!-- Biography -->
             <div>
                 <div class="bg-white shadow rounded px-1 pt-2">
@@ -404,12 +453,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
                 </div>
             </div>
-    
+
             <!-- Education -->
             <div class="">
                 <div class="bg-white shadow rounded px-1 pt-2">
                     <h4 class="border-bottom pb-2 mb-3">Education</h4>
-    
+
                     <?= DetailView::widget([
                         'model' => $profile,
                         'attributes' => [
@@ -420,7 +469,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     if (empty($profile->educations)) {
                                         return '<p class="text-muted mb-0">No education records found.</p>';
                                     }
-    
+
                                     $listItems = array_map(function ($edu) {
                                         return '
                                     <li class="list-group-item px-0 py-2">
@@ -430,7 +479,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <p class="mb-0"><strong>Graduation Date:</strong> ' . Html::encode($edu->education_graduation_date) . '</p>
                                     </li>';
                                     }, $profile->educations);
-    
+
                                     return '<ul class="list-group list-group-flush mb-0">' . implode('', $listItems) . '</ul>';
                                 },
                             ],
@@ -439,12 +488,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
                 </div>
             </div>
-    
+
             <!-- Experience -->
             <div class="mb-3">
                 <div class="bg-white shadow rounded px-1 pt-2">
                     <h4 class="border-bottom pb-2 mb-3">Experience</h4>
-    
+
                     <?php if (!empty($profile->workExperiences)): ?>
                         <ul class="list-group list-group-flush">
                             <?php foreach ($profile->workExperiences as $exp): ?>
@@ -462,14 +511,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php endif; ?>
                 </div>
             </div>
-    
-    
-    
+
+
+
             <!-- Skill -->
             <div class="mb-3">
                 <div class="bg-white shadow rounded px-1 pt-2">
                     <h4 class="border-bottom pb-2 mb-3">Skills</h4>
-    
+
                     <?php if (!empty($profile->skills)): ?>
                         <ul class="list-group list-group-flush">
                             <?php foreach ($profile->skills as $skill): ?>
@@ -484,12 +533,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php endif; ?>
                 </div>
             </div>
-    
+
             <!-- awards -->
             <div class="mb-3">
                 <div class="bg-white shadow rounded p-4 px-1 pt-2">
                     <h4 class="border-bottom pb-2 mb-3">Awards</h4>
-    
+
                     <?php if (!empty($profile->awards)): ?>
                         <ul class="list-group list-group-flush">
                             <?php foreach ($profile->awards as $award): ?>
@@ -508,12 +557,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php endif; ?>
                 </div>
             </div>
-    
+
             <!-- publications -->
             <div class="mb-3">
                 <div class="bg-white shadow rounded p-4 px-1 pt-2">
                     <h4 class="border-bottom pb-2 mb-3">Publications</h4>
-    
+
                     <?php if (!empty($profile->publications)): ?>
                         <ul class="list-group list-group-flush">
                             <?php foreach ($profile->publications as $publication): ?>
@@ -532,6 +581,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </div>
-    
+
     </div>
 </div>

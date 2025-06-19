@@ -189,7 +189,7 @@ class AnalyzeCv extends Model
                         'Publications: ' . $publicationText;
 
                     $pAssessmentData[] = [
-                        'profile_id' => $profile->profile_user_id,
+                        'profile_id' => $profile->id,
                         'social_media_username' => $profile->profile_social_media_username,
                     ];
 
@@ -274,6 +274,8 @@ class AnalyzeCv extends Model
                 curl_close($ch);
 
                 $responseData = json_decode($response, true);
+
+                // return $responseData;
                 // saving personality Assessment data
                 if (isset($responseData['results']) && is_array($responseData['results'])) {
                     $rows = [];

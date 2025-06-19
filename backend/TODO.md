@@ -1,5 +1,6 @@
 # Hassan
 [ ] - show number of applicants in a job post
+[ ] - prevent duplicate application from applicant
 
 # Jehoshaphat
 [ ] sketch dashboard
