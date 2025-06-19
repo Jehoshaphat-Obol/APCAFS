@@ -19,7 +19,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tr>
                     <th>ID</th>
                     <th>Company Name</th>
-                    <th>Posted By</th>
                     <th>Job Title</th>
                     <th>Job Type</th>
                     <th>Publication Date</th>
@@ -33,12 +32,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $key = 0; foreach ($deletedPosts as $post): ?>
                     <tr>
                         <td><?= Html::encode(++$key) ?></td>
-                        <td><?= Html::encode($post->post_name) ?></td>
+                        <td>
+                        <?php 
+                            $p_c = $post->company;
+                            $p_s = $post->statusLookup;
+                        ?>    
+                        <?= Html::encode($p_c->company_name) ?></td>
                         <td><?= Html::encode($post->post_job_title) ?></td>
                         <td><?= Html::encode($post->post_job_type) ?></td>
                         <td><?= Html::encode($post->post_publication_date) ?></td>
                         <td><?= Html::encode($post->post_deadline) ?></td>
-                        <td><?= Html::encode($post->post_status_id) ?></td>
+                        <td><?= Html::encode($p_s->status_name) ?></td>
                         <td><?= Html::encode($post->post_deleted_at) ?></td>
                         <td>
                             <?= Html::a('<i class="bi bi-arrow-counterclockwise"></i> Restore', ['restore', 'id' => $post->id], [
