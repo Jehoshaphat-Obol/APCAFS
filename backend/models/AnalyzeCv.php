@@ -16,6 +16,8 @@ use app\models\Publication;
 use app\models\StatusLookup;
 use yii\db\Transaction;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+
 
 class AnalyzeCv extends Model
 {
