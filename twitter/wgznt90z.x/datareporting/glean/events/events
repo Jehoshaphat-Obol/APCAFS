@@ -1,0 +1,2 @@
+{"timestamp":38473010,"category":"urlbar","name":"engagement","extra":{"selected_position":"1","n_words":"1","provider":"Autofill","actions":"none","n_results":"1","n_chars":"28","interaction":"typed","glean_timestamp":"1750385073408","results":"autofill_url","selected_result":"autofill_url","search_engine_default_id":"google-b-d","engagement_type":"enter","groups":"heuristic","sap":"urlbar","search_mode":""}}
+{"timestamp":38503532,"category":"doh","name":"state_shutdown","extra":{"value":"null","glean_timestamp":"1750385103927"}}

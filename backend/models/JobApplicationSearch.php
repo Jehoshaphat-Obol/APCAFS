@@ -44,20 +44,24 @@ class JobApplicationSearch extends JobApplication
     public function search($params, $formName = null)
     {
         $company_id = Yii::$app->user->identity->company_id;
-        
-        if(Yii::$app->user->can('super-admin'))
-        {
+
+        if (Yii::$app->user->can('super-admin')) {
             $query = JobApplication::find();
-        } elseif (Yii::$app->user->can('company-admin'))
-        {
+        } elseif (Yii::$app->user->can('company-admin')) {
             $query = JobApplication::find()
-            ->where(['applicant_company_id' => $company_id]);
-        } elseif(Yii::$app->user->can('hr'))
-        {
+                ->where(['applicant_company_id' => $company_id]);
+        } elseif (Yii::$app->user->can('hr')) {
+            $applyStatusId = StatusLookup::find()
+                ->where(['status_code' => 'apply'])
+                ->select('id')
+                ->scalar();
+
             $query = JobApplication::find()
-            ->where(['applicant_company_id' => $company_id]);
-        } else
-        {
+                ->where([
+                    'applicant_company_id' => $company_id,
+                    'applicant_status_id' => $applyStatusId,
+                ]);
+        } else {
             throw new \yii\web\ForbiddenHttpException();
         }
 

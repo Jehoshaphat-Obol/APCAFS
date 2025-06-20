@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
@@ -28,21 +29,52 @@ $this->params['breadcrumbs'][] = $this->title;
                 </tr>
             </thead>
             <tbody>
-                <?php $key = 0; foreach ($deletedApplications as $applicant): ?>
+                <?php $key = 0;
+                foreach ($deletedApplications as $applicant): ?>
                     <tr>
                         <?php
-                            $a_c = $applicant->company;
-                            $a_p = $applicant->jobPost;
-                            $a_u = $applicant->user;
-                            $a_s = $applicant->statusLookup;
+                        $a_c = $applicant->company ?? null;
+                        $a_p = $applicant->jobPost ?? null;
+                        $a_u = $applicant->user ?? null;
+                        $a_s = $applicant->statusLookup ?? null;
                         ?>
                         <td><?= Html::encode(++$key) ?></td>
-                        <td><?= Html::encode($a_c->company_name) ?></td>
-                        <td><?= Html::encode($a_p->post_job_title) ?></td>
-                        <td><?= Html::encode($a_u->username) ?></td>
-                        <td><?= Html::encode($applicant->applicant_score) ?></td>
-                        <td><?= Html::encode($a_s->status_name) ?></td>
-                        <td><?= Html::encode($applicant->applicant_deleted_at) ?></td>
+
+                        <td>
+                            <?= $a_c && !empty($a_c->company_name)
+                                ? Html::encode($a_c->company_name)
+                                : '<em>No company found</em>' ?>
+                        </td>
+
+                        <td>
+                            <?= $a_p && !empty($a_p->post_job_title)
+                                ? Html::encode($a_p->post_job_title)
+                                : '<em>No job title</em>' ?>
+                        </td>
+
+                        <td>
+                            <?= $a_u && !empty($a_u->username)
+                                ? Html::encode($a_u->username)
+                                : '<em>No username</em>' ?>
+                        </td>
+
+                        <td>
+                            <?= isset($applicant->applicant_score)
+                                ? Html::encode($applicant->applicant_score)
+                                : '<em>No score</em>' ?>
+                        </td>
+
+                        <td>
+                            <?= $a_s && !empty($a_s->status_name)
+                                ? Html::encode($a_s->status_name)
+                                : '<em>No status</em>' ?>
+                        </td>
+
+                        <td>
+                            <?= !empty($applicant->applicant_deleted_at)
+                                ? Html::encode($applicant->applicant_deleted_at)
+                                : '<em>Not deleted</em>' ?>
+                        </td>
                         <td>
                             <?= Html::a('<i class="bi bi-arrow-counterclockwise"></i> Restore', ['restore', 'id' => $applicant->id], [
                                 'class' => 'btn btn-success',
