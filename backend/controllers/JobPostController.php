@@ -561,13 +561,13 @@ class JobPostController extends Controller
 
         // Step 2: Update waliochaguliwa kuwa 'accepted'
         $acceptedCount = JobApplication::updateAll(
-            ['applicant_status_id' => 'accepted'], // badilisha kama unatumia integer status
+            ['applicant_status_id' => StatusLookup::find()->where(['status_code' => 'accepted'])->select('id')->scalar()], // badilisha kama unatumia integer status
             ['id' => $selectedIds]
         );
 
         // Step 3: Update waliobaki (ambao hawakuchaguliwa) kuwa 'rejected'
         $rejectedCount = JobApplication::updateAll(
-            ['applicant_status_id' => 'rejected'], // badilisha pia kama unatumia integer status
+            ['applicant_status_id' => StatusLookup::find()->where(['status_code' => 'rejected'])->select('id')->scalar()], // badilisha pia kama unatumia integer status
             [
                 'and',
                 ['applicant_job_post_id' => $id],
