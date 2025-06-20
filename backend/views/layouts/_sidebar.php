@@ -163,7 +163,8 @@ if (!Yii::$app->user->isGuest) {
                 [
                     'label' => '<i class="bi bi-speedometer2 sidebar-icons fs-5"></i> <span>Dashboard</span>',
                     'encode' => false,
-                    'url' => ['/dashboard/applicant-dashboard']
+                    'url' => ['/dashboard/applicant-dashboard'],
+                    'visible' => $profile !== null,
                 ],
                 [
                     'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> <span>Job Posts</span>',
