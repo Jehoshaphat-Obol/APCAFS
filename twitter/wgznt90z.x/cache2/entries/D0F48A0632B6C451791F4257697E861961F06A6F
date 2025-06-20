@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="chrome://browser/content/contentSearchUI.css" />
     <link rel="stylesheet" href="chrome://newtab/content/css/activity-stream.css" />
   </head>
-  <!-- Cached: Thu, 19 Jun 2025 13:43:35 GMT -->
+  <!-- Cached: Fri, 20 Jun 2025 02:01:24 GMT -->
   <body class="activity-stream">
     <div id="header-asrouter-container" role="presentation"></div>
     <div id="root">
@@ -54,9 +54,9 @@ window.__STARTUP_STATE__ = {
 				"smallFaviconLength": 131,
 				"smallFaviconRef": "",
 				"smallFaviconSize": 16,
+				"screenshot": "moz-page-thumb://thumbnails/?url=http%3A%2F%2Flocalhost%2Fsite%2Flogin&revision=4849",
 				"hostname": "localhost",
-				"typedBonus": true,
-				"screenshot": "moz-page-thumb://thumbnails/?url=http%3A%2F%2Flocalhost%2Fsite%2Flogin&revision=513"
+				"typedBonus": true
 			},
 			{
 				"bookmarkGuid": null,
@@ -1819,4 +1819,4 @@ window.__STARTUP_STATE__ = {
 	}
 };
 
-FÞH©R           hTHP¡ÿÿÿÿ       :about:home alt-data 1;38885,script version 20250529122813  ð+
+­>È"þ           hTÀôHQëÿÿÿÿ       :about:home alt-data 1;38885,script version 20250529122813  ð,

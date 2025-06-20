@@ -1,12 +1,2 @@
-{"timestamp":2066843,"category":"session_restore","name":"backup_can_be_loaded_session_file","extra":{"path_key":"clean","loadfail_reason":"N/A","can_load":"true","glean_timestamp":"1750340610817"}}
-{"timestamp":2066843,"category":"session_restore","name":"backup_can_be_loaded_session_file","extra":{"path_key":"clean","glean_timestamp":"1750340610817","can_load":"true","loadfail_reason":"N/A"}}
-{"timestamp":2066844,"category":"session_restore","name":"shutdown_success_session_startup","extra":{"shutdown_ok":"false","glean_timestamp":"1750340610817","shutdown_reason":"N/A"}}
-{"timestamp":2067628,"category":"webcompatreporting","name":"reason_dropdown","extra":{"glean_timestamp":"1750340611602","setting":"required"}}
-{"timestamp":2069264,"category":"jsonfile","name":"load_autofillprofiles","extra":{"value":"","glean_timestamp":"1750340613238"}}
-{"timestamp":2069435,"category":"doh","name":"state_rollback","extra":{"glean_timestamp":"1750340613410","value":"null"}}
-{"timestamp":2070169,"category":"normandy","name":"enroll_failed_nimbus_experiment","extra":{"value":"vertical-tabs-feature-callout-experiment-v20-treatment-a-rollout","glean_timestamp":"1750340614143","reason":"feature-conflict"}}
-{"timestamp":2070169,"category":"nimbus_events","name":"enroll_failed","extra":{"experiment":"vertical-tabs-feature-callout-experiment-v20-treatment-a-rollout","glean_timestamp":"1750340614143","reason":"feature-conflict"}}
-{"timestamp":2070174,"category":"nimbus_events","name":"is_ready","extra":{"glean_timestamp":"1750340614148"}}
-{"timestamp":2070189,"category":"jsonfile","name":"load_logins","extra":{"glean_timestamp":"1750340614163","value":""}}
-{"timestamp":2070192,"category":"upgrade_dialog","name":"trigger_reason","extra":{"value":"not-major","glean_timestamp":"1750340614166"}}
-{"timestamp":2072190,"category":"doh","name":"state_shutdown","extra":{"glean_timestamp":"1750340616164","value":"null"}}
+{"timestamp":38473010,"category":"urlbar","name":"engagement","extra":{"selected_position":"1","n_words":"1","provider":"Autofill","actions":"none","n_results":"1","n_chars":"28","interaction":"typed","glean_timestamp":"1750385073408","results":"autofill_url","selected_result":"autofill_url","search_engine_default_id":"google-b-d","engagement_type":"enter","groups":"heuristic","sap":"urlbar","search_mode":""}}
+{"timestamp":38503532,"category":"doh","name":"state_shutdown","extra":{"value":"null","glean_timestamp":"1750385103927"}}
