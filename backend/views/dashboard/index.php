@@ -121,22 +121,19 @@ $this->title = Yii::t('app', 'Dashboard');
   <div class="container-fluid py-4 h-100">
     <!-- Top section: Profile and quick actions -->
     <div class="row g-4 mb-4">
-      <div class="col-md-6">
+      <div class="col-md">
         <div class="card shadow-sm border-0 rounded-4">
           <div class="card-body">
             <h5 class="card-title mb-2">👤 Profile Completion</h5>
             <div class="progress mb-2" style="height: 6px;">
-              <div class="progress-bar bg-info" role="progressbar" style="width: 70%;"></div>
+              <div class="progress-bar bg-info" role="progressbar" style="width: <?= $completionPercentage ?>%;"></div>
             </div>
-            <small class="text-muted">You're almost done! <a href="#">Complete profile</a></small>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card shadow-sm border-0 rounded-4 bg-warning-subtle">
-          <div class="card-body">
-            <h5 class="card-title mb-1">🧪 1 Test Pending</h5>
-            <p class="mb-0"><a href="#" class="text-decoration-underline">Attempt Software Engineer Test</a></p>
+            <small class="text-muted">
+                <?= $completionPercentage < 100 ? "You're almost done!" : "Profile Complete!" ?>
+                <?php if ($completionPercentage < 100): ?>
+                    <a href="<?= isset($profile) ? \yii\helpers\Url::to(['/profile/update', 'id' => $profile->id]) : \yii\helpers\Url::to(['/profile/create']) ?>">Complete profile</a>
+                <?php endif; ?>
+            </small>
           </div>
         </div>
       </div>

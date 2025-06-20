@@ -15,6 +15,14 @@ use app\models\StatusLookup;
 use app\models\JobPost;
 use app\models\JobTest;
 use app\models\JobApplication;
+use app\models\Education;
+use app\models\WorkExperience;
+use app\models\Language;
+use app\models\Skill;
+use app\models\Award;
+use app\models\Publication;
+use app\models\PhoneNumber;
+use app\models\Profile;
 
 /**
  * DashboardController implements the CRUD actions for Dashboard model.
@@ -250,9 +258,39 @@ class DashboardController extends Controller
     {
         try
         {
-            if(Yii::$app->user->can('applicant'))
-            {
-                return $this->render('index');
+            if (Yii::$app->user->can('applicant')) {
+                $userId = Yii::$app->user->id;
+
+                // Tafuta profile kwa kutumia profile_user_id
+                $profile = Profile::find()->where(['profile_user_id' => $userId])->one();
+
+                // Kama profile haipo, mpeleke kwenye ukurasa wa kuunda profile
+                if ($profile === null) {
+                    Yii::$app->session->setFlash('error', 'Please complete your profile to access the dashboard.');
+                    return $this->redirect(['/profile/create']);
+                }
+
+                // Profile ipo, anza kuhesabu sehemu zilizokamilika
+                $completedSections = 1; // tayari profile ipo
+                $totalSections = 8;
+                $profileId = $profile->id;
+
+                // Orodha ya sehemu nyingine za profile zinazohitajika
+                if (Education::find()->where(['education_profile_id' => $profileId])->exists()) $completedSections++;
+                if (WorkExperience::find()->where(['experience_profile_id' => $profileId])->exists()) $completedSections++;
+                if (Language::find()->where(['language_profile_id' => $profileId])->exists()) $completedSections++;
+                if (Skill::find()->where(['skill_profile_id' => $profileId])->exists()) $completedSections++;
+                if (Award::find()->where(['award_profile_id' => $profileId])->exists()) $completedSections++;
+                if (Publication::find()->where(['publication_profile_id' => $profileId])->exists()) $completedSections++;
+                if (PhoneNumber::find()->where(['phone_profile_id' => $profileId])->exists()) $completedSections++;
+
+                // Hesabu asilimia ya completion
+                $completionPercentage = ($completedSections / $totalSections) * 100;
+
+                return $this->render('index', [
+                    'completionPercentage' => $completionPercentage,
+                    'profile' => $profile,
+                ]);
             }
             throw new ForbiddenHttpException();
         } catch (ForbiddenHttpException $e)
