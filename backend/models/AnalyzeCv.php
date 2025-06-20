@@ -277,27 +277,90 @@ class AnalyzeCv extends Model
 
                 // return $responseData;
                 // saving personality Assessment data
+                // if (isset($responseData['results']) && is_array($responseData['results'])) {
+                //     $rows = [];
+                //     $requiredKeys = ['profile_id', 'IE_score', 'NS_score', 'TF_score', 'JB_score'];
+
+                //     foreach ($responseData['results'] as $record) {
+                //         if (!empty(array_intersect($requiredKeys, array_keys($record)))) {
+                //             $rows[] = [
+                //                 $record['profile_id'],
+                //                 $record['IE_score'] * 100,
+                //                 $record['NS_score'] * 100,
+                //                 $record['TF_score'] * 100,
+                //                 $record['JP_score'] * 100,
+                //                 StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar(),
+                //                 date('Y-m-d'),
+                //                 Yii::$app->user->id ?? null,
+                //             ];
+                //         } else {
+                //             Yii::error("Missing required keys in record: " . json_encode($record));
+                //         }
+                //     }
+
+                //     if (!empty($rows)) {
+                //         Yii::$app->db->createCommand()
+                //             ->batchInsert('personality_assessment', [
+                //                 'personality_profile_id',
+                //                 'personality_IE_score',
+                //                 'personality_NS_score',
+                //                 'personality_TF_score',
+                //                 'personality_JB_score',
+                //                 'personality_status_id',
+                //                 'personality_last_analysis_date',
+                //                 'personality_created_by',
+                //             ], $rows)->execute();
+
+                //         Yii::$app->session->setFlash('success', 'All valid assessments saved successfully.');
+                //     } else {
+                //         Yii::$app->session->setFlash('error', 'No valid results to save.');
+                //     }
+                // } else {
+                //     Yii::$app->session->setFlash('error', 'No results returned from assessment API.');
+                // }
+
+                // saving personality Assessment data
                 if (isset($responseData['results']) && is_array($responseData['results'])) {
                     $rows = [];
-                    $requiredKeys = ['profile_id', 'IE_score', 'NS_score', 'TF_score', 'JB_score'];
+                    $requiredKeys = ['profile_id', 'IE_score', 'NS_score', 'TF_score', 'JP_score'];
 
+                    // 1. Chukua profile_ids zote kutoka kwenye results
+                    $incomingProfileIds = ArrayHelper::getColumn($responseData['results'], 'profile_id');
+                    
+                    if (empty($incomingProfileIds)) {
+                        Yii::$app->session->setFlash('error', 'No profile IDs found in results.');
+                        return;
+                    }
+
+                    // 2. Futa entries zote zenye profile_id zinazokuja (OVERWRITE mode)
+                    Yii::$app->db->createCommand()
+                        ->delete('personality_assessment', ['personality_profile_id' => $incomingProfileIds])
+                        ->execute();
+
+                    // 3. Andaa values zinazohitajika
+                    $activeStatusId = StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar();
+                    $today = date('Y-m-d');
+                    $userId = Yii::$app->user->id ?? null;
+
+                    // 4. Loop kwenye results na andaa rows zote
                     foreach ($responseData['results'] as $record) {
-                        if (!empty(array_intersect($requiredKeys, array_keys($record)))) {
+                        if (empty(array_diff($requiredKeys, array_keys($record)))) {
                             $rows[] = [
                                 $record['profile_id'],
                                 $record['IE_score'] * 100,
                                 $record['NS_score'] * 100,
                                 $record['TF_score'] * 100,
                                 $record['JP_score'] * 100,
-                                StatusLookup::find()->where(['status_code' => 'active'])->select('id')->scalar(),
-                                date('Y-m-d'),
-                                Yii::$app->user->id ?? null,
+                                $activeStatusId,
+                                $today,
+                                $userId,
                             ];
                         } else {
                             Yii::error("Missing required keys in record: " . json_encode($record));
                         }
                     }
 
+                    // 5. Insert all new records
                     if (!empty($rows)) {
                         Yii::$app->db->createCommand()
                             ->batchInsert('personality_assessment', [
@@ -311,13 +374,14 @@ class AnalyzeCv extends Model
                                 'personality_created_by',
                             ], $rows)->execute();
 
-                        Yii::$app->session->setFlash('success', 'All valid assessments saved successfully.');
+                        Yii::$app->session->setFlash('success', 'Assessments saved (overwritten if existing).');
                     } else {
                         Yii::$app->session->setFlash('error', 'No valid results to save.');
                     }
                 } else {
                     Yii::$app->session->setFlash('error', 'No results returned from assessment API.');
                 }
+
 
 
                 $transaction->commit();
