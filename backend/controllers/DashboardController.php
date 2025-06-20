@@ -261,6 +261,12 @@ class DashboardController extends Controller
             if (Yii::$app->user->can('applicant')) {
                 $userId = Yii::$app->user->id;
 
+                $applications = JobApplication::find()
+                    ->where(['applicant_user_id' => $userId])
+                    ->with('jobPost') // assuming relation exists
+                    ->orderBy(['applicant_created_at' => SORT_DESC])
+                    ->all();
+
                 // Tafuta profile kwa kutumia profile_user_id
                 $profile = Profile::find()->where(['profile_user_id' => $userId])->one();
 
@@ -290,6 +296,7 @@ class DashboardController extends Controller
                 return $this->render('index', [
                     'completionPercentage' => $completionPercentage,
                     'profile' => $profile,
+                    'applications' => $applications,
                 ]);
             }
             throw new ForbiddenHttpException();

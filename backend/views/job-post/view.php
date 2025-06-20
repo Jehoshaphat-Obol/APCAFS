@@ -140,6 +140,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ])?>
+
+        <?= Html::a('Select Candidates', ['select-candidates-form', 'id' => $model->id], [
+            'class' => 'btn btn-success',
+        ]) ?>
     </p>
 
     <?php Pjax::begin(); ?>

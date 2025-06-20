@@ -139,51 +139,6 @@ $this->title = Yii::t('app', 'Dashboard');
       </div>
     </div>
 
-    <!-- Job Posts List -->
-    <div class="card shadow-sm border-0 rounded-4 mb-4">
-      <div class="card-header bg-white border-0 fw-bold">
-        Available Job Posts
-      </div>
-      <div class="card-body p-0">
-        <div class="table-responsive">
-          <table class="table table-hover mb-0 align-middle">
-            <thead class="table-light">
-              <tr>
-                <th>Job Title</th>
-                <th>Company</th>
-                <th>Test</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Software Engineer</td>
-                <td>TechNova Inc.</td>
-                <td><span class="badge bg-warning">Pending</span></td>
-                <td><span class="badge bg-primary">Open</span></td>
-                <td><a href="#" class="btn btn-sm btn-outline-primary">Apply</a></td>
-              </tr>
-              <tr>
-                <td>Graphic Designer</td>
-                <td>Artify Studios</td>
-                <td><span class="badge bg-success">Completed</span></td>
-                <td><span class="badge bg-success">Applied</span></td>
-                <td><a href="#" class="btn btn-sm btn-outline-secondary disabled">Applied</a></td>
-              </tr>
-              <tr>
-                <td>Marketing Intern</td>
-                <td>MarketLogic</td>
-                <td><span class="badge bg-secondary">Not Required</span></td>
-                <td><span class="badge bg-primary">Open</span></td>
-                <td><a href="#" class="btn btn-sm btn-outline-primary">Apply</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
     <!-- Application History -->
     <div class="card shadow-sm border-0 rounded-4">
       <div class="card-header bg-white border-0 fw-bold">
@@ -194,36 +149,45 @@ $this->title = Yii::t('app', 'Dashboard');
           <table class="table table-borderless table-striped mb-0 align-middle">
             <thead>
               <tr>
+                <th>Company</th>
                 <th>Job</th>
                 <th>Status</th>
-                <th>AI Score</th>
                 <th>Applied On</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Software Engineer</td>
-                <td><span class="badge bg-warning">Test Pending</span></td>
-                <td>–</td>
-                <td>2025-06-12</td>
-              </tr>
-              <tr>
-                <td>Graphic Designer</td>
-                <td><span class="badge bg-success">Shortlisted</span></td>
-                <td>82%</td>
-                <td>2025-05-27</td>
-              </tr>
-              <tr>
-                <td>Marketing Intern</td>
-                <td><span class="badge bg-danger">Rejected</span></td>
-                <td>54%</td>
-                <td>2025-05-21</td>
-              </tr>
+              <?php foreach ($applications as $app): ?>
+                <tr>
+                  <td><?= Html::encode($app->company->company_name) ?></td>
+
+                  <td><?= Html::encode($app->jobPost->post_job_title) ?></td>
+
+                  <td>
+                    <?php
+                    switch ($app->applicant_status_id) {
+                        case 'accepted':
+                        case 2:
+                            echo '<span class="badge bg-success">Shortlisted</span>';
+                            break;
+                        case 'rejected':
+                        case 3:
+                            echo '<span class="badge bg-danger">Rejected</span>';
+                            break;
+                        default:
+                            echo '<span class="badge bg-warning">Test Pending</span>';
+                    }
+                    ?>
+                  </td>
+
+                  <td><?= Yii::$app->formatter->asDate($app->applicant_created_at) ?></td>
+                </tr>
+              <?php endforeach; ?>
             </tbody>
           </table>
         </div>
       </div>
     </div>
+
   </div>
 <?php endif; ?>
 

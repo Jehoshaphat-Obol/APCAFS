@@ -529,6 +529,57 @@ class JobPostController extends Controller
         }
     }
 
+    public function actionSelectCandidatesForm($id)
+    {
+        $model = new \yii\base\DynamicModel(['number']);
+        $model->addRule('number', 'required');
+        $model->addRule('number', 'integer', ['min' => 1]);
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            return $this->redirect(['select-candidates', 'id' => $id, 'number' => $model->number]);
+        }
+
+        return $this->render('select_candidates_form', [
+            'model' => $model,
+            'jobPostId' => $id,
+        ]);
+    }
+
+    public function actionSelectCandidates($id, $number)
+    {
+        // Step 1: Chukua walio na score kubwa zaidi kulingana na kiwango kilichotolewa
+        $topApplicants = JobApplication::find()
+            ->where(['applicant_job_post_id' => $id])
+            ->andWhere(['not', ['applicant_score' => null]])
+            ->orderBy(['applicant_score' => SORT_DESC])
+            ->limit($number)
+            ->all();
+
+        $selectedIds = array_map(function ($a) {
+            return $a->id;
+        }, $topApplicants);
+
+        // Step 2: Update waliochaguliwa kuwa 'accepted'
+        $acceptedCount = JobApplication::updateAll(
+            ['applicant_status_id' => 'accepted'], // badilisha kama unatumia integer status
+            ['id' => $selectedIds]
+        );
+
+        // Step 3: Update waliobaki (ambao hawakuchaguliwa) kuwa 'rejected'
+        $rejectedCount = JobApplication::updateAll(
+            ['applicant_status_id' => 'rejected'], // badilisha pia kama unatumia integer status
+            [
+                'and',
+                ['applicant_job_post_id' => $id],
+                ['not', ['id' => $selectedIds]],
+                ['not', ['applicant_score' => null]]
+            ]
+        );
+
+        Yii::$app->session->setFlash('success', "$acceptedCount applicants accepted, $rejectedCount rejected.");
+        return $this->redirect(['view', 'id' => $id]);
+    }
+
     /**
      * Finds the JobPost model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
