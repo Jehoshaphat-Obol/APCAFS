@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\AddJobPost;
+use app\models\Profile;
 use app\models\JobPost;
 use app\models\JobApplication;
 use app\models\ApplyJob;
@@ -101,6 +102,16 @@ class JobPostController extends Controller
         {
             if(Yii::$app->user->can('super-admin') || Yii::$app->user->can('company-admin') || Yii::$app->user->can('manager') || Yii::$app->user->can('hr') || Yii::$app->user->can('applicant'))
             {
+                // Zuia applicant ambaye hana profile
+                if (Yii::$app->user->can('applicant')) {
+                    $userId = Yii::$app->user->id;
+                    $profile = Profile::find()->where(['profile_user_id' => $userId])->one();
+                    if ($profile === null) {
+                        Yii::$app->session->setFlash('error', 'Please complete your profile before accessing job posts.');
+                        return $this->redirect(['/profile/create']);
+                    }
+                }
+                
                 $searchModel = new JobPostSearch();
 
                 $applicationCounts = JobApplication::find()

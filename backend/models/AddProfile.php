@@ -70,6 +70,7 @@
                 [['profile_bios'], 'string'],
 
                 // Phone number validation
+                ['phone_number', 'string', 'max' => 10],
                 ['phone_number', 'each', 'rule' => ['match', 'pattern' => '/^\d{10}$/', 'message' => 'Phone number must be numeric and exactly 10 digits.']],
 
                 // Experience

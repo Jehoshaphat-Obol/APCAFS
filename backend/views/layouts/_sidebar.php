@@ -169,6 +169,7 @@ if (!Yii::$app->user->isGuest) {
                     'label' => '<i class="bi bi-briefcase sidebar-icons fs-5"></i> <span>Job Posts</span>',
                     'encode' => false,
                     'url' => ['/job-post/index'],
+                    'visible' => $profile !== null,
                 ],
                 [
                     'label' => '<i class="bi bi-person sidebar-icons fs-5"></i> <span>My Profile</span>',
