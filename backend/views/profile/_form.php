@@ -14,7 +14,7 @@ use kartik\date\DatePicker;
 
 <div class="container py-5">
     <div class="accordion" id="basicAccordion">
-
+        <div id="form-alert-container"></div>
         <!-- Item 1 (open by default) -->
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
@@ -56,27 +56,27 @@ use kartik\date\DatePicker;
                         ]
                     ) ?>
 
-                    <?php 
-                        $districtItems = [];
+                    <?php
+                    $districtItems = [];
 
-                        if (!empty($model->profile_region_id)) {
-                            $districtItems = ArrayHelper::map(
-                                \app\models\District::find()->where(['district_region_id' => $model->profile_region_id])->all(),
-                                'id',
-                                'district_name'
-                            );
-                        }
+                    if (!empty($model->profile_region_id)) {
+                        $districtItems = ArrayHelper::map(
+                            \app\models\District::find()->where(['district_region_id' => $model->profile_region_id])->all(),
+                            'id',
+                            'district_name'
+                        );
+                    }
 
-                        echo $form->field($model, 'profile_district_id')->dropDownList(
-                            $districtItems,
-                            [
-                                'prompt' => 'Choose District',
-                                'id' => 'district-id'
-                            ]
-                            );
+                    echo $form->field($model, 'profile_district_id')->dropDownList(
+                        $districtItems,
+                        [
+                            'prompt' => 'Choose District',
+                            'id' => 'district-id'
+                        ]
+                    );
                     ?>
 
-                    
+
 
                     <?= $form->field($model, 'profile_local_address')->textInput(['maxlength' => true]) ?>
                 </div>
@@ -566,24 +566,61 @@ use kartik\date\DatePicker;
     let languageIndex = 0;
     let publicationIndex = 0;
 
-    document.querySelector('form').addEventListener('submit', function(e) {
-        const requiredFields = document.querySelectorAll('input[required]');
-        let valid = true;
+    document.addEventListener('DOMContentLoaded', function() {
+        const alertContainer = document.getElementById('form-alert-container');
 
-        requiredFields.forEach(field => {
-            if (!field.value.trim()) {
-                field.classList.add('is-invalid');
-                valid = false;
-            } else {
-                field.classList.remove('is-invalid');
-            }
+        document.querySelectorAll('.accordion-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const targetCollapse = document.querySelector(button.dataset.bsTarget);
+                const currentlyOpen = document.querySelector('.accordion-collapse.show');
+
+                // If clicking already open accordion, allow default behavior
+                if (targetCollapse && targetCollapse.classList.contains('show')) return;
+
+                if (currentlyOpen) {
+                    const form = currentlyOpen.querySelector('form');
+
+                    if (form) {
+                        const requiredFields = form.querySelectorAll('input[required], textarea[required], select[required]');
+                        let valid = true;
+                        alertContainer.innerHTML = ''; // Clear previous alerts
+
+                        requiredFields.forEach(field => {
+                            if (!field.value.trim()) {
+                                field.classList.add('is-invalid');
+                                valid = false;
+                            } else {
+                                field.classList.remove('is-invalid');
+                            }
+                        });
+
+                        if (!valid) {
+                            e.preventDefault(); // Stop accordion switch
+                            alertContainer.innerHTML = `
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Please fill in all required fields before proceeding.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        `;
+
+                            // Optionally scroll to first invalid field
+                            const firstInvalid = currentlyOpen.querySelector('.is-invalid');
+                            if (firstInvalid) {
+                                firstInvalid.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'center'
+                                });
+                                firstInvalid.focus();
+                            }
+
+                            return;
+                        }
+                    }
+                }
+            });
         });
-
-        if (!valid) {
-            e.preventDefault();
-            alert('Please fill in all required fields.');
-        }
     });
+
 
 
     // hii ni kwa ajili ya kuload district

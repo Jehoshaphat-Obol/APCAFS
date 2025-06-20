@@ -610,42 +610,5 @@ $this->title = Yii::t('app', 'Dashboard');
         </div>
     </div>
   </div>
-
-    <!-- Support and System Activity -->
-    <div class="row g-4">
-      <div class="col-lg-6">
-        <div class="card shadow-sm border-0 rounded-4">
-          <div class="card-header bg-white fw-bold">
-            Recent Support Tickets
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item px-0">
-                🔧 <strong>Nezder Inc.</strong>: Cannot update job post – <span class="text-muted">2 hrs ago</span>
-              </li>
-              <li class="list-group-item px-0">
-                💳 <strong>Arusha Tech</strong>: Billing failed – <span class="text-muted">1 day ago</span>
-              </li>
-              <li class="list-group-item px-0">
-                👤 <strong>Serengeti Solutions</strong>: User locked out – <span class="text-muted">3 days ago</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="card shadow-sm border-0 rounded-4">
-          <div class="card-header bg-white fw-bold">
-            System Activity Summary
-          </div>
-          <div class="card-body">
-            <p>👥 New Users: <strong>42</strong> this month</p>
-            <p>📋 Applications Submitted: <strong>310</strong></p>
-            <p>📝 New Job Posts: <strong>18</strong></p>
-            <p>⚙️ System Health: <span class="badge bg-success">All Systems Operational</span></p>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 <?php endif; ?>

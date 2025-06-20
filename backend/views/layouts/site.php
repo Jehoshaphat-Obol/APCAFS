@@ -60,6 +60,25 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             min-height: 200px;
             border-radius: 0.5rem;
         }
+
+        .hero{
+            height: 90dvh;
+            display: flex;
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+            align-content: center;
+        }
+
+        .hero img {
+            position: absolute;
+            z-index: -1;
+            object-position: top;
+        }
+
+        .hero div h1, .hero div p {
+            text-align: center;
+        }
     </style>
 </head>
 
