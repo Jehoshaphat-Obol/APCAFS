@@ -212,14 +212,30 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h5 class="mt-4">Job Description</h5>
                 <p><?= nl2br(Html::encode($model->post_job_description)) ?></p>
 
+                <?php
+                    // Angalia kama user ameomba hii kazi tayari
+                    $existingApplication = \app\models\JobApplication::find()
+                        ->where(['applicant_job_post_id' => $model->id, 'applicant_user_id' => Yii::$app->user->id])
+                        ->one();
+                ?>
                 <div class="mt-4">
-                    <?= Html::a('✅ Apply Now', ['apply', 'id' => $model->id], [
-                            'class' => 'btn btn-primary',
+                    <?php if ($existingApplication): ?>
+                        <?= Html::a('❌ Cancel Application', ['cancel', 'id' => $model->id], [
+                            'class' => 'btn btn-danger',
                             'data' => [
-                                'confirm' => 'Are you sure you want to Apply this job?',
+                                'confirm' => 'Are you sure you want to cancel this job application?',
                                 'method' => 'post',
                             ],
-                        ])?>
+                        ]) ?>
+                    <?php else: ?>
+                        <?= Html::a('✅ Apply Now', ['apply', 'id' => $model->id], [
+                            'class' => 'btn btn-primary',
+                            'data' => [
+                                'confirm' => 'Are you sure you want to apply for this job?',
+                                'method' => 'post',
+                            ],
+                        ]) ?>
+                    <?php endif; ?>
                     <?= Html::a('⬅ Back to Jobs', ['job-post/index'], ['class' => 'btn btn-secondary']) ?>
                 </div>
             </div>
