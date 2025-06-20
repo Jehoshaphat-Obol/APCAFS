@@ -50,7 +50,6 @@ if (!Yii::$app->user->isGuest) {
                 'items' => [
                     ['label' => '<i class="bi bi-people sidebar-icons-inside fs-5"></i> <span>Users</span>', 'encode' => false, 'url' => ['/user/deleted-users']],
                     ['label' => '<i class="bi bi-briefcase sidebar-icons-inside fs-5"></i> <span>Job Posts</span>', 'encode' => false, 'url' => ['/job-post/deleted-posts']],
-                    ['label' => '<i class="bi bi-clipboard-check sidebar-icons-inside fs-5"></i> <span>Job Tests</span>', 'encode' => false, 'url' => ['/job-test/deleted-tests']],
                     ['label' => '<i class="bi bi-folder2-open sidebar-icons-inside"></i><span> Job Applications</span>', 'encode' => false, 'url' => ['/job-application/deleted-applications']],
                 ],
             ],
@@ -98,7 +97,6 @@ if (!Yii::$app->user->isGuest) {
                     'items' => [
                         ['label' => '<i class="bi bi-people sidebar-icons-inside fs-5"></i> <span>Users</span>', 'encode' => false, 'url' => ['/user/deleted-users']],
                         ['label' => '<i class="bi bi-briefcase sidebar-icons-inside fs-5"></i> <span>Job Posts</span>', 'encode' => false, 'url' => ['/job-post/deleted-posts']],
-                        ['label' => '<i class="bi bi-clipboard-check sidebar-icons-inside fs-5"></i> <span>Job Tests</span>', 'encode' => false, 'url' => ['/job-test/deleted-tests']],
                         ['label' => '<i class="bi bi-folder2-open sidebar-icons-inside"></i><span> Job Applications</span>', 'encode' => false, 'url' => ['/job-application/deleted-applications']],
                     ],
                 ],
@@ -149,7 +147,6 @@ if (!Yii::$app->user->isGuest) {
                     'encode' => false,
                     'items' => [
                         ['label' => '<i class="bi bi-briefcase sidebar-icons-inside fs-5"></i> <span>Job Posts</span>', 'encode' => false, 'url' => ['/job-post/deleted-posts']],
-                        ['label' => '<i class="bi bi-clipboard-check sidebar-icons-inside fs-5"></i> <span>Job Tests</span>', 'encode' => false, 'url' => ['/job-test/deleted-tests']],
                     ],
                 ],
                 [
