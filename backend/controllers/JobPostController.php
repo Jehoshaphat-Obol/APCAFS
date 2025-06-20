@@ -189,10 +189,10 @@ class JobPostController extends Controller
                     ]);
 
                     if ($application->apply()) {
-                        Yii::$app->session->setFlash('success', 'Maombi ya kazi yamewasilishwa kwa mafanikio.');
+                        Yii::$app->session->setFlash('success', 'Your job application has been successfully submitted.');
                         return $this->redirect(['dashboard/applicant-dashboard']);
                     } else {
-                        Yii::$app->session->setFlash('error', 'Imeshindikana kutuma maombi. Tafadhali jaribu tena.');
+                        Yii::$app->session->setFlash('error', 'Unable to submit your application. Please try again.');
                         return $this->redirect(['job-post/view', 'id' => $model->id]);
                     }
                 }
@@ -210,7 +210,26 @@ class JobPostController extends Controller
      */
     public function actionCancel($id)
     {
-        return 'Cancel Button'; 
+        try {
+            $application = JobApplication::find()
+                        ->where(['applicant_job_post_id' => $id, 'applicant_user_id' => Yii::$app->user->id])
+                        ->one();
+
+            if ($application) {
+                if ($application->delete()) {
+                    Yii::$app->session->setFlash('success', 'Application cancelled successfully.');
+                } else {
+                    Yii::$app->session->setFlash('error', 'Unable to cancel the job application.');
+                }
+            } else {
+                Yii::$app->session->setFlash('error', 'No application found.');
+            }
+
+            return $this->redirect(['dashboard/applicant-dashboard']);
+        } catch (\Exception $e) {
+            Yii::error($e->getMessage(), __METHOD__);
+            throw new \yii\web\ServerErrorHttpException('Something went wrong. Please try again later.');
+        }
     }
 
     /**
