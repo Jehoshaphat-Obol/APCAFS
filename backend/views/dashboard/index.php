@@ -165,16 +165,14 @@ $this->title = Yii::t('app', 'Dashboard');
                   <td>
                     <?php
                     switch ($app->applicant_status_id) {
-                        case 'accepted':
-                        case 2:
+                        case 10:
                             echo '<span class="badge bg-success">Shortlisted</span>';
                             break;
-                        case 'rejected':
-                        case 3:
+                        case 11:
                             echo '<span class="badge bg-danger">Rejected</span>';
                             break;
                         default:
-                            echo '<span class="badge bg-warning">Test Pending</span>';
+                            echo '<span class="badge bg-warning">Application Pending</span>';
                     }
                     ?>
                   </td>

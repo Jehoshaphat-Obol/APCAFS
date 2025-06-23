@@ -236,7 +236,10 @@ class AnalyzeCv extends Model
                             $updateCount = Yii::$app->db->createCommand()->update(
                                 'job_application',
                                 ['applicant_score' => $score],
-                                ['applicant_user_id' => $userId]
+                                [
+                                    'applicant_user_id' => $userId,
+                                    'applicant_job_post_id' => $post->id, // ← inahakikisha tunahusika na post moja tu
+                                ]
                             )->execute();
 
                             if ($updateCount > 0) {
@@ -255,7 +258,6 @@ class AnalyzeCv extends Model
                 } else {
                     Yii::$app->session->setFlash('error', 'No results returned from CV ranking API.');
                 }
-
 
                 /******PERSONALITY ASSEMENT INAANZIA HAPA
                  * katika mistari ifuatayo
@@ -328,7 +330,7 @@ class AnalyzeCv extends Model
 
                     // 1. Chukua profile_ids zote kutoka kwenye results
                     $incomingProfileIds = ArrayHelper::getColumn($responseData['results'], 'profile_id');
-                    
+
                     if (empty($incomingProfileIds)) {
                         Yii::$app->session->setFlash('error', 'No profile IDs found in results.');
                         return;
